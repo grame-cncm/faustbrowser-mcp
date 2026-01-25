@@ -105,31 +105,7 @@ Example configuration:
 Restart Claude Desktop after saving the file, then open the UI in a browser
 to establish the audio runtime session.
 
-## Configuration
-
-Environment variables (defaults shown):
-
-- `MCP_HOST=127.0.0.1`
-- `MCP_PORT=8000`
-- `BROWSER_UI_HOST=127.0.0.1`
-- `BROWSER_UI_PORT=8010`
-- `BROWSER_UI_ROOT=.`
-- `BROWSER_UI_INDEX=ui/rt-browser-ui.html`
-
-## Example usage
-
-Simple Faust DSP compile and start (from any MCP client):
-
-```json
-{
-  "tool": "compile_and_start",
-  "args": {
-    "faust_code": "process = os.osc(440) * 0.2;"
-  }
-}
-```
-
-## Skills
+### Skills
 
 [Claude Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills) are lightweight, repo-local playbooks that teach agents how to perform a specialized task. 
 
@@ -155,6 +131,30 @@ Example JSON readback (from `get_param_values()`):
   { "path": "/dsp/Probe_RMS_dB_0", "value": -16.9 },
   { "path": "/dsp/Probe_Peak_dB_1", "value": -14.0 }
 ]
+```
+
+## Configuration
+
+Environment variables (defaults shown):
+
+- `MCP_HOST=127.0.0.1`
+- `MCP_PORT=8000`
+- `BROWSER_UI_HOST=127.0.0.1`
+- `BROWSER_UI_PORT=8010`
+- `BROWSER_UI_ROOT=.`
+- `BROWSER_UI_INDEX=ui/rt-browser-ui.html`
+
+## Example usage
+
+Simple Faust DSP compile and start (from any MCP client):
+
+```json
+{
+  "tool": "compile_and_start",
+  "args": {
+    "faust_code": "process = os.osc(440) * 0.2;"
+  }
+}
 ```
 
 ## Troubleshooting
