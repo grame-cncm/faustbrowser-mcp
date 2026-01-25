@@ -7,7 +7,7 @@
 ## Overview
 
 faustbrowser-mcp is a browser-first MCP server for Faust DSP. It runs a tiny
-Python MCP proxy locally, serves a static browser UI, and delegates all audio
+Python MCP proxy locally, serves a static browser UI, and delegates all audio/MIDI
 compilation and playback to the browser runtime. This lets MCP clients control
 Faust DSP without any native audio runtime on the server side.
 
@@ -22,7 +22,7 @@ Faust DSP without any native audio runtime on the server side.
 
 - Compile and start: `compile_and_start`, `compile`, `start`, `stop`, `destroy`
 - Load prebuilt DSPs: `load_wasm_module`, `save_wasm_module`, `get_dsp_json`
-- Parameters: `get_params`, `get_param`, `set_param`, `set_param_values`
+- Parameters: `get_params`, `get_param`, `set_param`, `get_param_values`, `set_param_values`
 - Diagnostics: `check_syntax`, `get_status`, `get_audio_metrics`
 - MIDI: `get_midi_inputs`, `select_midi_input`, `get_midi_status`
 
@@ -39,8 +39,8 @@ Faust DSP without any native audio runtime on the server side.
 ## Requirements
 
 - Python 3.10+
-- A modern browser with Web Audio enabled
-- Node.js and npm if you need to install UI dependencies
+- A modern browser with Web Audio and Web MIDI enabled
+- Node.js and npm to install UI dependencies
 
 ## Install
 
