@@ -14,9 +14,9 @@ Faust DSP without any native audio runtime on the server side.
 ## How it works
 
 - The Python server exposes MCP tools and serves the UI.
-- The browser UI loads the Faust WebAssembly toolchain and starts AudioContext.
+- The browser UI loads the Faust WebAssembly toolchain (built using [faustwasm](https://github.com/grame-cncm/faustwasm)) and starts AudioContext.
 - MCP tool calls are forwarded to the browser over a long-polling bridge.
-- Audio runs entirely in the browser; the Python process is just a proxy.
+- Audio and MIDI runs entirely in the browser, the Python process is just a proxy.
 
 ## MCP tool surface (high level)
 
@@ -28,11 +28,9 @@ Faust DSP without any native audio runtime on the server side.
 
 ## MIDI and polyphony
 
-- MIDI input is available through the browser Web MIDI API. Use
+- MIDI input is available through the browser Web MIDI API, and can be used to [control UI items](https://faustdoc.grame.fr/manual/midi/#configuring-midi-in-faust). Use
   `get_midi_inputs` to list ports, then `select_midi_input` to bind one.
-- Polyphonic DSPs are detected automatically from the Faust JSON metadata.
-  When a DSP exposes `nvoices`, the runtime enables polyphony and the UI
-  shows active voice counts.
+- [Polyphonic DSPs](https://faustdoc.grame.fr/manual/midi/#midi-polyphony-support) are detected automatically from the Faust JSON metadata. When a DSP exposes `nvoices`, the runtime enables polyphony and the UI shows active voice counts.
 - MIDI note activity is reported via `get_midi_status`, and polyphonic
   patches can be controlled with standard note on/off messages.
 
