@@ -129,6 +129,34 @@ Simple Faust DSP compile and start (from any MCP client):
 }
 ```
 
+## Skills
+
+[Claude Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills) are lightweight, repo-local playbooks that teach agents how to perform a specialized task. 
+
+- `skills/faust-internal-metering/SKILL.md`: How to add RMS/Peak metering probes
+  anywhere in a Faust DSP, read them via `get_param_values()`, and surface
+  probe values in `get_audio_metrics()`.
+
+Example snippet (internal metering with probes):
+
+```faust
+import("stdfaust.lib");
+db = library("debug.lib");
+
+osc = os.sawtooth(freq) : db.probe_rms_db(0, 1);
+filtered = osc : fi.lowpass(2, cutoff) : db.probe_peak_db(1, 1);
+process = filtered;
+```
+
+Example JSON readback (from `get_param_values()`):
+
+```json
+[
+  { "path": "/dsp/Probe_RMS_dB_0", "value": -16.9 },
+  { "path": "/dsp/Probe_Peak_dB_1", "value": -14.0 }
+]
+```
+
 ## Troubleshooting
 
 - If audio is silent, the browser may have suspended audio. Use the UI unlock
