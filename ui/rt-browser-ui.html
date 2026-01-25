@@ -1,0 +1,140 @@
+<!doctype html>
+<!-- Browser-only RT UI entrypoint. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Faust Browser RT UI</title>
+  <link rel="stylesheet" href="/faust-ui/index.css" />
+  <link rel="stylesheet" href="/rt-browser-ui.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="app-header-left">
+        <div class="app-title-row">
+          <div class="app-title">Faust MCP (Browser)</div>
+          <div class="app-actions">
+            <button class="app-action-btn" id="compact-toggle" type="button" aria-pressed="false">
+              Compact
+            </button>
+            <button class="app-action-btn" id="analysis-toggle" type="button" aria-pressed="false">
+              Hide Analysis
+            </button>
+          </div>
+        </div>
+        <div class="app-subtitle" id="dsp-name"></div>
+        <div class="status" id="status">Loading...</div>
+      </div>
+      <div class="app-header-right">
+        <div id="midi-panel">
+          <div id="midi-row">
+            <label for="midi-select">MIDI input</label>
+            <select id="midi-select">
+              <option value="">Loading...</option>
+            </select>
+            <span id="midi-status"></span>
+          </div>
+          <span id="poly-active"></span>
+        </div>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <div class="left-column">
+        <section class="panel panel-faust">
+          <div class="panel-header">Faust UI</div>
+          <div id="faust-ui-container">
+            <div id="faust-ui-root"></div>
+          </div>
+          <div id="fallback-ui"></div>
+        </section>
+
+        <section class="panel panel-diagram">
+        <div class="panel-header panel-header-diagram">
+          <span>DSP Diagram</span>
+          <div class="diagram-actions">
+            <button class="panel-toggle" id="diagram-home" type="button" disabled>
+              Home
+            </button>
+            <button class="panel-toggle" id="diagram-back" type="button" disabled>
+              Back
+            </button>
+            <button class="panel-toggle" id="diagram-toggle" type="button" aria-expanded="false">
+              Show Diagram
+            </button>
+          </div>
+        </div>
+          <div class="panel-body panel-diagram-body is-hidden" id="diagram-body">
+            <div class="diagram-container" id="diagram-container">
+              <div class="diagram-empty">No diagram yet.</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div
+        class="column-splitter"
+        id="column-splitter"
+        role="separator"
+        aria-orientation="vertical"
+        aria-label="Resize columns"
+      ></div>
+
+      <div class="right-column">
+        <section class="panel panel-scope">
+          <div class="panel-header">Scope / Spectrum</div>
+          <div class="panel-body panel-scope-body">
+            <div class="scope-toolbar">
+              <button class="scope-tab is-active" type="button" data-mode="scope">Scope</button>
+              <button class="scope-tab" type="button" data-mode="spectrum">Spectrum</button>
+              <button class="scope-tab" type="button" data-mode="both">Both</button>
+              <select id="scope-channel">
+                <option value="mix">Mix</option>
+              </select>
+            </div>
+            <div class="scope-canvas">
+              <div class="scope-pane scope-pane-scope">
+                <div class="scope-grid"></div>
+                <canvas class="scope-render" id="scope-canvas"></canvas>
+              </div>
+              <div class="scope-pane scope-pane-spectrum">
+                <div class="scope-grid"></div>
+                <canvas class="scope-render is-hidden" id="spectrum-canvas"></canvas>
+              </div>
+              <div class="scope-label" id="scope-label">Waiting for analyser data...</div>
+            </div>
+            <div class="scope-meta" id="scope-meta">FFT 2048 · Smoothing 0.8</div>
+          </div>
+        </section>
+
+        <section class="panel panel-probe">
+          <div class="panel-header">Probes</div>
+          <div class="panel-body panel-probe-body">
+            <div class="probe-toolbar">
+              <label class="probe-label" for="probe-select">Probe</label>
+              <select id="probe-select">
+                <option value="">No probes</option>
+              </select>
+            </div>
+            <div class="probe-canvas">
+              <div class="probe-grid"></div>
+              <canvas class="probe-render" id="probe-canvas"></canvas>
+              <div class="probe-label-text" id="probe-label">No probe selected</div>
+            </div>
+            <div class="probe-meta" id="probe-meta">Value: --</div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer class="app-footer">
+      <div class="brand brand-footer">
+        <img class="brand-logo" src="/assets/LOGO_FAUST_COMPLET_ORANGE.png" alt="Faust logo" />
+        <div class="brand-text">Functional audio stream</div>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="/rt-browser-ui.js"></script>
+</body>
+</html>
