@@ -26,6 +26,46 @@ Faust DSP without any native audio runtime on the server side.
 - Diagnostics: `check_syntax`, `get_status`, `get_audio_metrics`
 - MIDI: `get_midi_inputs`, `select_midi_input`, `get_midi_status`
 
+## Audio metering
+
+When you call `compile` or `compile_and_start`, the runtime **automatically wraps** the submitted DSP
+with a metering layer (in `faust_dsp_utils.mjs`). This wrapper injects Faust `hbargraph` meters
+for **Peak + RMS** per channel and a **mono mix** meter, using `attach` so the signal path and
+output arity are unchanged. Meter bargraphs are tagged with `[unit:dB]`, and the values are later
+converted back to **linear amplitude** for reporting.
+
+Input meters are added when an input source is used (`input_source` = `sine`, `noise`, or `file`),
+or when an external input is required for file playback. Output meters are always added unless
+`hide_meters=true`, which appends `[hidden:1]` so the bars are hidden in the UI.
+
+Meter bargraph paths are consistent and can be inspected via `get_params` / `get_param_values`:
+`/dsp/Input Meters/Peak chN`, `/dsp/Input Meters/RMS chN`, `/dsp/Output Meters/Peak chN`,
+`/dsp/Output Meters/RMS chN`, plus `/dsp/Output Meters/Mix Peak` and `/dsp/Output Meters/Mix RMS`.
+
+### Reading meters with `get_audio_metrics`
+
+`get_audio_metrics` returns a compact snapshot of the current meters plus optional scope/spectrum data.
+The meter payload includes per-channel RMS/Peak, a mono mix RMS/Peak, and any internal probe values
+marked with `[probe:N]` in the Faust UI metadata (see the internal metering skill below).
+
+Example (shape only):
+
+```json
+{
+  "input": { "channels": [ { "rms": 0.02, "peak": 0.08 } ] },
+  "output": {
+    "mix": { "rms": 0.01, "peak": 0.05, "hasNaN": false },
+    "channels": [ { "rms": 0.01, "peak": 0.05, "hasNaN": false } ]
+  },
+  "probes": [ { "id": 0, "value": 0.57 } ]
+}
+```
+
+Options like `include_scope`, `include_spectrum`, `per_channel`, and `fft_size` add time-domain or FFT
+data to the same payload. Other tunables include `smoothing`, `min_db`, `max_db`, `edge_threshold`,
+and `log_bins` (for log-spaced spectrum bins). Meter values are linear
+(0.0 = silence, 1.0 = full scale, > 1.0 = clipping).
+
 ## MIDI and polyphony
 
 - MIDI input is available through the browser Web MIDI API, and can be used to [control UI items](https://faustdoc.grame.fr/manual/midi/#configuring-midi-in-faust). Use
