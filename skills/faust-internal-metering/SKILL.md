@@ -30,7 +30,7 @@ process = _ : db[DEBUG=0;].probe_rms_db(0, 1);
 
 ### Standard probe bargraphs
 
-If you use `debug.lib`, you already have the standard probe definition at https://raw.githubusercontent.com/grame-cncm/faustlibraries/refs/heads/master/debug.lib
+If you use `debug.lib`, you already have the standard probe definition at https://raw.githubusercontent.com/grame-cncm/faustlibraries/refs/heads/master/doc/docs/libs/debug.md or https://raw.githubusercontent.com/grame-cncm/faustlibraries/refs/heads/master/debug.lib
 
 The `[hidden:1]` metadata hides the metering probes in the GUI. Keep them visible when you want to help developers debug, or hide them when not needed.
 
