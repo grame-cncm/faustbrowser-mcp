@@ -724,10 +724,12 @@ export function createBrowserRuntime(options = {}) {
    * Run a syntax check on the provided DSP code.
    * @param {string} faust_code
    * @param {string} [name]
+   * @param {boolean} [double_precision]
    * @returns {Promise<object>}
    */
-  async function check_syntax(faust_code, name = 'faust-check') {
-    return compilerManager.checkSyntax({ dsp_code: faust_code, name });
+  async function check_syntax(faust_code, name = 'faust-check', double_precision = false) {
+    const args = double_precision ? '-ftz 2 -double' : '-ftz 2';
+    return compilerManager.checkSyntax({ dsp_code: faust_code, name, args });
   }
 
   /**
@@ -741,6 +743,7 @@ export function createBrowserRuntime(options = {}) {
     input_freq = config.input_freq,
     input_file = config.input_file,
     hide_meters = config.hide_meters,
+    double_precision = false,
   ) {
     return compileDSP({
       dsp_code: faust_code,
@@ -750,6 +753,7 @@ export function createBrowserRuntime(options = {}) {
       input_freq,
       input_file,
       hide_meters,
+      double_precision,
       start_audio: false,
     });
   }
@@ -765,6 +769,7 @@ export function createBrowserRuntime(options = {}) {
     input_freq = config.input_freq,
     input_file = config.input_file,
     hide_meters = config.hide_meters,
+    double_precision = false,
   ) {
     const compiled = await compileDSP({
       dsp_code: faust_code,
@@ -774,6 +779,7 @@ export function createBrowserRuntime(options = {}) {
       input_freq,
       input_file,
       hide_meters,
+      double_precision,
       start_audio: false,
     });
     await start();
@@ -957,6 +963,7 @@ export function createBrowserRuntime(options = {}) {
     input_freq,
     input_file,
     hide_meters,
+    double_precision = false,
     start_audio = true,
   }) {
     await compilerManager.ensureReady();
@@ -972,6 +979,7 @@ export function createBrowserRuntime(options = {}) {
       } catch (_) {}
     }
 
+    const compilerArgs = double_precision ? '-ftz 2 -double' : '-ftz 2';
     const monoGenerator = compilerManager.createGenerator();
     let wrapped = null;
     try {
@@ -989,7 +997,7 @@ export function createBrowserRuntime(options = {}) {
       compilerManager.compiler,
       name,
       wrapped.code,
-      '-ftz 2',
+      compilerArgs,
     );
     if (!compiledMono) {
       throw new ToolError('compile_failed', 'Faust compilation failed', { stage: 'mono' });
@@ -1011,7 +1019,7 @@ export function createBrowserRuntime(options = {}) {
         compilerManager.compiler,
         name,
         wrapped.code,
-        '-ftz 2',
+        compilerArgs,
       );
       if (!compiledPoly) {
         throw new ToolError('compile_failed', 'Faust poly compilation failed', {
