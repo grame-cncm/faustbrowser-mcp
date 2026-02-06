@@ -7,8 +7,8 @@ Python process only serves static assets and forwards MCP tool calls over a
 long-polling bridge.
 
 Tools:
-  - compile_and_start(faust_code, name?, latency_hint?, input_source?, input_freq?, input_file?, hide_meters?)
-  - compile(faust_code, name?, latency_hint?, input_source?, input_freq?, input_file?, hide_meters?)
+  - compile_and_start(faust_code, name?, latency_hint?, input_source?, input_freq?, input_file?, hide_meters?, double_precision?)
+  - compile(faust_code, name?, latency_hint?, input_source?, input_freq?, input_file?, hide_meters?, double_precision?)
   - load_wasm_module(wasm_base64?, wasm_path?, dsp_json?, dsp_json_path?, effect_wasm_base64?, effect_wasm_path?, effect_dsp_json?, effect_dsp_json_path?, name?, latency_hint?)
   - start()
   - unlock_audio(latency_hint?)
@@ -171,9 +171,9 @@ def _call_bridge(method: str, params: dict | None = None) -> dict:
 
 
 @mcp.tool()
-def check_syntax(faust_code: str, name: str = "faust-check") -> str:
+def check_syntax(faust_code: str, name: str = "faust-check", double_precision: bool = False) -> str:
     """Validate Faust syntax in the browser runtime without starting audio."""
-    result = _call_bridge("check_syntax", {"dsp_code": faust_code, "name": name})
+    result = _call_bridge("check_syntax", {"dsp_code": faust_code, "name": name, "double_precision": double_precision})
     return json.dumps(result, indent=2)
 
 
@@ -186,6 +186,7 @@ def compile_and_start(
     input_freq: float | None = None,
     input_file: str | None = None,
     hide_meters: bool = False,
+    double_precision: bool = False,
 ) -> str:
     """Compile DSP in the browser and start audio."""
     result = _call_bridge(
@@ -198,6 +199,7 @@ def compile_and_start(
             "input_freq": input_freq,
             "input_file": input_file,
             "hide_meters": hide_meters,
+            "double_precision": double_precision,
         },
     )
     return json.dumps(result, indent=2)
@@ -212,6 +214,7 @@ def compile(
     input_freq: float | None = None,
     input_file: str | None = None,
     hide_meters: bool = False,
+    double_precision: bool = False,
 ) -> str:
     """Compile DSP in the browser without starting audio."""
     result = _call_bridge(
@@ -224,6 +227,7 @@ def compile(
             "input_freq": input_freq,
             "input_file": input_file,
             "hide_meters": hide_meters,
+            "double_precision": double_precision,
         },
     )
     return json.dumps(result, indent=2)

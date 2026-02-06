@@ -1337,8 +1337,8 @@ class RtBrowserUiApp {
         throw new Error(`Unknown method: ${method}`);
       }
       const argOrder = {
-        check_syntax: ['dsp_code', 'name'],
-        compile: ['dsp_code', 'name', 'input_source', 'input_freq', 'input_file', 'hide_meters'],
+        check_syntax: ['dsp_code', 'name', 'double_precision'],
+        compile: ['dsp_code', 'name', 'latency_hint', 'input_source', 'input_freq', 'input_file', 'hide_meters', 'double_precision'],
         compile_and_start: [
           'dsp_code',
           'name',
@@ -1347,6 +1347,7 @@ class RtBrowserUiApp {
           'input_freq',
           'input_file',
           'hide_meters',
+          'double_precision',
         ],
         unlock_audio: ['latency_hint'],
         save_wasm_module: [],
