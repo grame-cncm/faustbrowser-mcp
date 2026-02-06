@@ -1,10 +1,10 @@
 {
   "name": "faustbrowser-mcp",
   "private": true,
-  "version": "0.5.2",
+  "version": "0.5.3",
   "type": "module",
   "dependencies": {
-    "@grame/faustwasm": "^0.15.6",
+    "@grame/faustwasm": "^0.15.7",
     "@shren/faust-ui": "^1.1.19"
   }
 }
