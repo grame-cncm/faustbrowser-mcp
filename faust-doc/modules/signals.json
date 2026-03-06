@@ -1,0 +1,671 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "signals.lib",
+    "path": "signals.lib",
+    "aliasHints": [
+      "si"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "signals.bus",
+      "name": "bus",
+      "qualifiedName": "si.bus",
+      "header": "(si.)bus",
+      "summary": "Put N cables in parallel. `bus` is a standard Faust function.",
+      "usage": "bus(N) bus(4) : _,_,_,_",
+      "params": [
+        {
+          "name": "N",
+          "description": "is an integer known at compile time that indicates the number of parallel cables"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 4,
+        "raw": "bus(N) bus(4) : _,_,_,_"
+      },
+      "testCode": "si = library(\"signals.lib\");\nbus_test = (\n    hslider(\"bus:x0\", 0, -1, 1, 0.01),\n    hslider(\"bus:x1\", 0, -1, 1, 0.01),\n    hslider(\"bus:x2\", 0, -1, 1, 0.01)\n) : si.bus(3);",
+      "references": [],
+      "tags": [
+        "signals"
+      ],
+      "source": {
+        "file": "signals.lib",
+        "path": "signals.lib",
+        "lineStart": 66,
+        "lineEnd": 90
+      }
+    },
+    {
+      "id": "signals.block",
+      "name": "block",
+      "qualifiedName": "si.block",
+      "header": "(si.)block",
+      "summary": "Block - terminate N signals. `block` is a standard Faust function.",
+      "usage": "si.bus(N) : block(N)",
+      "params": [
+        {
+          "name": "N",
+          "description": "the number of signals to be blocked known at compile time"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "si.bus(N) : block(N)"
+      },
+      "testCode": "si = library(\"signals.lib\");\nblock_test = (\n    hslider(\"block:x0\", 0, -1, 1, 0.01),\n    hslider(\"block:x1\", 0, -1, 1, 0.01)\n) : (si.block(1), _);",
+      "references": [],
+      "tags": [
+        "signals"
+      ],
+      "source": {
+        "file": "signals.lib",
+        "path": "signals.lib",
+        "lineStart": 96,
+        "lineEnd": 118
+      }
+    },
+    {
+      "id": "signals.interpolate",
+      "name": "interpolate",
+      "qualifiedName": "si.interpolate",
+      "header": "(si.)interpolate",
+      "summary": "Linear interpolation between two signals.",
+      "usage": "_,_ : interpolate(i) : _",
+      "params": [
+        {
+          "name": "i",
+          "description": "interpolation control between 0 and 1 (0: first input; 1: second input)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "_,_ : interpolate(i) : _"
+      },
+      "testCode": "si = library(\"signals.lib\");\nos = library(\"oscillators.lib\");\ninterpolate_test = si.interpolate(\n    hslider(\"interpolate:mix\", 0.5, 0, 1, 0.01),\n    os.osc(220),\n    os.osc(440)\n);",
+      "references": [],
+      "tags": [
+        "signals"
+      ],
+      "source": {
+        "file": "signals.lib",
+        "path": "signals.lib",
+        "lineStart": 121,
+        "lineEnd": 144
+      }
+    },
+    {
+      "id": "signals.repeat",
+      "name": "repeat",
+      "qualifiedName": "si.repeat",
+      "header": "(si.)repeat",
+      "summary": "Repeat an effect N time(s) and take the parallel sum of all intermediate buses.",
+      "usage": "si.bus(inputs(FX)) : repeat(N, FX) : si.bus(outputs(FX))",
+      "params": [
+        {
+          "name": "N",
+          "description": "Number of repetitions, minimum of 1, a constant numerical expression"
+        },
+        {
+          "name": "FX",
+          "description": "an arbitrary effect (N inputs and N outputs) that will be repeated"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(inputs(FX)) : repeat(N, FX) : si.bus(outputs(FX))"
+      },
+      "testCode": "N = 4;\nC = 2;\nfx(i) = i+1, par(j, C, @(i*5000));\nprocess = 0, si.bus(C) : repeat(N, fx) : !, par(i, C, _*.2/N);",
+      "references": [
+        "<https://github.com/orlarey/presentation-compilateur-faust/blob/master/slides.pdf>",
+        "---------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "signals"
+      ],
+      "source": {
+        "file": "signals.lib",
+        "path": "signals.lib",
+        "lineStart": 147,
+        "lineEnd": 184
+      }
+    },
+    {
+      "id": "signals.smoo",
+      "name": "smoo",
+      "qualifiedName": "si.smoo",
+      "header": "(si.)smoo",
+      "summary": "Smoothing function based on `smooth` ideal to smooth UI signals (sliders, etc.) down. Approximately, this is a 7 Hz one-pole low-pass considering the coefficient calculation: exp(-2pi*CF/SR). `smoo` is a standard Faust function.",
+      "usage": "hslider(...) : smoo;",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "hslider(...) : smoo;"
+      },
+      "testCode": "si = library(\"signals.lib\");\nsmoo_test = hslider(\"smoo:input\", 0, -1, 1, 0.01) : si.smoo;",
+      "references": [],
+      "tags": [
+        "signals"
+      ],
+      "source": {
+        "file": "signals.lib",
+        "path": "signals.lib",
+        "lineStart": 193,
+        "lineEnd": 212
+      }
+    },
+    {
+      "id": "signals.polySmooth",
+      "name": "polySmooth",
+      "qualifiedName": "si.polySmooth",
+      "header": "(si.)polySmooth",
+      "summary": "A smoothing function based on `smooth` that doesn't smooth when a trigger signal is given. This is very useful when making polyphonic synthesizer to make sure that the value of the parameter is the right one when the note is started.",
+      "usage": "hslider(...) : polySmooth(g,s,d) : _",
+      "params": [
+        {
+          "name": "g",
+          "description": "the gate/trigger signal used when making polyphonic synths"
+        },
+        {
+          "name": "s",
+          "description": "the smoothness (see `smooth`)"
+        },
+        {
+          "name": "d",
+          "description": "the number of samples to wait before the signal start being smoothed after `g` switched to 1"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "hslider(...) : polySmooth(g,s,d) : _"
+      },
+      "testCode": "si = library(\"signals.lib\");\npolySmooth_test = hslider(\"polySmooth:input\", 0, -1, 1, 0.01)\n  : si.polySmooth(button(\"polySmooth:gate\"), 0.999, 32);",
+      "references": [],
+      "tags": [
+        "signals"
+      ],
+      "source": {
+        "file": "signals.lib",
+        "path": "signals.lib",
+        "lineStart": 215,
+        "lineEnd": 240
+      }
+    },
+    {
+      "id": "signals.smoothAndH",
+      "name": "smoothAndH",
+      "qualifiedName": "si.smoothAndH",
+      "header": "(si.)smoothAndH",
+      "summary": "A smoothing function based on `smooth` that holds its output signal when a trigger is sent to it. This feature is convenient when implementing polyphonic instruments to prevent some smoothed parameter to change when a note-off event is sent.",
+      "usage": "hslider(...) : smoothAndH(g,s) : _",
+      "params": [
+        {
+          "name": "g",
+          "description": "the hold signal (0 for hold, 1 for bypass)"
+        },
+        {
+          "name": "s",
+          "description": "the smoothness (see `smooth`)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "hslider(...) : smoothAndH(g,s) : _"
+      },
+      "testCode": "si = library(\"signals.lib\");\nsmoothAndH_test = hslider(\"smoothAndH:input\", 0, -1, 1, 0.01)\n  : si.smoothAndH(button(\"smoothAndH:hold\"), 0.999);",
+      "references": [],
+      "tags": [
+        "signals"
+      ],
+      "source": {
+        "file": "signals.lib",
+        "path": "signals.lib",
+        "lineStart": 243,
+        "lineEnd": 266
+      }
+    },
+    {
+      "id": "signals.bsmooth",
+      "name": "bsmooth",
+      "qualifiedName": "si.bsmooth",
+      "header": "(si.)bsmooth",
+      "summary": "Block smooth linear interpolation during a block of samples (given by the `ma.BS` value).",
+      "usage": "hslider(...) : bsmooth : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "hslider(...) : bsmooth : _"
+      },
+      "testCode": "si = library(\"signals.lib\");\nbsmooth_test = hslider(\"bsmooth:input\", 0, -1, 1, 0.01) : si.bsmooth;",
+      "references": [],
+      "tags": [
+        "signals"
+      ],
+      "source": {
+        "file": "signals.lib",
+        "path": "signals.lib",
+        "lineStart": 269,
+        "lineEnd": 283
+      }
+    },
+    {
+      "id": "signals.dot",
+      "name": "dot",
+      "qualifiedName": "si.dot",
+      "header": "(si.)dot",
+      "summary": "Dot product for two vectors of size N.",
+      "usage": "si.bus(N), si.bus(N) : dot(N) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "size of the vectors (int, must be known at compile time)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "si.bus(N), si.bus(N) : dot(N) : _"
+      },
+      "testCode": "si = library(\"signals.lib\");\nos = library(\"oscillators.lib\");\ndot_test = (\n    os.osc(100), os.osc(200), os.osc(300),\n    os.osc(400), os.osc(500), os.osc(600)\n) : si.dot(3);",
+      "references": [],
+      "tags": [
+        "signals"
+      ],
+      "source": {
+        "file": "signals.lib",
+        "path": "signals.lib",
+        "lineStart": 290,
+        "lineEnd": 312
+      }
+    },
+    {
+      "id": "signals.smooth",
+      "name": "smooth",
+      "qualifiedName": "si.smooth",
+      "header": "(si.)smooth",
+      "summary": "Exponential smoothing by a unity-dc-gain one-pole lowpass. `smooth` is a standard Faust function.",
+      "usage": "_ : si.smooth(ba.tau2pole(tau)) : _",
+      "params": [
+        {
+          "name": "tau",
+          "description": "desired smoothing time constant in seconds, or"
+        },
+        {
+          "name": "s",
+          "description": "smoothness between 0 and 1. s=0 for no smoothing, s=0.999 is \"very smooth\", s>1 is unstable, and s=1 yields the zero signal for all inputs. The exponential time-constant is approximately 1/(1-s) samples, when s is close to (but less than) 1."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : si.smooth(ba.tau2pole(tau)) : _"
+      },
+      "testCode": "si = library(\"signals.lib\");\nsmooth_test = hslider(\"smooth:input\", 0, -1, 1, 0.01) : si.smooth(0.9);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/mdft/Convolution_Example_2_ADSR.html>",
+        "<https://ccrma.stanford.edu/~jos/aspf/Appendix_B_Inspecting_Assembly.html>",
+        "-------------------------------------------------------------",
+        "See [grame-cncm/faustlibraries]: Minor improvement to si.smoo. (Discussion #106)"
+      ],
+      "tags": [
+        "signals"
+      ],
+      "source": {
+        "file": "signals.lib",
+        "path": "signals.lib",
+        "lineStart": 332,
+        "lineEnd": 368
+      }
+    },
+    {
+      "id": "signals.smoothq",
+      "name": "smoothq",
+      "qualifiedName": "si.smoothq",
+      "header": "(si.)smoothq",
+      "summary": "Smoothing with continuously variable curves from Exponential to Linear, with a constant time.",
+      "usage": "_ : smoothq(time, q) : _;",
+      "params": [
+        {
+          "name": "time",
+          "description": "seconds to reach target"
+        },
+        {
+          "name": "q",
+          "description": "curve shape (between 0..1, 0 is Exponential, 1 is Linear)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : smoothq(time, q) : _;"
+      },
+      "testCode": "si = library(\"signals.lib\");\nsmoothq_test = hslider(\"smoothq:input\", 0, -1, 1, 0.01) : si.smoothq(0.25, 0.5);",
+      "references": [],
+      "tags": [
+        "signals"
+      ],
+      "source": {
+        "file": "signals.lib",
+        "path": "signals.lib",
+        "lineStart": 385,
+        "lineEnd": 404
+      }
+    },
+    {
+      "id": "signals.cbus",
+      "name": "cbus",
+      "qualifiedName": "si.cbus",
+      "header": "(si.)cbus",
+      "summary": "N parallel cables for complex signals. `cbus` is a standard Faust function.",
+      "usage": "cbus(N) cbus(4) : (r0,i0), (r1,i1), (r2,i2), (r3,i3)",
+      "params": [
+        {
+          "name": "N",
+          "description": "is an integer known at compile time that indicates the number of parallel cables."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 8,
+        "raw": "cbus(N) cbus(4) : (r0,i0), (r1,i1), (r2,i2), (r3,i3)"
+      },
+      "testCode": "si = library(\"signals.lib\");\nos = library(\"oscillators.lib\");\ncbus_test = (\n    os.osc(100), os.osc(150),\n    os.osc(200), os.osc(250)\n) : si.cbus(2);",
+      "references": [],
+      "tags": [
+        "signals"
+      ],
+      "source": {
+        "file": "signals.lib",
+        "path": "signals.lib",
+        "lineStart": 441,
+        "lineEnd": 466
+      }
+    },
+    {
+      "id": "signals.cmul",
+      "name": "cmul",
+      "qualifiedName": "si.cmul",
+      "header": "(si.)cmul",
+      "summary": "Multiply two complex signals pointwise. `cmul` is a standard Faust function.",
+      "usage": "(r1,i1) : cmul(r2,i2) : (_,_)",
+      "params": [],
+      "notes": [
+        "- `(r1,i1)` = real and imaginary parts of signal 1 - `(r2,i2)` = real and imaginary parts of signal 2"
+      ],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "(r1,i1) : cmul(r2,i2) : (_,_)"
+      },
+      "testCode": "si = library(\"signals.lib\");\nos = library(\"oscillators.lib\");\ncmul_test = si.cmul(\n    os.osc(110), os.osc(220),\n   os.osc(330), os.osc(440)\n);",
+      "references": [],
+      "tags": [
+        "signals"
+      ],
+      "source": {
+        "file": "signals.lib",
+        "path": "signals.lib",
+        "lineStart": 470,
+        "lineEnd": 495
+      }
+    },
+    {
+      "id": "signals.cconj",
+      "name": "cconj",
+      "qualifiedName": "si.cconj",
+      "header": "(si.)cconj",
+      "summary": "Complex conjugation of a (complex) signal. `cconj` is a standard Faust function.",
+      "usage": "(r1,i1) : cconj : (_,_)",
+      "params": [],
+      "notes": [
+        "- `(r1,i1)` = real and imaginary parts of the input signal - `(r1,-i1)` = real and imaginary parts of the output signal"
+      ],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "(r1,i1) : cconj : (_,_)"
+      },
+      "testCode": "si = library(\"signals.lib\");\nos = library(\"oscillators.lib\");\ncconj_test = (os.osc(210), os.osc(310)) : si.cconj;",
+      "references": [],
+      "tags": [
+        "signals"
+      ],
+      "source": {
+        "file": "signals.lib",
+        "path": "signals.lib",
+        "lineStart": 498,
+        "lineEnd": 520
+      }
+    },
+    {
+      "id": "signals.onePoleSwitching",
+      "name": "onePoleSwitching",
+      "qualifiedName": "si.onePoleSwitching",
+      "header": "(si.)onePoleSwitching",
+      "summary": "One pole filter with independent attack and release times.",
+      "usage": "_ : onePoleSwitching(att,rel) : _",
+      "params": [
+        {
+          "name": "att",
+          "description": "the attack tau time constant in second"
+        },
+        {
+          "name": "rel",
+          "description": "the release tau time constant in second"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : onePoleSwitching(att,rel) : _"
+      },
+      "testCode": "si = library(\"signals.lib\");\nonePoleSwitching_test = hslider(\"onePoleSwitching:input\", 0, -1, 1, 0.01)\n  : si.onePoleSwitching(0.05, 0.2);",
+      "references": [],
+      "tags": [
+        "signals"
+      ],
+      "source": {
+        "file": "signals.lib",
+        "path": "signals.lib",
+        "lineStart": 534,
+        "lineEnd": 554
+      }
+    },
+    {
+      "id": "signals.rev",
+      "name": "rev",
+      "qualifiedName": "si.rev",
+      "header": "(si.)rev",
+      "summary": "Reverse the input signal by blocks of n>0 samples. `rev(1)` is the indentity function. `rev(n)` has a latency of `n-1` samples.",
+      "usage": "_ : rev(n) : _",
+      "params": [
+        {
+          "name": "n",
+          "description": "the block size in samples"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : rev(n) : _"
+      },
+      "testCode": "si = library(\"signals.lib\");\nos = library(\"oscillators.lib\");\nrev_test = os.osc(440) : si.rev(32);",
+      "references": [],
+      "tags": [
+        "signals"
+      ],
+      "source": {
+        "file": "signals.lib",
+        "path": "signals.lib",
+        "lineStart": 572,
+        "lineEnd": 592
+      }
+    },
+    {
+      "id": "signals.vecOp",
+      "name": "vecOp",
+      "qualifiedName": "si.vecOp",
+      "header": "(si.)vecOp",
+      "summary": "This function is a generalisation of Faust's iterators such as `prod` and `sum`, and it allows to perform operations on an arbitrary number of vectors, provided that they all have the same length. Unlike Faust's iterators `prod` and `sum` where the vector size is equal to one and the vector space dimension must be specified by the user, this function will infer the vector space dimension and vector size based on the vectors list that we provide. The outputs of the function are equal to the vector size, whereas the number of inputs is dependent on whether the elements of the vectors provided expect an incoming signal themselves or not. We will see a clarifying example later; in general, the number of total inputs will be the sum of the inputs in each input vector. Note that we must provide a list of at least two vectors, each with a size that is greater or equal to one.",
+      "usage": "si.bus(inputs(vectorsList)) : vecOp((vectorsList), op) : si.bus(outputs(ba.take(1, vectorsList)));",
+      "params": [
+        {
+          "name": "vectorsList",
+          "description": "is a list of vectors"
+        },
+        {
+          "name": "op",
+          "description": "is a two-input, one-output operator"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 2,
+        "raw": "si.bus(inputs(vectorsList)) : vecOp((vectorsList), op) : si.bus(outputs(ba.take(1, vectorsList)));"
+      },
+      "testCode": "si = library(\"signals.lib\");\nvecOp_test = si.vecOp((v0, v1), +)\nwith {\n    v0 = (hslider(\"vecOp:v0_0\", 0.1, -1, 1, 0.01), hslider(\"vecOp:v0_1\", 0.2, -1, 1, 0.01));\n    v1 = (hslider(\"vecOp:v1_0\", 0.3, -1, 1, 0.01), hslider(\"vecOp:v1_1\", 0.4, -1, 1, 0.01));\n};",
+      "references": [],
+      "tags": [
+        "signals"
+      ],
+      "source": {
+        "file": "signals.lib",
+        "path": "signals.lib",
+        "lineStart": 600,
+        "lineEnd": 702
+      }
+    },
+    {
+      "id": "signals.bpar",
+      "name": "bpar",
+      "qualifiedName": "si.bpar",
+      "header": "(si.)bpar",
+      "summary": "Balanced `par` where the repeated expression doesn't depend on a variable. The built-in `par` is implemented as an unbalanced tree, and also has to substitute the variable into the repeated expression, which is expensive even when the variable doesn't appear. This version is implemented as a balanced tree (which allows node reuse during tree traversal) and also doesn't search for the variable. This can be much faster than `par` to compile.",
+      "usage": "si.bus(N * inputs(f)) : bpar(N, f) : si.bus(N * outputs(f))",
+      "params": [
+        {
+          "name": "N",
+          "description": "number of repetitions, minimum 1, a constant numerical expression"
+        },
+        {
+          "name": "f",
+          "description": "an arbitrary expression"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N * inputs(f)) : bpar(N, f) : si.bus(N * outputs(f))"
+      },
+      "testCode": "// square each of 4000 inputs\nprocess = si.bpar(4000, (_ <: _, _ : *));",
+      "references": [],
+      "tags": [
+        "signals"
+      ],
+      "source": {
+        "file": "signals.lib",
+        "path": "signals.lib",
+        "lineStart": 722,
+        "lineEnd": 754
+      }
+    },
+    {
+      "id": "signals.bsum",
+      "name": "bsum",
+      "qualifiedName": "si.bsum",
+      "header": "(si.)bsum",
+      "summary": "Balanced `sum`, see `si.bpar`.",
+      "usage": "si.bus(N * inputs(f)) : bsum(N, f) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "number of repetitions, minimum 1, a constant numerical expression"
+        },
+        {
+          "name": "f",
+          "description": "an arbitrary expression with 1 output."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N * inputs(f)) : bsum(N, f) : _"
+      },
+      "testCode": "// square each of 1000 inputs and add the results\nprocess = si.bsum(1000, (_ <: _, _ : *));",
+      "references": [],
+      "tags": [
+        "signals"
+      ],
+      "source": {
+        "file": "signals.lib",
+        "path": "signals.lib",
+        "lineStart": 764,
+        "lineEnd": 791
+      }
+    },
+    {
+      "id": "signals.bprod",
+      "name": "bprod",
+      "qualifiedName": "si.bprod",
+      "header": "(si.)bprod",
+      "summary": "Balanced `prod`, see `si.bpar`.",
+      "usage": "si.bus(N * inputs(f)) : bprod(N, f) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "number of repetitions, minimum 1, a constant numerical expression"
+        },
+        {
+          "name": "f",
+          "description": "an arbitrary expression with 1 output."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N * inputs(f)) : bprod(N, f) : _"
+      },
+      "testCode": "// Add 8000 consecutive inputs (in pairs) and multiply the results\nprocess = si.bprod(4000, +);",
+      "references": [],
+      "tags": [
+        "signals"
+      ],
+      "source": {
+        "file": "signals.lib",
+        "path": "signals.lib",
+        "lineStart": 801,
+        "lineEnd": 829
+      }
+    }
+  ]
+}

@@ -1,0 +1,668 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "mi.lib",
+    "path": "mi.lib",
+    "aliasHints": [
+      "mi"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "mi.initState",
+      "name": "initState",
+      "qualifiedName": "mi.initState",
+      "header": "(mi.)initState",
+      "summary": "Used to set initial delayed position values that must be initialised at step 0 of the physics simulation. If you develop any of your own modules, you will need to use this (see `mass` and `springDamper` algorithm codes for examples).",
+      "usage": "x : initState(x0) : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "position value signal"
+        },
+        {
+          "name": "x0",
+          "description": "initial value for position"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "x : initState(x0) : _"
+      },
+      "testCode": "mi = library(\"mi.lib\");\ninitState_test = button(\"impulse\") : mi.initState(1.0);",
+      "references": [],
+      "tags": [
+        "mi"
+      ],
+      "source": {
+        "file": "mi.lib",
+        "path": "mi.lib",
+        "lineStart": 72,
+        "lineEnd": 95
+      }
+    },
+    {
+      "id": "mi.mass",
+      "name": "mass",
+      "qualifiedName": "mi.mass",
+      "header": "(mi.)mass",
+      "summary": "Implementation of a punctual mass element. Takes an input force and produces output position.",
+      "usage": "mass(m, grav, x0, xr0),_ : _",
+      "params": [
+        {
+          "name": "m",
+          "description": "mass value"
+        },
+        {
+          "name": "grav",
+          "description": "gravity force value"
+        },
+        {
+          "name": "x0",
+          "description": "initial position"
+        },
+        {
+          "name": "xr0",
+          "description": "initial delayed position (inferred from initial velocity)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "mass(m, grav, x0, xr0),_ : _"
+      },
+      "testCode": "mi = library(\"mi.lib\");\nmass_test = 0 : mi.mass(1.0, 0.0, 0.0, 0.0);",
+      "references": [],
+      "tags": [
+        "mi"
+      ],
+      "source": {
+        "file": "mi.lib",
+        "path": "mi.lib",
+        "lineStart": 110,
+        "lineEnd": 132
+      }
+    },
+    {
+      "id": "mi.oscil",
+      "name": "oscil",
+      "qualifiedName": "mi.oscil",
+      "header": "(mi.)oscil",
+      "summary": "Implementation of a simple linear harmonic oscillator. Takes an input force and produces output position.",
+      "usage": "oscil(m, k, z, grav, x0, xr0),_ : _",
+      "params": [
+        {
+          "name": "m",
+          "description": "mass value"
+        },
+        {
+          "name": "k",
+          "description": "stiffness value"
+        },
+        {
+          "name": "z",
+          "description": "damping value"
+        },
+        {
+          "name": "grav",
+          "description": "gravity force value"
+        },
+        {
+          "name": "x0",
+          "description": "initial position"
+        },
+        {
+          "name": "xr0",
+          "description": "initial delayed position (inferred from initial velocity)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "oscil(m, k, z, grav, x0, xr0),_ : _"
+      },
+      "testCode": "mi = library(\"mi.lib\");\noscil_test = 0 : mi.oscil(1.0, 0.5, 0.1, 0.0, 0.0, 0.0);",
+      "references": [],
+      "tags": [
+        "mi"
+      ],
+      "source": {
+        "file": "mi.lib",
+        "path": "mi.lib",
+        "lineStart": 145,
+        "lineEnd": 169
+      }
+    },
+    {
+      "id": "mi.ground",
+      "name": "ground",
+      "qualifiedName": "mi.ground",
+      "header": "(mi.)ground",
+      "summary": "Implementation of a fixed point element. The position output produced by this module never changes, however it still expects a force input signal (for compliance with connection rules).",
+      "usage": "ground(x0),_ : _",
+      "params": [
+        {
+          "name": "x0",
+          "description": "initial position"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "ground(x0),_ : _"
+      },
+      "testCode": "mi = library(\"mi.lib\");\nground_test = 0 : mi.ground(0.0);",
+      "references": [],
+      "tags": [
+        "mi"
+      ],
+      "source": {
+        "file": "mi.lib",
+        "path": "mi.lib",
+        "lineStart": 182,
+        "lineEnd": 203
+      }
+    },
+    {
+      "id": "mi.posInput",
+      "name": "posInput",
+      "qualifiedName": "mi.posInput",
+      "header": "(mi.)posInput",
+      "summary": "Implementation of a position input module (driven by an outside signal). Takes two signal inputs: incoming force (which doesn't affect position) and the driving position signal.",
+      "usage": "posInput(x0),_,_ : _",
+      "params": [
+        {
+          "name": "x0",
+          "description": "initial position"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "posInput(x0),_,_ : _"
+      },
+      "testCode": "mi = library(\"mi.lib\");\nos = library(\"oscillators.lib\");\nposInput_test = 0, os.osc(1) : mi.posInput(0.0);",
+      "references": [],
+      "tags": [
+        "mi"
+      ],
+      "source": {
+        "file": "mi.lib",
+        "path": "mi.lib",
+        "lineStart": 215,
+        "lineEnd": 236
+      }
+    },
+    {
+      "id": "mi.spring",
+      "name": "spring",
+      "qualifiedName": "mi.spring",
+      "header": "(mi.)spring",
+      "summary": "Implementation of a linear elastic spring interaction.",
+      "usage": "spring(k, x1r, x2r),_,_ : _,_",
+      "params": [
+        {
+          "name": "k",
+          "description": "stiffness value"
+        },
+        {
+          "name": "x1r",
+          "description": "initial delayed position of mass 1 (unused here)"
+        },
+        {
+          "name": "x2r",
+          "description": "initial delayed position of mass 2 (unused here)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "spring(k, x1r, x2r),_,_ : _,_"
+      },
+      "testCode": "mi = library(\"mi.lib\");\nspring_test = mi.spring(10.0, 0.0, 0.0, 0.1, -0.1);",
+      "references": [],
+      "tags": [
+        "mi"
+      ],
+      "source": {
+        "file": "mi.lib",
+        "path": "mi.lib",
+        "lineStart": 249,
+        "lineEnd": 269
+      }
+    },
+    {
+      "id": "mi.damper",
+      "name": "damper",
+      "qualifiedName": "mi.damper",
+      "header": "(mi.)damper",
+      "summary": "Implementation of a linear damper interaction. Beware: in 32bit precision mode, damping forces can become truncated if position values are not centered around zero!",
+      "usage": "damper(z, x1r, x2r),_,_ : _,_",
+      "params": [
+        {
+          "name": "z",
+          "description": "damping value"
+        },
+        {
+          "name": "x1r",
+          "description": "initial delayed position of mass 1"
+        },
+        {
+          "name": "x2r",
+          "description": "initial delayed position of mass 2"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "damper(z, x1r, x2r),_,_ : _,_"
+      },
+      "testCode": "mi = library(\"mi.lib\");\ndamper_test = mi.damper(0.5, 0.0, 0.0, 0.2, -0.2);",
+      "references": [],
+      "tags": [
+        "mi"
+      ],
+      "source": {
+        "file": "mi.lib",
+        "path": "mi.lib",
+        "lineStart": 277,
+        "lineEnd": 299
+      }
+    },
+    {
+      "id": "mi.springDamper",
+      "name": "springDamper",
+      "qualifiedName": "mi.springDamper",
+      "header": "(mi.)springDamper",
+      "summary": "Implementation of a linear viscoelastic spring-damper interaction (a combination of the spring and damper modules).",
+      "usage": "springDamper(k, z, x1r, x2r),_,_ : _,_",
+      "params": [
+        {
+          "name": "k",
+          "description": "stiffness value"
+        },
+        {
+          "name": "z",
+          "description": "damping value"
+        },
+        {
+          "name": "x1r",
+          "description": "initial delayed position of mass 1"
+        },
+        {
+          "name": "x2r",
+          "description": "initial delayed position of mass 2"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "springDamper(k, z, x1r, x2r),_,_ : _,_"
+      },
+      "testCode": "mi = library(\"mi.lib\");\nspringDamper_test = mi.springDamper(5.0, 0.3, 0.0, 0.0, 0.1, -0.1);",
+      "references": [],
+      "tags": [
+        "mi"
+      ],
+      "source": {
+        "file": "mi.lib",
+        "path": "mi.lib",
+        "lineStart": 307,
+        "lineEnd": 329
+      }
+    },
+    {
+      "id": "mi.nlSpringDamper2",
+      "name": "nlSpringDamper2",
+      "qualifiedName": "mi.nlSpringDamper2",
+      "header": "(mi.)nlSpringDamper2",
+      "summary": "Implementation of a non-linear viscoelastic spring-damper interaction containing a quadratic term (function of squared distance). Beware: at high displacements, this interaction will break numerical stability conditions ! The `nlSpringDamperClipped` is a safer option.",
+      "usage": "nlSpringDamper2(k, q, z, x1r, x2r),_,_ : _,_",
+      "params": [
+        {
+          "name": "k",
+          "description": "linear stiffness value"
+        },
+        {
+          "name": "q",
+          "description": "quadratic stiffness value"
+        },
+        {
+          "name": "z",
+          "description": "damping value"
+        },
+        {
+          "name": "x1r",
+          "description": "initial delayed position of mass 1"
+        },
+        {
+          "name": "x2r",
+          "description": "initial delayed position of mass 2"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "nlSpringDamper2(k, q, z, x1r, x2r),_,_ : _,_"
+      },
+      "testCode": "mi = library(\"mi.lib\");\nnlSpringDamper2_test = mi.nlSpringDamper2(5.0, 1.0, 0.2, 0.0, 0.0, 0.1, -0.1);",
+      "references": [],
+      "tags": [
+        "mi"
+      ],
+      "source": {
+        "file": "mi.lib",
+        "path": "mi.lib",
+        "lineStart": 339,
+        "lineEnd": 364
+      }
+    },
+    {
+      "id": "mi.nlSpringDamper3",
+      "name": "nlSpringDamper3",
+      "qualifiedName": "mi.nlSpringDamper3",
+      "header": "(mi.)nlSpringDamper3",
+      "summary": "Implementation of a non-linear viscoelastic spring-damper interaction containing a cubic term (function of distance^3). Beware: at high displacements, this interaction will break numerical stability conditions ! The `nlSpringDamperClipped` is a safer option.",
+      "usage": "nlSpringDamper3(k, q, z, x1r, x2r),_,_ : _,_",
+      "params": [
+        {
+          "name": "k",
+          "description": "linear stiffness value"
+        },
+        {
+          "name": "q",
+          "description": "cubic stiffness value"
+        },
+        {
+          "name": "z",
+          "description": "damping value"
+        },
+        {
+          "name": "x1r",
+          "description": "initial delayed position of mass 1"
+        },
+        {
+          "name": "x2r",
+          "description": "initial delayed position of mass 2"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "nlSpringDamper3(k, q, z, x1r, x2r),_,_ : _,_"
+      },
+      "testCode": "mi = library(\"mi.lib\");\nnlSpringDamper3_test = mi.nlSpringDamper3(5.0, 0.5, 0.2, 0.0, 0.0, 0.1, -0.1);",
+      "references": [],
+      "tags": [
+        "mi"
+      ],
+      "source": {
+        "file": "mi.lib",
+        "path": "mi.lib",
+        "lineStart": 374,
+        "lineEnd": 399
+      }
+    },
+    {
+      "id": "mi.nlSpringDamperClipped",
+      "name": "nlSpringDamperClipped",
+      "qualifiedName": "mi.nlSpringDamperClipped",
+      "header": "(mi.)nlSpringDamperClipped",
+      "summary": "Implementation of a non-linear viscoelastic spring-damper interaction containing a cubic term (function of distance^3), bound by an upper linear stiffness (hard-clipping). This bounding means that when faced with strong displacements, the interaction profile will \"clip\" at a given point and never produce forces higher than the bounding equivalent linear spring, stopping models from becoming unstable. So far the interaction clips \"hard\" (with no soft-knee spline interpolation, etc.)",
+      "usage": "nlSpringDamperClipped(s, c, k, z, x1r, x2r),_,_ : _,_",
+      "params": [
+        {
+          "name": "s",
+          "description": "linear stiffness value"
+        },
+        {
+          "name": "c",
+          "description": "cubic stiffness value"
+        },
+        {
+          "name": "k",
+          "description": "upper-bound linear stiffness value"
+        },
+        {
+          "name": "z",
+          "description": "(linear) damping value"
+        },
+        {
+          "name": "x1r",
+          "description": "initial delayed position of mass 1"
+        },
+        {
+          "name": "x2r",
+          "description": "initial delayed position of mass 2"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "nlSpringDamperClipped(s, c, k, z, x1r, x2r),_,_ : _,_"
+      },
+      "testCode": "mi = library(\"mi.lib\");\nnlSpringDamperClipped_test = mi.nlSpringDamperClipped(5.0, 0.5, 8.0, 0.2, 0.0, 0.0, 0.1, -0.1);",
+      "references": [],
+      "tags": [
+        "mi"
+      ],
+      "source": {
+        "file": "mi.lib",
+        "path": "mi.lib",
+        "lineStart": 409,
+        "lineEnd": 442
+      }
+    },
+    {
+      "id": "mi.nlPluck",
+      "name": "nlPluck",
+      "qualifiedName": "mi.nlPluck",
+      "header": "(mi.)nlPluck",
+      "summary": "Implementation of a piecewise linear plucking interaction. The symmetric function provides a repulsive viscoelastic interaction upon contact, until a tipping point is reached (when the plucking occurs). The tipping point depends both on the stiffness and the distance scaling of the interaction.",
+      "usage": "nlPluck(knl, scale, z, x1r, x2r),_,_ : _,_",
+      "params": [
+        {
+          "name": "knl",
+          "description": "stiffness scaling parameter (vertical stretch of the NL function)"
+        },
+        {
+          "name": "scale",
+          "description": "distance scaling parameter (horizontal stretch of the NL function)"
+        },
+        {
+          "name": "z",
+          "description": "(linear) damping value"
+        },
+        {
+          "name": "x1r",
+          "description": "initial delayed position of mass 1"
+        },
+        {
+          "name": "x2r",
+          "description": "initial delayed position of mass 2"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "nlPluck(knl, scale, z, x1r, x2r),_,_ : _,_"
+      },
+      "testCode": "mi = library(\"mi.lib\");\nnlPluck_test = mi.nlPluck(5.0, 0.1, 0.2, 0.0, 0.0, 0.05, -0.05);",
+      "references": [],
+      "tags": [
+        "mi"
+      ],
+      "source": {
+        "file": "mi.lib",
+        "path": "mi.lib",
+        "lineStart": 464,
+        "lineEnd": 491
+      }
+    },
+    {
+      "id": "mi.nlBow",
+      "name": "nlBow",
+      "qualifiedName": "mi.nlBow",
+      "header": "(mi.)nlBow",
+      "summary": "Implementation of a non-linear friction based interaction that allows for stick-slip bowing behaviour. Two versions are proposed : a piecewise linear function (very similar to the `nlPluck`) or a mathematical approximation (see Stefan Bilbao's book, Numerical Sound Synthesis).",
+      "usage": "nlBow(znl, scale, type, x1r, x2r),_,_ : _,_",
+      "params": [
+        {
+          "name": "znl",
+          "description": "friction scaling parameter (vertical stretch of the NL function)"
+        },
+        {
+          "name": "scale",
+          "description": "velocity scaling parameter (horizontal stretch of the NL function)"
+        },
+        {
+          "name": "type",
+          "description": "interaction profile (0 = piecewise linear, 1 = smooth function)"
+        },
+        {
+          "name": "x1r",
+          "description": "initial delayed position of mass 1"
+        },
+        {
+          "name": "x2r",
+          "description": "initial delayed position of mass 2"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "nlBow(znl, scale, type, x1r, x2r),_,_ : _,_"
+      },
+      "testCode": "mi = library(\"mi.lib\");\nnlBow_test = mi.nlBow(0.5, 0.1, 1.0, 0.0, 0.0, 0.05, -0.05);",
+      "references": [],
+      "tags": [
+        "mi"
+      ],
+      "source": {
+        "file": "mi.lib",
+        "path": "mi.lib",
+        "lineStart": 512,
+        "lineEnd": 539
+      }
+    },
+    {
+      "id": "mi.collision",
+      "name": "collision",
+      "qualifiedName": "mi.collision",
+      "header": "(mi.)collision",
+      "summary": "Implementation of a collision interaction, producing linear visco-elastic repulsion forces when two mass elements are interpenetrating.",
+      "usage": "collision(k, z, thres, x1r, x2r),_,_ : _,_",
+      "params": [
+        {
+          "name": "k",
+          "description": "collision stiffness parameter"
+        },
+        {
+          "name": "z",
+          "description": "collision damping parameter"
+        },
+        {
+          "name": "thres",
+          "description": "threshold distance for the contact between elements"
+        },
+        {
+          "name": "x1r",
+          "description": "initial delayed position of mass 1"
+        },
+        {
+          "name": "x2r",
+          "description": "initial delayed position of mass 2"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "collision(k, z, thres, x1r, x2r),_,_ : _,_"
+      },
+      "testCode": "mi = library(\"mi.lib\");\ncollision_test = mi.collision(5.0, 0.2, 0.01, 0.0, 0.0, 0.0, -0.02);",
+      "references": [],
+      "tags": [
+        "mi"
+      ],
+      "source": {
+        "file": "mi.lib",
+        "path": "mi.lib",
+        "lineStart": 561,
+        "lineEnd": 585
+      }
+    },
+    {
+      "id": "mi.nlCollisionClipped",
+      "name": "nlCollisionClipped",
+      "qualifiedName": "mi.nlCollisionClipped",
+      "header": "(mi.)nlCollisionClipped",
+      "summary": "Implementation of a collision interaction, producing non-linear visco-elastic repulsion forces when two mass elements are interpenetrating. Bound by an upper stiffness value to maintain stability. This interaction is particularly useful for more realistic contact dynamics (greater difference in velocity provides sharper contacts, and reciprocally).",
+      "usage": "nlCollisionClipped(s, c, k, z, thres, x1r, x2r),_,_ : _,_",
+      "params": [
+        {
+          "name": "s",
+          "description": "collision linear stiffness parameter"
+        },
+        {
+          "name": "c",
+          "description": "collision cubic stiffness parameter"
+        },
+        {
+          "name": "k",
+          "description": "collision upper-bounding stiffness parameter"
+        },
+        {
+          "name": "z",
+          "description": "collision damping parameter"
+        },
+        {
+          "name": "thres",
+          "description": "threshold distance for the contact between elements"
+        },
+        {
+          "name": "x1r",
+          "description": "initial delayed position of mass 1"
+        },
+        {
+          "name": "x2r",
+          "description": "initial delayed position of mass 2"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "nlCollisionClipped(s, c, k, z, thres, x1r, x2r),_,_ : _,_"
+      },
+      "testCode": "mi = library(\"mi.lib\");\nnlCollisionClipped_test = mi.nlCollisionClipped(3.0, 0.5, 6.0, 0.2, 0.01, 0.0, 0.0, 0.0, -0.02);",
+      "references": [],
+      "tags": [
+        "mi"
+      ],
+      "source": {
+        "file": "mi.lib",
+        "path": "mi.lib",
+        "lineStart": 593,
+        "lineEnd": 621
+      }
+    }
+  ]
+}

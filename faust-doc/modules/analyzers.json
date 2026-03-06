@@ -1,0 +1,1060 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "analyzers.lib",
+    "path": "analyzers.lib",
+    "aliasHints": [
+      "an"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "analyzers.abs_envelope_rect",
+      "name": "abs_envelope_rect",
+      "qualifiedName": "an.abs_envelope_rect",
+      "header": "(an.)abs_envelope_rect",
+      "summary": "Absolute value average with moving-average algorithm.",
+      "usage": "_ : abs_envelope_rect(period) : _",
+      "params": [
+        {
+          "name": "period",
+          "description": "sets the averaging frame in seconds"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : abs_envelope_rect(period) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\nabs_envelope_rect_test = an.abs_envelope_rect(0.05, os.osc(220));",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 54,
+        "lineEnd": 73
+      }
+    },
+    {
+      "id": "analyzers.abs_envelope_tau",
+      "name": "abs_envelope_tau",
+      "qualifiedName": "an.abs_envelope_tau",
+      "header": "(an.)abs_envelope_tau",
+      "summary": "Absolute value average with one-pole lowpass and tau response (see [filters.lib](https://faustlibraries.grame.fr/libs/filters/)).",
+      "usage": "_ : abs_envelope_tau(period) : _",
+      "params": [
+        {
+          "name": "period",
+          "description": "(time to decay by 1/e) sets the averaging frame in secs"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : abs_envelope_tau(period) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\nabs_envelope_tau_test = an.abs_envelope_tau(0.05, os.osc(220));",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 82,
+        "lineEnd": 102
+      }
+    },
+    {
+      "id": "analyzers.abs_envelope_t60",
+      "name": "abs_envelope_t60",
+      "qualifiedName": "an.abs_envelope_t60",
+      "header": "(an.)abs_envelope_t60",
+      "summary": "Absolute value average with one-pole lowpass and t60 response (see [filters.lib](https://faustlibraries.grame.fr/libs/filters/)).",
+      "usage": "_ : abs_envelope_t60(period) : _",
+      "params": [
+        {
+          "name": "period",
+          "description": "(time to decay by 60 dB) sets the averaging frame in secs"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : abs_envelope_t60(period) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\nabs_envelope_t60_test = an.abs_envelope_t60(0.05, os.osc(220));",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 111,
+        "lineEnd": 131
+      }
+    },
+    {
+      "id": "analyzers.abs_envelope_t19",
+      "name": "abs_envelope_t19",
+      "qualifiedName": "an.abs_envelope_t19",
+      "header": "(an.)abs_envelope_t19",
+      "summary": "Absolute value average with one-pole lowpass and t19 response (see [filters.lib](https://faustlibraries.grame.fr/libs/filters/)).",
+      "usage": "_ : abs_envelope_t19(period) : _",
+      "params": [
+        {
+          "name": "period",
+          "description": "(time to decay by 1/e^2.2) sets the averaging frame in secs"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : abs_envelope_t19(period) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\nabs_envelope_t19_test = an.abs_envelope_t19(0.05, os.osc(220));",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 140,
+        "lineEnd": 160
+      }
+    },
+    {
+      "id": "analyzers.amp_follower",
+      "name": "amp_follower",
+      "qualifiedName": "an.amp_follower",
+      "header": "(an.)amp_follower",
+      "summary": "Classic analog audio envelope follower with infinitely fast rise and exponential decay.  The amplitude envelope instantaneously follows the absolute value going up, but then floats down exponentially. `amp_follower` is a standard Faust function.",
+      "usage": "_ : amp_follower(rel) : _",
+      "params": [
+        {
+          "name": "rel",
+          "description": "release time = amplitude-envelope time-constant (sec) going down"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : amp_follower(rel) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\namp_follower_test = os.osc(220) : an.amp_follower(0.05);",
+      "references": [
+        "Musical Engineer's Handbook, Bernie Hutchins, Ithaca NY",
+        "1975 Electronotes Newsletter, Bernie Hutchins",
+        "-----------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 169,
+        "lineEnd": 197
+      }
+    },
+    {
+      "id": "analyzers.amp_follower_ud",
+      "name": "amp_follower_ud",
+      "qualifiedName": "an.amp_follower_ud",
+      "header": "(an.)amp_follower_ud",
+      "summary": "Envelope follower with different up and down time-constants (also called a \"peak detector\").",
+      "usage": "_ : amp_follower_ud(att,rel) : _",
+      "params": [
+        {
+          "name": "att",
+          "description": "attack time = amplitude-envelope time constant (sec) going up"
+        },
+        {
+          "name": "rel",
+          "description": "release time = amplitude-envelope time constant (sec) going down"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : amp_follower_ud(att,rel) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\namp_follower_ud_test = os.osc(220) : an.amp_follower_ud(0.002, 0.05);",
+      "references": [
+        "\"Digital Dynamic Range Compressor Design --- A Tutorial and Analysis\", by",
+        "Dimitrios Giannoulis, Michael Massberg, and Joshua D. Reiss",
+        "<https://www.eecs.qmul.ac.uk/~josh/documents/2012/GiannoulisMassbergReiss-dynamicrangecompression-JAES2012.pdf>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 206,
+        "lineEnd": 239
+      }
+    },
+    {
+      "id": "analyzers.amp_follower_ar",
+      "name": "amp_follower_ar",
+      "qualifiedName": "an.amp_follower_ar",
+      "header": "(an.)amp_follower_ar",
+      "summary": "Envelope follower with independent attack and release times. The release can be shorter than the attack (unlike in `amp_follower_ud` above).",
+      "usage": "_ : amp_follower_ar(att,rel) : _",
+      "params": [
+        {
+          "name": "att",
+          "description": "attack time = amplitude-envelope time constant (sec) going up"
+        },
+        {
+          "name": "rel",
+          "description": "release time = amplitude-envelope time constant (sec) going down"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : amp_follower_ar(att,rel) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\namp_follower_ar_test = os.osc(220) : an.amp_follower_ar(0.002, 0.05);",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 243,
+        "lineEnd": 265
+      }
+    },
+    {
+      "id": "analyzers.ms_envelope_rect",
+      "name": "ms_envelope_rect",
+      "qualifiedName": "an.ms_envelope_rect",
+      "header": "(an.)ms_envelope_rect",
+      "summary": "Mean square with moving-average algorithm.",
+      "usage": "_ : ms_envelope_rect(period) : _",
+      "params": [
+        {
+          "name": "period",
+          "description": "sets the averaging frame in secs"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : ms_envelope_rect(period) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\nms_envelope_rect_test = an.ms_envelope_rect(0.05, os.osc(220));",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 270,
+        "lineEnd": 289
+      }
+    },
+    {
+      "id": "analyzers.ms_envelope_tau",
+      "name": "ms_envelope_tau",
+      "qualifiedName": "an.ms_envelope_tau",
+      "header": "(an.)ms_envelope_tau",
+      "summary": "Mean square average with one-pole lowpass and tau response (see [filters.lib](https://faustlibraries.grame.fr/libs/filters/)).",
+      "usage": "_ : ms_envelope_tau(period) : _",
+      "params": [
+        {
+          "name": "period",
+          "description": "(time to decay by 1/e) sets the averaging frame in secs"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : ms_envelope_tau(period) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\nms_envelope_tau_test = an.ms_envelope_tau(0.05, os.osc(220));",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 298,
+        "lineEnd": 318
+      }
+    },
+    {
+      "id": "analyzers.ms_envelope_t60",
+      "name": "ms_envelope_t60",
+      "qualifiedName": "an.ms_envelope_t60",
+      "header": "(an.)ms_envelope_t60",
+      "summary": "Mean square with one-pole lowpass and t60 response (see [filters.lib](https://faustlibraries.grame.fr/libs/filters/)).",
+      "usage": "_ : ms_envelope_t60(period) : _",
+      "params": [
+        {
+          "name": "period",
+          "description": "(time to decay by 60 dB) sets the averaging frame in secs"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : ms_envelope_t60(period) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\nms_envelope_t60_test = an.ms_envelope_t60(0.05, os.osc(220));",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 327,
+        "lineEnd": 347
+      }
+    },
+    {
+      "id": "analyzers.ms_envelope_t19",
+      "name": "ms_envelope_t19",
+      "qualifiedName": "an.ms_envelope_t19",
+      "header": "(an.)ms_envelope_t19",
+      "summary": "Mean square with one-pole lowpass and t19 response (see [filters.lib](https://faustlibraries.grame.fr/libs/filters/)).",
+      "usage": "_ : ms_envelope_t19(period) : _",
+      "params": [
+        {
+          "name": "period",
+          "description": "(time to decay by 1/e^2.2) sets the averaging frame in secs"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : ms_envelope_t19(period) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\nms_envelope_t19_test = an.ms_envelope_t19(0.05, os.osc(220));",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 356,
+        "lineEnd": 376
+      }
+    },
+    {
+      "id": "analyzers.rms_envelope_rect",
+      "name": "rms_envelope_rect",
+      "qualifiedName": "an.rms_envelope_rect",
+      "header": "(an.)rms_envelope_rect",
+      "summary": "Root mean square with moving-average algorithm.",
+      "usage": "_ : rms_envelope_rect(period) : _",
+      "params": [
+        {
+          "name": "period",
+          "description": "sets the averaging frame in secs"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : rms_envelope_rect(period) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\nrms_envelope_rect_test = an.rms_envelope_rect(0.05, os.osc(220));",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 385,
+        "lineEnd": 404
+      }
+    },
+    {
+      "id": "analyzers.rms_envelope_tau",
+      "name": "rms_envelope_tau",
+      "qualifiedName": "an.rms_envelope_tau",
+      "header": "(an.)rms_envelope_tau",
+      "summary": "Root mean square with one-pole lowpass and tau response (see [filters.lib](https://faustlibraries.grame.fr/libs/filters/)).",
+      "usage": "_ : rms_envelope_tau(period) : _",
+      "params": [
+        {
+          "name": "period",
+          "description": "(time to decay by 1/e) sets the averaging frame in secs"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : rms_envelope_tau(period) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\nrms_envelope_tau_test = an.rms_envelope_tau(0.05, os.osc(220));",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 413,
+        "lineEnd": 433
+      }
+    },
+    {
+      "id": "analyzers.rms_envelope_t60",
+      "name": "rms_envelope_t60",
+      "qualifiedName": "an.rms_envelope_t60",
+      "header": "(an.)rms_envelope_t60",
+      "summary": "Root mean square with one-pole lowpass and t60 response (see [filters.lib](https://faustlibraries.grame.fr/libs/filters/)).",
+      "usage": "_ : rms_envelope_t60(period) : _",
+      "params": [
+        {
+          "name": "period",
+          "description": "(time to decay by 60 dB) sets the averaging frame in secs"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : rms_envelope_t60(period) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\nrms_envelope_t60_test = an.rms_envelope_t60(0.05, os.osc(220));",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 442,
+        "lineEnd": 462
+      }
+    },
+    {
+      "id": "analyzers.rms_envelope_t19",
+      "name": "rms_envelope_t19",
+      "qualifiedName": "an.rms_envelope_t19",
+      "header": "(an.)rms_envelope_t19",
+      "summary": "Root mean square with one-pole lowpass and t19 response (see [filters.lib](https://faustlibraries.grame.fr/libs/filters/)).",
+      "usage": "_ : rms_envelope_t19(period) : _",
+      "params": [
+        {
+          "name": "period",
+          "description": "(time to decay by 1/e^2.2) sets the averaging frame in secs"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : rms_envelope_t19(period) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\nrms_envelope_t19_test = an.rms_envelope_t19(0.05, os.osc(220));",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 471,
+        "lineEnd": 491
+      }
+    },
+    {
+      "id": "analyzers.zcr",
+      "name": "zcr",
+      "qualifiedName": "an.zcr",
+      "header": "(an.)zcr",
+      "summary": "Zero-crossing rate (ZCR) with one-pole lowpass averaging based on the tau constant. It outputs an index between 0 and 1 at a desired analysis frame. The ZCR of a signal correlates with the noisiness [Gouyon et al. 2000] and the spectral centroid [Herrera-Boyer et al. 2006] of a signal. For sinusoidal signals, the ZCR can be multiplied by ma.SR/2 and used as a frequency detector. For example, it can be deployed as a computationally efficient adaptive mechanism for automatic Larsen suppression.",
+      "usage": "_ : zcr(tau) : _",
+      "params": [
+        {
+          "name": "tau",
+          "description": "(time to decay by e^-1) sets the averaging frame in seconds."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : zcr(tau) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\nzcr_test = an.zcr(0.01, os.osc(220));",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 500,
+        "lineEnd": 526
+      }
+    },
+    {
+      "id": "analyzers.pitchTracker",
+      "name": "pitchTracker",
+      "qualifiedName": "an.pitchTracker",
+      "header": "(an.)pitchTracker",
+      "summary": "This function implements a pitch-tracking algorithm by means of zero-crossing rate analysis and adaptive low-pass filtering. The design is based on the algorithm described in [this tutorial (section 2.2)](https://github.com/grame-cncm/faust/blob/master-dev/documentation/misc/Faust_tutorial2.pdf).",
+      "usage": "_ : pitchTracker(N, tau) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "a constant numerical expression, sets the order of the low-pass filter, which determines the sensitivity of the algorithm for signals where partials are stronger than the fundamental frequency."
+        },
+        {
+          "name": "tau",
+          "description": "response time in seconds based on exponentially-weighted averaging with tau time-constant. See <https://ccrma.stanford.edu/~jos/st/Exponentials.html>."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : pitchTracker(N, tau) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\npitchTracker_test = an.pitchTracker(4, 0.02, os.osc(220));",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 537,
+        "lineEnd": 562
+      }
+    },
+    {
+      "id": "analyzers.spectralCentroid",
+      "name": "spectralCentroid",
+      "qualifiedName": "an.spectralCentroid",
+      "header": "(an.)spectralCentroid",
+      "summary": "This function implements a time-domain spectral centroid by means of RMS measurements and adaptive crossover filtering. The weight difference of the upper and lower spectral powers are used to recursively adjust the crossover cutoff so that the system (minimally) oscillates around a balancing point. Unlike block processing techniques such as FFT, this algorithm provides continuous measurements and fast response times. Furthermore, when providing input signals that are spectrally sparse, the algorithm will output a logarithmic measure of the centroid, which is perceptually desirable for musical applications. For example, if the input signal is the combination of three tones at 1000, 2000, and 4000 Hz, the centroid will be the middle octave.",
+      "usage": "_ : spectralCentroid(nonlinearity, tau) : _",
+      "params": [
+        {
+          "name": "nonlinearity",
+          "description": "a boolean to activate or deactivate nonlinear integration. The nonlinear function is useful to improve stability with very short response times such as .001 <= tau <= .005 , otherwise, the nonlinearity may reduce precision."
+        },
+        {
+          "name": "tau",
+          "description": "response time in seconds based on exponentially-weighted averaging with tau time-constant. See <https://ccrma.stanford.edu/~jos/st/Exponentials.html>."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : spectralCentroid(nonlinearity, tau) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\nspectralCentroid_test = (os.osc(440) + os.osc(880)) : an.spectralCentroid(1, 0.01);",
+      "references": [
+        "Sanfilippo, D. (2021). Time-Domain Adaptive Algorithms for Low- and High-Level",
+        "Audio Information Processing. Computer Music Journal, 45(1), 24-38.",
+        "---------------------------------------------------------"
+      ],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 574,
+        "lineEnd": 617
+      }
+    },
+    {
+      "id": "analyzers.mth_octave_analyzer",
+      "name": "mth_octave_analyzer",
+      "qualifiedName": "an.mth_octave_analyzer",
+      "header": "(an.)mth_octave_analyzer",
+      "summary": "Octave analyzer. `mth_octave_analyzer[N]` are standard Faust functions.",
+      "usage": "_ : mth_octave_analyzer(O,M,ftop,N) : par(i,N,_) // Oth-order Butterworth _ : mth_octave_analyzer6e(M,ftop,N) : par(i,N,_) // 6th-order elliptic Also for convenience: _ : mth_octave_analyzer3(M,ftop,N) : par(i,N,_) // 3d-order Butterworth _ : mth_octave_analyzer5(M,ftop,N) : par(i,N,_) // 5th-order Butterworth mth_octave_analyzer_default = mth_octave_analyzer6e;",
+      "params": [
+        {
+          "name": "O",
+          "description": "(odd) order of filter used to split each frequency band into two"
+        },
+        {
+          "name": "M",
+          "description": "number of band-slices per octave"
+        },
+        {
+          "name": "ftop",
+          "description": "highest band-split crossover frequency (e.g., 20 kHz)"
+        },
+        {
+          "name": "N",
+          "description": "total number of bands (including dc and Nyquist)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 3,
+        "raw": "_ : mth_octave_analyzer(O,M,ftop,N) : par(i,N,_) // Oth-order Butterworth _ : mth_octave_analyzer6e(M,ftop,N) : par(i,N,_) // 6th-order elliptic Also for convenience: _ : mth_octave_analyzer3(M,ftop,N) : par(i,N,_) // 3d-order Butterworth _ : mth_octave_analyzer5(M,ftop,N) : par(i,N,_) // 5th-order Butterworth mth_octave_analyzer_default = mth_octave_analyzer6e;"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\nmth_octave_analyzer_test = os.osc(440) : an.mth_octave_analyzer(3, 3, 8000, 5);",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 687,
+        "lineEnd": 718
+      }
+    },
+    {
+      "id": "analyzers.mth_octave_spectral_level6e",
+      "name": "mth_octave_spectral_level6e",
+      "qualifiedName": "an.mth_octave_spectral_level6e",
+      "header": "(an.)mth_octave_spectral_level6e",
+      "summary": "Spectral level display.",
+      "usage": "_ : mth_octave_spectral_level6e(M,ftop,NBands,tau,dB_offset) : _",
+      "params": [
+        {
+          "name": "M",
+          "description": "bands per octave"
+        },
+        {
+          "name": "ftop",
+          "description": "lower edge frequency of top band"
+        },
+        {
+          "name": "NBands",
+          "description": "number of passbands (including highpass and dc bands),"
+        },
+        {
+          "name": "tau",
+          "description": "spectral display averaging-time (time constant) in seconds,"
+        },
+        {
+          "name": "dB_offset",
+          "description": "constant dB offset in all band level meters. Also for convenience:"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : mth_octave_spectral_level6e(M,ftop,NBands,tau,dB_offset) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\nmth_octave_spectral_level6e_test = os.osc(440) : an.mth_octave_spectral_level6e(3, 8000, 5, 0.05, 0);",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 747,
+        "lineEnd": 777
+      }
+    },
+    {
+      "id": "analyzers.[third|half]_octave_[analyzer|filterbank]",
+      "name": "[third|half]_octave_[analyzer|filterbank]",
+      "qualifiedName": "an.[third|half]_octave_[analyzer|filterbank]",
+      "header": "(an.)[third|half]_octave_[analyzer|filterbank]",
+      "summary": "A bunch of special cases based on the different analyzer functions described above:",
+      "usage": "See `mth_octave_spectral_level_demo` in `demos.lib`. ------------------------------------------------------------",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "See `mth_octave_spectral_level_demo` in `demos.lib`. ------------------------------------------------------------"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 796,
+        "lineEnd": 811
+      }
+    },
+    {
+      "id": "analyzers.analyzer",
+      "name": "analyzer",
+      "qualifiedName": "an.analyzer",
+      "header": "(an.)analyzer",
+      "summary": "Analyzer.",
+      "usage": "_ : analyzer(O,freqs) : par(i,N,_) // No delay equalizer",
+      "params": [
+        {
+          "name": "O",
+          "description": "band-split filter order (ODD integer required for filterbank[i])"
+        },
+        {
+          "name": "freqs",
+          "description": "(fc1,fc2,...,fcNs) [in numerically ascending order], where Ns=N-1 is the number of octave band-splits (total number of bands N=Ns+1). If frequencies are listed explicitly as arguments, enclose them in parens:"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 3,
+        "raw": "_ : analyzer(O,freqs) : par(i,N,_) // No delay equalizer"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\nanalyzer_test = os.osc(440) : an.analyzer(3, (500, 2000));",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 838,
+        "lineEnd": 866
+      }
+    },
+    {
+      "id": "analyzers.goertzelOpt",
+      "name": "goertzelOpt",
+      "qualifiedName": "an.goertzelOpt",
+      "header": "(an.)goertzelOpt",
+      "summary": "Optimized Goertzel filter.",
+      "usage": "_ : goertzelOpt(freq,n) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency to be analyzed"
+        },
+        {
+          "name": "n",
+          "description": "the Goertzel block size"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : goertzelOpt(freq,n) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\ngoertzelOpt_test = an.goertzelOpt(440, 128, os.osc(440));",
+      "references": [
+        "<https://en.wikipedia.org/wiki/Goertzel_algorithm>",
+        "---------------------------------------------------"
+      ],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 881,
+        "lineEnd": 905
+      }
+    },
+    {
+      "id": "analyzers.goertzelComp",
+      "name": "goertzelComp",
+      "qualifiedName": "an.goertzelComp",
+      "header": "(an.)goertzelComp",
+      "summary": "Complex Goertzel filter.",
+      "usage": "_ : goertzelComp(freq,n) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency to be analyzed"
+        },
+        {
+          "name": "n",
+          "description": "the Goertzel block size"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : goertzelComp(freq,n) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\ngoertzelComp_test = an.goertzelComp(440, 128, os.osc(440));",
+      "references": [
+        "<https://en.wikipedia.org/wiki/Goertzel_algorithm>",
+        "---------------------------------------------------"
+      ],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 921,
+        "lineEnd": 945
+      }
+    },
+    {
+      "id": "analyzers.goertzel",
+      "name": "goertzel",
+      "qualifiedName": "an.goertzel",
+      "header": "(an.)goertzel",
+      "summary": "Same as [`goertzelOpt`](#goertzelopt).",
+      "usage": "_ : goertzel(freq,n) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency to be analyzed"
+        },
+        {
+          "name": "n",
+          "description": "the Goertzel block size"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : goertzel(freq,n) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\ngoertzel_test = an.goertzel(440, 128, os.osc(440));",
+      "references": [
+        "<https://en.wikipedia.org/wiki/Goertzel_algorithm>",
+        "---------------------------------------------------"
+      ],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 965,
+        "lineEnd": 989
+      }
+    },
+    {
+      "id": "analyzers.resonator",
+      "name": "resonator",
+      "qualifiedName": "an.resonator",
+      "header": "(an.)resonator",
+      "summary": "Efficient low-latency single-frequency resonator. It estimates the magnitude and phase of a single target frequency `f` in real time, with minimal memory and CPU usage, without the need for FFT or windowing.",
+      "usage": "_ : resonator(N,f) : _,_ // magnitude, phase",
+      "params": [
+        {
+          "name": "N",
+          "description": "smoothing filter order (compile-time constant). - N > 1: smoother magnitude/phase estimates, but slower response at low f - N = 1: faster response at low f, less stable at any f"
+        },
+        {
+          "name": "f",
+          "description": "frequency to be analyzed (Hz)."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 3,
+        "raw": "_ : resonator(N,f) : _,_ // magnitude, phase"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\nresonator_test = os.osc(440) : an.resonator(2, 440);",
+      "references": [
+        "<https://alexandrefrancois.org/assets/publications/FrancoisARJ-ICMC2025.pdf>",
+        "---------------------------------------------------"
+      ],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 993,
+        "lineEnd": 1053
+      }
+    },
+    {
+      "id": "analyzers.fft",
+      "name": "fft",
+      "qualifiedName": "an.fft",
+      "header": "(an.)fft",
+      "summary": "Fast Fourier Transform (FFT).",
+      "usage": "si.cbus(N) : fft(N) : si.cbus(N)",
+      "params": [
+        {
+          "name": "si.cbus(N)",
+          "description": "a bus of N complex signals, each specified by real and imaginary parts: (r0,i0), (r1,i1), (r2,i2), ..."
+        },
+        {
+          "name": "N",
+          "description": "FFT size (must be a power of 2: 2,4,8,16,... known at compile time)"
+        },
+        {
+          "name": "fft(N)",
+          "description": "a length-`N` FFT for complex signals (radix 2)"
+        },
+        {
+          "name": "output",
+          "description": "a bank of N complex signals containing the complex spectrum over time: (R0, I0), (R1,I1), ... - The dc component is (R0,I0), where I0=0 for real input signals. FFTs of Real Signals: where `an.rtocv` converts a real (scalar) signal to a complex vector signal having a zero imaginary part."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.cbus(N) : fft(N) : si.cbus(N)"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\nfft_test = an.rtocv(8, os.osc(220)) : an.fft(8);",
+      "references": [
+        "[Decimation-in-time (DIT) Radix-2 FFT](https://cnx.org/contents/zmcmahhR@7/Decimation-in-time-DIT-Radix-2)",
+        "---------------------------------------------------"
+      ],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 1097,
+        "lineEnd": 1140
+      }
+    },
+    {
+      "id": "analyzers.ifft",
+      "name": "ifft",
+      "qualifiedName": "an.ifft",
+      "header": "(an.)ifft",
+      "summary": "Inverse Fast Fourier Transform (IFFT).",
+      "usage": "si.cbus(N) : ifft(N) : si.cbus(N)",
+      "params": [
+        {
+          "name": "N",
+          "description": "IFFT size (power of 2) (R0, I0), (R1,I1), (R2,I2), ... (r0, i0), (r1,i1), (r2,i2), ..."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.cbus(N) : ifft(N) : si.cbus(N)"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nos = library(\"oscillators.lib\");\nifft_test = (an.rtocv(8, os.osc(220)) : an.fft(8)) : an.ifft(8);",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 1159,
+        "lineEnd": 1182
+      }
+    },
+    {
+      "id": "analyzers.logsweep",
+      "name": "logsweep",
+      "qualifiedName": "an.logsweep",
+      "header": "(an.)logsweep",
+      "summary": "Logarithmic sine sweep generator.",
+      "usage": "logsweep(fs,fe,dur) : _",
+      "params": [
+        {
+          "name": "fs",
+          "description": "start frequency in Hz"
+        },
+        {
+          "name": "fe",
+          "description": "end frequency in Hz"
+        },
+        {
+          "name": "dur",
+          "description": "duration of the sweep in seconds"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "logsweep(fs,fe,dur) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nlogsweep_test = an.logsweep(20, 2000, 5);",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 1218,
+        "lineEnd": 1238
+      }
+    },
+    {
+      "id": "analyzers.linsweep",
+      "name": "linsweep",
+      "qualifiedName": "an.linsweep",
+      "header": "(an.)linsweep",
+      "summary": "Linear sine sweep generator.",
+      "usage": "linsweep(fs,fe,dur) : _",
+      "params": [
+        {
+          "name": "fs",
+          "description": "start frequency in Hz"
+        },
+        {
+          "name": "fe",
+          "description": "end frequency in Hz"
+        },
+        {
+          "name": "dur",
+          "description": "duration of the sweep in seconds"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "linsweep(fs,fe,dur) : _"
+      },
+      "testCode": "an = library(\"analyzers.lib\");\nlinsweep_test = an.linsweep(20, 2000, 5);",
+      "references": [],
+      "tags": [
+        "analyzers"
+      ],
+      "source": {
+        "file": "analyzers.lib",
+        "path": "analyzers.lib",
+        "lineStart": 1242,
+        "lineEnd": 1262
+      }
+    }
+  ]
+}

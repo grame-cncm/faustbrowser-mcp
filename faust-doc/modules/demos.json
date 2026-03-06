@@ -1,0 +1,1203 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "demos.lib",
+    "path": "demos.lib",
+    "aliasHints": [
+      "dm"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "demos.mth_octave_spectral_level_demo",
+      "name": "mth_octave_spectral_level_demo",
+      "qualifiedName": "dm.mth_octave_spectral_level_demo",
+      "header": "(dm.)mth_octave_spectral_level_demo",
+      "summary": "Demonstrate mth_octave_spectral_level in a standalone GUI.",
+      "usage": "_ : mth_octave_spectral_level_demo(BandsPerOctave) : _ _ : spectral_level_demo : _ // 2/3 octave",
+      "params": [
+        {
+          "name": "BandsPerOctave",
+          "description": "number of spectral bands per octave"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : mth_octave_spectral_level_demo(BandsPerOctave) : _ _ : spectral_level_demo : _ // 2/3 octave"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nno = library(\"noises.lib\");\nmth_octave_spectral_level_demo_test = no.noise : dm.mth_octave_spectral_level_demo(1.5);\nspectral_level_demo_test = no.noise : dm.spectral_level_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 100,
+        "lineEnd": 120
+      }
+    },
+    {
+      "id": "demos.parametric_eq_demo",
+      "name": "parametric_eq_demo",
+      "qualifiedName": "dm.parametric_eq_demo",
+      "header": "(dm.)parametric_eq_demo",
+      "summary": "A parametric equalizer application.",
+      "usage": "_ : parametric_eq_demo : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : parametric_eq_demo : _"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nno = library(\"noises.lib\");\nparametric_eq_demo_test = no.noise : dm.parametric_eq_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 146,
+        "lineEnd": 161
+      }
+    },
+    {
+      "id": "demos.spectral_tilt_demo",
+      "name": "spectral_tilt_demo",
+      "qualifiedName": "dm.spectral_tilt_demo",
+      "header": "(dm.)spectral_tilt_demo",
+      "summary": "A spectral tilt application.",
+      "usage": "_ : spectral_tilt_demo(N) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "filter order (integer)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : spectral_tilt_demo(N) : _"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nno = library(\"noises.lib\");\nspectral_tilt_demo_test = no.noise : dm.spectral_tilt_demo(4);",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 197,
+        "lineEnd": 218
+      }
+    },
+    {
+      "id": "demos.cubicnl_demo",
+      "name": "cubicnl_demo",
+      "qualifiedName": "dm.cubicnl_demo",
+      "header": "(dm.)cubicnl_demo",
+      "summary": "Distortion demo application.",
+      "usage": "_ : cubicnl_demo : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : cubicnl_demo : _"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nno = library(\"noises.lib\");\ncubicnl_demo_test = no.noise : dm.cubicnl_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 281,
+        "lineEnd": 296
+      }
+    },
+    {
+      "id": "demos.gate_demo",
+      "name": "gate_demo",
+      "qualifiedName": "dm.gate_demo",
+      "header": "(dm.)gate_demo",
+      "summary": "Gate demo application.",
+      "usage": "_,_ : gate_demo : _,_",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : gate_demo : _,_"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nno = library(\"noises.lib\");\ngate_demo_test = no.noise, no.noise : dm.gate_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 313,
+        "lineEnd": 328
+      }
+    },
+    {
+      "id": "demos.compressor_demo",
+      "name": "compressor_demo",
+      "qualifiedName": "dm.compressor_demo",
+      "header": "(dm.)compressor_demo",
+      "summary": "Compressor demo application.",
+      "usage": "_,_ : compressor_demo : _,_",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : compressor_demo : _,_"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nno = library(\"noises.lib\");\ncompressor_demo_test = no.noise, no.noise : dm.compressor_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 370,
+        "lineEnd": 385
+      }
+    },
+    {
+      "id": "demos.moog_vcf_demo",
+      "name": "moog_vcf_demo",
+      "qualifiedName": "dm.moog_vcf_demo",
+      "header": "(dm.)moog_vcf_demo",
+      "summary": "Illustrate and compare all three Moog VCF implementations above.",
+      "usage": "_ : moog_vcf_demo : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : moog_vcf_demo : _"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nos = library(\"oscillators.lib\");\nmoog_vcf_demo_test = os.osc(440) : dm.moog_vcf_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 440,
+        "lineEnd": 455
+      }
+    },
+    {
+      "id": "demos.wah4_demo",
+      "name": "wah4_demo",
+      "qualifiedName": "dm.wah4_demo",
+      "header": "(dm.)wah4_demo",
+      "summary": "Wah pedal application.",
+      "usage": "_ : wah4_demo : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : wah4_demo : _"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nos = library(\"oscillators.lib\");\nwah4_demo_test = os.osc(440) : dm.wah4_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 490,
+        "lineEnd": 505
+      }
+    },
+    {
+      "id": "demos.crybaby_demo",
+      "name": "crybaby_demo",
+      "qualifiedName": "dm.crybaby_demo",
+      "header": "(dm.)crybaby_demo",
+      "summary": "Crybaby effect application.",
+      "usage": "_ : crybaby_demo : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : crybaby_demo : _"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nos = library(\"oscillators.lib\");\ncrybaby_demo_test = os.osc(440) : dm.crybaby_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 520,
+        "lineEnd": 535
+      }
+    },
+    {
+      "id": "demos.flanger_demo",
+      "name": "flanger_demo",
+      "qualifiedName": "dm.flanger_demo",
+      "header": "(dm.)flanger_demo",
+      "summary": "Flanger effect application.",
+      "usage": "_,_ : flanger_demo : _,_",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : flanger_demo : _,_"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nos = library(\"oscillators.lib\");\nflanger_demo_test = os.osc(440), os.osc(442) : dm.flanger_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 549,
+        "lineEnd": 564
+      }
+    },
+    {
+      "id": "demos.phaser2_demo",
+      "name": "phaser2_demo",
+      "qualifiedName": "dm.phaser2_demo",
+      "header": "(dm.)phaser2_demo",
+      "summary": "Phaser effect demo application.",
+      "usage": "_,_ : phaser2_demo : _,_",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : phaser2_demo : _,_"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nos = library(\"oscillators.lib\");\nphaser2_demo_test = os.osc(440), os.osc(442) : dm.phaser2_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 606,
+        "lineEnd": 621
+      }
+    },
+    {
+      "id": "demos.tapeStop_demo",
+      "name": "tapeStop_demo",
+      "qualifiedName": "dm.tapeStop_demo",
+      "header": "(dm.)tapeStop_demo",
+      "summary": "Stereo tape-stop effect.",
+      "usage": "_,_ : tapeStop_demo : _,_",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : tapeStop_demo : _,_"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nos = library(\"oscillators.lib\");\ntapeStop_demo_test = os.osc(440), os.osc(442) : dm.tapeStop_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 668,
+        "lineEnd": 683
+      }
+    },
+    {
+      "id": "demos.freeverb_demo",
+      "name": "freeverb_demo",
+      "qualifiedName": "dm.freeverb_demo",
+      "header": "(dm.)freeverb_demo",
+      "summary": "Freeverb demo application.",
+      "usage": "_,_ : freeverb_demo : _,_",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : freeverb_demo : _,_"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nos = library(\"oscillators.lib\");\nfreeverb_demo_test = os.osc(440), os.osc(442) : dm.freeverb_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 709,
+        "lineEnd": 724
+      }
+    },
+    {
+      "id": "demos.springreverb_demo",
+      "name": "springreverb_demo",
+      "qualifiedName": "dm.springreverb_demo",
+      "header": "(dm.)springreverb_demo",
+      "summary": "Mono spring-inspired reverb demo using `re.springreverb`.",
+      "usage": "_ : springreverb_demo : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : springreverb_demo : _"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nos = library(\"oscillators.lib\");\nspringreverb_demo_test = os.osc(220) : dm.springreverb_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 753,
+        "lineEnd": 768
+      }
+    },
+    {
+      "id": "demos.stereo_reverb_tester",
+      "name": "stereo_reverb_tester",
+      "qualifiedName": "dm.stereo_reverb_tester",
+      "header": "(dm.)stereo_reverb_tester",
+      "summary": "Handy test inputs for reverberator demos below.",
+      "usage": "_,_ : stereo_reverb_tester(gui_group) : _,_",
+      "params": [
+        {
+          "name": "gui_group",
+          "description": "GUI grouping function for the tester controls, or `!` to suppress them For suppressing the `gui_group` input, pass it as `!`. (See `(dm.)fdnrev0_demo` for an example of its use)."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : stereo_reverb_tester(gui_group) : _,_"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nno = library(\"noises.lib\");\nstereo_reverb_tester_test = no.noise, no.noise : dm.stereo_reverb_tester(!);",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 786,
+        "lineEnd": 808
+      }
+    },
+    {
+      "id": "demos.fdnrev0_demo",
+      "name": "fdnrev0_demo",
+      "qualifiedName": "dm.fdnrev0_demo",
+      "header": "(dm.)fdnrev0_demo",
+      "summary": "A reverb application using `fdnrev0`.",
+      "usage": "_,_,_,_ : fdnrev0_demo(N,NB,BBSO) : _,_",
+      "params": [
+        {
+          "name": "N",
+          "description": "feedback Delay Network (FDN) order / number of delay lines used = order of feedback matrix / 2, 4, 8, or 16 [extend primes array below for 32, 64, ...]"
+        },
+        {
+          "name": "NB",
+          "description": "number of frequency bands / Number of (nearly) independent T60 controls / Integer 3 or greater"
+        },
+        {
+          "name": "BBSO",
+          "description": "butterworth band-split order / order of lowpass/highpass bandsplit used at each crossover freq / odd positive integer"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 4,
+        "outSignals": 2,
+        "raw": "_,_,_,_ : fdnrev0_demo(N,NB,BBSO) : _,_"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nno = library(\"noises.lib\");\nfdnrev0_demo_test = no.noise, no.noise : dm.fdnrev0_demo(16, 5, 3);",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 838,
+        "lineEnd": 863
+      }
+    },
+    {
+      "id": "demos.zita_rev_fdn_demo",
+      "name": "zita_rev_fdn_demo",
+      "qualifiedName": "dm.zita_rev_fdn_demo",
+      "header": "(dm.)zita_rev_fdn_demo",
+      "summary": "Reverb demo application based on `zita_rev_fdn`.",
+      "usage": "fdnIn : zita_rev_fdn_demo : fdnOut Typical use is an 8-channel input bus and an 8-channel output bus.",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "fdnIn : zita_rev_fdn_demo : fdnOut Typical use is an 8-channel input bus and an 8-channel output bus."
+      },
+      "testCode": "dm = library(\"demos.lib\");\nos = library(\"oscillators.lib\");\nzita_rev_fdn_demo_test = par(i, 8, os.osc(440 + i)) : dm.zita_rev_fdn_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 919,
+        "lineEnd": 936
+      }
+    },
+    {
+      "id": "demos.zita_light",
+      "name": "zita_light",
+      "qualifiedName": "dm.zita_light",
+      "header": "(dm.)zita_light",
+      "summary": "Light version of `dm.zita_rev1` with only 2 UI elements.",
+      "usage": "_,_ : zita_light : _,_",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : zita_light : _,_"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nos = library(\"oscillators.lib\");\nzita_light_test = os.osc(440), os.osc(442) : dm.zita_light;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 960,
+        "lineEnd": 975
+      }
+    },
+    {
+      "id": "demos.zita_rev1",
+      "name": "zita_rev1",
+      "qualifiedName": "dm.zita_rev1",
+      "header": "(dm.)zita_rev1",
+      "summary": "Example GUI for `zita_rev1_stereo` (mostly following the Linux `zita-rev1` GUI). Only the dry/wet and output level parameters are \"dezippered\" here. If parameters are to be varied in real time, use `smooth(0.999)` or the like in the same way.",
+      "usage": "_,_ : zita_rev1 : _,_",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : zita_rev1 : _,_"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nos = library(\"oscillators.lib\");\nzita_rev1_test = os.osc(440), os.osc(442) : dm.zita_rev1;",
+      "references": [
+        "<http://www.kokkinizita.net/linuxaudio/zita-rev1-doc/quickguide.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 1013,
+        "lineEnd": 1036
+      }
+    },
+    {
+      "id": "demos.vital_rev_demo",
+      "name": "vital_rev_demo",
+      "qualifiedName": "dm.vital_rev_demo",
+      "header": "(dm.)vital_rev_demo",
+      "summary": "Example GUI for `vital_rev` with all parameters exposed.",
+      "usage": "_,_ : vital_rev_demo : _,_",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : vital_rev_demo : _,_"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nos = library(\"oscillators.lib\");\nvital_rev_demo_test = os.osc(440), os.osc(442) : dm.vital_rev_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 1123,
+        "lineEnd": 1138
+      }
+    },
+    {
+      "id": "demos.reverbTank_demo",
+      "name": "reverbTank_demo",
+      "qualifiedName": "dm.reverbTank_demo",
+      "header": "(dm.)reverbTank_demo",
+      "summary": "This is a stereo reverb following the \"ReverbTank\" example in [1], although some parameter ranges and scaling have been adjusted. It is an unofficial version of the Spin Semiconductor\u00ae Reverb. Other relevant instructional material can be found in [2-4].",
+      "usage": "_,_ : reverbTank_demo : _,_",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : reverbTank_demo : _,_"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nos = library(\"oscillators.lib\");\nreverbTank_demo_test = os.osc(440), os.osc(442) : dm.reverbTank_demo;",
+      "references": [
+        "[1] Pirkle, W. C. (2019). Designing audio effect plugins in C++ (2nd ed.). Chapter 17.14.",
+        "[2] Spin Semiconductor. (n.d.). Reverberation. Retrieved 2024-04-16, from <http://www.spinsemi.com/knowledge_base/effects.html#Reverberation>",
+        "[3] Z\u00f6lzer, U. (2022). Digital audio signal processing (3rd ed.). Chapter 7, Figure 7.39.",
+        "[4] Valhalla DSP. (2010, August 25). RIP Keith Barr. Retrieved 2024-04-16, from <https://valhalladsp.com/2010/08/25/rip-keith-barr/>",
+        "-----------------------------------------------------------------------"
+      ],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 1171,
+        "lineEnd": 1199
+      }
+    },
+    {
+      "id": "demos.kb_rom_rev1_demo",
+      "name": "kb_rom_rev1_demo",
+      "qualifiedName": "dm.kb_rom_rev1_demo",
+      "header": "(dm.)kb_rom_rev1_demo",
+      "summary": "Keith Barr reverb effect rom_rev1 demo application.",
+      "usage": "_,_ : kb_rom_rev1_demo : _,_",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : kb_rom_rev1_demo : _,_"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nos = library(\"oscillators.lib\");\nkb_rom_rev1_demo_test = os.osc(440), os.osc(442) : dm.kb_rom_rev1_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 1405,
+        "lineEnd": 1420
+      }
+    },
+    {
+      "id": "demos.dattorro_rev_demo",
+      "name": "dattorro_rev_demo",
+      "qualifiedName": "dm.dattorro_rev_demo",
+      "header": "(dm.)dattorro_rev_demo",
+      "summary": "Example GUI for `dattorro_rev` with all parameters exposed and additional dry/wet and output gain control.",
+      "usage": "_,_ : dattorro_rev_demo : _,_",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : dattorro_rev_demo : _,_"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nos = library(\"oscillators.lib\");\ndattorro_rev_demo_test = os.osc(440), os.osc(442) : dm.dattorro_rev_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 1441,
+        "lineEnd": 1457
+      }
+    },
+    {
+      "id": "demos.jprev_demo",
+      "name": "jprev_demo",
+      "qualifiedName": "dm.jprev_demo",
+      "header": "(dm.)jprev_demo",
+      "summary": "Example GUI for `jprev` with all parameters exposed.",
+      "usage": "_,_ : jprev_demo : _,_",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : jprev_demo : _,_"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nos = library(\"oscillators.lib\");\njprev_demo_test = os.osc(440), os.osc(442) : dm.jprev_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 1489,
+        "lineEnd": 1504
+      }
+    },
+    {
+      "id": "demos.greyhole_demo",
+      "name": "greyhole_demo",
+      "qualifiedName": "dm.greyhole_demo",
+      "header": "(dm.)greyhole_demo",
+      "summary": "Example GUI for `greyhole` with all parameters exposed.",
+      "usage": "_,_ : greyhole_demo : _,_",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : greyhole_demo : _,_"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nos = library(\"oscillators.lib\");\ngreyhole_demo_test = os.osc(440), os.osc(442) : dm.greyhole_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 1531,
+        "lineEnd": 1546
+      }
+    },
+    {
+      "id": "demos.sawtooth_demo",
+      "name": "sawtooth_demo",
+      "qualifiedName": "dm.sawtooth_demo",
+      "header": "(dm.)sawtooth_demo",
+      "summary": "An application demonstrating the different sawtooth oscillators of Faust.",
+      "usage": "sawtooth_demo : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "sawtooth_demo : _"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nsawtooth_demo_test = dm.sawtooth_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 1570,
+        "lineEnd": 1584
+      }
+    },
+    {
+      "id": "demos.virtual_analog_oscillator_demo",
+      "name": "virtual_analog_oscillator_demo",
+      "qualifiedName": "dm.virtual_analog_oscillator_demo",
+      "header": "(dm.)virtual_analog_oscillator_demo",
+      "summary": "Virtual analog oscillator demo application.",
+      "usage": "virtual_analog_oscillator_demo : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "virtual_analog_oscillator_demo : _"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nvirtual_analog_oscillator_demo_test = dm.virtual_analog_oscillator_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 1624,
+        "lineEnd": 1638
+      }
+    },
+    {
+      "id": "demos.twin_osc_demo",
+      "name": "twin_osc_demo",
+      "qualifiedName": "dm.twin_osc_demo",
+      "header": "(dm.)twin_osc_demo",
+      "summary": "TwinOsc - virtual analog synthesis with a time-varying comb filter. Based on: \"Virtual Analog Synthesis with a Time-Varying Comb Filter\" D. Lowenfels, AES Convention 115, October 2003.",
+      "usage": "twin_osc_demo : _,_",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "twin_osc_demo : _,_"
+      },
+      "testCode": "dm = library(\"demos.lib\");\ntwin_osc_demo_test = dm.twin_osc_demo;",
+      "references": [
+        "<https://www.researchgate.net/publication/325654284>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 1718,
+        "lineEnd": 1739
+      }
+    },
+    {
+      "id": "demos.oscrs_demo",
+      "name": "oscrs_demo",
+      "qualifiedName": "dm.oscrs_demo",
+      "header": "(dm.)oscrs_demo",
+      "summary": "Simple application demoing filter based oscillators.",
+      "usage": "oscrs_demo : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "oscrs_demo : _"
+      },
+      "testCode": "dm = library(\"demos.lib\");\noscrs_demo_test = dm.oscrs_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 1792,
+        "lineEnd": 1806
+      }
+    },
+    {
+      "id": "demos.velvet_noise_demo",
+      "name": "velvet_noise_demo",
+      "qualifiedName": "dm.velvet_noise_demo",
+      "header": "(dm.)velvet_noise_demo",
+      "summary": "Listen to velvet_noise!",
+      "usage": "velvet_noise_demo : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "velvet_noise_demo : _"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nvelvet_noise_demo_test = dm.velvet_noise_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 1832,
+        "lineEnd": 1846
+      }
+    },
+    {
+      "id": "demos.latch_demo",
+      "name": "latch_demo",
+      "qualifiedName": "dm.latch_demo",
+      "header": "(dm.)latch_demo",
+      "summary": "Illustrate latch operation.",
+      "usage": "latch_demo : _ One way to visualize it is: echo 'import(\"stdfaust.lib\");' > latch_demo.dsp echo 'process = dm.latch_demo;' >> latch_demo.dsp faust2octave latch_demo.dsp Octave:1> plot(faustout);",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "latch_demo : _ One way to visualize it is: echo 'import(\"stdfaust.lib\");' > latch_demo.dsp echo 'process = dm.latch_demo;' >> latch_demo.dsp faust2octave latch_demo.dsp Octave:1> plot(faustout);"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nlatch_demo_test = dm.latch_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 1858,
+        "lineEnd": 1881
+      }
+    },
+    {
+      "id": "demos.envelopes_demo",
+      "name": "envelopes_demo",
+      "qualifiedName": "dm.envelopes_demo",
+      "header": "(dm.)envelopes_demo",
+      "summary": "Illustrate various envelopes overlaid, including their gate * 1.1.",
+      "usage": "envelopes_demo : envelopeBus One way to visualize it is: echo 'import(\"stdfaust.lib\");' > envelopes_demo.dsp echo 'process = dm.envelopes_demo;' >> envelopes_demo.dsp faust2octave envelopes_demo.dsp Octave:1> plot(faustout);",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "envelopes_demo : envelopeBus One way to visualize it is: echo 'import(\"stdfaust.lib\");' > envelopes_demo.dsp echo 'process = dm.envelopes_demo;' >> envelopes_demo.dsp faust2octave envelopes_demo.dsp Octave:1> plot(faustout);"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nenvelopes_demo_test = dm.envelopes_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 1893,
+        "lineEnd": 1916
+      }
+    },
+    {
+      "id": "demos.fft_spectral_level_demo",
+      "name": "fft_spectral_level_demo",
+      "qualifiedName": "dm.fft_spectral_level_demo",
+      "header": "(dm.)fft_spectral_level_demo",
+      "summary": "Make a real-time spectrum analyzer using FFT from analyzers.lib.",
+      "usage": "echo 'import(\"stdfaust.lib\");' > fft_spectral_level_demo.dsp echo 'process = dm.fft_spectral_level_demo;' >> fft_spectral_level_demo.dsp Mac: faust2caqt fft_spectral_level_demo.dsp open fft_spectral_level_demo.app Linux GTK: faust2jack fft_spectral_level_demo.dsp ./fft_spectral_level_demo Linux QT: faust2jaqt fft_spectral_level_demo.dsp ./fft_spectral_level_demo",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "echo 'import(\"stdfaust.lib\");' > fft_spectral_level_demo.dsp echo 'process = dm.fft_spectral_level_demo;' >> fft_spectral_level_demo.dsp Mac: faust2caqt fft_spectral_level_demo.dsp open fft_spectral_level_demo.app Linux GTK: faust2jack fft_spectral_level_demo.dsp ./fft_spectral_level_demo Linux QT: faust2jaqt fft_spectral_level_demo.dsp ./fft_spectral_level_demo"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nfft_spectral_level_demo_test = dm.fft_spectral_level_demo(256);",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 1936,
+        "lineEnd": 1960
+      }
+    },
+    {
+      "id": "demos.reverse_echo_demo(nChans)",
+      "name": "reverse_echo_demo(nChans)",
+      "qualifiedName": "dm.reverse_echo_demo(nChans)",
+      "header": "(dm.)reverse_echo_demo(nChans)",
+      "summary": "Multichannel echo effect with reverse delays.",
+      "usage": "echo 'import(\"stdfaust.lib\");' > reverse_echo_demo.dsp echo 'nChans = 3; // Any integer > 1 should work here' >> reverse_echo_demo.dsp echo 'process = dm.reverse_echo_demo(nChans);' >> reverse_echo_demo.dsp Mac: faust2caqt reverse_echo_demo.dsp open reverse_echo_demo.app Linux GTK: faust2jack reverse_echo_demo.dsp ./reverse_echo_demo Linux QT: faust2jaqt reverse_echo_demo.dsp ./reverse_echo_demo Etc.",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "echo 'import(\"stdfaust.lib\");' > reverse_echo_demo.dsp echo 'nChans = 3; // Any integer > 1 should work here' >> reverse_echo_demo.dsp echo 'process = dm.reverse_echo_demo(nChans);' >> reverse_echo_demo.dsp Mac: faust2caqt reverse_echo_demo.dsp open reverse_echo_demo.app Linux GTK: faust2jack reverse_echo_demo.dsp ./reverse_echo_demo Linux QT: faust2jaqt reverse_echo_demo.dsp ./reverse_echo_demo Etc."
+      },
+      "testCode": "dm = library(\"demos.lib\");\nno = library(\"noises.lib\");\nreverse_echo_demo_test = no.noise : dm.reverse_echo_demo(3);",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 1975,
+        "lineEnd": 2002
+      }
+    },
+    {
+      "id": "demos.pospass_demo",
+      "name": "pospass_demo",
+      "qualifiedName": "dm.pospass_demo",
+      "header": "(dm.)pospass_demo",
+      "summary": "Use Positive-Pass Filter pospass() to frequency-shift a sine tone. First, a real sinusoid is converted to its analytic-signal form using pospass() to filter out its negative frequency component. Next, it is multiplied by a modulating complex sinusoid at the shifting frequency to create the frequency-shifted result. The real and imaginary parts are output to channels 1 & 2. For a more interesting frequency-shifting example, check the \"Use Mic\" checkbox to replace the input sinusoid by mic input. Note that frequency shifting is not the same as frequency scaling. A frequency-shifted harmonic signal is usually not harmonic. Very small frequency shifts give interesting chirp effects when there is feedback around the frequency shifter.",
+      "usage": "echo 'import(\"stdfaust.lib\");' > pospass_demo.dsp echo 'process = dm.pospass_demo;' >> pospass_demo.dsp Mac: faust2caqt pospass_demo.dsp open pospass_demo.app Linux GTK: faust2jack pospass_demo.dsp ./pospass_demo Linux QT: faust2jaqt pospass_demo.dsp ./pospass_demo Etc.",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "echo 'import(\"stdfaust.lib\");' > pospass_demo.dsp echo 'process = dm.pospass_demo;' >> pospass_demo.dsp Mac: faust2caqt pospass_demo.dsp open pospass_demo.app Linux GTK: faust2jack pospass_demo.dsp ./pospass_demo Linux QT: faust2jaqt pospass_demo.dsp ./pospass_demo Etc."
+      },
+      "testCode": "dm = library(\"demos.lib\");\nos = library(\"oscillators.lib\");\npospass_demo_test = os.osc(440) : dm.pospass_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 2011,
+        "lineEnd": 2048
+      }
+    },
+    {
+      "id": "demos.exciter",
+      "name": "exciter",
+      "qualifiedName": "dm.exciter",
+      "header": "(dm.)exciter",
+      "summary": "Psychoacoustic harmonic exciter, with GUI.",
+      "usage": "_ : exciter : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : exciter : _"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nno = library(\"noises.lib\");\nexciter_test = no.noise : dm.exciter;",
+      "references": [
+        "<https://secure.aes.org/forum/pubs/ebriefs/?elib=16939>",
+        "<https://www.researchgate.net/publication/258333577_Modeling_the_Harmonic_Exciter>",
+        "-------------------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 2120,
+        "lineEnd": 2140
+      }
+    },
+    {
+      "id": "demos.vocoder_demo",
+      "name": "vocoder_demo",
+      "qualifiedName": "dm.vocoder_demo",
+      "header": "(dm.)vocoder_demo",
+      "summary": "Use example of the vocoder function where an impulse train is used as excitation.",
+      "usage": "_ : vocoder_demo : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : vocoder_demo : _"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nos = library(\"oscillators.lib\");\nno = library(\"noises.lib\");\nvocoder_demo_test = no.noise : dm.vocoder_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 2221,
+        "lineEnd": 2238
+      }
+    },
+    {
+      "id": "demos.colored_noise_demo",
+      "name": "colored_noise_demo",
+      "qualifiedName": "dm.colored_noise_demo",
+      "header": "(dm.)colored_noise_demo",
+      "summary": "A coloured noise signal generator.",
+      "usage": "colored_noise_demo : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "colored_noise_demo : _"
+      },
+      "testCode": "dm = library(\"demos.lib\");\ncolored_noise_demo_test = dm.colored_noise_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 2258,
+        "lineEnd": 2272
+      }
+    },
+    {
+      "id": "demos.shock_trigger_demo",
+      "name": "shock_trigger_demo",
+      "qualifiedName": "dm.shock_trigger_demo",
+      "header": "(dm.)shock_trigger_demo",
+      "summary": "Debounced shock trigger driving a tone. UI: - [Auto Pulse] synths periodic impacts. - [Pulse Rate] sets the tempo. - [Axis Offset] trims the accelerometer input before HP/threshold. - [High-pass], [Threshold], [Debounce] shape the trigger window. - [Tone Frequency] sets the audible indicator driven by the shock gate.",
+      "usage": "shock_trigger_demo : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "shock_trigger_demo : _"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nshock_trigger_demo_test = dm.shock_trigger_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 2289,
+        "lineEnd": 2309
+      }
+    },
+    {
+      "id": "demos.projected_gravity_demo",
+      "name": "projected_gravity_demo",
+      "qualifiedName": "dm.projected_gravity_demo",
+      "header": "(dm.)projected_gravity_demo",
+      "summary": "Gravity projection mapped to a low-pass filter sweep. UI: - [Auto Tilt] + [Tilt Rate]/[Tilt Depth] synthesize rocking. - [Axis Offset] biases the axis. - [Low-pass] controls smoothing before projection - [Offset] sets the dead-zone. - [Noise Level] sets bed loudness; projection modulates filter cutoff.",
+      "usage": "projected_gravity_demo : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "projected_gravity_demo : _"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nprojected_gravity_demo_test = dm.projected_gravity_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 2335,
+        "lineEnd": 2355
+      }
+    },
+    {
+      "id": "demos.total_accel_demo",
+      "name": "total_accel_demo",
+      "qualifiedName": "dm.total_accel_demo",
+      "header": "(dm.)total_accel_demo",
+      "summary": "Total acceleration envelope mapped to noise amplitude. UI: - [Auto Motion] + per-axis rates/depth synthesize movement; per-axis offsets bias inputs. - [Threshold]/[Gain] set envelope detection. - [Attack]/[Release] smooth it. - Envelope scales the saw tone amplitude.",
+      "usage": "total_accel_demo : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "total_accel_demo : _"
+      },
+      "testCode": "dm = library(\"demos.lib\");\ntotal_accel_demo_test = dm.total_accel_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 2383,
+        "lineEnd": 2402
+      }
+    },
+    {
+      "id": "demos.orientation6_demo",
+      "name": "orientation6_demo",
+      "qualifiedName": "dm.orientation6_demo",
+      "header": "(dm.)orientation6_demo",
+      "summary": "Six-axis orientation weights mapped to six tonal channels. UI: - [Auto Orbit] + [Orbit Rate]/[Depth] synthesize a 3D path; X/Y/Z knobs add offsets. - Six [Shape ...] knobs tighten/loosen each face\u2019s lobe. - [Smooth] sets response time. - Each weight drives a distinct tone channel.",
+      "usage": "orientation6_demo : _,_,_,_,_,_",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 6,
+        "raw": "orientation6_demo : _,_,_,_,_,_"
+      },
+      "testCode": "dm = library(\"demos.lib\");\norientation6_demo_test = dm.orientation6_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 2435,
+        "lineEnd": 2454
+      }
+    },
+    {
+      "id": "demos.motion_wrapper_demo",
+      "name": "motion_wrapper_demo",
+      "qualifiedName": "dm.motion_wrapper_demo",
+      "header": "(dm.)motion_wrapper_demo",
+      "summary": "End-to-end motion feature monitor built on motion.lib: - Ingests six 3-axis IMUs (left arm, feet, back, right arm, head, stomach). - Derives shock triggers, inclinometers, projected gravity, accel/gyro envelopes, six-face orientation weights per sensor, and raw/scaled axis taps. - Exposes 92 UI-gated outputs matching the motion.lib signal names.",
+      "usage": "motion_wrapper_demo : (leftArm_x, leftArm_y, leftArm_z, feet_x, feet_y, feet_z, back_x, back_y, back_z, rightArm_x, rightArm_y, rightArm_z, head_x, head_y, head_z, stomach_x, stomach_y, stomach_z) -> 92 outputs",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 18,
+        "raw": "motion_wrapper_demo : (leftArm_x, leftArm_y, leftArm_z, feet_x, feet_y, feet_z, back_x, back_y, back_z, rightArm_x, rightArm_y, rightArm_z, head_x, head_y, head_z, stomach_x, stomach_y, stomach_z) -> 92 outputs"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nmotion_wrapper_demo_test = dm.motion_wrapper_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 2488,
+        "lineEnd": 2513
+      }
+    },
+    {
+      "id": "demos.ja_transformer_demo",
+      "name": "ja_transformer_demo",
+      "qualifiedName": "dm.ja_transformer_demo",
+      "header": "(dm.)ja_transformer_demo",
+      "summary": "Magnetic transformer saturation demo using Jiles-Atherton hysteresis. Stereo processor with Pre-EQ, J-A hysteresis core, and inverse Post-EQ.",
+      "usage": "_,_ : ja_transformer_demo : _,_",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : ja_transformer_demo : _,_"
+      },
+      "testCode": "dm = library(\"demos.lib\");\nno = library(\"noises.lib\");\nja_transformer_demo_test = no.noise, no.noise : dm.ja_transformer_demo;",
+      "references": [],
+      "tags": [
+        "demos"
+      ],
+      "source": {
+        "file": "demos.lib",
+        "path": "demos.lib",
+        "lineStart": 2775,
+        "lineEnd": 2791
+      }
+    }
+  ]
+}

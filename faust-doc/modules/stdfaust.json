@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "stdfaust.lib",
+    "path": "stdfaust.lib",
+    "aliasHints": []
+  },
+  "symbols": []
+}

@@ -1,0 +1,210 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "operator.lib",
+    "path": "dx7/operator.lib",
+    "aliasHints": [
+      "op"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "operator.operator",
+      "name": "operator",
+      "qualifiedName": "dx.operator",
+      "header": "(dx.)operator",
+      "summary": "DX7 Operator. Implements a phase-modulable sine wave oscillator connected to a DX7 envelope generator.",
+      "usage": "operator(mode,freqCoarse,freqFine,detune,outLev,R1,R2,R3,R4,L1,L2,L3,L4,keyVelSens,ampModSens,rateScale,lfoWave,lfoSpeed,lfoDelay,lfoPMD,lfoAMD,lfoSync,lfoPitchModSens,oscKeySync,pitch_egR1,pitch_egR2,pitch_egR3,pitch_egR4,pitch_egL1,pitch_egL2,pitch_egL3,pitch_egL4,breakpoint,breakpointLDepth,breakpointRDepth,breakpointLCurve,breakpointRCurve,transpose,phaseMod,base_freq,gain,gate) : _",
+      "params": [
+        {
+          "name": "mode",
+          "description": "pitch mode (0=ratio; 1=fixed)"
+        },
+        {
+          "name": "freqCoarse",
+          "description": "coarse frequency (0-31)"
+        },
+        {
+          "name": "freqFine",
+          "description": "fine frequency (0-99)"
+        },
+        {
+          "name": "detune",
+          "description": "detune in semitones (-7 - 7), *not* (0 - 14)"
+        },
+        {
+          "name": "outLev",
+          "description": "output level (0-99)"
+        },
+        {
+          "name": "R1",
+          "description": "envelope rate 1 (0-99)"
+        },
+        {
+          "name": "R2",
+          "description": "envelope rate 2 (0-99)"
+        },
+        {
+          "name": "R3",
+          "description": "envelope rate 3 (0-99)"
+        },
+        {
+          "name": "R4",
+          "description": "envelope rate 4 (0-99)"
+        },
+        {
+          "name": "L1",
+          "description": "envelope level 1 (0-99)"
+        },
+        {
+          "name": "L2",
+          "description": "envelope level 2 (0-99)"
+        },
+        {
+          "name": "L3",
+          "description": "envelope level 3 (0-99)"
+        },
+        {
+          "name": "L4",
+          "description": "envelope level 4 (0-99)"
+        },
+        {
+          "name": "keyVelSens",
+          "description": "key velocity sensitivity (0-7)"
+        },
+        {
+          "name": "ampModSens",
+          "description": "amplitude sensitivity (0-3)"
+        },
+        {
+          "name": "rateScale",
+          "description": "envelope rate scale (0-7)"
+        },
+        {
+          "name": "breakpoint",
+          "description": "break point position (0-99) // TODO: is it 0-99 or 0-34ish?"
+        },
+        {
+          "name": "breakpointLDepth",
+          "description": "break point left depth (0-99)"
+        },
+        {
+          "name": "breakpointRDepth",
+          "description": "break point right depth (0-99)"
+        },
+        {
+          "name": "breakpointLCurve",
+          "description": "break point left curve (0-3) (-LIN,-EXP,+EXP,+LIN)"
+        },
+        {
+          "name": "breakpointRCurve",
+          "description": "break point right curve (0-3) (-LIN,-EXP,+EXP,+LIN)"
+        },
+        {
+          "name": "lfoWave",
+          "description": "LFO wave mode (0-5) (triangle, saw down, saw up, square, sine, sample&hold)"
+        },
+        {
+          "name": "lfoSpeed",
+          "description": "LFO speed (0-99)"
+        },
+        {
+          "name": "lfoDelay",
+          "description": "LFO delay (0-99)"
+        },
+        {
+          "name": "lfoPMD",
+          "description": "LFO pitch modulation depth (0-99)"
+        },
+        {
+          "name": "lfoAMD",
+          "description": "LFO amplitude modulation depth (0-99)"
+        },
+        {
+          "name": "lfoSync",
+          "description": "(0-1) (0=no retrigger; 1=retrigger)"
+        },
+        {
+          "name": "lfoPitchModSens",
+          "description": "LFO Pitch modulation sensitivity (0-7)"
+        },
+        {
+          "name": "oscKeySync",
+          "description": "osc key sync (0-1)"
+        },
+        {
+          "name": "pitch_egR1",
+          "description": "pitch envelope generator rate 1 (0-99)"
+        },
+        {
+          "name": "pitch_egR2",
+          "description": "pitch envelope generator rate 2 (0-99)"
+        },
+        {
+          "name": "pitch_egR3",
+          "description": "pitch envelope generator rate 3 (0-99)"
+        },
+        {
+          "name": "pitch_egR4",
+          "description": "pitch envelope generator rate 4 (0-99)"
+        },
+        {
+          "name": "pitch_egL1",
+          "description": "pitch envelope generator level 1 (0-99)"
+        },
+        {
+          "name": "pitch_egL2",
+          "description": "pitch envelope generator level 2 (0-99)"
+        },
+        {
+          "name": "pitch_egL3",
+          "description": "pitch envelope generator level 3 (0-99)"
+        },
+        {
+          "name": "pitch_egL4",
+          "description": "pitch envelope generator level 4 (0-99)"
+        },
+        {
+          "name": "transpose",
+          "description": "global transpose (-24 - 24), *not* (0-48)"
+        },
+        {
+          "name": "phaseMod",
+          "description": "phase deviation (-1 - 1)"
+        },
+        {
+          "name": "base_freq",
+          "description": "frequency of the oscillator"
+        },
+        {
+          "name": "gain",
+          "description": "general gain, like a velocity but 0.-1. instead of 0-127."
+        },
+        {
+          "name": "gate",
+          "description": "trigger signal, \"is the note on?\""
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "operator(mode,freqCoarse,freqFine,detune,outLev,R1,R2,R3,R4,L1,L2,L3,L4,keyVelSens,ampModSens,rateScale,lfoWave,lfoSpeed,lfoDelay,lfoPMD,lfoAMD,lfoSync,lfoPitchModSens,oscKeySync,pitch_egR1,pitch_egR2,pitch_egR3,pitch_egR4,pitch_egL1,pitch_egL2,pitch_egL3,pitch_egL4,breakpoint,breakpointLDepth,breakpointRDepth,breakpointLCurve,breakpointRCurve,transpose,phaseMod,base_freq,gain,gate) : _"
+      },
+      "testCode": "op = library(\"operator.lib\");\noperator_test = op.operator(0,1,0,0,99,99,99,99,99,0,0,0,0,0,0,0,4,35,0,0,0,1,3,99,99,99,99,0,0,0,0,50,0,0,0,0,0,-12,0,440.0,1.0,button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "operator"
+      ],
+      "source": {
+        "file": "operator.lib",
+        "path": "dx7/operator.lib",
+        "lineStart": 17,
+        "lineEnd": 77
+      }
+    }
+  ]
+}

@@ -1,0 +1,1179 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "vaeffects.lib",
+    "path": "vaeffects.lib",
+    "aliasHints": [
+      "ve"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "vaeffects.moog_vcf",
+      "name": "moog_vcf",
+      "qualifiedName": "ve.moog_vcf",
+      "header": "(ve.)moog_vcf",
+      "summary": "Moog \"Voltage Controlled Filter\" (VCF) in \"analog\" form. Moog VCF implemented using the same logical block diagram as the classic analog circuit.  As such, it neglects the one-sample delay associated with the feedback path around the four one-poles. This extra delay alters the response, especially at high frequencies (see reference [1] for details). See `moog_vcf_2b` below for a more accurate implementation.",
+      "usage": "_ : moog_vcf(res,fr) : _",
+      "params": [
+        {
+          "name": "res",
+          "description": "normalized amount of corner-resonance between 0 and 1 (0 is no resonance, 1 is maximum)"
+        },
+        {
+          "name": "fr",
+          "description": "corner-resonance frequency in Hz (less than SR/6.3 or so)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : moog_vcf(res,fr) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nmoog_vcf_test = os.osc(440)\n  : ve.moog_vcf(\n      hslider(\"moog_vcf:res\", 0.5, 0, 1, 0.01),\n      hslider(\"moog_vcf:freq\", 1000, 50, 4000, 1)\n    );",
+      "references": [
+        "<https://ccrma.stanford.edu/~stilti/papers/moogvcf.pdf>",
+        "<https://ccrma.stanford.edu/~jos/pasp/vegf.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 52,
+        "lineEnd": 88
+      }
+    },
+    {
+      "id": "vaeffects.moog_vcf_2b[n]",
+      "name": "moog_vcf_2b[n]",
+      "qualifiedName": "ve.moog_vcf_2b[n]",
+      "header": "(ve.)moog_vcf_2b[n]",
+      "summary": "Moog \"Voltage Controlled Filter\" (VCF) as two biquads. Implementation of the ideal Moog VCF transfer function factored into second-order sections. As a result, it is more accurate than `moog_vcf` above, but its coefficient formulas are more complex when one or both parameters are varied.  Here, res is the fourth root of that in `moog_vcf`, so, as the sampling rate approaches infinity, `moog_vcf(res,fr)` becomes equivalent to `moog_vcf_2b[n](res^4,fr)` (when res and fr are constant). `moog_vcf_2b` uses two direct-form biquads (`tf2`). `moog_vcf_2bn` uses two protected normalized-ladder biquads (`tf2np`).",
+      "usage": "_ : moog_vcf_2b(res,fr) : _ _ : moog_vcf_2bn(res,fr) : _",
+      "params": [
+        {
+          "name": "res",
+          "description": "normalized amount of corner-resonance between 0 and 1 (0 is min resonance, 1 is maximum)"
+        },
+        {
+          "name": "fr",
+          "description": "corner-resonance frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : moog_vcf_2b(res,fr) : _ _ : moog_vcf_2bn(res,fr) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nmoog_vcf_2b_test = os.osc(330)\n  : ve.moog_vcf_2b(\n      hslider(\"moog_vcf_2b:res\", 0.4, 0, 1, 0.01),\n      hslider(\"moog_vcf_2b:freq\", 1200, 50, 6000, 1)\n    );\nmoog_vcf_2bn_test = os.osc(330)\n  : ve.moog_vcf_2bn(\n      hslider(\"moog_vcf_2bn:res\", 0.4, 0, 1, 0.01),\n      hslider(\"moog_vcf_2bn:freq\", 1200, 50, 6000, 1)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 99,
+        "lineEnd": 138
+      }
+    },
+    {
+      "id": "vaeffects.moogLadder",
+      "name": "moogLadder",
+      "qualifiedName": "ve.moogLadder",
+      "header": "(ve.)moogLadder",
+      "summary": "Virtual analog model of the 4th-order Moog Ladder (without any nonlinearities), which is arguably the most well-known ladder filter in analog synthesizers. Several 1st-order filters are cascaded in series. Feedback is then used, in part, to control the cut-off frequency and the resonance.",
+      "usage": "_ : moogLadder(normFreq,Q) : _",
+      "params": [
+        {
+          "name": "normFreq",
+          "description": "normalized frequency (0-1)"
+        },
+        {
+          "name": "Q",
+          "description": "quality factor between .707 (0 feedback coefficient) to 25 (feedback = 4, which is the self-oscillating threshold)."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : moogLadder(normFreq,Q) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nmoogLadder_test = os.osc(220)\n  : ve.moogLadder(\n      hslider(\"moogLadder:normFreq\", 0.3, 0, 1, 0.001),\n      hslider(\"moogLadder:Q\", 4, 0.7, 20, 0.1)\n    );",
+      "references": [
+        "[Zavalishin 2012] (revision 2.1.2, February 2020)",
+        "<https://www.native-instruments.com/fileadmin/ni_media/downloads/pdf/VAFilterDesign_2.1.2.pdf>",
+        "Lorenzo Della Cioppa's correction to Pirkle's implementation: <https://www.kvraudio.com/forum/viewtopic.php?f=33&t=571909>",
+        "---------------------------------------------------------------------"
+      ],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 175,
+        "lineEnd": 208
+      }
+    },
+    {
+      "id": "vaeffects.lowpassLadder4",
+      "name": "lowpassLadder4",
+      "qualifiedName": "ve.lowpassLadder4",
+      "header": "(ve.)lowpassLadder4",
+      "summary": "Topology-preserving transform implementation of a four-pole ladder lowpass. This is essentially the same filter as the moogLadder above except for the parameters, which will be expressed in Hz, for the cutoff, and as a raw feedback coefficient, for the resonance. Also, note that the parameter order has changed.",
+      "usage": "_ : lowpassLadder4(k, CF) : _",
+      "params": [
+        {
+          "name": "k",
+          "description": "feedback coefficient between 0 and 4, which is the stability threshold."
+        },
+        {
+          "name": "CF",
+          "description": "the filter's cutoff in Hz."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : lowpassLadder4(k, CF) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nlowpassLadder4_test = os.osc(110)\n  : ve.lowpassLadder4(\n      hslider(\"lowpassLadder4:k\", 2.0, 0, 4, 0.1),\n      hslider(\"lowpassLadder4:freq\", 800, 50, 5000, 1)\n    );",
+      "references": [
+        "[Zavalishin 2012] (revision 2.1.2, February 2020)",
+        "<https://www.native-instruments.com/fileadmin/ni_media/downloads/pdf/VAFilterDesign_2.1.2.pdf>",
+        "---------------------------------------------------------------------"
+      ],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 239,
+        "lineEnd": 281
+      }
+    },
+    {
+      "id": "vaeffects.moogHalfLadder",
+      "name": "moogHalfLadder",
+      "qualifiedName": "ve.moogHalfLadder",
+      "header": "(ve.)moogHalfLadder",
+      "summary": "Virtual analog model of the 2nd-order Moog Half Ladder (simplified version of `(ve.)moogLadder`). Several 1st-order filters are cascaded in series. Feedback is then used, in part, to control the cut-off frequency and the resonance. This filter was implemented in Faust by Eric Tarr during the [2019 Embedded DSP With Faust Workshop](https://ccrma.stanford.edu/workshops/faust-embedded-19/).",
+      "usage": "_ : moogHalfLadder(normFreq,Q) : _",
+      "params": [
+        {
+          "name": "normFreq",
+          "description": "normalized frequency (0-1)"
+        },
+        {
+          "name": "Q",
+          "description": "q"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : moogHalfLadder(normFreq,Q) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nmoogHalfLadder_test = os.osc(220)\n  : ve.moogHalfLadder(\n      hslider(\"moogHalfLadder:normFreq\", 0.3, 0, 1, 0.001),\n      hslider(\"moogHalfLadder:Q\", 4, 0.7, 20, 0.1)\n    );",
+      "references": [
+        "<https://www.willpirkle.com/app-notes/virtual-analog-moog-half-ladder-filter>",
+        "<http://www.willpirkle.com/Downloads/AN-8MoogHalfLadderFilter.pdf>",
+        "---------------------------------------------------------------------"
+      ],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 314,
+        "lineEnd": 349
+      }
+    },
+    {
+      "id": "vaeffects.diodeLadder",
+      "name": "diodeLadder",
+      "qualifiedName": "ve.diodeLadder",
+      "header": "(ve.)diodeLadder",
+      "summary": "4th order virtual analog diode ladder filter. In addition to the individual states used within each independent 1st-order filter, there are also additional feedback paths found in the block diagram. These feedback paths are labeled as connecting states. Rather than separately storing these connecting states in the Faust implementation, they are simply implicitly calculated by tracing back to the other states (`s1`,`s2`,`s3`,`s4`) each recursive step. This filter was implemented in Faust by Eric Tarr during the [2019 Embedded DSP With Faust Workshop](https://ccrma.stanford.edu/workshops/faust-embedded-19/).",
+      "usage": "_ : diodeLadder(normFreq,Q) : _",
+      "params": [
+        {
+          "name": "normFreq",
+          "description": "normalized frequency (0-1)"
+        },
+        {
+          "name": "Q",
+          "description": "q"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : diodeLadder(normFreq,Q) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\ndiodeLadder_test = os.osc(220)\n  : ve.diodeLadder(\n      hslider(\"diodeLadder:normFreq\", 0.4, 0, 1, 0.001),\n      hslider(\"diodeLadder:Q\", 4, 0.7, 20, 0.1)\n    );",
+      "references": [
+        "<https://www.willpirkle.com/virtual-analog-diode-ladder-filter/>",
+        "<http://www.willpirkle.com/Downloads/AN-6DiodeLadderFilter.pdf>",
+        "---------------------------------------------------------------------"
+      ],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 377,
+        "lineEnd": 414
+      }
+    },
+    {
+      "id": "vaeffects.korg35LPF",
+      "name": "korg35LPF",
+      "qualifiedName": "ve.korg35LPF",
+      "header": "(ve.)korg35LPF",
+      "summary": "Virtual analog models of the Korg 35 low-pass filter found in the MS-10 and MS-20 synthesizers.",
+      "usage": "_ : korg35LPF(normFreq,Q) : _",
+      "params": [
+        {
+          "name": "normFreq",
+          "description": "normalized frequency (0-1)"
+        },
+        {
+          "name": "Q",
+          "description": "q"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : korg35LPF(normFreq,Q) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nkorg35LPF_test = os.osc(220)\n  : ve.korg35LPF(\n      hslider(\"korg35LPF:normFreq\", 0.35, 0, 1, 0.001),\n      hslider(\"korg35LPF:Q\", 3.5, 0.7, 10, 0.1)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 534,
+        "lineEnd": 559
+      }
+    },
+    {
+      "id": "vaeffects.korg35HPF",
+      "name": "korg35HPF",
+      "qualifiedName": "ve.korg35HPF",
+      "header": "(ve.)korg35HPF",
+      "summary": "Virtual analog models of the Korg 35 high-pass filter found in the MS-10 and MS-20 synthesizers.",
+      "usage": "_ : korg35HPF(normFreq,Q) : _",
+      "params": [
+        {
+          "name": "normFreq",
+          "description": "normalized frequency (0-1)"
+        },
+        {
+          "name": "Q",
+          "description": "q"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : korg35HPF(normFreq,Q) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nkorg35HPF_test = os.osc(330)\n  : ve.korg35HPF(\n      hslider(\"korg35HPF:normFreq\", 0.4, 0, 1, 0.001),\n      hslider(\"korg35HPF:Q\", 3.5, 0.7, 10, 0.1)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 585,
+        "lineEnd": 610
+      }
+    },
+    {
+      "id": "vaeffects.oberheim",
+      "name": "oberheim",
+      "qualifiedName": "ve.oberheim",
+      "header": "(ve.)oberheim",
+      "summary": "Generic multi-outputs Oberheim filter that produces the BSF, BPF, HPF and LPF outputs (see description above).",
+      "usage": "_ : oberheim(normFreq,Q) : _,_,_,_",
+      "params": [
+        {
+          "name": "normFreq",
+          "description": "normalized frequency (0-1)"
+        },
+        {
+          "name": "Q",
+          "description": "q"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 4,
+        "raw": "_ : oberheim(normFreq,Q) : _,_,_,_"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\noberheim_test = os.osc(220)\n  : ve.oberheim(\n      hslider(\"oberheim:normFreq\", 0.4, 0, 1, 0.001),\n      hslider(\"oberheim:Q\", 1.5, 0.5, 10, 0.1)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 649,
+        "lineEnd": 673
+      }
+    },
+    {
+      "id": "vaeffects.oberheimBSF",
+      "name": "oberheimBSF",
+      "qualifiedName": "ve.oberheimBSF",
+      "header": "(ve.)oberheimBSF",
+      "summary": "Band-Stop Oberheim filter (see description above). Specialize the generic implementation: keep the first BSF output, the compiler will only generate the needed code.",
+      "usage": "_ : oberheimBSF(normFreq,Q) : _",
+      "params": [
+        {
+          "name": "normFreq",
+          "description": "normalized frequency (0-1)"
+        },
+        {
+          "name": "Q",
+          "description": "q"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : oberheimBSF(normFreq,Q) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\noberheimBSF_test = os.osc(220)\n  : ve.oberheimBSF(\n      hslider(\"oberheimBSF:normFreq\", 0.4, 0, 1, 0.001),\n      hslider(\"oberheimBSF:Q\", 1.5, 0.5, 10, 0.1)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 699,
+        "lineEnd": 725
+      }
+    },
+    {
+      "id": "vaeffects.oberheimBPF",
+      "name": "oberheimBPF",
+      "qualifiedName": "ve.oberheimBPF",
+      "header": "(ve.)oberheimBPF",
+      "summary": "Band-Pass Oberheim filter (see description above). Specialize the generic implementation: keep the second BPF output, the compiler will only generate the needed code.",
+      "usage": "_ : oberheimBPF(normFreq,Q) : _",
+      "params": [
+        {
+          "name": "normFreq",
+          "description": "normalized frequency (0-1)"
+        },
+        {
+          "name": "Q",
+          "description": "q"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : oberheimBPF(normFreq,Q) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\noberheimBPF_test = os.osc(220)\n  : ve.oberheimBPF(\n      hslider(\"oberheimBPF:normFreq\", 0.4, 0, 1, 0.001),\n      hslider(\"oberheimBPF:Q\", 1.5, 0.5, 10, 0.1)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 731,
+        "lineEnd": 757
+      }
+    },
+    {
+      "id": "vaeffects.oberheimHPF",
+      "name": "oberheimHPF",
+      "qualifiedName": "ve.oberheimHPF",
+      "header": "(ve.)oberheimHPF",
+      "summary": "High-Pass Oberheim filter (see description above). Specialize the generic implementation: keep the third HPF output, the compiler will only generate the needed code.",
+      "usage": "_ : oberheimHPF(normFreq,Q) : _",
+      "params": [
+        {
+          "name": "normFreq",
+          "description": "normalized frequency (0-1)"
+        },
+        {
+          "name": "Q",
+          "description": "q"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : oberheimHPF(normFreq,Q) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\noberheimHPF_test = os.osc(220)\n  : ve.oberheimHPF(\n      hslider(\"oberheimHPF:normFreq\", 0.4, 0, 1, 0.001),\n      hslider(\"oberheimHPF:Q\", 1.5, 0.5, 10, 0.1)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 763,
+        "lineEnd": 789
+      }
+    },
+    {
+      "id": "vaeffects.oberheimLPF",
+      "name": "oberheimLPF",
+      "qualifiedName": "ve.oberheimLPF",
+      "header": "(ve.)oberheimLPF",
+      "summary": "Low-Pass Oberheim filter (see description above). Specialize the generic implementation: keep the fourth LPF output, the compiler will only generate the needed code.",
+      "usage": "_ : oberheimLPF(normFreq,Q) : _",
+      "params": [
+        {
+          "name": "normFreq",
+          "description": "normalized frequency (0-1)"
+        },
+        {
+          "name": "Q",
+          "description": "q"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : oberheimLPF(normFreq,Q) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\noberheimLPF_test = os.osc(220)\n  : ve.oberheimLPF(\n      hslider(\"oberheimLPF:normFreq\", 0.4, 0, 1, 0.001),\n      hslider(\"oberheimLPF:Q\", 1.5, 0.5, 10, 0.1)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 795,
+        "lineEnd": 821
+      }
+    },
+    {
+      "id": "vaeffects.sallenKeyOnePole",
+      "name": "sallenKeyOnePole",
+      "qualifiedName": "ve.sallenKeyOnePole",
+      "header": "(ve.)sallenKeyOnePole",
+      "summary": "Sallen-Key generic One Pole filter that produces the LPF and HPF outputs (see description above). For the Faust implementation of this filter, recursion (`letrec`) is used for storing filter \"states\". The output (e.g. `y`) is calculated by using the input signal and the previous states of the filter. During the current recursive step, the states of the filter (e.g. `s`) for the next step are also calculated. Admittedly, this is not an efficient way to implement a filter because it requires independently calculating the output and each state during each recursive step. However, it works as a way to store and use \"states\" within the constraints of Faust. The simplest example is the 1st-order LPF (shown on the cover of Zavalishin 2018 and Fig 4.3 of <https://www.willpirkle.com/706-2/>). Here, the input signal is split in parallel for the calculation of the output signal, `y`, and the state `s`. The value of the state is only used for feedback to the next step of recursion. It is blocked (!) from also being routed to the output. A trick used for calculating the state `s` is to observe that the input to the delay block is the sum of two signal: what appears to be a feedforward path and a feedback path. In reality, the signals being summed are identical `(signal*2)` plus the value of the current state.",
+      "usage": "_ : sallenKeyOnePole(normFreq) : _,_",
+      "params": [
+        {
+          "name": "normFreq",
+          "description": "normalized frequency (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 2,
+        "raw": "_ : sallenKeyOnePole(normFreq) : _,_"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nsallenKeyOnePole_test = os.osc(440)\n  : ve.sallenKeyOnePole(\n      hslider(\"sallenKeyOnePole:normFreq\", 0.25, 0, 1, 0.001)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 852,
+        "lineEnd": 897
+      }
+    },
+    {
+      "id": "vaeffects.sallenKeyOnePoleLPF",
+      "name": "sallenKeyOnePoleLPF",
+      "qualifiedName": "ve.sallenKeyOnePoleLPF",
+      "header": "(ve.)sallenKeyOnePoleLPF",
+      "summary": "Sallen-Key One Pole lowpass filter (see description above). Specialize the generic implementation: keep the first LPF output, the compiler will only generate the needed code.",
+      "usage": "_ : sallenKeyOnePoleLPF(normFreq) : _",
+      "params": [
+        {
+          "name": "normFreq",
+          "description": "normalized frequency (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : sallenKeyOnePoleLPF(normFreq) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nsallenKeyOnePoleLPF_test = os.osc(440)\n  : ve.sallenKeyOnePoleLPF(\n      hslider(\"sallenKeyOnePoleLPF:normFreq\", 0.25, 0, 1, 0.001)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 915,
+        "lineEnd": 939
+      }
+    },
+    {
+      "id": "vaeffects.sallenKeyOnePoleHPF",
+      "name": "sallenKeyOnePoleHPF",
+      "qualifiedName": "ve.sallenKeyOnePoleHPF",
+      "header": "(ve.)sallenKeyOnePoleHPF",
+      "summary": "Sallen-Key One Pole Highpass filter (see description above). The dry input signal is routed in parallel to the output. The LPF'd signal is subtracted from the input so that the HPF remains. Specialize the generic implementation: keep the second HPF output, the compiler will only generate the needed code.",
+      "usage": "_ : sallenKeyOnePoleHPF(normFreq) : _",
+      "params": [
+        {
+          "name": "normFreq",
+          "description": "normalized frequency (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : sallenKeyOnePoleHPF(normFreq) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nsallenKeyOnePoleHPF_test = os.osc(440)\n  : ve.sallenKeyOnePoleHPF(\n      hslider(\"sallenKeyOnePoleHPF:normFreq\", 0.25, 0, 1, 0.001)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 945,
+        "lineEnd": 971
+      }
+    },
+    {
+      "id": "vaeffects.sallenKey2ndOrder",
+      "name": "sallenKey2ndOrder",
+      "qualifiedName": "ve.sallenKey2ndOrder",
+      "header": "(ve.)sallenKey2ndOrder",
+      "summary": "Sallen-Key generic 2nd order filter that produces the LPF, BPF and HPF outputs. This is a 2nd-order Sallen-Key state-variable filter. The idea is that by \"tapping\" into different points in the circuit, different filters (LPF,BPF,HPF) can be achieved. See Figure 4.6 of <https://www.willpirkle.com/706-2/> This is also a good example of the next step for generalizing the Faust programming approach used for all these VA filters. In this case, there are three things to calculate each recursive step (`y`,`s1`,`s2`). For each thing, the circuit is only calculated up to that point. Comparing the LPF to BPF, the output signal (`y`) is calculated similarly. Except, the output of the BPF stops earlier in the circuit. Similarly, the states (`s1` and `s2`) only differ in that `s2` includes a couple more terms beyond what is used for `s1`.",
+      "usage": "_ : sallenKey2ndOrder(normFreq,Q) : _,_,_",
+      "params": [
+        {
+          "name": "normFreq",
+          "description": "normalized frequency (0-1)"
+        },
+        {
+          "name": "Q",
+          "description": "quality factor controlling the sharpness/resonance of the filter around the center frequency (CF). For bandpass filters, higher Q increases the gain at the center frequency. Must be in the range `[ma.EPSILON, ma.MAX]`"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 3,
+        "raw": "_ : sallenKey2ndOrder(normFreq,Q) : _,_,_"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nsallenKey2ndOrder_test = os.osc(330)\n  : ve.sallenKey2ndOrder(\n      hslider(\"sallenKey2ndOrder:normFreq\", 0.3, 0, 1, 0.001),\n      hslider(\"sallenKey2ndOrder:Q\", 1.0, 0.1, 10, 0.1)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 977,
+        "lineEnd": 1016
+      }
+    },
+    {
+      "id": "vaeffects.sallenKey2ndOrderLPF",
+      "name": "sallenKey2ndOrderLPF",
+      "qualifiedName": "ve.sallenKey2ndOrderLPF",
+      "header": "(ve.)sallenKey2ndOrderLPF",
+      "summary": "Sallen-Key 2nd order lowpass filter (see description above). Specialize the generic implementation: keep the first LPF output, the compiler will only generate the needed code.",
+      "usage": "_ : sallenKey2ndOrderLPF(normFreq,Q) : _",
+      "params": [
+        {
+          "name": "normFreq",
+          "description": "normalized frequency (0-1)"
+        },
+        {
+          "name": "Q",
+          "description": "quality factor controlling the sharpness/resonance of the filter around the center frequency (CF). For bandpass filters, higher Q increases the gain at the center frequency. Must be in the range `[ma.EPSILON, ma.MAX]`"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : sallenKey2ndOrderLPF(normFreq,Q) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nsallenKey2ndOrderLPF_test = os.osc(330)\n  : ve.sallenKey2ndOrderLPF(\n      hslider(\"sallenKey2ndOrderLPF:normFreq\", 0.3, 0, 1, 0.001),\n      hslider(\"sallenKey2ndOrderLPF:Q\", 0.8, 0.1, 10, 0.1)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 1040,
+        "lineEnd": 1066
+      }
+    },
+    {
+      "id": "vaeffects.sallenKey2ndOrderBPF",
+      "name": "sallenKey2ndOrderBPF",
+      "qualifiedName": "ve.sallenKey2ndOrderBPF",
+      "header": "(ve.)sallenKey2ndOrderBPF",
+      "summary": "Sallen-Key 2nd order bandpass filter (see description above). Specialize the generic implementation: keep the second BPF output, the compiler will only generate the needed code.",
+      "usage": "_ : sallenKey2ndOrderBPF(normFreq,Q) : _",
+      "params": [
+        {
+          "name": "normFreq",
+          "description": "normalized frequency (0-1)"
+        },
+        {
+          "name": "Q",
+          "description": "quality factor controlling the sharpness/resonance of the filter around the center frequency (CF). For bandpass filters, higher Q increases the gain at the center frequency. Must be in the range `[ma.EPSILON, ma.MAX]`"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : sallenKey2ndOrderBPF(normFreq,Q) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nsallenKey2ndOrderBPF_test = os.osc(330)\n  : ve.sallenKey2ndOrderBPF(\n      hslider(\"sallenKey2ndOrderBPF:normFreq\", 0.3, 0, 1, 0.001),\n      hslider(\"sallenKey2ndOrderBPF:Q\", 1.5, 0.1, 10, 0.1)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 1072,
+        "lineEnd": 1098
+      }
+    },
+    {
+      "id": "vaeffects.sallenKey2ndOrderHPF",
+      "name": "sallenKey2ndOrderHPF",
+      "qualifiedName": "ve.sallenKey2ndOrderHPF",
+      "header": "(ve.)sallenKey2ndOrderHPF",
+      "summary": "Sallen-Key 2nd order highpass filter (see description above). Specialize the generic implementation: keep the third HPF output, the compiler will only generate the needed code.",
+      "usage": "_ : sallenKey2ndOrderHPF(normFreq,Q) : _",
+      "params": [
+        {
+          "name": "normFreq",
+          "description": "normalized frequency (0-1)"
+        },
+        {
+          "name": "Q",
+          "description": "quality factor controlling the sharpness/resonance of the filter around the center frequency (CF). For bandpass filters, higher Q increases the gain at the center frequency. Must be in the range `[ma.EPSILON, ma.MAX]`"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : sallenKey2ndOrderHPF(normFreq,Q) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nsallenKey2ndOrderHPF_test = os.osc(330)\n  : ve.sallenKey2ndOrderHPF(\n      hslider(\"sallenKey2ndOrderHPF:normFreq\", 0.3, 0, 1, 0.001),\n      hslider(\"sallenKey2ndOrderHPF:Q\", 0.8, 0.1, 10, 0.1)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 1104,
+        "lineEnd": 1130
+      }
+    },
+    {
+      "id": "vaeffects.biquad",
+      "name": "biquad",
+      "qualifiedName": "ve.biquad",
+      "header": "(ve.)biquad",
+      "summary": "Basic biquad section implementing the difference equation: `y[n] = b0 * x[n] + b1 * x[n-1] + b2 * x[n-2] - a1 * y[n-1] - a2 * y[n-2]`",
+      "usage": "_ : biquad(b0, b1, b2, a1, a2) : _",
+      "params": [
+        {
+          "name": "b0",
+          "description": "feedforward coefficient for `x[n]`"
+        },
+        {
+          "name": "b1",
+          "description": "feedforward coefficient for `x[n-1]`"
+        },
+        {
+          "name": "b2",
+          "description": "feedforward coefficient for `x[n-2]`"
+        },
+        {
+          "name": "a1",
+          "description": "feedback coefficient for `y[n-1]`"
+        },
+        {
+          "name": "a2",
+          "description": "feedback coefficient for `y[n-2]`"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : biquad(b0, b1, b2, a1, a2) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nbiquad_test = os.osc(440)\n  : ve.biquad(0.5, 0.3, 0.2, -0.3, 0.2);",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 1169,
+        "lineEnd": 1193
+      }
+    },
+    {
+      "id": "vaeffects.lowpass2Matched",
+      "name": "lowpass2Matched",
+      "qualifiedName": "ve.lowpass2Matched",
+      "header": "(ve.)lowpass2Matched",
+      "summary": "Vicanek's decramped second-order resonant lowpass filter. \u26a0\ufe0f **Note:** These filters require **double-precision** support.",
+      "usage": "_ : lowpass2Matched(CF, Q) : _",
+      "params": [
+        {
+          "name": "CF",
+          "description": "cutoff frequency in Hz"
+        },
+        {
+          "name": "Q",
+          "description": "resonance linear amplitude"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : lowpass2Matched(CF, Q) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nlowpass2Matched_test = os.osc(440)\n  : ve.lowpass2Matched(\n      hslider(\"lowpass2Matched:CF\", 1000, 50, 5000, 1),\n      hslider(\"lowpass2Matched:Q\", 0.707, 0.1, 5, 0.01)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 1201,
+        "lineEnd": 1226
+      }
+    },
+    {
+      "id": "vaeffects.highpass2Matched",
+      "name": "highpass2Matched",
+      "qualifiedName": "ve.highpass2Matched",
+      "header": "(ve.)highpass2Matched",
+      "summary": "Vicanek's decramped second-order resonant highpass filter. \u26a0\ufe0f **Note:** These filters require **double-precision** support.",
+      "usage": "_ : highpass2Matched(CF, Q) : _",
+      "params": [
+        {
+          "name": "CF",
+          "description": "cutoff frequency in Hz"
+        },
+        {
+          "name": "Q",
+          "description": "resonance linear amplitude"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : highpass2Matched(CF, Q) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nhighpass2Matched_test = os.osc(440)\n  : ve.highpass2Matched(\n      hslider(\"highpass2Matched:CF\", 500, 50, 5000, 1),\n      hslider(\"highpass2Matched:Q\", 0.707, 0.1, 5, 0.01)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 1251,
+        "lineEnd": 1276
+      }
+    },
+    {
+      "id": "vaeffects.bandpass2Matched",
+      "name": "bandpass2Matched",
+      "qualifiedName": "ve.bandpass2Matched",
+      "header": "(ve.)bandpass2Matched",
+      "summary": "Vicanek's decramped second-order resonant bandpass filter. \u26a0\ufe0f **Note:** These filters require **double-precision** support.",
+      "usage": "_ : bandpass2Matched(CF, Q) : _",
+      "params": [
+        {
+          "name": "CF",
+          "description": "cutoff frequency in Hz"
+        },
+        {
+          "name": "Q",
+          "description": "peak width"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : bandpass2Matched(CF, Q) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nbandpass2Matched_test = os.osc(440)\n  : ve.bandpass2Matched(\n      hslider(\"bandpass2Matched:CF\", 1200, 50, 5000, 1),\n      hslider(\"bandpass2Matched:Q\", 2.0, 0.1, 10, 0.01)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 1298,
+        "lineEnd": 1323
+      }
+    },
+    {
+      "id": "vaeffects.peaking2Matched",
+      "name": "peaking2Matched",
+      "qualifiedName": "ve.peaking2Matched",
+      "header": "(ve.)peaking2Matched",
+      "summary": "Vicanek's decramped second-order resonant bandpass filter. \u26a0\ufe0f **Note:** These filters require **double-precision** support.",
+      "usage": "_ : peaking2Matched(G, CF, Q) : _",
+      "params": [
+        {
+          "name": "G",
+          "description": "peak linear amplitude"
+        },
+        {
+          "name": "CF",
+          "description": "cutoff frequency in Hz"
+        },
+        {
+          "name": "Q",
+          "description": "peak width"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : peaking2Matched(G, CF, Q) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\npeaking2Matched_test = os.osc(440)\n  : ve.peaking2Matched(\n      hslider(\"peaking2Matched:G\", 1.5, 0.1, 4, 0.01),\n      hslider(\"peaking2Matched:CF\", 1000, 50, 5000, 1),\n      hslider(\"peaking2Matched:Q\", 2.0, 0.1, 10, 0.01)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 1349,
+        "lineEnd": 1376
+      }
+    },
+    {
+      "id": "vaeffects.lowshelf2Matched",
+      "name": "lowshelf2Matched",
+      "qualifiedName": "ve.lowshelf2Matched",
+      "header": "(ve.)lowshelf2Matched",
+      "summary": "Vicanek's decramped second-order Butterworth lowshelf filter. \u26a0\ufe0f **Note:** These filters require **double-precision** support.",
+      "usage": "_ : lowshelf2Matched(G, CF) : _",
+      "params": [
+        {
+          "name": "G",
+          "description": "shelf linear amplitude"
+        },
+        {
+          "name": "CF",
+          "description": "cutoff frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : lowshelf2Matched(G, CF) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nlowshelf2Matched_test = os.osc(330)\n  : ve.lowshelf2Matched(\n      hslider(\"lowshelf2Matched:G\", 1.5, 0.5, 4, 0.01),\n      hslider(\"lowshelf2Matched:CF\", 500, 50, 5000, 1)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 1404,
+        "lineEnd": 1429
+      }
+    },
+    {
+      "id": "vaeffects.highshelf2Matched",
+      "name": "highshelf2Matched",
+      "qualifiedName": "ve.highshelf2Matched",
+      "header": "(ve.)highshelf2Matched",
+      "summary": "Vicanek's decramped second-order Butterworth highshelf filter. \u26a0\ufe0f **Note:** These filters require **double-precision** support.",
+      "usage": "_ : highshelf2Matched(G, CF) : _",
+      "params": [
+        {
+          "name": "G",
+          "description": "shelf linear amplitude"
+        },
+        {
+          "name": "CF",
+          "description": "cutoff frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : highshelf2Matched(G, CF) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nhighshelf2Matched_test = os.osc(330)\n  : ve.highshelf2Matched(\n      hslider(\"highshelf2Matched:G\", 1.5, 0.5, 4, 0.01),\n      hslider(\"highshelf2Matched:CF\", 1500, 50, 10000, 1)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 1471,
+        "lineEnd": 1496
+      }
+    },
+    {
+      "id": "vaeffects.wah4",
+      "name": "wah4",
+      "qualifiedName": "ve.wah4",
+      "header": "(ve.)wah4",
+      "summary": "Wah effect, 4th order. `wah4` is a standard Faust function.",
+      "usage": "_ : wah4(fr) : _",
+      "params": [
+        {
+          "name": "fr",
+          "description": "resonance frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : wah4(fr) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nwah4_test = os.osc(220)\n  : ve.wah4(\n      hslider(\"wah4:freq\", 800, 200, 2000, 1)\n    );",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/vegf.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 1541,
+        "lineEnd": 1568
+      }
+    },
+    {
+      "id": "vaeffects.autowah",
+      "name": "autowah",
+      "qualifiedName": "ve.autowah",
+      "header": "(ve.)autowah",
+      "summary": "Auto-wah effect. `autowah` is a standard Faust function.",
+      "usage": "_ : autowah(level) : _",
+      "params": [
+        {
+          "name": "level",
+          "description": "amount of effect desired (0 to 1)."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : autowah(level) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nautowah_test = os.osc(220)\n  : ve.autowah(\n      hslider(\"autowah:level\", 0.7, 0, 1, 0.01)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 1571,
+        "lineEnd": 1594
+      }
+    },
+    {
+      "id": "vaeffects.crybaby",
+      "name": "crybaby",
+      "qualifiedName": "ve.crybaby",
+      "header": "(ve.)crybaby",
+      "summary": "Digitized CryBaby wah pedal. `crybaby` is a standard Faust function.",
+      "usage": "_ : crybaby(wah) : _",
+      "params": [
+        {
+          "name": "wah",
+          "description": "\"pedal angle\" from 0 to 1"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : crybaby(wah) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\ncrybaby_test = os.osc(220)\n  : ve.crybaby(\n      hslider(\"crybaby:wah\", 0.3, 0, 1, 0.01)\n    );",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/vegf.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 1597,
+        "lineEnd": 1624
+      }
+    },
+    {
+      "id": "vaeffects.vocoder",
+      "name": "vocoder",
+      "qualifiedName": "ve.vocoder",
+      "header": "(ve.)vocoder",
+      "summary": "A very simple vocoder where the spectrum of the modulation signal is analyzed using a filter bank. `vocoder` is a standard Faust function.",
+      "usage": "_ : vocoder(nBands,att,rel,BWRatio,source,excitation) : _",
+      "params": [
+        {
+          "name": "nBands",
+          "description": "Number of vocoder bands"
+        },
+        {
+          "name": "att",
+          "description": "Attack time in seconds"
+        },
+        {
+          "name": "rel",
+          "description": "Release time in seconds"
+        },
+        {
+          "name": "BWRatio",
+          "description": "Coefficient to adjust the bandwidth of each band (0.1 - 2)"
+        },
+        {
+          "name": "source",
+          "description": "Modulation signal"
+        },
+        {
+          "name": "excitation",
+          "description": "Excitation/Carrier signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : vocoder(nBands,att,rel,BWRatio,source,excitation) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nno = library(\"noises.lib\");\nos = library(\"oscillators.lib\");\nvocoder_test = (no.noise, os.osc(220))\n  : ve.vocoder(\n      8,\n      hslider(\"vocoder:att\", 0.01, 0.001, 0.1, 0.001),\n      hslider(\"vocoder:rel\", 0.1, 0.01, 0.5, 0.01),\n      hslider(\"vocoder:BWRatio\", 1.0, 0.5, 1.5, 0.01)\n    );",
+      "references": [],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 1684,
+        "lineEnd": 1717
+      }
+    },
+    {
+      "id": "vaeffects.klonCentaur",
+      "name": "klonCentaur",
+      "qualifiedName": "ve.klonCentaur",
+      "header": "(ve.)klonCentaur",
+      "summary": "Klon Centaur overdrive pedal circuit model. The Klon Centaur is a guitar overdrive pedal known for adding gain and harmonic distortion while preserving the instrument's natural tone. This implementation uses wave digital filter (WDF) techniques to model the analog circuitry, including the gain stage, tone control, and clipping.",
+      "usage": "_ : klonCentaur(gain, treble, level) : _",
+      "params": [
+        {
+          "name": "gain",
+          "description": "Gain control (0-1), where 0 is minimum gain and 1 is maximum gain. Controls the resistance of the gain potentiometer (R10b) in the preamp stage, ranging from 2k\u03a9 at maximum gain to 102k\u03a9 at minimum gain."
+        },
+        {
+          "name": "treble",
+          "description": "Treble/tone control (0-1), where 0 is dark/warm tone and 1 is bright tone. Controls the frequency response of the active tone shaping filter."
+        },
+        {
+          "name": "level",
+          "description": "Output level/volume control (0-1), where 0 is minimum output and 1 is maximum output. Controls the output potentiometer resistance, setting the final output amplitude."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : klonCentaur(gain, treble, level) : _"
+      },
+      "testCode": "ve = library(\"vaeffects.lib\");\nos = library(\"oscillators.lib\");\nklonCentaur_test = os.osc(330)\n  : ve.klonCentaur(\n      hslider(\"klonCentaur:gain\", 0.5, 0, 1, 0.01),\n      hslider(\"klonCentaur:treble\", 0.5, 0, 1, 0.01),\n      hslider(\"klonCentaur:level\", 0.5, 0, 1, 0.01)\n    );",
+      "references": [
+        "J. Chowdhury, \"chowdsp_wdf: An Advanced C++ Library for Wave Digital Circuit",
+        "Modelling,\" arXiv:2210.12554, 2022",
+        "<https://github.com/jatinchowdhury18/KlonCentaur/tree/master/ChowCentaur>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "vaeffects"
+      ],
+      "source": {
+        "file": "vaeffects.lib",
+        "path": "vaeffects.lib",
+        "lineStart": 1743,
+        "lineEnd": 1784
+      }
+    }
+  ]
+}

@@ -1,0 +1,1620 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "compressors.lib",
+    "path": "compressors.lib",
+    "aliasHints": [
+      "co"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "compressors.ratio2strength",
+      "name": "ratio2strength",
+      "qualifiedName": "co.ratio2strength",
+      "header": "(co.)ratio2strength",
+      "summary": "This utility converts a ratio to a strength.",
+      "usage": "ratio2strength(ratio) : _",
+      "params": [
+        {
+          "name": "ratio",
+          "description": "compression ratio, between 1 and infinity (1=no compression, infinity means hard limiting)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "ratio2strength(ratio) : _"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nratio2strength_test = co.ratio2strength(4);",
+      "references": [],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 74,
+        "lineEnd": 93
+      }
+    },
+    {
+      "id": "compressors.strength2ratio",
+      "name": "strength2ratio",
+      "qualifiedName": "co.strength2ratio",
+      "header": "(co.)strength2ratio",
+      "summary": "This utility converts a strength to a ratio.",
+      "usage": "strength2ratio(strength) : _",
+      "params": [
+        {
+          "name": "strength",
+          "description": "strength of the compression (0 = no compression, 1 means hard limiting, >1 means over-compression)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "strength2ratio(strength) : _"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nstrength2ratio_test = co.strength2ratio(0.75);",
+      "references": [],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 99,
+        "lineEnd": 118
+      }
+    },
+    {
+      "id": "compressors.peak_compression_gain_mono_db",
+      "name": "peak_compression_gain_mono_db",
+      "qualifiedName": "co.peak_compression_gain_mono_db",
+      "header": "(co.)peak_compression_gain_mono_db",
+      "summary": "Mono dynamic range compressor gain computer with dB output. `peak_compression_gain_mono_db` is a standard Faust function.",
+      "usage": "_ : peak_compression_gain_mono_db(strength,thresh,att,rel,knee,prePost) : _",
+      "params": [
+        {
+          "name": "strength",
+          "description": "strength of the compression (0 = no compression, 1 means hard limiting, >1 means over-compression)"
+        },
+        {
+          "name": "thresh",
+          "description": "dB level threshold above which compression kicks in"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) when level & compression going up"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) coming out of compression"
+        },
+        {
+          "name": "knee",
+          "description": "a gradual increase in gain reduction around the threshold: below thresh-(knee/2) there is no gain reduction, above thresh+(knee/2) there is the same gain reduction as without a knee, and in between there is a gradual increase in gain reduction"
+        },
+        {
+          "name": "prePost",
+          "description": "places the level detector either at the input or after the gain computer; this turns it from a linear return-to-zero detector into a log domain return-to-threshold detector It uses a strength parameter instead of the traditional ratio, in order to be able to function as a hard limiter. For that you'd need a ratio of infinity:1, and you cannot express that in Faust. Sometimes even bigger ratios are useful: for example a group recording where one instrument is recorded with both a close microphone and a room microphone, and the instrument is loud enough in the room mic when playing loud, but you want to boost it when it is playing soft."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : peak_compression_gain_mono_db(strength,thresh,att,rel,knee,prePost) : _"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\npeak_compression_gain_mono_db_test = os.osc(440) : co.peak_compression_gain_mono_db(0.5, -12, 0.01, 0.1, 6, 0);",
+      "references": [
+        "<http://en.wikipedia.org/wiki/Dynamic_range_compression>",
+        "Digital Dynamic Range Compressor Design: A Tutorial and Analysis, Dimitrios GIANNOULIS (<Dimitrios.Giannoulis@eecs.qmul.ac.uk>), Michael MASSBERG (<michael@massberg.org>), and Josuah D.REISS (<josh.reiss@eecs.qmul.ac.uk>)",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 127,
+        "lineEnd": 169
+      }
+    },
+    {
+      "id": "compressors.peak_compression_gain_N_chan_db",
+      "name": "peak_compression_gain_N_chan_db",
+      "qualifiedName": "co.peak_compression_gain_N_chan_db",
+      "header": "(co.)peak_compression_gain_N_chan_db",
+      "summary": "N channels dynamic range compressor gain computer with dB output. `peak_compression_gain_N_chan_db` is a standard Faust function.",
+      "usage": "si.bus(N) : peak_compression_gain_N_chan_db(strength,thresh,att,rel,knee,prePost,link,N) : si.bus(N)",
+      "params": [
+        {
+          "name": "strength",
+          "description": "strength of the compression (0 = no compression, 1 means hard limiting, >1 means over-compression)"
+        },
+        {
+          "name": "thresh",
+          "description": "dB level threshold above which compression kicks in"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) when level & compression going up"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) coming out of compression"
+        },
+        {
+          "name": "knee",
+          "description": "a gradual increase in gain reduction around the threshold: below thresh-(knee/2) there is no gain reduction, above thresh+(knee/2) there is the same gain reduction as without a knee, and in between there is a gradual increase in gain reduction"
+        },
+        {
+          "name": "prePost",
+          "description": "places the level detector either at the input or after the gain computer; this turns it from a linear return-to-zero detector into a log  domain return-to-threshold detector"
+        },
+        {
+          "name": "link",
+          "description": "the amount of linkage between the channels: 0 = each channel is independent, 1 = all channels have the same amount of gain reduction"
+        },
+        {
+          "name": "N",
+          "description": "the number of channels of the compressor, known at compile time It uses a strength parameter instead of the traditional ratio, in order to be able to function as a hard limiter. For that you'd need a ratio of infinity:1, and you cannot express that in Faust. Sometimes even bigger ratios are useful: for example a group recording where one instrument is recorded with both a close microphone and a room microphone, and the instrument is loud enough in the room mic when playing loud, but you want to boost it when it is playing soft."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N) : peak_compression_gain_N_chan_db(strength,thresh,att,rel,knee,prePost,link,N) : si.bus(N)"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\npeak_compression_gain_N_chan_db_test = (os.osc(440), os.osc(660)) : co.peak_compression_gain_N_chan_db(0.5, -12, 0.01, 0.1, 6, 0, 0.5, 2);",
+      "references": [
+        "<http://en.wikipedia.org/wiki/Dynamic_range_compression>",
+        "Digital Dynamic Range Compressor Design: A Tutorial and Analysis, Dimitrios GIANNOULIS (<Dimitrios.Giannoulis@eecs.qmul.ac.uk>), Michael MASSBERG (<michael@massberg.org>), and Josuah D.REISS (<josh.reiss@eecs.qmul.ac.uk>)",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 185,
+        "lineEnd": 229
+      }
+    },
+    {
+      "id": "compressors.FFcompressor_N_chan",
+      "name": "FFcompressor_N_chan",
+      "qualifiedName": "co.FFcompressor_N_chan",
+      "header": "(co.)FFcompressor_N_chan",
+      "summary": "Feed forward N channels dynamic range compressor. `FFcompressor_N_chan` is a standard Faust function.",
+      "usage": "si.bus(N) : FFcompressor_N_chan(strength,thresh,att,rel,knee,prePost,link,meter,N) : si.bus(N)",
+      "params": [
+        {
+          "name": "strength",
+          "description": "strength of the compression (0 = no compression, 1 means hard limiting, >1 means over-compression)"
+        },
+        {
+          "name": "thresh",
+          "description": "dB level threshold above which compression kicks in"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) when level & compression going up"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) coming out of compression"
+        },
+        {
+          "name": "knee",
+          "description": "a gradual increase in gain reduction around the threshold: below thresh-(knee/2) there is no gain reduction, above thresh+(knee/2) there is the same gain reduction as without a knee, and in between there is a gradual increase in gain reduction"
+        },
+        {
+          "name": "prePost",
+          "description": "places the level detector either at the input or after the gain computer; this turns it from a linear return-to-zero detector into a log  domain return-to-threshold detector"
+        },
+        {
+          "name": "link",
+          "description": "the amount of linkage between the channels: 0 = each channel is independent, 1 = all channels have the same amount of gain reduction"
+        },
+        {
+          "name": "meter",
+          "description": "a gain reduction meter. It can be implemented like so: `meter = _<:(_, (ba.linear2db:max(maxGR):meter_group((hbargraph(\"[1][unit:dB][tooltip: gain reduction in dB]\", maxGR, 0))))):attach;`"
+        },
+        {
+          "name": "N",
+          "description": "the number of channels of the compressor, known at compile time It uses a strength parameter instead of the traditional ratio, in order to be able to function as a hard limiter. For that you'd need a ratio of infinity:1, and you cannot express that in Faust. Sometimes even bigger ratios are useful: for example a group recording where one instrument is recorded with both a close microphone and a room microphone, and the instrument is loud enough in the room mic when playing loud, but you want to boost it when it is playing soft."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N) : FFcompressor_N_chan(strength,thresh,att,rel,knee,prePost,link,meter,N) : si.bus(N)"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\nmeter(x) = x;\nFFcompressor_N_chan_test = (os.osc(440), os.osc(660)) : co.FFcompressor_N_chan(0.5, -12, 0.01, 0.1, 6, 0, 0.5, meter, 2);",
+      "references": [
+        "<http://en.wikipedia.org/wiki/Dynamic_range_compression>",
+        "Digital Dynamic Range Compressor Design: A Tutorial and Analysis, Dimitrios GIANNOULIS (<Dimitrios.Giannoulis@eecs.qmul.ac.uk>), Michael MASSBERG (<michael@massberg.org>), and Josuah D.REISS (<josh.reiss@eecs.qmul.ac.uk>)",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 247,
+        "lineEnd": 294
+      }
+    },
+    {
+      "id": "compressors.FBcompressor_N_chan",
+      "name": "FBcompressor_N_chan",
+      "qualifiedName": "co.FBcompressor_N_chan",
+      "header": "(co.)FBcompressor_N_chan",
+      "summary": "Feed back N channels dynamic range compressor. `FBcompressor_N_chan` is a standard Faust function.",
+      "usage": "si.bus(N) : FBcompressor_N_chan(strength,thresh,att,rel,knee,prePost,link,meter,N) : si.bus(N)",
+      "params": [
+        {
+          "name": "strength",
+          "description": "strength of the compression (0 = no compression, 1 means hard limiting, >1 means over-compression)"
+        },
+        {
+          "name": "thresh",
+          "description": "dB level threshold above which compression kicks in"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) when level & compression going up"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) coming out of compression"
+        },
+        {
+          "name": "knee",
+          "description": "a gradual increase in gain reduction around the threshold: below thresh-(knee/2) there is no gain reduction, above thresh+(knee/2) there is the same gain reduction as without a knee, and in between there is a gradual increase in gain reduction"
+        },
+        {
+          "name": "prePost",
+          "description": "places the level detector either at the input or after the gain computer; this turns it from a linear return-to-zero detector into a log  domain return-to-threshold detector"
+        },
+        {
+          "name": "link",
+          "description": "the amount of linkage between the channels. 0 = each channel is independent, 1 = all channels have the same amount of gain reduction"
+        },
+        {
+          "name": "meter",
+          "description": "a gain reduction meter. It can be implemented with: `meter = _ <: (_,(ba.linear2db:max(maxGR):meter_group((hbargraph(\"[1][unit:dB][tooltip: gain reduction in dB]\", maxGR, 0))))):attach;` or it can be omitted by defining `meter = _;`."
+        },
+        {
+          "name": "N",
+          "description": "the number of channels of the compressor, known at compile time It uses a strength parameter instead of the traditional ratio, in order to be able to function as a hard limiter. For that you'd need a ratio of infinity:1, and you cannot express that in Faust. Sometimes even bigger ratios are useful: for example a group recording where one instrument is recorded with both a close microphone and a room microphone, and the instrument is loud enough in the room mic when playing loud, but you want to boost it when it is playing soft."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N) : FBcompressor_N_chan(strength,thresh,att,rel,knee,prePost,link,meter,N) : si.bus(N)"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\nmeter(x) = x;\nFBcompressor_N_chan_test = (os.osc(440), os.osc(660)) : co.FBcompressor_N_chan(0.5, -12, 0.01, 0.1, 6, 0, 0.5, meter, 2);",
+      "references": [
+        "<http://en.wikipedia.org/wiki/Dynamic_range_compression>",
+        "Digital Dynamic Range Compressor Design: A Tutorial and Analysis, Dimitrios GIANNOULIS (<Dimitrios.Giannoulis@eecs.qmul.ac.uk>), Michael MASSBERG (<michael@massberg.org>), and Josuah D.REISS (<josh.reiss@eecs.qmul.ac.uk>)",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 303,
+        "lineEnd": 351
+      }
+    },
+    {
+      "id": "compressors.FBFFcompressor_N_chan",
+      "name": "FBFFcompressor_N_chan",
+      "qualifiedName": "co.FBFFcompressor_N_chan",
+      "header": "(co.)FBFFcompressor_N_chan",
+      "summary": "Feed forward / feed back N channels dynamic range compressor. The feedback part has a much higher strength, so they end up sounding similar. `FBFFcompressor_N_chan` is a standard Faust function.",
+      "usage": "si.bus(N) : FBFFcompressor_N_chan(strength,thresh,att,rel,knee,prePost,link,FBFF,meter,N) : si.bus(N)",
+      "params": [
+        {
+          "name": "strength",
+          "description": "strength of the compression (0 = no compression, 1 means hard limiting, >1 means over-compression)"
+        },
+        {
+          "name": "thresh",
+          "description": "dB level threshold above which compression kicks in"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) when level & compression going up"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) coming out of compression"
+        },
+        {
+          "name": "knee",
+          "description": "a gradual increase in gain reduction around the threshold: below thresh-(knee/2) there is no gain reduction, above thresh+(knee/2) there is the same gain reduction as without a knee, and in between there is a gradual increase in gain reduction"
+        },
+        {
+          "name": "prePost",
+          "description": "places the level detector either at the input or after the gain computer; this turns it from a linear return-to-zero detector into a log  domain return-to-threshold detector"
+        },
+        {
+          "name": "link",
+          "description": "the amount of linkage between the channels: 0 = each channel is independent, 1 = all channels have the same amount of gain reduction"
+        },
+        {
+          "name": "FBFF",
+          "description": "fade between feed forward (0) and feed back (1) compression"
+        },
+        {
+          "name": "meter",
+          "description": "a gain reduction meter. It can be implemented like so: `meter = _<:(_,(max(maxGR):meter_group((hbargraph(\"[1][unit:dB][tooltip: gain reduction in dB]\", maxGR, 0))))):attach;`"
+        },
+        {
+          "name": "N",
+          "description": "the number of channels of the compressor, known at compile time It uses a strength parameter instead of the traditional ratio, in order to be able to function as a hard limiter. For that you'd need a ratio of infinity:1, and you cannot express that in Faust. Sometimes even bigger ratios are useful: for example a group recording where one instrument is recorded with both a close microphone and a room microphone, and the instrument is loud enough in the room mic when playing loud, but you want to boost it when it is playing soft."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N) : FBFFcompressor_N_chan(strength,thresh,att,rel,knee,prePost,link,FBFF,meter,N) : si.bus(N)"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\nmeter(x) = x;\nFBFFcompressor_N_chan_test = (os.osc(440), os.osc(660)) : co.FBFFcompressor_N_chan(0.4, -12, 0.01, 0.1, 6, 0, 0.5, 0.3, meter, 2);",
+      "references": [
+        "<http://en.wikipedia.org/wiki/Dynamic_range_compression>",
+        "Digital Dynamic Range Compressor Design: A Tutorial and Analysis, Dimitrios GIANNOULIS (<Dimitrios.Giannoulis@eecs.qmul.ac.uk>), Michael MASSBERG (<michael@massberg.org>), and Josuah D.REISS (<josh.reiss@eecs.qmul.ac.uk>)",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 359,
+        "lineEnd": 408
+      }
+    },
+    {
+      "id": "compressors.RMS_compression_gain_mono_db",
+      "name": "RMS_compression_gain_mono_db",
+      "qualifiedName": "co.RMS_compression_gain_mono_db",
+      "header": "(co.)RMS_compression_gain_mono_db",
+      "summary": "Mono RMS dynamic range compressor gain computer with dB output. `RMS_compression_gain_mono_db` is a standard Faust function.",
+      "usage": "_ : RMS_compression_gain_mono_db(strength,thresh,att,rel,knee,prePost) : _",
+      "params": [
+        {
+          "name": "strength",
+          "description": "strength of the compression (0 = no compression, 1 means hard limiting, >1 means over-compression)"
+        },
+        {
+          "name": "thresh",
+          "description": "dB level threshold above which compression kicks in"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) when level & compression going up"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) coming out of compression"
+        },
+        {
+          "name": "knee",
+          "description": "a gradual increase in gain reduction around the threshold: below thresh-(knee/2) there is no gain reduction, above thresh+(knee/2) there is the same gain reduction as without a knee, and in between there is a gradual increase in gain reduction"
+        },
+        {
+          "name": "prePost",
+          "description": "places the level detector either at the input or after the gain computer; this turns it from a linear return-to-zero detector into a log  domain return-to-threshold detector It uses a strength parameter instead of the traditional ratio, in order to be able to function as a hard limiter. For that you'd need a ratio of infinity:1, and you cannot express that in Faust. Sometimes even bigger ratios are useful: for example a group recording where one instrument is recorded with both a close microphone and a room microphone, and the instrument is loud enough in the room mic when playing loud, but you want to boost it when it is playing soft."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : RMS_compression_gain_mono_db(strength,thresh,att,rel,knee,prePost) : _"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\nRMS_compression_gain_mono_db_test = os.osc(330) : co.RMS_compression_gain_mono_db(0.5, -18, 0.02, 0.12, 6, 0);",
+      "references": [
+        "<http://en.wikipedia.org/wiki/Dynamic_range_compression>",
+        "Digital Dynamic Range Compressor Design: A Tutorial and Analysis, Dimitrios GIANNOULIS (<Dimitrios.Giannoulis@eecs.qmul.ac.uk>), Michael MASSBERG (<michael@massberg.org>), and Josuah D.REISS (<josh.reiss@eecs.qmul.ac.uk>)",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 421,
+        "lineEnd": 463
+      }
+    },
+    {
+      "id": "compressors.RMS_compression_gain_N_chan_db",
+      "name": "RMS_compression_gain_N_chan_db",
+      "qualifiedName": "co.RMS_compression_gain_N_chan_db",
+      "header": "(co.)RMS_compression_gain_N_chan_db",
+      "summary": "RMS N channels dynamic range compressor gain computer with dB output. `RMS_compression_gain_N_chan_db` is a standard Faust function.",
+      "usage": "si.bus(N) : RMS_compression_gain_N_chan_db(strength,thresh,att,rel,knee,prePost,link,N) : si.bus(N)",
+      "params": [
+        {
+          "name": "strength",
+          "description": "strength of the compression (0 = no compression, 1 means hard limiting, >1 means over-compression)"
+        },
+        {
+          "name": "thresh",
+          "description": "dB level threshold above which compression kicks in"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) when level & compression going up"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) coming out of compression"
+        },
+        {
+          "name": "knee",
+          "description": "a gradual increase in gain reduction around the threshold: below thresh-(knee/2) there is no gain reduction, above thresh+(knee/2) there is the same gain reduction as without a knee, and in between there is a gradual increase in gain reduction"
+        },
+        {
+          "name": "prePost",
+          "description": "places the level detector either at the input or after the gain computer; this turns it from a linear return-to-zero detector into a log  domain return-to-threshold detector"
+        },
+        {
+          "name": "link",
+          "description": "the amount of linkage between the channels: 0 = each channel is independent, 1 = all channels have the same amount of gain reduction"
+        },
+        {
+          "name": "N",
+          "description": "the number of channels of the compressor It uses a strength parameter instead of the traditional ratio, in order to be able to function as a hard limiter. For that you'd need a ratio of infinity:1, and you cannot express that in Faust. Sometimes even bigger ratios are useful: for example a group recording where one instrument is recorded with both a close microphone and a room microphone, and the instrument is loud enough in the room mic when playing loud, but you want to boost it when it is playing soft."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N) : RMS_compression_gain_N_chan_db(strength,thresh,att,rel,knee,prePost,link,N) : si.bus(N)"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\nRMS_compression_gain_N_chan_db_test = (os.osc(330), os.osc(550)) : co.RMS_compression_gain_N_chan_db(0.5, -18, 0.02, 0.12, 6, 0, 0.5, 2);",
+      "references": [
+        "<http://en.wikipedia.org/wiki/Dynamic_range_compression>",
+        "Digital Dynamic Range Compressor Design: A Tutorial and Analysis, Dimitrios GIANNOULIS (<Dimitrios.Giannoulis@eecs.qmul.ac.uk>), Michael MASSBERG (<michael@massberg.org>), and Josuah D.REISS (<josh.reiss@eecs.qmul.ac.uk>)",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 481,
+        "lineEnd": 525
+      }
+    },
+    {
+      "id": "compressors.RMS_FBFFcompressor_N_chan",
+      "name": "RMS_FBFFcompressor_N_chan",
+      "qualifiedName": "co.RMS_FBFFcompressor_N_chan",
+      "header": "(co.)RMS_FBFFcompressor_N_chan",
+      "summary": "RMS feed forward / feed back N channels dynamic range compressor. The feedback part has a much higher strength, so they end up sounding similar. `RMS_FBFFcompressor_N_chan` is a standard Faust function.",
+      "usage": "si.bus(N) : RMS_FBFFcompressor_N_chan(strength,thresh,att,rel,knee,prePost,link,FBFF,meter,N) : si.bus(N)",
+      "params": [
+        {
+          "name": "strength",
+          "description": "strength of the compression (0 = no compression, 1 means hard limiting, >1 means over-compression)"
+        },
+        {
+          "name": "thresh",
+          "description": "dB level threshold above which compression kicks in"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) when level & compression going up"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) coming out of compression"
+        },
+        {
+          "name": "knee",
+          "description": "a gradual increase in gain reduction around the threshold: below thresh-(knee/2) there is no gain reduction, above thresh+(knee/2) there is the same gain reduction as without a knee, and in between there is a gradual increase in gain reduction"
+        },
+        {
+          "name": "prePost",
+          "description": "places the level detector either at the input or after the gain computer; this turns it from a linear return-to-zero detector into a log  domain return-to-threshold detector"
+        },
+        {
+          "name": "link",
+          "description": "the amount of linkage between the channels: 0 = each channel is independent, 1 = all channels have the same amount of gain reduction"
+        },
+        {
+          "name": "FBFF",
+          "description": "fade between feed forward (0) and feed back (1) compression."
+        },
+        {
+          "name": "meter",
+          "description": "a gain reduction meter. It can be implemented with: `meter = _<:(_,(max(maxGR):meter_group((hbargraph(\"[1][unit:dB][tooltip: gain reduction in dB]\", maxGR, 0))))):attach;`"
+        },
+        {
+          "name": "N",
+          "description": "the number of channels of the compressor, known at compile time It uses a strength parameter instead of the traditional ratio, in order to be able to function as a hard limiter. For that you'd need a ratio of infinity:1, and you cannot express that in Faust. Sometimes even bigger ratios are useful: for example a group recording where one instrument is recorded with both a close microphone and a room microphone, and the instrument is loud enough in the room mic when playing loud, but you want to boost it when it is playing soft. To save CPU we cheat a bit, in a similar way as in the original libs: instead of crosfading between two sets of gain calculators as above, we take the `abs` of the audio from both the FF and FB, and crossfade between those, and feed that into one set of gain calculators again the strength is much higher when in FB mode, but implemented differently."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N) : RMS_FBFFcompressor_N_chan(strength,thresh,att,rel,knee,prePost,link,FBFF,meter,N) : si.bus(N)"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\nmeter(x) = x;\nRMS_FBFFcompressor_N_chan_test = (os.osc(330), os.osc(550)) : co.RMS_FBFFcompressor_N_chan(0.4, -18, 0.02, 0.12, 6, 0, 0.5, 0.3, meter, 2);",
+      "references": [
+        "<http://en.wikipedia.org/wiki/Dynamic_range_compression>",
+        "Digital Dynamic Range Compressor Design: A Tutorial and Analysis, Dimitrios GIANNOULIS (<Dimitrios.Giannoulis@eecs.qmul.ac.uk>), Michael MASSBERG (<michael@massberg.org>), and Josuah D.REISS (<josh.reiss@eecs.qmul.ac.uk>)",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 537,
+        "lineEnd": 592
+      }
+    },
+    {
+      "id": "compressors.RMS_FBcompressor_peak_limiter_N_chan",
+      "name": "RMS_FBcompressor_peak_limiter_N_chan",
+      "qualifiedName": "co.RMS_FBcompressor_peak_limiter_N_chan",
+      "header": "(co.)RMS_FBcompressor_peak_limiter_N_chan",
+      "summary": "N channel RMS feed back compressor into peak limiter feeding back into the FB compressor. By combining them this way, they complement each other optimally: the RMS compressor doesn't have to deal with the peaks, and the peak limiter get's spared from the steady state signal. The feedback part has a much higher strength, so they end up sounding similar. `RMS_FBcompressor_peak_limiter_N_chan` is a standard Faust function.",
+      "usage": "si.bus(N) : RMS_FBcompressor_peak_limiter_N_chan(strength,thresh,threshLim,att,rel,knee,link,meter,meterLim,N) : si.bus(N)",
+      "params": [
+        {
+          "name": "strength",
+          "description": "strength of the compression (0 = no compression, 1 means hard limiting, >1 means over-compression)"
+        },
+        {
+          "name": "thresh",
+          "description": "dB level threshold above which compression kicks in"
+        },
+        {
+          "name": "threshLim",
+          "description": "dB level threshold above which the brickwall limiter kicks in"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) when level & compression going up this is also used as the release time of the limiter"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) coming out of compression"
+        },
+        {
+          "name": "knee",
+          "description": "a gradual increase in gain reduction around the threshold: below thresh-(knee/2) there is no gain reduction, above thresh+(knee/2) there is the same gain reduction as without a knee, and in between there is a gradual increase in gain reduction the limiter uses a knee half this size"
+        },
+        {
+          "name": "link",
+          "description": "the amount of linkage between the channels: 0 = each channel is independent, 1 = all channels have the same amount of gain reduction"
+        },
+        {
+          "name": "meter",
+          "description": "compressor gain reduction meter. It can be implemented with: `meter = _<:(_,(max(maxGR):meter_group((hbargraph(\"[1][unit:dB][tooltip: gain reduction in dB]\", maxGR, 0))))):attach;`"
+        },
+        {
+          "name": "meterLim",
+          "description": "brickwall limiter gain reduction meter. It can be implemented with: `meterLim = _<:(_,(max(maxGR):meter_group((hbargraph(\"[1][unit:dB][tooltip: gain reduction in dB]\", maxGR, 0))))):attach;`"
+        },
+        {
+          "name": "N",
+          "description": "the number of channels of the compressor, known at compile time It uses a strength parameter instead of the traditional ratio, in order to be able to function as a hard limiter. For that you'd need a ratio of infinity:1, and you cannot express that in Faust. Sometimes even bigger ratios are useful: for example a group recording where one instrument is recorded with both a close microphone and a room microphone, and the instrument is loud enough in the room mic when playing loud, but you want to boost it when it is playing soft."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N) : RMS_FBcompressor_peak_limiter_N_chan(strength,thresh,threshLim,att,rel,knee,link,meter,meterLim,N) : si.bus(N)"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\nmeter(x) = x;\nmeterLim(x) = x;\nRMS_FBcompressor_peak_limiter_N_chan_test = (os.osc(330), os.osc(550)) : co.RMS_FBcompressor_peak_limiter_N_chan(0.4, -18, -2, 0.02, 0.12, 6, 0.5, meter, meterLim, 2);",
+      "references": [
+        "<http://en.wikipedia.org/wiki/Dynamic_range_compression>",
+        "Digital Dynamic Range Compressor Design: A Tutorial and Analysis, Dimitrios GIANNOULIS (<Dimitrios.Giannoulis@eecs.qmul.ac.uk>), Michael MASSBERG (<michael@massberg.org>), and Josuah D.REISS (<josh.reiss@eecs.qmul.ac.uk>)",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 605,
+        "lineEnd": 660
+      }
+    },
+    {
+      "id": "compressors.peak_compression_gain_mono",
+      "name": "peak_compression_gain_mono",
+      "qualifiedName": "co.peak_compression_gain_mono",
+      "header": "(co.)peak_compression_gain_mono",
+      "summary": "Mono dynamic range compressor gain computer with linear output. `peak_compression_gain_mono` is a standard Faust function.",
+      "usage": "_ : peak_compression_gain_mono(strength,thresh,att,rel,knee,prePost) : _",
+      "params": [
+        {
+          "name": "strength",
+          "description": "strength of the compression (0 = no compression, 1 means hard limiting, >1 means over-compression)"
+        },
+        {
+          "name": "thresh",
+          "description": "dB level threshold above which compression kicks in"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) when level & compression going up"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) coming out of compression"
+        },
+        {
+          "name": "knee",
+          "description": "a gradual increase in gain reduction around the threshold: below thresh-(knee/2) there is no gain reduction, above thresh+(knee/2) there is the same gain reduction as without a knee, and in between there is a gradual increase in gain reduction"
+        },
+        {
+          "name": "prePost",
+          "description": "places the level detector either at the input or after the gain computer; this turns it from a linear return-to-zero detector into a log  domain return-to-threshold detector It uses a strength parameter instead of the traditional ratio, in order to be able to function as a hard limiter. For that you'd need a ratio of infinity:1, and you cannot express that in Faust. Sometimes even bigger ratios are useful: for example a group recording where one instrument is recorded with both a close microphone and a room microphone, and the instrument is loud enough in the room mic when playing loud, but you want to boost it when it is playing soft."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : peak_compression_gain_mono(strength,thresh,att,rel,knee,prePost) : _"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\npeak_compression_gain_mono_test = os.osc(440) : co.peak_compression_gain_mono(0.5, -12, 0.01, 0.1, 6, 0);",
+      "references": [
+        "<http://en.wikipedia.org/wiki/Dynamic_range_compression>",
+        "Digital Dynamic Range Compressor Design: A Tutorial and Analysis, Dimitrios GIANNOULIS (<Dimitrios.Giannoulis@eecs.qmul.ac.uk>), Michael MASSBERG (<michael@massberg.org>), and Josuah D.REISS (<josh.reiss@eecs.qmul.ac.uk>)",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 674,
+        "lineEnd": 716
+      }
+    },
+    {
+      "id": "compressors.peak_compression_gain_N_chan",
+      "name": "peak_compression_gain_N_chan",
+      "qualifiedName": "co.peak_compression_gain_N_chan",
+      "header": "(co.)peak_compression_gain_N_chan",
+      "summary": "N channels dynamic range compressor gain computer with linear output. `peak_compression_gain_N_chan` is a standard Faust function.",
+      "usage": "si.bus(N) : peak_compression_gain_N_chan(strength,thresh,att,rel,knee,prePost,link,N) : si.bus(N)",
+      "params": [
+        {
+          "name": "strength",
+          "description": "strength of the compression (0 = no compression, 1 means hard limiting, >1 means over-compression)"
+        },
+        {
+          "name": "thresh",
+          "description": "dB level threshold above which compression kicks in"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) when level & compression going up"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) coming out of compression"
+        },
+        {
+          "name": "knee",
+          "description": "a gradual increase in gain reduction around the threshold: below thresh-(knee/2) there is no gain reduction, above thresh+(knee/2) there is the same gain reduction as without a knee, and in between there is a gradual increase in gain reduction"
+        },
+        {
+          "name": "prePost",
+          "description": "places the level detector either at the input or after the gain computer; this turns it from a linear return-to-zero detector into a log  domain return-to-threshold detector"
+        },
+        {
+          "name": "link",
+          "description": "the amount of linkage between the channels: 0 = each channel is independent, 1 = all channels have the same amount of gain reduction"
+        },
+        {
+          "name": "N",
+          "description": "the number of channels of the compressor, known at compile time It uses a strength parameter instead of the traditional ratio, in order to be able to function as a hard limiter. For that you'd need a ratio of infinity:1, and you cannot express that in Faust. Sometimes even bigger ratios are useful: for example a group recording where one instrument is recorded with both a close microphone and a room microphone, and the instrument is loud enough in the room mic when playing loud, but you want to boost it when it is playing soft."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N) : peak_compression_gain_N_chan(strength,thresh,att,rel,knee,prePost,link,N) : si.bus(N)"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\npeak_compression_gain_N_chan_test = (os.osc(440), os.osc(660)) : co.peak_compression_gain_N_chan(0.5, -12, 0.01, 0.1, 6, 0, 0.5, 2);",
+      "references": [
+        "<http://en.wikipedia.org/wiki/Dynamic_range_compression>",
+        "Digital Dynamic Range Compressor Design: A Tutorial and Analysis, Dimitrios GIANNOULIS (<Dimitrios.Giannoulis@eecs.qmul.ac.uk>), Michael MASSBERG (<michael@massberg.org>), and Josuah D.REISS (<josh.reiss@eecs.qmul.ac.uk>)",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 724,
+        "lineEnd": 768
+      }
+    },
+    {
+      "id": "compressors.RMS_compression_gain_mono",
+      "name": "RMS_compression_gain_mono",
+      "qualifiedName": "co.RMS_compression_gain_mono",
+      "header": "(co.)RMS_compression_gain_mono",
+      "summary": "Mono RMS dynamic range compressor gain computer with linear output. `RMS_compression_gain_mono` is a standard Faust function.",
+      "usage": "_ : RMS_compression_gain_mono(strength,thresh,att,rel,knee,prePost) : _",
+      "params": [
+        {
+          "name": "strength",
+          "description": "strength of the compression (0 = no compression, 1 means hard limiting, >1 means over-compression)"
+        },
+        {
+          "name": "thresh",
+          "description": "dB level threshold above which compression kicks in"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) when level & compression going up"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) coming out of compression"
+        },
+        {
+          "name": "knee",
+          "description": "a gradual increase in gain reduction around the threshold: below thresh-(knee/2) there is no gain reduction, above thresh+(knee/2) there is the same gain reduction as without a knee, and in between there is a gradual increase in gain reduction"
+        },
+        {
+          "name": "prePost",
+          "description": "places the level detector either at the input or after the gain computer; this turns it from a linear return-to-zero detector into a log  domain return-to-threshold detector It uses a strength parameter instead of the traditional ratio, in order to be able to function as a hard limiter. For that you'd need a ratio of infinity:1, and you cannot express that in Faust. Sometimes even bigger ratios are useful: for example a group recording where one instrument is recorded with both a close microphone and a room microphone, and the instrument is loud enough in the room mic when playing loud, but you want to boost it when it is playing soft."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : RMS_compression_gain_mono(strength,thresh,att,rel,knee,prePost) : _"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\nRMS_compression_gain_mono_test = os.osc(330) : co.RMS_compression_gain_mono(0.5, -18, 0.02, 0.12, 6, 0);",
+      "references": [
+        "<http://en.wikipedia.org/wiki/Dynamic_range_compression>",
+        "Digital Dynamic Range Compressor Design: A Tutorial and Analysis, Dimitrios GIANNOULIS (<Dimitrios.Giannoulis@eecs.qmul.ac.uk>), Michael MASSBERG (<michael@massberg.org>), and Josuah D.REISS (<josh.reiss@eecs.qmul.ac.uk>)",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 778,
+        "lineEnd": 820
+      }
+    },
+    {
+      "id": "compressors.RMS_compression_gain_N_chan",
+      "name": "RMS_compression_gain_N_chan",
+      "qualifiedName": "co.RMS_compression_gain_N_chan",
+      "header": "(co.)RMS_compression_gain_N_chan",
+      "summary": "RMS N channels dynamic range compressor gain computer with linear output. `RMS_compression_gain_N_chan` is a standard Faust function.",
+      "usage": "si.bus(N) : RMS_compression_gain_N_chan(strength,thresh,att,rel,knee,prePost,link,N) : si.bus(N)",
+      "params": [
+        {
+          "name": "strength",
+          "description": "strength of the compression (0 = no compression, 1 means hard limiting, >1 means over-compression)"
+        },
+        {
+          "name": "thresh",
+          "description": "dB level threshold above which compression kicks in"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) when level & compression going up"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) coming out of compression"
+        },
+        {
+          "name": "knee",
+          "description": "a gradual increase in gain reduction around the threshold: below thresh-(knee/2) there is no gain reduction, above thresh+(knee/2) there is the same gain reduction as without a knee, and in between there is a gradual increase in gain reduction"
+        },
+        {
+          "name": "prePost",
+          "description": "places the level detector either at the input or after the gain computer; this turns it from a linear return-to-zero detector into a log  domain return-to-threshold detector"
+        },
+        {
+          "name": "link",
+          "description": "the amount of linkage between the channels: 0 = each channel is independent, 1 = all channels have the same amount of gain reduction"
+        },
+        {
+          "name": "N",
+          "description": "the number of channels of the compressor, known at compile time It uses a strength parameter instead of the traditional ratio, in order to be able to function as a hard limiter. For that you'd need a ratio of infinity:1, and you cannot express that in Faust. Sometimes even bigger ratios are useful: for example a group recording where one instrument is recorded with both a close microphone and a room microphone, and the instrument is loud enough in the room mic when playing loud, but you want to boost it when it is playing soft."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N) : RMS_compression_gain_N_chan(strength,thresh,att,rel,knee,prePost,link,N) : si.bus(N)"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\nRMS_compression_gain_N_chan_test = (os.osc(330), os.osc(550)) : co.RMS_compression_gain_N_chan(0.5, -18, 0.02, 0.12, 6, 0, 0.5, 2);",
+      "references": [
+        "<http://en.wikipedia.org/wiki/Dynamic_range_compression>",
+        "Digital Dynamic Range Compressor Design: A Tutorial and Analysis, Dimitrios GIANNOULIS (<Dimitrios.Giannoulis@eecs.qmul.ac.uk>), Michael MASSBERG (<michael@massberg.org>), and Josuah D.REISS (<josh.reiss@eecs.qmul.ac.uk>)",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 828,
+        "lineEnd": 872
+      }
+    },
+    {
+      "id": "compressors.compressor_lad_mono",
+      "name": "compressor_lad_mono",
+      "qualifiedName": "co.compressor_lad_mono",
+      "header": "(co.)compressor_lad_mono",
+      "summary": "Mono dynamic range compressor with lookahead delay. `compressor_lad_mono` is a standard Faust function.",
+      "usage": "_ : compressor_lad_mono(lad,ratio,thresh,att,rel) : _",
+      "params": [
+        {
+          "name": "lad",
+          "description": "lookahead delay in seconds (nonnegative) - gets rounded to nearest sample. The effective attack time is a good setting"
+        },
+        {
+          "name": "ratio",
+          "description": "compression ratio (1 = no compression, >1 means compression) Ratios: 4 is moderate compression, 8 is strong compression, 12 is mild limiting, and 20 is pretty hard limiting at the threshold"
+        },
+        {
+          "name": "thresh",
+          "description": "dB level threshold above which compression kicks in (0 dB = max level)"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) when level & compression are going up"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) coming out of compression"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : compressor_lad_mono(lad,ratio,thresh,att,rel) : _"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\ncompressor_lad_mono_test = os.osc(440) : co.compressor_lad_mono(0.005, 4, -9, 0.01, 0.1);",
+      "references": [
+        "<http://en.wikipedia.org/wiki/Dynamic_range_compression>",
+        "<https://ccrma.stanford.edu/~jos/filters/Nonlinear_Filter_Example_Dynamic.html>",
+        "Albert Graef's \"faust2pd\"/examples/synth/compressor_.dsp",
+        "More features: <https://github.com/magnetophon/faustCompressors>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 887,
+        "lineEnd": 921
+      }
+    },
+    {
+      "id": "compressors.compressor_mono",
+      "name": "compressor_mono",
+      "qualifiedName": "co.compressor_mono",
+      "header": "(co.)compressor_mono",
+      "summary": "Mono dynamic range compressors. `compressor_mono` is a standard Faust function.",
+      "usage": "_ : compressor_mono(ratio,thresh,att,rel) : _",
+      "params": [
+        {
+          "name": "ratio",
+          "description": "compression ratio (1 = no compression, >1 means compression) Ratios: 4 is moderate compression, 8 is strong compression, 12 is mild limiting, and 20 is pretty hard limiting at the threshold"
+        },
+        {
+          "name": "thresh",
+          "description": "dB level threshold above which compression kicks in (0 dB = max level)"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) when level & compression are going up"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) coming out of compression"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : compressor_mono(ratio,thresh,att,rel) : _"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\ncompressor_mono_test = os.osc(440) : co.compressor_mono(4, -9, 0.01, 0.2);",
+      "references": [
+        "<http://en.wikipedia.org/wiki/Dynamic_range_compression>",
+        "<https://ccrma.stanford.edu/~jos/filters/Nonlinear_Filter_Example_Dynamic.html>",
+        "Albert Graef's \"faust2pd\"/examples/synth/compressor_.dsp",
+        "More features: <https://github.com/magnetophon/faustCompressors>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 929,
+        "lineEnd": 961
+      }
+    },
+    {
+      "id": "compressors.compressor_stereo",
+      "name": "compressor_stereo",
+      "qualifiedName": "co.compressor_stereo",
+      "header": "(co.)compressor_stereo",
+      "summary": "Stereo dynamic range compressors.",
+      "usage": "_,_ : compressor_stereo(ratio,thresh,att,rel) : _,_",
+      "params": [
+        {
+          "name": "ratio",
+          "description": "compression ratio (1 = no compression, >1 means compression)"
+        },
+        {
+          "name": "thresh",
+          "description": "dB level threshold above which compression kicks in (0 dB = max level)"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) when level & compression going up"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) coming out of compression"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : compressor_stereo(ratio,thresh,att,rel) : _,_"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\ncompressor_stereo_test = (os.osc(440), os.osc(660)) : co.compressor_stereo(4, -9, 0.01, 0.2);",
+      "references": [
+        "<http://en.wikipedia.org/wiki/Dynamic_range_compression>",
+        "<https://ccrma.stanford.edu/~jos/filters/Nonlinear_Filter_Example_Dynamic.html>",
+        "Albert Graef's \"faust2pd\"/examples/synth/compressor_.dsp",
+        "More features: <https://github.com/magnetophon/faustCompressors>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 968,
+        "lineEnd": 997
+      }
+    },
+    {
+      "id": "compressors.compression_gain_mono",
+      "name": "compression_gain_mono",
+      "qualifiedName": "co.compression_gain_mono",
+      "header": "(co.)compression_gain_mono",
+      "summary": "Compression-gain calculation for dynamic range compressors.",
+      "usage": "_ : compression_gain_mono(ratio,thresh,att,rel) : _",
+      "params": [
+        {
+          "name": "ratio",
+          "description": "compression ratio (1 = no compression, >1 means compression)"
+        },
+        {
+          "name": "thresh",
+          "description": "dB level threshold above which compression kicks in (0 dB = max level)"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) when level & compression going up"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) coming out of compression"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : compression_gain_mono(ratio,thresh,att,rel) : _"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\ncompression_gain_mono_test = os.osc(440) : co.compression_gain_mono(4, -9, 0.01, 0.2);",
+      "references": [
+        "<http://en.wikipedia.org/wiki/Dynamic_range_compression>",
+        "<https://ccrma.stanford.edu/~jos/filters/Nonlinear_Filter_Example_Dynamic.html>",
+        "Albert Graef's \"faust2pd\"/examples/synth/compressor_.dsp",
+        "More features: <https://github.com/magnetophon/faustCompressors>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 1006,
+        "lineEnd": 1035
+      }
+    },
+    {
+      "id": "compressors.limiter_1176_R4_mono",
+      "name": "limiter_1176_R4_mono",
+      "qualifiedName": "co.limiter_1176_R4_mono",
+      "header": "(co.)limiter_1176_R4_mono",
+      "summary": "A limiter guards against hard-clipping.  It can be implemented as a compressor having a high threshold (near the clipping level), fast attack, and high ratio.  Since the compression ratio is so high, some knee smoothing is desirable (for softer limiting).  This example is intended to get you started using compressors as limiters, so all parameters are hardwired here to nominal values. `ratio`: 4 (moderate compression). See `compressor_mono` comments for a guide to other choices. Mike Shipley likes this (lowest) setting on the 1176. (Grammy award-winning mixer for Queen, Tom Petty, etc.). `thresh`: -6 dB, meaning 4:1 compression begins at amplitude 1/2. `att`: 800 MICROseconds (Note: scaled by ratio in the 1176) The 1176 range is said to be 20-800 microseconds. Faster attack gives \"more bite\" (e.g. on vocals), and makes hard-clipping less likely on fast overloads. `rel`: 0.5 s (Note: scaled by ratio in the 1176) The 1176 range is said to be 50-1100 ms. The 1176 also has a \"bright, clear eq effect\" (use filters.lib if desired). `limiter_1176_R4_mono` is a standard Faust function.",
+      "usage": "_ : limiter_1176_R4_mono : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : limiter_1176_R4_mono : _"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\nlimiter_1176_R4_mono_test = os.osc(440) : co.limiter_1176_R4_mono;",
+      "references": [
+        "<http://en.wikipedia.org/wiki/1176_Peak_Limiter>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 1053,
+        "lineEnd": 1096
+      }
+    },
+    {
+      "id": "compressors.limiter_1176_R4_stereo",
+      "name": "limiter_1176_R4_stereo",
+      "qualifiedName": "co.limiter_1176_R4_stereo",
+      "header": "(co.)limiter_1176_R4_stereo",
+      "summary": "A limiter guards against hard-clipping.  It can be implemented as a compressor having a high threshold (near the clipping level), fast attack and release, and high ratio.  Since the ratio is so high, some knee smoothing is desirable (\"soft limiting\").  This example is intended to get you started using `compressor_*` as a limiter, so all parameters are hardwired to nominal values here. `ratio`: 4 (moderate compression), 8 (severe compression), 12 (mild limiting), or 20 to 1 (hard limiting). `att`: 20-800 MICROseconds (Note: scaled by ratio in the 1176). `rel`: 50-1100 ms (Note: scaled by ratio in the 1176). Mike Shipley likes 4:1 (Grammy-winning mixer for Queen, Tom Petty, etc.) Faster attack gives \"more bite\" (e.g. on vocals). He hears a bright, clear eq effect as well (not implemented here).",
+      "usage": "_,_ : limiter_1176_R4_stereo : _,_",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : limiter_1176_R4_stereo : _,_"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\nlimiter_1176_R4_stereo_test = (os.osc(440), os.osc(660)) : co.limiter_1176_R4_stereo;",
+      "references": [
+        "<http://en.wikipedia.org/wiki/1176_Peak_Limiter>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 1104,
+        "lineEnd": 1140
+      }
+    },
+    {
+      "id": "compressors.peak_expansion_gain_N_chan_db",
+      "name": "peak_expansion_gain_N_chan_db",
+      "qualifiedName": "co.peak_expansion_gain_N_chan_db",
+      "header": "(co.)peak_expansion_gain_N_chan_db",
+      "summary": "N channels dynamic range expander gain computer. `peak_expansion_gain_N_chan_db` is a standard Faust function.",
+      "usage": "si.bus(N) : peak_expansion_gain_N_chan_db(strength,thresh,range,att,hold,rel,knee,prePost,link,maxHold,N) : si.bus(N)",
+      "params": [
+        {
+          "name": "strength",
+          "description": "strength of the expansion (0 = no expansion, 100 means gating, <1 means upward compression)"
+        },
+        {
+          "name": "thresh",
+          "description": "dB level threshold below which expansion kicks in"
+        },
+        {
+          "name": "range",
+          "description": "maximum amount of expansion in dB"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) coming out of expansion"
+        },
+        {
+          "name": "hold",
+          "description": "hold time (sec)"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) going into expansion"
+        },
+        {
+          "name": "knee",
+          "description": "a gradual increase in gain reduction around the threshold: above thresh+(knee/2) there is no gain reduction, below thresh-(knee/2) there is the same gain reduction as without a knee, and in between there is a gradual increase in gain reduction"
+        },
+        {
+          "name": "prePost",
+          "description": "places the level detector either at the input or after the gain computer; this turns it from a linear return-to-zero detector into a log  domain return-to-range detector"
+        },
+        {
+          "name": "link",
+          "description": "the amount of linkage between the channels: 0 = each channel is independent, 1 = all channels have the same amount of gain reduction"
+        },
+        {
+          "name": "maxHold",
+          "description": "the maximum hold time in samples, known at compile time"
+        },
+        {
+          "name": "N",
+          "description": "the number of channels of the gain computer, known at compile time"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N) : peak_expansion_gain_N_chan_db(strength,thresh,range,att,hold,rel,knee,prePost,link,maxHold,N) : si.bus(N)"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\npeak_expansion_gain_N_chan_db_test = (os.osc(220), os.osc(330)) : co.peak_expansion_gain_N_chan_db(0.5, -40, 20, 0.05, 0.01, 0.2, 6, 0, 0.5, 2048, 2);",
+      "references": [],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 1151,
+        "lineEnd": 1185
+      }
+    },
+    {
+      "id": "compressors.expander_N_chan",
+      "name": "expander_N_chan",
+      "qualifiedName": "co.expander_N_chan",
+      "header": "(co.)expander_N_chan",
+      "summary": "Feed forward N channels dynamic range expander. `expander_N_chan` is a standard Faust function.",
+      "usage": "si.bus(N) : expander_N_chan(strength,thresh,range,att,hold,rel,knee,prePost,link,meter,maxHold,N) : si.bus(N)",
+      "params": [
+        {
+          "name": "strength",
+          "description": "strength of the expansion (0 = no expansion, 100 means gating, <1 means upward compression)"
+        },
+        {
+          "name": "thresh",
+          "description": "dB level threshold below which expansion kicks in"
+        },
+        {
+          "name": "range",
+          "description": "maximum amount of expansion in dB"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) coming out of expansion"
+        },
+        {
+          "name": "hold",
+          "description": "hold time"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) going into expansion"
+        },
+        {
+          "name": "knee",
+          "description": "a gradual increase in gain reduction around the threshold: above thresh+(knee/2) there is no gain reduction, below thresh-(knee/2) there is the same gain reduction as without a knee, and in between there is a gradual increase in gain reduction"
+        },
+        {
+          "name": "prePost",
+          "description": "places the level detector either at the input or after the gain computer; this turns it from a linear return-to-zero detector into a log  domain return-to-range detector"
+        },
+        {
+          "name": "link",
+          "description": "the amount of linkage between the channels: 0 = each channel is independent, 1 = all channels have the same amount of gain reduction"
+        },
+        {
+          "name": "meter",
+          "description": "a gain reduction meter. It can be implemented like so: `meter = _<:(_, (ba.linear2db:max(maxGR):meter_group((hbargraph(\"[1][unit:dB][tooltip: gain reduction in dB]\", maxGR, 0))))):attach;`"
+        },
+        {
+          "name": "maxHold",
+          "description": "the maximum hold time in samples, known at compile time"
+        },
+        {
+          "name": "N",
+          "description": "the number of channels of the expander, known at compile time"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N) : expander_N_chan(strength,thresh,range,att,hold,rel,knee,prePost,link,meter,maxHold,N) : si.bus(N)"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\nmeter(x) = x;\nexpander_N_chan_test = (os.osc(220), os.osc(330)) : co.expander_N_chan(0.5, -40, 20, 0.05, 0.02, 0.2, 6, 0, 0.5, meter, 4096, 2);",
+      "references": [],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 1220,
+        "lineEnd": 1257
+      }
+    },
+    {
+      "id": "compressors.expanderSC_N_chan",
+      "name": "expanderSC_N_chan",
+      "qualifiedName": "co.expanderSC_N_chan",
+      "header": "(co.)expanderSC_N_chan",
+      "summary": "Feed forward N channels dynamic range expander with sidechain. `expanderSC_N_chan` is a standard Faust function.",
+      "usage": "si.bus(N) : expanderSC_N_chan(strength,thresh,range,att,hold,rel,knee,prePost,link,meter,maxHold,N,SCfunction,SCswitch,SCsignal) : si.bus(N)",
+      "params": [
+        {
+          "name": "strength",
+          "description": "strength of the expansion (0 = no expansion, 100 means gating, <1 means upward compression)"
+        },
+        {
+          "name": "thresh",
+          "description": "dB level threshold below which expansion kicks in"
+        },
+        {
+          "name": "range",
+          "description": "maximum amount of expansion in dB"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) coming out of expansion"
+        },
+        {
+          "name": "hold",
+          "description": "hold time"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) going into expansion"
+        },
+        {
+          "name": "knee",
+          "description": "a gradual increase in gain reduction around the threshold: above thresh+(knee/2) there is no gain reduction, below thresh-(knee/2) there is the same gain reduction as without a knee, and in between there is a gradual increase in gain reduction"
+        },
+        {
+          "name": "prePost",
+          "description": "places the level detector either at the input or after the gain computer; this turns it from a linear return-to-zero detector into a log  domain return-to-range detector"
+        },
+        {
+          "name": "link",
+          "description": "the amount of linkage between the channels: 0 = each channel is independent, 1 = all channels have the same amount of gain reduction"
+        },
+        {
+          "name": "meter",
+          "description": "a gain reduction meter. It can be implemented like so: `meter = _<:(_, (ba.linear2db:max(maxGR):meter_group((hbargraph(\"[1][unit:dB][tooltip: gain reduction in dB]\", maxGR, 0))))):attach;`"
+        },
+        {
+          "name": "maxHold",
+          "description": "the maximum hold time in samples, known at compile time"
+        },
+        {
+          "name": "N",
+          "description": "the number of channels of the expander, known at compile time"
+        },
+        {
+          "name": "SCfunction",
+          "description": "a function that get's placed before the level-detector, needs to have a single input and output"
+        },
+        {
+          "name": "SCswitch",
+          "description": "use either the regular audio input or the SCsignal as the input for the level detector"
+        },
+        {
+          "name": "SCsignal",
+          "description": "an audio signal, to be used as the input for the level detector when SCswitch is 1"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N) : expanderSC_N_chan(strength,thresh,range,att,hold,rel,knee,prePost,link,meter,maxHold,N,SCfunction,SCswitch,SCsignal) : si.bus(N)"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\nmeter(x) = x;\nSCfunction(x) = x;\nexpanderSC_N_chan_test = (os.osc(220), os.osc(330)) : co.expanderSC_N_chan(0.5, -40, 20, 0.05, 0.02, 0.2, 6, 0, 0.5, meter, 4096, 2, SCfunction, 1, os.osc(880));",
+      "references": [],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 1265,
+        "lineEnd": 1306
+      }
+    },
+    {
+      "id": "compressors.limiter_lad_N",
+      "name": "limiter_lad_N",
+      "qualifiedName": "co.limiter_lad_N",
+      "header": "(co.)limiter_lad_N",
+      "summary": "N-channels lookahead limiter inspired by IOhannes Zm\u00f6lnig's post, which is in turn based on the thesis by Peter Falkner \"Entwicklung eines digitalen Stereo-Limiters mit Hilfe des Signalprozessors DSP56001\". This version of the limiter uses a peak-holder with smoothed attack and release based on tau time constant filters. It is also possible to use a time constant that is `2PI*tau` by dividing the attack and release times by `2PI`. This time constant allows for the amplitude profile to reach `1 - e^(-2PI)` of the final peak after the attack time. The input path can be delayed by the same amount as the attack time to synchronise input and amplitude profile, realising a system that is particularly effective as a colourless (ideally) brickwall limiter. Note that the effectiveness of the ceiling settings are dependent on the other parameters, especially the time constant used for the smoothing filters and the lookahead delay. Similarly, the colourless characteristics are also dependent on attack, hold, and release times. Since fluctuations above ~15 Hz are perceived as timbral effects, [Vassilakis and Kendall 2010] it is reasonable to set the attack time to 1/15 seconds for a smooth amplitude modulation. On the other hand, the hold time can be set to the peak-to-peak period of the expected lowest frequency in the signal, which allows for minimal distortion of the low frequencies. The release time can then provide a perceptually linear and gradual gain increase determined by the user for any specific application. The scaling factor for all the channels is determined by the loudest peak between them all, so that amplitude ratios between the signals are kept.",
+      "usage": "si.bus(N) : limiter_lad_N(N, LD, ceiling, attack, hold, release) : si.bus(N)",
+      "params": [
+        {
+          "name": "N",
+          "description": "is the number of channels, known at compile-time"
+        },
+        {
+          "name": "LD",
+          "description": "is the lookahead delay in seconds, known at compile-time"
+        },
+        {
+          "name": "ceiling",
+          "description": "is the linear amplitude output limit"
+        },
+        {
+          "name": "attack",
+          "description": "is the attack time in seconds"
+        },
+        {
+          "name": "hold",
+          "description": "is the hold time in seconds"
+        },
+        {
+          "name": "release",
+          "description": "is the release time in seconds Example for a stereo limiter: `limiter_lad_N(2, .01, 1, .01, .1, 1);`"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N) : limiter_lad_N(N, LD, ceiling, attack, hold, release) : si.bus(N)"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\nlimiter_lad_N_test = (os.osc(440), os.osc(660)) : co.limiter_lad_N(2, 0.01, 1, 0.01, 0.05, 0.2);",
+      "references": [
+        "<http://iem.at/~zmoelnig/publications/limiter>",
+        "------------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 1324,
+        "lineEnd": 1383
+      }
+    },
+    {
+      "id": "compressors.limiter_lad_mono",
+      "name": "limiter_lad_mono",
+      "qualifiedName": "co.limiter_lad_mono",
+      "header": "(co.)limiter_lad_mono",
+      "summary": "Specialised case of `limiter_lad_N` mono limiter.",
+      "usage": "_ : limiter_lad_mono(LD, ceiling, attack, hold, release) : _",
+      "params": [
+        {
+          "name": "LD",
+          "description": "is the lookahead delay in seconds, known at compile-time"
+        },
+        {
+          "name": "ceiling",
+          "description": "is the linear amplitude output limit"
+        },
+        {
+          "name": "attack",
+          "description": "is the attack time in seconds"
+        },
+        {
+          "name": "hold",
+          "description": "is the hold time in seconds"
+        },
+        {
+          "name": "release",
+          "description": "is the release time in seconds"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : limiter_lad_mono(LD, ceiling, attack, hold, release) : _"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\nlimiter_lad_mono_test = os.osc(440) : co.limiter_lad_mono(0.01, 1, 0.01, 0.05, 0.2);",
+      "references": [
+        "<http://iem.at/~zmoelnig/publications/limiter>",
+        "------------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 1402,
+        "lineEnd": 1430
+      }
+    },
+    {
+      "id": "compressors.limiter_lad_stereo",
+      "name": "limiter_lad_stereo",
+      "qualifiedName": "co.limiter_lad_stereo",
+      "header": "(co.)limiter_lad_stereo",
+      "summary": "Specialised case of `limiter_lad_N` stereo limiter.",
+      "usage": "_,_ : limiter_lad_stereo(LD, ceiling, attack, hold, release) : _,_",
+      "params": [
+        {
+          "name": "LD",
+          "description": "is the lookahead delay in seconds, known at compile-time"
+        },
+        {
+          "name": "ceiling",
+          "description": "is the linear amplitude output limit"
+        },
+        {
+          "name": "attack",
+          "description": "is the attack time in seconds"
+        },
+        {
+          "name": "hold",
+          "description": "is the hold time in seconds"
+        },
+        {
+          "name": "release",
+          "description": "is the release time in seconds"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : limiter_lad_stereo(LD, ceiling, attack, hold, release) : _,_"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\nlimiter_lad_stereo_test = (os.osc(440), os.osc(660)) : co.limiter_lad_stereo(0.01, 1, 0.01, 0.05, 0.2);",
+      "references": [
+        "<http://iem.at/~zmoelnig/publications/limiter>",
+        "------------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 1437,
+        "lineEnd": 1465
+      }
+    },
+    {
+      "id": "compressors.limiter_lad_quad",
+      "name": "limiter_lad_quad",
+      "qualifiedName": "co.limiter_lad_quad",
+      "header": "(co.)limiter_lad_quad",
+      "summary": "Specialised case of `limiter_lad_N` quadraphonic limiter.",
+      "usage": "si.bus(4) : limiter_lad_quad(LD, ceiling, attack, hold, release) : si.bus(4)",
+      "params": [
+        {
+          "name": "LD",
+          "description": "is the lookahead delay in seconds, known at compile-time"
+        },
+        {
+          "name": "ceiling",
+          "description": "is the linear amplitude output limit"
+        },
+        {
+          "name": "attack",
+          "description": "is the attack time in seconds"
+        },
+        {
+          "name": "hold",
+          "description": "is the hold time in seconds"
+        },
+        {
+          "name": "release",
+          "description": "is the release time in seconds"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(4) : limiter_lad_quad(LD, ceiling, attack, hold, release) : si.bus(4)"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\nlimiter_lad_quad_test = (os.osc(220), os.osc(330), os.osc(440), os.osc(550)) : co.limiter_lad_quad(0.01, 1, 0.01, 0.05, 0.2);",
+      "references": [
+        "<http://iem.at/~zmoelnig/publications/limiter>",
+        "------------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 1472,
+        "lineEnd": 1500
+      }
+    },
+    {
+      "id": "compressors.limiter_lad_bw",
+      "name": "limiter_lad_bw",
+      "qualifiedName": "co.limiter_lad_bw",
+      "header": "(co.)limiter_lad_bw",
+      "summary": "Specialised case of `limiter_lad_N` and ready-to-use unit-amplitude mono limiting function. This implementation, in particular, uses `2PI*tau` time constant filters for attack and release smoothing with synchronised input and gain signals. This function's best application is to be used as a brickwall limiter with the least colouring artefacts while keeping a not-so-slow release curve. Tests have shown that, given a pop song with 60 dB of amplification and a 0-dB-ceiling, the loudest peak recorded was ~0.38 dB.",
+      "usage": "_ : limiter_lad_bw : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : limiter_lad_bw : _"
+      },
+      "testCode": "co = library(\"compressors.lib\");\nos = library(\"oscillators.lib\");\nlimiter_lad_bw_test = os.osc(440) : co.limiter_lad_bw;",
+      "references": [
+        "<http://iem.at/~zmoelnig/publications/limiter>",
+        "------------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "compressors"
+      ],
+      "source": {
+        "file": "compressors.lib",
+        "path": "compressors.lib",
+        "lineStart": 1507,
+        "lineEnd": 1535
+      }
+    }
+  ]
+}

@@ -1,0 +1,1027 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "motion.lib",
+    "path": "motion.lib",
+    "aliasHints": [
+      "mo"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "motion.shockTrigger",
+      "name": "shockTrigger",
+      "qualifiedName": "mo.shockTrigger",
+      "header": "(mo.)shockTrigger",
+      "summary": "Debounced shock trigger from an accelerometer axis.",
+      "usage": "shockTrigger(hpHz, threshold, debounceMs, sig) : _",
+      "params": [
+        {
+          "name": "hpHz",
+          "description": "high-pass frequency (Hz) used to isolate shocks ( > 0 )"
+        },
+        {
+          "name": "threshold",
+          "description": "trigger threshold applied after high-pass (normalized g units)"
+        },
+        {
+          "name": "debounceMs",
+          "description": "time in milliseconds to hold the trigger high (>= 0)"
+        },
+        {
+          "name": "sig",
+          "description": "accelerometer axis signal (normalized, typically [-1, 1])"
+        }
+      ],
+      "notes": [
+        "Output is a gate in [0, 1]."
+      ],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "shockTrigger(hpHz, threshold, debounceMs, sig) : _"
+      },
+      "testCode": "shockTrigger_test =\n  with {\n    mo = library(\"motion.lib\");\n    os = library(\"oscillators.lib\");\n    accX = os.pulsetrain(4) * 2;\n  } : mo.shockTrigger(50, 0.5, 50);",
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 59,
+        "lineEnd": 93
+      }
+    },
+    {
+      "id": "motion.inclinometer",
+      "name": "inclinometer",
+      "qualifiedName": "mo.inclinometer",
+      "header": "(mo.)inclinometer",
+      "summary": "Low-pass inclinometer for a single axis.",
+      "usage": "inclinometer(lpHz, sig) : _",
+      "params": [
+        {
+          "name": "lpHz",
+          "description": "low-pass frequency (Hz) ( > 0 )"
+        },
+        {
+          "name": "sig",
+          "description": "accelerometer axis signal (normalized, typically [-1, 1])"
+        }
+      ],
+      "notes": [
+        "Output is clamped to [0, 1] with negative values removed."
+      ],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "inclinometer(lpHz, sig) : _"
+      },
+      "testCode": "inclinometer_test =\n  with {\n    mo = library(\"motion.lib\");\n    os = library(\"oscillators.lib\");\n  } : mo.inclinometer(2, os.sawtooth(1));",
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 115,
+        "lineEnd": 146
+      }
+    },
+    {
+      "id": "motion.inclineBalance",
+      "name": "inclineBalance",
+      "qualifiedName": "mo.inclineBalance",
+      "header": "(mo.)inclineBalance",
+      "summary": "Balance between positive and negative inclination on the same axis.",
+      "usage": "inclineBalance(lpHz, posSig, negSig) : _",
+      "params": [
+        {
+          "name": "lpHz",
+          "description": "low-pass frequency (Hz) ( > 0 )"
+        },
+        {
+          "name": "posSig",
+          "description": "positive-facing accelerometer axis signal (normalized, typically [-1, 1])"
+        },
+        {
+          "name": "negSig",
+          "description": "negative-facing accelerometer axis signal (normalized, typically [-1, 1])"
+        }
+      ],
+      "notes": [
+        "Output maps posSig -> 1 and negSig -> 0 with smoothing and clamping."
+      ],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "inclineBalance(lpHz, posSig, negSig) : _"
+      },
+      "testCode": "inclineBalance_test =\n  with {\n    mo = library(\"motion.lib\");\n    os = library(\"oscillators.lib\");\n    accPosX = os.sawtooth(0.1) * 0.5 + 0.5;\n    accNegX = accPosX * (-1);\n  } : mo.inclineBalance(1, accPosX, accNegX);",
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 150,
+        "lineEnd": 184
+      }
+    },
+    {
+      "id": "motion.inclineSymmetric",
+      "name": "inclineSymmetric",
+      "qualifiedName": "mo.inclineSymmetric",
+      "header": "(mo.)inclineSymmetric",
+      "summary": "Symmetric gravity comparison (0->1->0) from positive and negative axes.",
+      "usage": "inclineSymmetric(lpHz, posSig, negSig) : _",
+      "params": [
+        {
+          "name": "lpHz",
+          "description": "low-pass frequency (Hz) ( > 0 )"
+        },
+        {
+          "name": "posSig",
+          "description": "positive-facing accelerometer axis signal (normalized, typically [-1, 1])"
+        },
+        {
+          "name": "negSig",
+          "description": "negative-facing accelerometer axis signal (normalized, typically [-1, 1])"
+        }
+      ],
+      "notes": [
+        "Output peaks at 1 near either pole and returns to 0 near the midpoint."
+      ],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "inclineSymmetric(lpHz, posSig, negSig) : _"
+      },
+      "testCode": "inclineSymmetric_test =\n  with {\n    mo = library(\"motion.lib\");\n    os = library(\"oscillators.lib\");\n    accPosX = os.triangle(0.2) * 0.5 + 0.5;\n    accNegX = accPosX * (-1);\n  } : mo.inclineSymmetric(2, accPosX, accNegX);",
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 189,
+        "lineEnd": 223
+      }
+    },
+    {
+      "id": "motion.projectedGravity",
+      "name": "projectedGravity",
+      "qualifiedName": "mo.projectedGravity",
+      "header": "(mo.)projectedGravity",
+      "summary": "Projects an axis onto gravity with optional dead-zone offset.",
+      "usage": "projectedGravity(lpHz, offset, sig) : _",
+      "params": [
+        {
+          "name": "lpHz",
+          "description": "low-pass frequency (Hz) ( > 0 )"
+        },
+        {
+          "name": "offset",
+          "description": "dead-zone offset applied after projection (0..0.33). Magnitudes below `offset` clamp to 0, and the remaining range is rescaled to keep the output in [0, 1]."
+        },
+        {
+          "name": "sig",
+          "description": "accelerometer axis signal (normalized, typically [-1, 1])"
+        }
+      ],
+      "notes": [
+        "Output is normalized to [0, 1] with an optional dead zone near 0."
+      ],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "projectedGravity(lpHz, offset, sig) : _"
+      },
+      "testCode": "projectedGravity_test =\n  with {\n    mo = library(\"motion.lib\");\n    os = library(\"oscillators.lib\");\n  } : mo.projectedGravity(2, 0.05, os.triangle(0.1));",
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 228,
+        "lineEnd": 261
+      }
+    },
+    {
+      "id": "motion.motionEnvelope",
+      "name": "motionEnvelope",
+      "qualifiedName": "mo.motionEnvelope",
+      "header": "(mo.)motionEnvelope",
+      "summary": "Base thresholded AR envelope used by the accelerometer and gyroscope helpers.",
+      "usage": "motionEnvelope(thr, gain, envUpMs, envDownMs, sig) : _",
+      "params": [
+        {
+          "name": "thr",
+          "description": "threshold subtracted before detection (normalized)"
+        },
+        {
+          "name": "gain",
+          "description": "linear gain applied after thresholding"
+        },
+        {
+          "name": "envUpMs",
+          "description": "attack time in milliseconds (>= 0)"
+        },
+        {
+          "name": "envDownMs",
+          "description": "release time in milliseconds (>= 0)"
+        },
+        {
+          "name": "sig",
+          "description": "input signal (normalized) Signal is offset by `thr`, floored at 0, scaled by `gain`, clamped to [0, 1], then fed to an attack/release follower (`an.amp_follower_ar`)."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "motionEnvelope(thr, gain, envUpMs, envDownMs, sig) : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 274,
+        "lineEnd": 300
+      }
+    },
+    {
+      "id": "motion.envelopeAbs",
+      "name": "envelopeAbs",
+      "qualifiedName": "mo.envelopeAbs",
+      "header": "(mo.)envelopeAbs",
+      "summary": "Envelope on the absolute value of a signal (responds to both polarities).",
+      "usage": "envelopeAbs(thr, gain, envUpMs, envDownMs, sig) : _",
+      "params": [
+        {
+          "name": "sig",
+          "description": "input signal Absolute value is taken before envelope detection. -------------------------------------------------"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "envelopeAbs(thr, gain, envUpMs, envDownMs, sig) : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 304,
+        "lineEnd": 317
+      }
+    },
+    {
+      "id": "motion.envelopePos",
+      "name": "envelopePos",
+      "qualifiedName": "mo.envelopePos",
+      "header": "(mo.)envelopePos",
+      "summary": "Envelope for the positive portion of a signal.",
+      "usage": "envelopePos(thr, gain, envUpMs, envDownMs, sig) : _",
+      "params": [
+        {
+          "name": "sig",
+          "description": "input signal Negative values are ignored by the thresholding stage. -------------------------------------------------"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "envelopePos(thr, gain, envUpMs, envDownMs, sig) : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 320,
+        "lineEnd": 333
+      }
+    },
+    {
+      "id": "motion.envelopeNeg",
+      "name": "envelopeNeg",
+      "qualifiedName": "mo.envelopeNeg",
+      "header": "(mo.)envelopeNeg",
+      "summary": "Envelope for the negative portion of a signal (by flipping its polarity first).",
+      "usage": "envelopeNeg(thr, gain, envUpMs, envDownMs, sig) : _",
+      "params": [
+        {
+          "name": "sig",
+          "description": "input signal The signal is negated before the shared positive-only detector. -------------------------------------------------"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "envelopeNeg(thr, gain, envUpMs, envDownMs, sig) : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 336,
+        "lineEnd": 349
+      }
+    },
+    {
+      "id": "motion.pita3",
+      "name": "pita3",
+      "qualifiedName": "mo.pita3",
+      "header": "(mo.)pita3",
+      "summary": "3D magnitude helper `sqrt(x^2 + y^2 + z^2)` used for total envelopes.",
+      "usage": "pita3(x, y, z) : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "first axis or signal component"
+        },
+        {
+          "name": "y",
+          "description": "second axis or signal component"
+        },
+        {
+          "name": "z",
+          "description": "third axis or signal component -------------------------------------------------"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "pita3(x, y, z) : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 352,
+        "lineEnd": 365
+      }
+    },
+    {
+      "id": "motion.totalEnvelope",
+      "name": "totalEnvelope",
+      "qualifiedName": "mo.totalEnvelope",
+      "header": "(mo.)totalEnvelope",
+      "summary": "Magnitude-based envelope across three axes.",
+      "usage": "totalEnvelope(thr, gain, envUpMs, envDownMs, x, y, z) : _",
+      "params": [
+        {
+          "name": "thr",
+          "description": "threshold passed to `motionEnvelope`"
+        },
+        {
+          "name": "gain",
+          "description": "gain passed to `motionEnvelope`"
+        },
+        {
+          "name": "envUpMs",
+          "description": "attack time in milliseconds passed to `motionEnvelope`"
+        },
+        {
+          "name": "envDownMs",
+          "description": "release time in milliseconds passed to `motionEnvelope`"
+        },
+        {
+          "name": "x",
+          "description": "normalized X-axis signal"
+        },
+        {
+          "name": "y",
+          "description": "normalized Y-axis signal"
+        },
+        {
+          "name": "z",
+          "description": "normalized Z-axis signal The three-axis magnitude is computed with `pita3` before applying `motionEnvelope`. -------------------------------------------------"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "totalEnvelope(thr, gain, envUpMs, envDownMs, x, y, z) : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 368,
+        "lineEnd": 386
+      }
+    },
+    {
+      "id": "motion.accelEnvelopeAbs",
+      "name": "accelEnvelopeAbs",
+      "qualifiedName": "mo.accelEnvelopeAbs",
+      "header": "(mo.)accelEnvelopeAbs",
+      "summary": "Envelope follower on the absolute value of an accelerometer axis.",
+      "usage": "accelEnvelopeAbs(thr, gain, envUpMs, envDownMs, sig) : _",
+      "params": [
+        {
+          "name": "thr",
+          "description": "threshold subtracted before detection (normalized)"
+        },
+        {
+          "name": "gain",
+          "description": "linear gain applied after thresholding"
+        },
+        {
+          "name": "envUpMs",
+          "description": "attack time in milliseconds (>= 0)"
+        },
+        {
+          "name": "envDownMs",
+          "description": "release time in milliseconds (>= 0)"
+        },
+        {
+          "name": "sig",
+          "description": "accelerometer axis signal (normalized, typically [-1, 1])"
+        }
+      ],
+      "notes": [
+        "Output envelope is clamped to [0, 1]."
+      ],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "accelEnvelopeAbs(thr, gain, envUpMs, envDownMs, sig) : _"
+      },
+      "testCode": "accelEnvelopeAbs_test =\n  with {\n    mo = library(\"motion.lib\");\n    os = library(\"oscillators.lib\");\n    accX = os.sawtooth(0.5);\n  } : mo.accelEnvelopeAbs(0.1, 1.5, 5, 20, accX);",
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 393,
+        "lineEnd": 428
+      }
+    },
+    {
+      "id": "motion.accelEnvelopePos",
+      "name": "accelEnvelopePos",
+      "qualifiedName": "mo.accelEnvelopePos",
+      "header": "(mo.)accelEnvelopePos",
+      "summary": "Envelope follower for positive acceleration on one axis.",
+      "usage": "accelEnvelopePos(thr, gain, envUpMs, envDownMs, sig) : _",
+      "params": [
+        {
+          "name": "thr",
+          "description": "threshold subtracted before detection (normalized)"
+        },
+        {
+          "name": "gain",
+          "description": "linear gain applied after thresholding"
+        },
+        {
+          "name": "envUpMs",
+          "description": "attack time in milliseconds (>= 0)"
+        },
+        {
+          "name": "envDownMs",
+          "description": "release time in milliseconds (>= 0)"
+        },
+        {
+          "name": "sig",
+          "description": "accelerometer axis signal (normalized, typically [-1, 1]) Negative values are ignored; output envelope is clamped to [0, 1]."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "accelEnvelopePos(thr, gain, envUpMs, envDownMs, sig) : _"
+      },
+      "testCode": "accelEnvelopePos_test =\n  with {\n    mo = library(\"motion.lib\");\n    os = library(\"oscillators.lib\");\n  } : mo.accelEnvelopePos(0.05, 1, 5, 5, os.triangle(0.25));",
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 433,
+        "lineEnd": 467
+      }
+    },
+    {
+      "id": "motion.accelEnvelopeNeg",
+      "name": "accelEnvelopeNeg",
+      "qualifiedName": "mo.accelEnvelopeNeg",
+      "header": "(mo.)accelEnvelopeNeg",
+      "summary": "Envelope follower for negative acceleration on one axis.",
+      "usage": "accelEnvelopeNeg(thr, gain, envUpMs, envDownMs, sig) : _",
+      "params": [
+        {
+          "name": "thr",
+          "description": "threshold subtracted before detection (normalized)"
+        },
+        {
+          "name": "gain",
+          "description": "linear gain applied after thresholding"
+        },
+        {
+          "name": "envUpMs",
+          "description": "attack time in milliseconds (>= 0)"
+        },
+        {
+          "name": "envDownMs",
+          "description": "release time in milliseconds (>= 0)"
+        },
+        {
+          "name": "sig",
+          "description": "accelerometer axis signal (normalized, typically [-1, 1]) Positive values are ignored; output envelope is clamped to [0, 1]."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "accelEnvelopeNeg(thr, gain, envUpMs, envDownMs, sig) : _"
+      },
+      "testCode": "accelEnvelopeNeg_test =\n  with {\n    mo = library(\"motion.lib\");\n    os = library(\"oscillators.lib\");\n  } : mo.accelEnvelopeNeg(0.05, 1, 5, 5, os.triangle(0.25));",
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 472,
+        "lineEnd": 506
+      }
+    },
+    {
+      "id": "motion.totalAccel",
+      "name": "totalAccel",
+      "qualifiedName": "mo.totalAccel",
+      "header": "(mo.)totalAccel",
+      "summary": "Total acceleration magnitude with thresholding and envelope.",
+      "usage": "totalAccel(thr, gain, envUpMs, envDownMs, ax, ay, az) : _",
+      "params": [
+        {
+          "name": "thr",
+          "description": "threshold subtracted before detection (normalized)"
+        },
+        {
+          "name": "gain",
+          "description": "linear gain applied after thresholding"
+        },
+        {
+          "name": "envUpMs",
+          "description": "attack time in milliseconds (>= 0)"
+        },
+        {
+          "name": "envDownMs",
+          "description": "release time in milliseconds (>= 0)"
+        },
+        {
+          "name": "ax",
+          "description": "accelerometer X axis (normalized, typically [-1, 1])"
+        },
+        {
+          "name": "ay",
+          "description": "accelerometer Y axis (normalized, typically [-1, 1])"
+        },
+        {
+          "name": "az",
+          "description": "accelerometer Z axis (normalized, typically [-1, 1])"
+        }
+      ],
+      "notes": [
+        "Output magnitude is clamped to [0, 1]."
+      ],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "totalAccel(thr, gain, envUpMs, envDownMs, ax, ay, az) : _"
+      },
+      "testCode": "totalAccel_test =\n  with {\n    mo = library(\"motion.lib\");\n    os = library(\"oscillators.lib\");\n    ax = os.sawtooth(0.2) * 0.2;\n    ay = os.triangle(0.15) * 0.1;\n    az = os.sawtooth(0.12) * 0.3;\n  } : mo.totalAccel(0.05, 1.2, 8, 12, ax, ay, az);",
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 511,
+        "lineEnd": 550
+      }
+    },
+    {
+      "id": "motion.gyroEnvelopeAbs",
+      "name": "gyroEnvelopeAbs",
+      "qualifiedName": "mo.gyroEnvelopeAbs",
+      "header": "(mo.)gyroEnvelopeAbs",
+      "summary": "Envelope follower on the absolute value of a gyroscope axis.",
+      "usage": "gyroEnvelopeAbs(thr, gain, envUpMs, envDownMs, sig) : _",
+      "params": [
+        {
+          "name": "thr",
+          "description": "threshold subtracted before detection (normalized)"
+        },
+        {
+          "name": "gain",
+          "description": "linear gain applied after thresholding"
+        },
+        {
+          "name": "envUpMs",
+          "description": "attack time in milliseconds (>= 0)"
+        },
+        {
+          "name": "envDownMs",
+          "description": "release time in milliseconds (>= 0)"
+        },
+        {
+          "name": "sig",
+          "description": "gyroscope axis signal (normalized rad/s range)"
+        }
+      ],
+      "notes": [
+        "Output envelope is clamped to [0, 1]."
+      ],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "gyroEnvelopeAbs(thr, gain, envUpMs, envDownMs, sig) : _"
+      },
+      "testCode": "gyroEnvelopeAbs_test =\n  with {\n    mo = library(\"motion.lib\");\n    os = library(\"oscillators.lib\");\n  } : mo.gyroEnvelopeAbs(0.02, 0.9, 25, 30, os.sawtooth(0.5));",
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 558,
+        "lineEnd": 592
+      }
+    },
+    {
+      "id": "motion.gyroEnvelopePos",
+      "name": "gyroEnvelopePos",
+      "qualifiedName": "mo.gyroEnvelopePos",
+      "header": "(mo.)gyroEnvelopePos",
+      "summary": "Envelope follower for positive gyroscope rotation on one axis.",
+      "usage": "gyroEnvelopePos(thr, gain, envUpMs, envDownMs, sig) : _",
+      "params": [
+        {
+          "name": "thr",
+          "description": "threshold subtracted before detection (normalized)"
+        },
+        {
+          "name": "gain",
+          "description": "linear gain applied after thresholding"
+        },
+        {
+          "name": "envUpMs",
+          "description": "attack time in milliseconds (>= 0)"
+        },
+        {
+          "name": "envDownMs",
+          "description": "release time in milliseconds (>= 0)"
+        },
+        {
+          "name": "sig",
+          "description": "gyroscope axis signal (normalized rad/s range) Negative values are ignored; output envelope is clamped to [0, 1]."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "gyroEnvelopePos(thr, gain, envUpMs, envDownMs, sig) : _"
+      },
+      "testCode": "gyroEnvelopePos_test =\n  with {\n    mo = library(\"motion.lib\");\n    os = library(\"oscillators.lib\");\n  } : mo.gyroEnvelopePos(0.02, 0.9, 25, 30, os.triangle(0.5));",
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 597,
+        "lineEnd": 631
+      }
+    },
+    {
+      "id": "motion.gyroEnvelopeNeg",
+      "name": "gyroEnvelopeNeg",
+      "qualifiedName": "mo.gyroEnvelopeNeg",
+      "header": "(mo.)gyroEnvelopeNeg",
+      "summary": "Envelope follower for negative gyroscope rotation on one axis.",
+      "usage": "gyroEnvelopeNeg(thr, gain, envUpMs, envDownMs, sig) : _",
+      "params": [
+        {
+          "name": "thr",
+          "description": "threshold subtracted before detection (normalized)"
+        },
+        {
+          "name": "gain",
+          "description": "linear gain applied after thresholding"
+        },
+        {
+          "name": "envUpMs",
+          "description": "attack time in milliseconds (>= 0)"
+        },
+        {
+          "name": "envDownMs",
+          "description": "release time in milliseconds (>= 0)"
+        },
+        {
+          "name": "sig",
+          "description": "gyroscope axis signal (normalized rad/s range) Positive values are ignored; output envelope is clamped to [0, 1]."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "gyroEnvelopeNeg(thr, gain, envUpMs, envDownMs, sig) : _"
+      },
+      "testCode": "gyroEnvelopeNeg_test =\n  with {\n    mo = library(\"motion.lib\");\n    os = library(\"oscillators.lib\");\n  } : mo.gyroEnvelopeNeg(0.02, 0.9, 25, 30, os.triangle(0.5));",
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 636,
+        "lineEnd": 670
+      }
+    },
+    {
+      "id": "motion.totalGyro",
+      "name": "totalGyro",
+      "qualifiedName": "mo.totalGyro",
+      "header": "(mo.)totalGyro",
+      "summary": "Total gyroscope magnitude with thresholding and envelope.",
+      "usage": "totalGyro(thr, gain, envUpMs, envDownMs, gx, gy, gz) : _",
+      "params": [
+        {
+          "name": "thr",
+          "description": "threshold subtracted before detection (normalized)"
+        },
+        {
+          "name": "gain",
+          "description": "linear gain applied after thresholding"
+        },
+        {
+          "name": "envUpMs",
+          "description": "attack time in milliseconds (>= 0)"
+        },
+        {
+          "name": "envDownMs",
+          "description": "release time in milliseconds (>= 0)"
+        },
+        {
+          "name": "gx",
+          "description": "gyroscope X axis (normalized rad/s range)"
+        },
+        {
+          "name": "gy",
+          "description": "gyroscope Y axis (normalized rad/s range)"
+        },
+        {
+          "name": "gz",
+          "description": "gyroscope Z axis (normalized rad/s range)"
+        }
+      ],
+      "notes": [
+        "Output magnitude is clamped to [0, 1]."
+      ],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "totalGyro(thr, gain, envUpMs, envDownMs, gx, gy, gz) : _"
+      },
+      "testCode": "totalGyro_test =\n  with {\n    mo = library(\"motion.lib\");\n    os = library(\"oscillators.lib\");\n    gx = os.sawtooth(0.2) * 0.2;\n    gy = os.triangle(0.15) * 0.1;\n    gz = os.sawtooth(0.12) * 0.3;\n  } : mo.totalGyro(0.01, 0.9, 25, 30, gx, gy, gz);",
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 675,
+        "lineEnd": 714
+      }
+    },
+    {
+      "id": "motion.orientationWeight",
+      "name": "orientationWeight",
+      "qualifiedName": "mo.orientationWeight",
+      "header": "(mo.)orientationWeight",
+      "summary": "Weighting of a 3D vector toward a target axis with shape and smoothing.",
+      "usage": "orientationWeight(targetX, targetY, targetZ, shape, xs, ys, zs, smoothMs) : _",
+      "params": [
+        {
+          "name": "targetX",
+          "description": "target X coordinate (-1..1)"
+        },
+        {
+          "name": "targetY",
+          "description": "target Y coordinate (-1..1)"
+        },
+        {
+          "name": "targetZ",
+          "description": "target Z coordinate (-1..1)"
+        },
+        {
+          "name": "shape",
+          "description": "scaling applied to the distance (>= 0, larger tightens the lobe)"
+        },
+        {
+          "name": "xs",
+          "description": "current X coordinate (normalized)"
+        },
+        {
+          "name": "ys",
+          "description": "current Y coordinate (normalized)"
+        },
+        {
+          "name": "zs",
+          "description": "current Z coordinate (normalized)"
+        },
+        {
+          "name": "smoothMs",
+          "description": "smoothing time in milliseconds (>= 0)"
+        }
+      ],
+      "notes": [
+        "Output weight is clamped to [0, 1]."
+      ],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "orientationWeight(targetX, targetY, targetZ, shape, xs, ys, zs, smoothMs) : _"
+      },
+      "testCode": "orientationWeight_test =\n  with {\n    mo = library(\"motion.lib\");\n    os = library(\"oscillators.lib\");\n    x = os.triangle(0.1);\n    y = os.sawtooth(0.1);\n    z = os.triangle(0.05);\n  } : mo.orientationWeight(0, 1, 0, 1, x, y, z, 10);",
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 722,
+        "lineEnd": 762
+      }
+    },
+    {
+      "id": "motion.orientation6",
+      "name": "orientation6",
+      "qualifiedName": "mo.orientation6",
+      "header": "(mo.)orientation6",
+      "summary": "Weights toward the six device axes (Cour/stage left -X, Rear -Y, Jardin/stage right +X, Front +Y, Down -Z, Up +Z).",
+      "usage": "orientation6(xs, ys, zs, shapeCour, shapeRear, shapeJardin, shapeFront, shapeDown, shapeUp, smoothMs) : _",
+      "params": [
+        {
+          "name": "xs",
+          "description": "current X coordinate (normalized)"
+        },
+        {
+          "name": "ys",
+          "description": "current Y coordinate (normalized)"
+        },
+        {
+          "name": "zs",
+          "description": "current Z coordinate (normalized)"
+        },
+        {
+          "name": "shapeCour",
+          "description": "shape for Cour (-X)"
+        },
+        {
+          "name": "shapeRear",
+          "description": "shape for Rear (-Y)"
+        },
+        {
+          "name": "shapeJardin",
+          "description": "shape for Jardin (+X)"
+        },
+        {
+          "name": "shapeFront",
+          "description": "shape for Front (+Y)"
+        },
+        {
+          "name": "shapeDown",
+          "description": "shape for Down (-Z)"
+        },
+        {
+          "name": "shapeUp",
+          "description": "shape for Up (+Z)"
+        },
+        {
+          "name": "smoothMs",
+          "description": "smoothing time in milliseconds (>= 0)"
+        }
+      ],
+      "notes": [
+        "Output is six weights (Cour, Rear, Jardin, Front, Down, Up), each in [0, 1]."
+      ],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "orientation6(xs, ys, zs, shapeCour, shapeRear, shapeJardin, shapeFront, shapeDown, shapeUp, smoothMs) : _"
+      },
+      "testCode": "orientation6_test =\n  with {\n    mo = library(\"motion.lib\");\n    os = library(\"oscillators.lib\");\n    x = os.triangle(0.05);\n    y = os.sawtooth(0.08);\n    z = os.triangle(0.03);\n  } : mo.orientation6(x, y, z, 1, 1, 1, 1, 1, 1, 10);",
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 770,
+        "lineEnd": 815
+      }
+    },
+    {
+      "id": "motion.scale",
+      "name": "scale",
+      "qualifiedName": "mo.scale",
+      "header": "(mo.)scale",
+      "summary": "Normalized scaler with input dead-zone and bounded output range.",
+      "usage": "scale(ilow, ihigh, olow, ohigh) : _",
+      "params": [
+        {
+          "name": "ilow",
+          "description": "minimum input value before scaling starts (0..1)"
+        },
+        {
+          "name": "ihigh",
+          "description": "maximum input value before clamping (must be > ilow)"
+        },
+        {
+          "name": "olow",
+          "description": "minimum output value"
+        },
+        {
+          "name": "ohigh",
+          "description": "maximum output value Inputs below ilow clamp to olow; above ihigh clamp to ohigh."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "scale(ilow, ihigh, olow, ohigh) : _"
+      },
+      "testCode": "scale_test =\n  with {\n    mo = library(\"motion.lib\");\n    os = library(\"oscillators.lib\");\n  } : os.sawtooth(0.2) : mo.scale(0.2, 0.8, 0, 1);",
+      "references": [],
+      "tags": [
+        "motion"
+      ],
+      "source": {
+        "file": "motion.lib",
+        "path": "motion.lib",
+        "lineStart": 839,
+        "lineEnd": 872
+      }
+    }
+  ]
+}

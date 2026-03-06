@@ -1,0 +1,2565 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "oscillators.lib",
+    "path": "oscillators.lib",
+    "aliasHints": [
+      "os"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "oscillators.sinwaveform",
+      "name": "sinwaveform",
+      "qualifiedName": "os.sinwaveform",
+      "header": "(os.)sinwaveform",
+      "summary": "Sine waveform ready to use with a `rdtable`.",
+      "usage": "sinwaveform(tablesize) : _",
+      "params": [
+        {
+          "name": "tablesize",
+          "description": "the table size"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "sinwaveform(tablesize) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nsinwaveform_test = os.sinwaveform(1024);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 108,
+        "lineEnd": 126
+      }
+    },
+    {
+      "id": "oscillators.coswaveform",
+      "name": "coswaveform",
+      "qualifiedName": "os.coswaveform",
+      "header": "(os.)coswaveform",
+      "summary": "Cosine waveform ready to use with a `rdtable`.",
+      "usage": "coswaveform(tablesize) : _",
+      "params": [
+        {
+          "name": "tablesize",
+          "description": "the table size"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "coswaveform(tablesize) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\ncoswaveform_test = os.coswaveform(1024);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 131,
+        "lineEnd": 149
+      }
+    },
+    {
+      "id": "oscillators.phasor",
+      "name": "phasor",
+      "qualifiedName": "os.phasor",
+      "header": "(os.)phasor",
+      "summary": "A simple phasor to be used with a `rdtable`. `phasor` is a standard Faust function.",
+      "usage": "phasor(tablesize,freq) : _",
+      "params": [
+        {
+          "name": "tablesize",
+          "description": "the table size"
+        },
+        {
+          "name": "freq",
+          "description": "the frequency in Hz"
+        }
+      ],
+      "notes": [
+        "Note that `tablesize` is just a multiplier for the output of a unit-amp phasor so `phasor(1.0, freq)` can be used to generate a phasor output in the range [0, 1[."
+      ],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "phasor(tablesize,freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nphasor_test = os.phasor(1024, 440);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 201,
+        "lineEnd": 224
+      }
+    },
+    {
+      "id": "oscillators.hs_phasor",
+      "name": "hs_phasor",
+      "qualifiedName": "os.hs_phasor",
+      "header": "(os.)hs_phasor",
+      "summary": "Hardsyncing phasor to be used with a `rdtable`.",
+      "usage": "hs_phasor(tablesize,freq,reset) :  _",
+      "params": [
+        {
+          "name": "tablesize",
+          "description": "the table size"
+        },
+        {
+          "name": "freq",
+          "description": "the frequency in Hz"
+        },
+        {
+          "name": "reset",
+          "description": "a reset signal, reset phase to 0 when equal to 1"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "hs_phasor(tablesize,freq,reset) :  _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nhs_phasor_test = os.hs_phasor(1024, 330, button(\"reset\"));",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 228,
+        "lineEnd": 248
+      }
+    },
+    {
+      "id": "oscillators.hsp_phasor",
+      "name": "hsp_phasor",
+      "qualifiedName": "os.hsp_phasor",
+      "header": "(os.)hsp_phasor",
+      "summary": "Hardsyncing phasor with selectable phase to be used with a `rdtable`.",
+      "usage": "hsp_phasor(tablesize,freq,reset,phase)",
+      "params": [
+        {
+          "name": "tablesize",
+          "description": "the table size"
+        },
+        {
+          "name": "freq",
+          "description": "the frequency in Hz"
+        },
+        {
+          "name": "reset",
+          "description": "reset the oscillator to phase when equal to 1"
+        },
+        {
+          "name": "phase",
+          "description": "phase between 0 and 1"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 4,
+        "raw": "hsp_phasor(tablesize,freq,reset,phase)"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nhsp_phasor_test = os.hsp_phasor(1024, 330, button(\"reset\"), 0.25);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 254,
+        "lineEnd": 275
+      }
+    },
+    {
+      "id": "oscillators.oscsin",
+      "name": "oscsin",
+      "qualifiedName": "os.oscsin",
+      "header": "(os.)oscsin",
+      "summary": "Sine wave oscillator. `oscsin` is a standard Faust function.",
+      "usage": "oscsin(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "the frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "oscsin(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\noscsin_test = os.oscsin(440);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 281,
+        "lineEnd": 300
+      }
+    },
+    {
+      "id": "oscillators.hs_oscsin",
+      "name": "hs_oscsin",
+      "qualifiedName": "os.hs_oscsin",
+      "header": "(os.)hs_oscsin",
+      "summary": "Sin lookup table with hardsyncing phase.",
+      "usage": "hs_oscsin(freq,reset) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "the frequency in Hz"
+        },
+        {
+          "name": "reset",
+          "description": "reset the oscillator to 0 when equal to 1"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "hs_oscsin(freq,reset) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nhs_oscsin_test = os.hs_oscsin(440, button(\"reset\"));",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 307,
+        "lineEnd": 326
+      }
+    },
+    {
+      "id": "oscillators.osccos",
+      "name": "osccos",
+      "qualifiedName": "os.osccos",
+      "header": "(os.)osccos",
+      "summary": "Cosine wave oscillator.",
+      "usage": "osccos(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "the frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "osccos(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nosccos_test = os.osccos(440);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 335,
+        "lineEnd": 353
+      }
+    },
+    {
+      "id": "oscillators.hs_osccos",
+      "name": "hs_osccos",
+      "qualifiedName": "os.hs_osccos",
+      "header": "(os.)hs_osccos",
+      "summary": "Cos lookup table with hardsyncing phase.",
+      "usage": "hs_osccos(freq,reset) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "the frequency in Hz"
+        },
+        {
+          "name": "reset",
+          "description": "reset the oscillator to 0 when equal to 1"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "hs_osccos(freq,reset) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nhs_osccos_test = os.hs_osccos(440, button(\"reset\"));",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 360,
+        "lineEnd": 379
+      }
+    },
+    {
+      "id": "oscillators.oscp",
+      "name": "oscp",
+      "qualifiedName": "os.oscp",
+      "header": "(os.)oscp",
+      "summary": "A sine wave generator with controllable phase.",
+      "usage": "oscp(freq,phase) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "the frequency in Hz"
+        },
+        {
+          "name": "phase",
+          "description": "the phase in radian"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "oscp(freq,phase) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nma = library(\"maths.lib\");\noscp_test = os.oscp(440, ma.PI/3);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 388,
+        "lineEnd": 408
+      }
+    },
+    {
+      "id": "oscillators.osci",
+      "name": "osci",
+      "qualifiedName": "os.osci",
+      "header": "(os.)osci",
+      "summary": "Interpolated phase sine wave oscillator.",
+      "usage": "osci(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "the frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "osci(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nosci_test = os.osci(440);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 412,
+        "lineEnd": 430
+      }
+    },
+    {
+      "id": "oscillators.osc",
+      "name": "osc",
+      "qualifiedName": "os.osc",
+      "header": "(os.)osc",
+      "summary": "Default sine wave oscillator (same as [oscsin](#oscsin)). `osc` is a standard Faust function.",
+      "usage": "osc(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "the frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "osc(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nosc_test = os.osc(440);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 441,
+        "lineEnd": 460
+      }
+    },
+    {
+      "id": "oscillators.m_oscsin",
+      "name": "m_oscsin",
+      "qualifiedName": "os.m_oscsin",
+      "header": "(os.)m_oscsin",
+      "summary": "Sine wave oscillator based on the `sin` mathematical function.",
+      "usage": "m_oscsin(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "the frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "m_oscsin(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nm_oscsin_test = os.m_oscsin(440);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 464,
+        "lineEnd": 482
+      }
+    },
+    {
+      "id": "oscillators.m_osccos",
+      "name": "m_osccos",
+      "qualifiedName": "os.m_osccos",
+      "header": "(os.)m_osccos",
+      "summary": "Sine wave oscillator based on the `cos` mathematical function.",
+      "usage": "m_osccos(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "the frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "m_osccos(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nm_osccos_test = os.m_osccos(440);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 486,
+        "lineEnd": 504
+      }
+    },
+    {
+      "id": "oscillators.lf_imptrain",
+      "name": "lf_imptrain",
+      "qualifiedName": "os.lf_imptrain",
+      "header": "(os.)lf_imptrain",
+      "summary": "Unit-amplitude low-frequency impulse train. `lf_imptrain` is a standard Faust function.",
+      "usage": "lf_imptrain(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "lf_imptrain(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nlf_imptrain_test = os.lf_imptrain(3);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 531,
+        "lineEnd": 549
+      }
+    },
+    {
+      "id": "oscillators.lf_pulsetrainpos",
+      "name": "lf_pulsetrainpos",
+      "qualifiedName": "os.lf_pulsetrainpos",
+      "header": "(os.)lf_pulsetrainpos",
+      "summary": "Unit-amplitude nonnegative LF pulse train, duty cycle between 0 and 1.",
+      "usage": "lf_pulsetrainpos(freq, duty) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        },
+        {
+          "name": "duty",
+          "description": "duty cycle between 0 and 1"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "lf_pulsetrainpos(freq, duty) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nlf_pulsetrainpos_test = os.lf_pulsetrainpos(3, 0.35);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 553,
+        "lineEnd": 573
+      }
+    },
+    {
+      "id": "oscillators.lf_pulsetrain",
+      "name": "lf_pulsetrain",
+      "qualifiedName": "os.lf_pulsetrain",
+      "header": "(os.)lf_pulsetrain",
+      "summary": "Unit-amplitude zero-mean LF pulse train, duty cycle between 0 and 1.",
+      "usage": "lf_pulsetrain(freq,duty) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        },
+        {
+          "name": "duty",
+          "description": "duty cycle between 0 and 1"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "lf_pulsetrain(freq,duty) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nlf_pulsetrain_test = os.lf_pulsetrain(3, 0.35);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 579,
+        "lineEnd": 598
+      }
+    },
+    {
+      "id": "oscillators.lf_squarewavepos",
+      "name": "lf_squarewavepos",
+      "qualifiedName": "os.lf_squarewavepos",
+      "header": "(os.)lf_squarewavepos",
+      "summary": "Positive LF square wave in [0,1]",
+      "usage": "lf_squarewavepos(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "lf_squarewavepos(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nlf_squarewavepos_test = os.lf_squarewavepos(3);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 602,
+        "lineEnd": 620
+      }
+    },
+    {
+      "id": "oscillators.lf_squarewave",
+      "name": "lf_squarewave",
+      "qualifiedName": "os.lf_squarewave",
+      "header": "(os.)lf_squarewave",
+      "summary": "Zero-mean unit-amplitude LF square wave. `lf_squarewave` is a standard Faust function.",
+      "usage": "lf_squarewave(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "lf_squarewave(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nlf_squarewave_test = os.lf_squarewave(3);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 625,
+        "lineEnd": 644
+      }
+    },
+    {
+      "id": "oscillators.lf_trianglepos",
+      "name": "lf_trianglepos",
+      "qualifiedName": "os.lf_trianglepos",
+      "header": "(os.)lf_trianglepos",
+      "summary": "Positive unit-amplitude LF positive triangle wave.",
+      "usage": "lf_trianglepos(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "lf_trianglepos(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nlf_trianglepos_test = os.lf_trianglepos(3);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 649,
+        "lineEnd": 667
+      }
+    },
+    {
+      "id": "oscillators.lf_triangle",
+      "name": "lf_triangle",
+      "qualifiedName": "os.lf_triangle",
+      "header": "(os.)lf_triangle",
+      "summary": "Zero-mean unit-amplitude LF triangle wave. `lf_triangle` is a standard Faust function.",
+      "usage": "lf_triangle(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "lf_triangle(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nlf_triangle_test = os.lf_triangle(3);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 671,
+        "lineEnd": 690
+      }
+    },
+    {
+      "id": "oscillators.lf_rawsaw",
+      "name": "lf_rawsaw",
+      "qualifiedName": "os.lf_rawsaw",
+      "header": "(os.)lf_rawsaw",
+      "summary": "Simple sawtooth waveform oscillator between 0 and period in samples.",
+      "usage": "lf_rawsaw(periodsamps) : _",
+      "params": [
+        {
+          "name": "periodsamps",
+          "description": "number of periods per samples"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "lf_rawsaw(periodsamps) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nlf_rawsaw_test = os.lf_rawsaw(128);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 711,
+        "lineEnd": 729
+      }
+    },
+    {
+      "id": "oscillators.lf_sawpos",
+      "name": "lf_sawpos",
+      "qualifiedName": "os.lf_sawpos",
+      "header": "(os.)lf_sawpos",
+      "summary": "Simple sawtooth waveform oscillator between 0 and 1.",
+      "usage": "lf_sawpos(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "lf_sawpos(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nlf_sawpos_test = os.lf_sawpos(3);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 733,
+        "lineEnd": 751
+      }
+    },
+    {
+      "id": "oscillators.lf_sawpos_phase",
+      "name": "lf_sawpos_phase",
+      "qualifiedName": "os.lf_sawpos_phase",
+      "header": "(os.)lf_sawpos_phase",
+      "summary": "Simple sawtooth waveform oscillator between 0 and 1 with phase control.",
+      "usage": "lf_sawpos_phase(freq, phase) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        },
+        {
+          "name": "phase",
+          "description": "phase between 0 and 1"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "lf_sawpos_phase(freq, phase) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nlf_sawpos_phase_test = os.lf_sawpos_phase(3, 0.25);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 758,
+        "lineEnd": 778
+      }
+    },
+    {
+      "id": "oscillators.lf_sawpos_reset",
+      "name": "lf_sawpos_reset",
+      "qualifiedName": "os.lf_sawpos_reset",
+      "header": "(os.)lf_sawpos_reset",
+      "summary": "Simple sawtooth waveform oscillator between 0 and 1 with reset.",
+      "usage": "lf_sawpos_reset(freq,reset) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        },
+        {
+          "name": "reset",
+          "description": "reset the oscillator to 0 when equal to 1"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "lf_sawpos_reset(freq,reset) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nlf_sawpos_reset_test = os.lf_sawpos_reset(3, button(\"reset\"));",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 785,
+        "lineEnd": 805
+      }
+    },
+    {
+      "id": "oscillators.lf_sawpos_phase_reset",
+      "name": "lf_sawpos_phase_reset",
+      "qualifiedName": "os.lf_sawpos_phase_reset",
+      "header": "(os.)lf_sawpos_phase_reset",
+      "summary": "Simple sawtooth waveform oscillator between 0 and 1 with phase control and reset.",
+      "usage": "lf_sawpos_phase_reset(freq,phase,reset) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        },
+        {
+          "name": "phase",
+          "description": "phase between 0 and 1"
+        },
+        {
+          "name": "reset",
+          "description": "reset the oscillator to phase when equal to 1"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "lf_sawpos_phase_reset(freq,phase,reset) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nlf_sawpos_phase_reset_test = os.lf_sawpos_phase_reset(3, 0.75, button(\"reset\"));",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 812,
+        "lineEnd": 833
+      }
+    },
+    {
+      "id": "oscillators.lf_saw",
+      "name": "lf_saw",
+      "qualifiedName": "os.lf_saw",
+      "header": "(os.)lf_saw",
+      "summary": "Simple sawtooth waveform oscillator between -1 and 1. `lf_saw` is a standard Faust function.",
+      "usage": "lf_saw(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "lf_saw(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nlf_saw_test = os.lf_saw(3);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 840,
+        "lineEnd": 859
+      }
+    },
+    {
+      "id": "oscillators.sawN",
+      "name": "sawN",
+      "qualifiedName": "os.sawN",
+      "header": "(os.)sawN",
+      "summary": "Alias-Suppressed Sawtooth Audio-Frequency Oscillator using Nth-order polynomial transitions to reduce aliasing. `sawN(N,freq)`, `sawNp(N,freq,phase)`, `saw2dpw(freq)`, `saw2(freq)`, `saw3(freq)`, `saw4(freq)`, `sawtooth(freq)`, `saw2f2(freq)`, `saw2f4(freq)`",
+      "usage": "sawN(N,freq) : _ // Nth-order aliasing-suppressed sawtooth using DPW method (see below) sawNp(N,freq,phase) : _ // sawN with phase offset feature saw2dpw(freq) : _ // saw2 using DPW saw2ptr(freq) : _ // saw2 using the faster, stateless PTR method saw2(freq) : _ // DPW method, but subject to change if a better method emerges saw3(freq) : _ // sawN(3) saw4(freq) : _ // sawN(4) sawtooth(freq) : _ // saw2 saw2f2(freq) : _ // saw2dpw with 2nd-order droop-correction filtering saw2f4(freq) : _ // saw2dpw with 4th-order droop-correction filtering",
+      "params": [
+        {
+          "name": "N",
+          "description": "polynomial order, a constant numerical expression between 1 and 4"
+        },
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        },
+        {
+          "name": "phase",
+          "description": "phase between 0 and 1"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "sawN(N,freq) : _ // Nth-order aliasing-suppressed sawtooth using DPW method (see below) sawNp(N,freq,phase) : _ // sawN with phase offset feature saw2dpw(freq) : _ // saw2 using DPW saw2ptr(freq) : _ // saw2 using the faster, stateless PTR method saw2(freq) : _ // DPW method, but subject to change if a better method emerges saw3(freq) : _ // sawN(3) saw4(freq) : _ // sawN(4) sawtooth(freq) : _ // saw2 saw2f2(freq) : _ // saw2dpw with 2nd-order droop-correction filtering saw2f4(freq) : _ // saw2dpw with 4th-order droop-correction filtering"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nsawN_test = os.sawN(3, 440);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 867,
+        "lineEnd": 914
+      }
+    },
+    {
+      "id": "oscillators.sawNp",
+      "name": "sawNp",
+      "qualifiedName": "os.sawNp",
+      "header": "(os.)sawNp",
+      "summary": "Same as `(os.)sawN` but with a controllable waveform phase.",
+      "usage": "sawNp(N,freq,phase) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "waveform interpolation polynomial order 1 to 4 (constant integer expression)"
+        },
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        },
+        {
+          "name": "phase",
+          "description": "waveform phase as a fraction of one period (rounded to nearest sample)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "sawNp(N,freq,phase) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nsawNp_test = os.sawNp(3, 330, 0.5);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 942,
+        "lineEnd": 970
+      }
+    },
+    {
+      "id": "oscillators.saw2, (os.)saw3, (os.)saw4",
+      "name": "saw2, (os.)saw3, (os.)saw4",
+      "qualifiedName": "os.saw2, (os.)saw3, (os.)saw4",
+      "header": "(os.)saw2, (os.)saw3, (os.)saw4",
+      "summary": "Alias-Suppressed Sawtooth Audio-Frequency Oscillators of order 2, 3, 4.",
+      "usage": "saw2(freq) : _ saw3(freq) : _ saw4(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "saw2(freq) : _ saw3(freq) : _ saw4(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nsaw2_test = os.saw2(220);\nsaw3_test = os.saw3(220);\nsaw4_test = os.saw4(220);",
+      "references": [
+        "See `sawN` above.",
+        "------------------------------------------------------------------"
+      ],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 977,
+        "lineEnd": 1008
+      }
+    },
+    {
+      "id": "oscillators.saw2ptr",
+      "name": "saw2ptr",
+      "qualifiedName": "os.saw2ptr",
+      "header": "(os.)saw2ptr",
+      "summary": "Alias-Suppressed Sawtooth Audio-Frequency Oscillator using Polynomial Transition Regions (PTR) for order 2.",
+      "usage": "saw2ptr(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "saw2ptr(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nsaw2ptr_test = os.saw2ptr(220);",
+      "references": [
+        "Kleimola, J.; Valimaki, V., \"Reducing Aliasing from Synthetic Audio Signals Using Polynomial Transition Regions,\" Signal Processing Letters, IEEE, vol.19, no.2, pp.67-70, Feb. 2012",
+        "<https://aaltodoc.aalto.fi/bitstream/handle/123456789/7747/publication6.pdf?sequence=9>",
+        "<http://research.spa.aalto.fi/publications/papers/spl-ptr/>",
+        "--------------------------------------------------------"
+      ],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1013,
+        "lineEnd": 1048
+      }
+    },
+    {
+      "id": "oscillators.saw2dpw",
+      "name": "saw2dpw",
+      "qualifiedName": "os.saw2dpw",
+      "header": "(os.)saw2dpw",
+      "summary": "Alias-Suppressed Sawtooth Audio-Frequency Oscillator using the Differentiated Polynomial Waveform (DWP) method.",
+      "usage": "saw2dpw(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz This is the original Faust `saw2` function using the DPW method. Since `saw2` is now defined as `saw2ptr`, the DPW version is now available as `saw2dwp`."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "saw2dpw(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nsaw2dpw_test = os.saw2dpw(220);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1061,
+        "lineEnd": 1084
+      }
+    },
+    {
+      "id": "oscillators.sawtooth",
+      "name": "sawtooth",
+      "qualifiedName": "os.sawtooth",
+      "header": "(os.)sawtooth",
+      "summary": "Alias-suppressed aliasing-suppressed sawtooth oscillator, presently defined as `saw2`. `sawtooth` is a standard Faust function.",
+      "usage": "sawtooth(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "sawtooth(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nsawtooth_test = os.sawtooth(220);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1089,
+        "lineEnd": 1108
+      }
+    },
+    {
+      "id": "oscillators.saw2f2, (os.)saw2f4",
+      "name": "saw2f2, (os.)saw2f4",
+      "qualifiedName": "os.saw2f2, (os.)saw2f4",
+      "header": "(os.)saw2f2, (os.)saw2f4",
+      "summary": "Alias-Suppressed Sawtooth Audio-Frequency Oscillator with Order 2 or 4 Droop Correction Filtering.",
+      "usage": "saw2f2(freq) : _ saw2f4(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz In return for aliasing suppression, there is some attenuation near half the sampling rate. This can be considered as beneficial, or it can be compensated with a high-frequency boost. The boost filter is second-order for `saw2f2` and fourth-order for `saw2f4`, and both are designed for the DWP case and therefore use `saw2dpw`. See Figure 4(b) in the DPW reference for a plot of the slight droop in the DPW case."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "saw2f2(freq) : _ saw2f4(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nsaw2f2_test = os.saw2f2(220);\nsaw2f4_test = os.saw2f4(220);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1111,
+        "lineEnd": 1137
+      }
+    },
+    {
+      "id": "oscillators.impulse",
+      "name": "impulse",
+      "qualifiedName": "os.impulse",
+      "header": "(os.)impulse",
+      "summary": "One-time impulse generated when the Faust process is started. `impulse` is a standard Faust function.",
+      "usage": "impulse : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "impulse : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nimpulse_test = os.impulse;",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1208,
+        "lineEnd": 1223
+      }
+    },
+    {
+      "id": "oscillators.pulsetrainN",
+      "name": "pulsetrainN",
+      "qualifiedName": "os.pulsetrainN",
+      "header": "(os.)pulsetrainN",
+      "summary": "Alias-suppressed pulse train oscillator.",
+      "usage": "pulsetrainN(N,freq,duty) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "order, as a constant numerical expression"
+        },
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        },
+        {
+          "name": "duty",
+          "description": "duty cycle between 0 and 1"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "pulsetrainN(N,freq,duty) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\npulsetrainN_test = os.pulsetrainN(3, 220, 0.25);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1228,
+        "lineEnd": 1248
+      }
+    },
+    {
+      "id": "oscillators.pulsetrain",
+      "name": "pulsetrain",
+      "qualifiedName": "os.pulsetrain",
+      "header": "(os.)pulsetrain",
+      "summary": "Alias-suppressed pulse train oscillator. Based on `pulsetrainN(2)`. `pulsetrain` is a standard Faust function.",
+      "usage": "pulsetrain(freq,duty) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        },
+        {
+          "name": "duty",
+          "description": "duty cycle between 0 and 1"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "pulsetrain(freq,duty) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\npulsetrain_test = os.pulsetrain(220, 0.25);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1266,
+        "lineEnd": 1286
+      }
+    },
+    {
+      "id": "oscillators.squareN",
+      "name": "squareN",
+      "qualifiedName": "os.squareN",
+      "header": "(os.)squareN",
+      "summary": "Alias-suppressed square wave oscillator.",
+      "usage": "squareN(N,freq) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "order, as a constant numerical expression"
+        },
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "squareN(N,freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nsquareN_test = os.squareN(3, 220);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1290,
+        "lineEnd": 1309
+      }
+    },
+    {
+      "id": "oscillators.square",
+      "name": "square",
+      "qualifiedName": "os.square",
+      "header": "(os.)square",
+      "summary": "Alias-suppressed square wave oscillator. Based on `squareN(2)`. `square` is a standard Faust function.",
+      "usage": "square(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "square(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nsquare_test = os.square(220);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1313,
+        "lineEnd": 1332
+      }
+    },
+    {
+      "id": "oscillators.imptrainN",
+      "name": "imptrainN",
+      "qualifiedName": "os.imptrainN",
+      "header": "(os.)imptrainN",
+      "summary": "Alias-suppressed impulse train generator.",
+      "usage": "imptrainN(N,freq) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "order, as a constant numerical expression"
+        },
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "imptrainN(N,freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nimptrainN_test = os.imptrainN(4, 220);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1336,
+        "lineEnd": 1355
+      }
+    },
+    {
+      "id": "oscillators.imptrain",
+      "name": "imptrain",
+      "qualifiedName": "os.imptrain",
+      "header": "(os.)imptrain",
+      "summary": "Alias-suppressed impulse train generator. Based on `imptrainN(2)`. `imptrain` is a standard Faust function.",
+      "usage": "imptrain(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "imptrain(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nimptrain_test = os.imptrain(220);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1359,
+        "lineEnd": 1378
+      }
+    },
+    {
+      "id": "oscillators.triangleN",
+      "name": "triangleN",
+      "qualifiedName": "os.triangleN",
+      "header": "(os.)triangleN",
+      "summary": "Alias-suppressed triangle wave oscillator.",
+      "usage": "triangleN(N,freq) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "order, as a constant numerical expression"
+        },
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "triangleN(N,freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\ntriangleN_test = os.triangleN(3, 220);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1382,
+        "lineEnd": 1401
+      }
+    },
+    {
+      "id": "oscillators.triangle",
+      "name": "triangle",
+      "qualifiedName": "os.triangle",
+      "header": "(os.)triangle",
+      "summary": "Alias-suppressed triangle wave oscillator. Based on `triangleN(2)`. `triangle` is a standard Faust function.",
+      "usage": "triangle(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "triangle(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\ntriangle_test = os.triangle(220);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1408,
+        "lineEnd": 1427
+      }
+    },
+    {
+      "id": "oscillators.oscb",
+      "name": "oscb",
+      "qualifiedName": "os.oscb",
+      "header": "(os.)oscb",
+      "summary": "Sinusoidal oscillator based on the biquad.",
+      "usage": "oscb(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "oscb(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\noscb_test = os.oscb(440);\noscrq_test = os.oscrq(440);\noscrs_test = os.oscrs(440);\noscrc_test = os.oscrc(440);\noscs_test = os.oscs(440);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1455,
+        "lineEnd": 1477
+      }
+    },
+    {
+      "id": "oscillators.oscrq",
+      "name": "oscrq",
+      "qualifiedName": "os.oscrq",
+      "header": "(os.)oscrq",
+      "summary": "Sinusoidal (sine and cosine) oscillator based on 2D vector rotation, = undamped \"coupled-form\" resonator = lossless 2nd-order normalized ladder filter.",
+      "usage": "oscrq(freq) : _,_",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "oscrq(freq) : _,_"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\noscrq_test = os.oscrq(440);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Normalized_Scattering_Junctions.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1484,
+        "lineEnd": 1508
+      }
+    },
+    {
+      "id": "oscillators.oscrs",
+      "name": "oscrs",
+      "qualifiedName": "os.oscrs",
+      "header": "(os.)oscrs",
+      "summary": "Sinusoidal (sine) oscillator based on 2D vector rotation, = undamped \"coupled-form\" resonator = lossless 2nd-order normalized ladder filter.",
+      "usage": "oscrs(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "oscrs(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\noscrs_test = os.oscrs(440);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Normalized_Scattering_Junctions.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1511,
+        "lineEnd": 1534
+      }
+    },
+    {
+      "id": "oscillators.oscrc",
+      "name": "oscrc",
+      "qualifiedName": "os.oscrc",
+      "header": "(os.)oscrc",
+      "summary": "Sinusoidal (cosine) oscillator based on 2D vector rotation, = undamped \"coupled-form\" resonator = lossless 2nd-order normalized ladder filter.",
+      "usage": "oscrc(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "oscrc(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\noscrc_test = os.oscrc(440);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Normalized_Scattering_Junctions.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1537,
+        "lineEnd": 1560
+      }
+    },
+    {
+      "id": "oscillators.oscs",
+      "name": "oscs",
+      "qualifiedName": "os.oscs",
+      "header": "(os.)oscs",
+      "summary": "Sinusoidal oscillator based on the state variable filter = undamped \"modified-coupled-form\" resonator = \"magic circle\" algorithm used in graphics.",
+      "usage": "oscs(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "oscs(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\noscs_test = os.oscs(440);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1567,
+        "lineEnd": 1587
+      }
+    },
+    {
+      "id": "oscillators.quadosc",
+      "name": "quadosc",
+      "qualifiedName": "os.quadosc",
+      "header": "(os.)quadosc",
+      "summary": "Quadrature (cosine and sine) oscillator based on QuadOsc by Martin Vicanek.",
+      "usage": "quadosc(freq) : _,_",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "quadosc(freq) : _,_"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nquadosc_test = os.quadosc(440);",
+      "references": [
+        "<https://vicanek.de/articles/QuadOsc.pdf>",
+        "------------------------------------------------------------",
+        "Authors:",
+        "Dario Sanfilippo <sanfilippo.dario@gmail.com>",
+        "and Oleg Nesterov (JOS ed.)"
+      ],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1596,
+        "lineEnd": 1620
+      }
+    },
+    {
+      "id": "oscillators.sidebands",
+      "name": "sidebands",
+      "qualifiedName": "os.sidebands",
+      "header": "(os.)sidebands",
+      "summary": "Adds harmonics to quad oscillator.",
+      "usage": "cos(x),sin(x) : sidebands(vs) : _,_",
+      "params": [
+        {
+          "name": "vs",
+          "description": "list of amplitudes"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "cos(x),sin(x) : sidebands(vs) : _,_"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nsidebands_test = os.quadosc(110) : os.sidebands((1, 0.5, 0.25));",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1633,
+        "lineEnd": 1698
+      }
+    },
+    {
+      "id": "oscillators.sidebands_list",
+      "name": "sidebands_list",
+      "qualifiedName": "os.sidebands_list",
+      "header": "(os.)sidebands_list",
+      "summary": "Creates the list of complex harmonics from quad oscillator. Similar to `sidebands` but doesn't sum the harmonics, so it is more generic but less convenient for immediate usage.",
+      "usage": "cos(x),sin(x) : sidebands_list(N) : si.bus(2*N)",
+      "params": [
+        {
+          "name": "N",
+          "description": "number of harmonics, compile time constant > 1"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "cos(x),sin(x) : sidebands_list(N) : si.bus(2*N)"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nsidebands_list_test = os.quadosc(110) : os.sidebands_list(3);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1714,
+        "lineEnd": 1760
+      }
+    },
+    {
+      "id": "oscillators.dsf",
+      "name": "dsf",
+      "qualifiedName": "os.dsf",
+      "header": "(os.)dsf",
+      "summary": "An environment with sine/cosine oscsillators with exponentially decaying harmonics based on direct summation formula.",
+      "usage": "dsf.xxx(f0, df, a, [n]) : _",
+      "params": [
+        {
+          "name": "f0",
+          "description": "base frequency"
+        },
+        {
+          "name": "df",
+          "description": "step frequency"
+        },
+        {
+          "name": "a",
+          "description": "decaying factor != 1"
+        },
+        {
+          "name": "n",
+          "description": "total number of harmonics (`osccN/oscsN` only)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "dsf.xxx(f0, df, a, [n]) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\ndsf_oscc_test = os.dsf.oscc(220, 110, 0.6);\ndsf_oscs_test = os.dsf.oscs(220, 110, 0.6);\ndsf_osccN_test = os.dsf.osccN(220, 110, 0.6, 4);\ndsf_oscsN_test = os.dsf.oscsN(220, 110, 0.6, 4);\ndsf_osccNq_test = os.dsf.osccNq(220, 110, 0.6);\ndsf_oscsNq_test = os.dsf.oscsNq(220, 110, 0.6);",
+      "references": [
+        "<https://ccrma.stanford.edu/STANM/stanms/stanm5/stanm5.pdf>",
+        "----------------------------------------------------------------"
+      ],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1774,
+        "lineEnd": 1838
+      }
+    },
+    {
+      "id": "oscillators.twin_osc",
+      "name": "twin_osc",
+      "qualifiedName": "os.twin_osc",
+      "header": "(os.)twin_osc",
+      "summary": "Twin oscillator using a time-varying comb filter for PWM, morph, or detune. Sawtooth through feedforward comb filter: `y = x - g*x[n-d]`. Based on: \"Virtual Analog Synthesis with a Time-Varying Comb Filter\" D. Lowenfels, AES Convention 115, October 2003. Modes (comb filter configurations): * 0 = PWM: `y = x - x[d]` - pulse width modulation * 1 = MORPH: `y = x - amt*x[d]` - saw to square morphing * 2 = DETUNE: `y = x + x[d]` - summing comb",
+      "usage": "twin_osc(freq, amt, detune, mode) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        },
+        {
+          "name": "amt",
+          "description": "effect amount (0-1), controls comb delay time"
+        },
+        {
+          "name": "detune",
+          "description": "additional delay offset in samples"
+        },
+        {
+          "name": "mode",
+          "description": "mode selector (0=PWM, 1=MORPH, 2=DETUNE)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "twin_osc(freq, amt, detune, mode) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\ntwin_osc_test = os.twin_osc(220, 0.5, 0, 0);",
+      "references": [
+        "<https://www.researchgate.net/publication/325654284>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1860,
+        "lineEnd": 1895
+      }
+    },
+    {
+      "id": "oscillators.rpm",
+      "name": "rpm",
+      "qualifiedName": "os.rpm",
+      "header": "(os.)rpm",
+      "summary": "An environment with RPM (Recursive Phase Modulation) oscillators. Based on Norio Tomisawa's 1981 Yamaha patent for feedback FM synthesis. Uses a \"hunting filter\" (2-point moving average) in the feedback path to suppress Nyquist-rate limit cycle oscillations at high modulation indices.",
+      "usage": "rpm.sawtooth(freq, beta) : _ rpm.square(freq, beta) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        },
+        {
+          "name": "beta",
+          "description": "modulation depth (0 to ~1.5)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "rpm.sawtooth(freq, beta) : _ rpm.square(freq, beta) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nrpm_sawtooth_test = os.rpm.sawtooth(220, 1.0);\nrpm_square_test = os.rpm.square(220, 1.0);",
+      "references": [
+        "<https://patents.google.com/patent/US4249447>",
+        "----------------------------------------------------------------"
+      ],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1912,
+        "lineEnd": 1945
+      }
+    },
+    {
+      "id": "oscillators.oscwc",
+      "name": "oscwc",
+      "qualifiedName": "os.oscwc",
+      "header": "(os.)oscwc",
+      "summary": "Sinusoidal oscillator based on the waveguide resonator `wgr`. Unit-amplitude cosine oscillator.",
+      "usage": "oscwc(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "oscwc(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\noscwc_test = os.oscwc(440);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Digital_Waveguide_Oscillator.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1974,
+        "lineEnd": 1996
+      }
+    },
+    {
+      "id": "oscillators.oscws",
+      "name": "oscws",
+      "qualifiedName": "os.oscws",
+      "header": "(os.)oscws",
+      "summary": "Sinusoidal oscillator based on the waveguide resonator `wgr`. Unit-amplitude sine oscillator.",
+      "usage": "oscws(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "oscws(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\noscws_test = os.oscws(440);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Digital_Waveguide_Oscillator.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 1999,
+        "lineEnd": 2021
+      }
+    },
+    {
+      "id": "oscillators.oscq",
+      "name": "oscq",
+      "qualifiedName": "os.oscq",
+      "header": "(os.)oscq",
+      "summary": "Sinusoidal oscillator based on the waveguide resonator `wgr`. Unit-amplitude cosine and sine (quadrature) oscillator.",
+      "usage": "oscq(freq) : _,_",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "oscq(freq) : _,_"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\noscq_test = os.oscq(440);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Digital_Waveguide_Oscillator.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 2024,
+        "lineEnd": 2046
+      }
+    },
+    {
+      "id": "oscillators.oscw",
+      "name": "oscw",
+      "qualifiedName": "os.oscw",
+      "header": "(os.)oscw",
+      "summary": "Sinusoidal oscillator based on the waveguide resonator `wgr`. Unit-amplitude cosine oscillator (default).",
+      "usage": "oscw(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "oscw(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\noscw_test = os.oscw(440);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Digital_Waveguide_Oscillator.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 2049,
+        "lineEnd": 2071
+      }
+    },
+    {
+      "id": "oscillators.CZsaw",
+      "name": "CZsaw",
+      "qualifiedName": "os.CZsaw",
+      "header": "(os.)CZsaw",
+      "summary": "Oscillator that mimics the Casio CZ saw oscillator. `CZsaw` is a standard Faust function.",
+      "usage": "CZsaw(fund,index) : _",
+      "params": [
+        {
+          "name": "fund",
+          "description": "a saw-tooth waveform between 0 and 1 that the oscillator slaves to"
+        },
+        {
+          "name": "index",
+          "description": "the brightness of the oscillator, 0 to 1. 0 = sine-wave, 1 = saw-wave"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "CZsaw(fund,index) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nCZsaw_test = os.CZsaw(os.lf_sawpos(110), 0.5);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 2109,
+        "lineEnd": 2129
+      }
+    },
+    {
+      "id": "oscillators.CZsawP",
+      "name": "CZsawP",
+      "qualifiedName": "os.CZsawP",
+      "header": "(os.)CZsawP",
+      "summary": "Oscillator that mimics the Casio CZ saw oscillator, with it's phase aligned to `fund:sin`. `CZsawP` is a standard Faust function.",
+      "usage": "CZsawP(fund,index) : _",
+      "params": [
+        {
+          "name": "fund",
+          "description": "a saw-tooth waveform between 0 and 1 that the oscillator slaves to"
+        },
+        {
+          "name": "index",
+          "description": "the brightness of the oscillator, 0 to 1. 0 = sine-wave, 1 = saw-wave"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "CZsawP(fund,index) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nCZsawP_test = os.CZsawP(os.lf_sawpos(110), 0.5);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 2139,
+        "lineEnd": 2160
+      }
+    },
+    {
+      "id": "oscillators.CZsquare",
+      "name": "CZsquare",
+      "qualifiedName": "os.CZsquare",
+      "header": "(os.)CZsquare",
+      "summary": "Oscillator that mimics the Casio CZ square oscillator `CZsquare` is a standard Faust function.",
+      "usage": "CZsquare(fund,index) : _",
+      "params": [
+        {
+          "name": "fund",
+          "description": "a saw-tooth waveform between 0 and 1 that the oscillator slaves to"
+        },
+        {
+          "name": "index",
+          "description": "the brightness of the oscillator, 0 to 1. 0 = sine-wave, 1 = square-wave"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "CZsquare(fund,index) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nCZsquare_test = os.CZsquare(os.lf_sawpos(110), 0.5);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 2170,
+        "lineEnd": 2190
+      }
+    },
+    {
+      "id": "oscillators.CZsquareP",
+      "name": "CZsquareP",
+      "qualifiedName": "os.CZsquareP",
+      "header": "(os.)CZsquareP",
+      "summary": "Oscillator that mimics the Casio CZ square oscillator, with it's phase aligned to `fund:sin`. `CZsquareP` is a standard Faust function.",
+      "usage": "CZsquareP(fund,index) : _",
+      "params": [
+        {
+          "name": "fund",
+          "description": "a saw-tooth waveform between 0 and 1 that the oscillator slaves to"
+        },
+        {
+          "name": "index",
+          "description": "the brightness of the oscillator, 0 to 1. 0 = sine-wave, 1 = square-wave"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "CZsquareP(fund,index) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nCZsquareP_test = os.CZsquareP(os.lf_sawpos(110), 0.5);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 2200,
+        "lineEnd": 2221
+      }
+    },
+    {
+      "id": "oscillators.CZpulse",
+      "name": "CZpulse",
+      "qualifiedName": "os.CZpulse",
+      "header": "(os.)CZpulse",
+      "summary": "Oscillator that mimics the Casio CZ pulse oscillator. `CZpulse` is a standard Faust function.",
+      "usage": "CZpulse(fund,index) : _",
+      "params": [
+        {
+          "name": "fund",
+          "description": "a saw-tooth waveform between 0 and 1 that the oscillator slaves to"
+        },
+        {
+          "name": "index",
+          "description": "the brightness of the oscillator, 0 gives a sine-wave, 1 is closer to a pulse"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "CZpulse(fund,index) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nCZpulse_test = os.CZpulse(os.lf_sawpos(110), 0.5);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 2231,
+        "lineEnd": 2251
+      }
+    },
+    {
+      "id": "oscillators.CZpulseP",
+      "name": "CZpulseP",
+      "qualifiedName": "os.CZpulseP",
+      "header": "(os.)CZpulseP",
+      "summary": "Oscillator that mimics the Casio CZ pulse oscillator, with it's phase aligned to `fund:sin`. `CZpulseP` is a standard Faust function.",
+      "usage": "CZpulseP(fund,index) : _",
+      "params": [
+        {
+          "name": "fund",
+          "description": "a saw-tooth waveform between 0 and 1 that the oscillator slaves to"
+        },
+        {
+          "name": "index",
+          "description": "the brightness of the oscillator, 0 gives a sine-wave, 1 is closer to a pulse"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "CZpulseP(fund,index) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nCZpulseP_test = os.CZpulseP(os.lf_sawpos(110), 0.5);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 2261,
+        "lineEnd": 2282
+      }
+    },
+    {
+      "id": "oscillators.CZsinePulse",
+      "name": "CZsinePulse",
+      "qualifiedName": "os.CZsinePulse",
+      "header": "(os.)CZsinePulse",
+      "summary": "Oscillator that mimics the Casio CZ sine/pulse oscillator. `CZsinePulse` is a standard Faust function.",
+      "usage": "CZsinePulse(fund,index) : _",
+      "params": [
+        {
+          "name": "fund",
+          "description": "a saw-tooth waveform between 0 and 1 that the oscillator slaves to"
+        },
+        {
+          "name": "index",
+          "description": "the brightness of the oscillator, 0 gives a sine-wave, 1 is a sine minus a pulse"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "CZsinePulse(fund,index) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nCZsinePulse_test = os.CZsinePulse(os.lf_sawpos(110), 0.5);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 2292,
+        "lineEnd": 2312
+      }
+    },
+    {
+      "id": "oscillators.CZsinePulseP",
+      "name": "CZsinePulseP",
+      "qualifiedName": "os.CZsinePulseP",
+      "header": "(os.)CZsinePulseP",
+      "summary": "Oscillator that mimics the Casio CZ sine/pulse oscillator, with it's phase aligned to `fund:sin`. `CZsinePulseP` is a standard Faust function.",
+      "usage": "CZsinePulseP(fund,index) : _",
+      "params": [
+        {
+          "name": "fund",
+          "description": "a saw-tooth waveform between 0 and 1 that the oscillator slaves to"
+        },
+        {
+          "name": "index",
+          "description": "the brightness of the oscillator, 0 gives a sine-wave, 1 is a sine minus a pulse"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "CZsinePulseP(fund,index) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nCZsinePulseP_test = os.CZsinePulseP(os.lf_sawpos(110), 0.5);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 2322,
+        "lineEnd": 2343
+      }
+    },
+    {
+      "id": "oscillators.CZhalfSine",
+      "name": "CZhalfSine",
+      "qualifiedName": "os.CZhalfSine",
+      "header": "(os.)CZhalfSine",
+      "summary": "Oscillator that mimics the Casio CZ half sine oscillator. `CZhalfSine` is a standard Faust function.",
+      "usage": "CZhalfSine(fund,index) : _",
+      "params": [
+        {
+          "name": "fund",
+          "description": "a saw-tooth waveform between 0 and 1 that the oscillator slaves to"
+        },
+        {
+          "name": "index",
+          "description": "the brightness of the oscillator, 0 gives a sine-wave, 1 is somewhere between a saw and a square"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "CZhalfSine(fund,index) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nCZhalfSine_test = os.CZhalfSine(os.lf_sawpos(110), 0.5);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 2353,
+        "lineEnd": 2373
+      }
+    },
+    {
+      "id": "oscillators.CZhalfSineP",
+      "name": "CZhalfSineP",
+      "qualifiedName": "os.CZhalfSineP",
+      "header": "(os.)CZhalfSineP",
+      "summary": "Oscillator that mimics the Casio CZ half sine oscillator, with it's phase aligned to `fund:sin`. `CZhalfSineP` is a standard Faust function.",
+      "usage": "CZhalfSineP(fund,index) : _",
+      "params": [
+        {
+          "name": "fund",
+          "description": "a saw-tooth waveform between 0 and 1 that the oscillator slaves to"
+        },
+        {
+          "name": "index",
+          "description": "the brightness of the oscillator, 0 gives a sine-wave, 1 is somewhere between a saw and a square"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "CZhalfSineP(fund,index) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nCZhalfSineP_test = os.CZhalfSineP(os.lf_sawpos(110), 0.5);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 2383,
+        "lineEnd": 2404
+      }
+    },
+    {
+      "id": "oscillators.CZresSaw",
+      "name": "CZresSaw",
+      "qualifiedName": "os.CZresSaw",
+      "header": "(os.)CZresSaw",
+      "summary": "Oscillator that mimics the Casio CZ resonant sawtooth oscillator. `CZresSaw` is a standard Faust function.",
+      "usage": "CZresSaw(fund,res) : _",
+      "params": [
+        {
+          "name": "fund",
+          "description": "a saw-tooth waveform between 0 and 1 that the oscillator slaves to"
+        },
+        {
+          "name": "res",
+          "description": "the frequency of resonance as a factor of the fundamental pitch."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "CZresSaw(fund,res) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nCZresSaw_test = os.CZresSaw(os.lf_sawpos(110), 2.5);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 2414,
+        "lineEnd": 2434
+      }
+    },
+    {
+      "id": "oscillators.CZresTriangle",
+      "name": "CZresTriangle",
+      "qualifiedName": "os.CZresTriangle",
+      "header": "(os.)CZresTriangle",
+      "summary": "Oscillator that mimics the Casio CZ resonant triangle oscillator. `CZresTriangle` is a standard Faust function.",
+      "usage": "CZresTriangle(fund,res) : _",
+      "params": [
+        {
+          "name": "fund",
+          "description": "a saw-tooth waveform between 0 and 1 that the oscillator slaves to"
+        },
+        {
+          "name": "res",
+          "description": "the frequency of resonance as a factor of the fundamental pitch."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "CZresTriangle(fund,res) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nCZresTriangle_test = os.CZresTriangle(os.lf_sawpos(110), 2.5);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 2444,
+        "lineEnd": 2464
+      }
+    },
+    {
+      "id": "oscillators.CZresTrap",
+      "name": "CZresTrap",
+      "qualifiedName": "os.CZresTrap",
+      "header": "(os.)CZresTrap",
+      "summary": "Oscillator that mimics the Casio CZ resonant trapeze oscillator `CZresTrap` is a standard Faust function.",
+      "usage": "CZresTrap(fund,res) : _",
+      "params": [
+        {
+          "name": "fund",
+          "description": "a saw-tooth waveform between 0 and 1 that the oscillator slaves to"
+        },
+        {
+          "name": "res",
+          "description": "the frequency of resonance as a factor of the fundamental pitch."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "CZresTrap(fund,res) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\nCZresTrap_test = os.CZresTrap(os.lf_sawpos(110), 2.5);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 2474,
+        "lineEnd": 2494
+      }
+    },
+    {
+      "id": "oscillators.polyblep",
+      "name": "polyblep",
+      "qualifiedName": "os.polyblep",
+      "header": "(os.)polyblep",
+      "summary": "PolyBLEP residual function, used for smoothing steps in the audio signal.",
+      "usage": "polyblep(Q,phase) : _",
+      "params": [
+        {
+          "name": "Q",
+          "description": "smoothing factor between 0 and 0.5. Determines how far from the ends of the phase interval the quadratic function is used."
+        },
+        {
+          "name": "phase",
+          "description": "normalised phase (between 0 and 1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "polyblep(Q,phase) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\npolyblep_test = os.polyblep(0.2, os.lf_sawpos(220));",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 2562,
+        "lineEnd": 2581
+      }
+    },
+    {
+      "id": "oscillators.polyblep_saw",
+      "name": "polyblep_saw",
+      "qualifiedName": "os.polyblep_saw",
+      "header": "(os.)polyblep_saw",
+      "summary": "Sawtooth oscillator with suppressed aliasing (using `polyblep`).",
+      "usage": "polyblep_saw(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "polyblep_saw(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\npolyblep_saw_test = os.polyblep_saw(220);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 2591,
+        "lineEnd": 2609
+      }
+    },
+    {
+      "id": "oscillators.polyblep_square",
+      "name": "polyblep_square",
+      "qualifiedName": "os.polyblep_square",
+      "header": "(os.)polyblep_square",
+      "summary": "Square wave oscillator with suppressed aliasing (using `polyblep`).",
+      "usage": "polyblep_square(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "polyblep_square(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\npolyblep_square_test = os.polyblep_square(220);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 2619,
+        "lineEnd": 2637
+      }
+    },
+    {
+      "id": "oscillators.polyblep_triangle",
+      "name": "polyblep_triangle",
+      "qualifiedName": "os.polyblep_triangle",
+      "header": "(os.)polyblep_triangle",
+      "summary": "Triangle wave oscillator with suppressed aliasing (using `polyblep`).",
+      "usage": "polyblep_triangle(freq) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "polyblep_triangle(freq) : _"
+      },
+      "testCode": "os = library(\"oscillators.lib\");\npolyblep_triangle_test = os.polyblep_triangle(220);",
+      "references": [],
+      "tags": [
+        "oscillators"
+      ],
+      "source": {
+        "file": "oscillators.lib",
+        "path": "oscillators.lib",
+        "lineStart": 2647,
+        "lineEnd": 2665
+      }
+    }
+  ]
+}

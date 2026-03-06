@@ -1,0 +1,687 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "interpolators.lib",
+    "path": "interpolators.lib",
+    "aliasHints": [
+      "it"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "interpolators.interpolate_linear",
+      "name": "interpolate_linear",
+      "qualifiedName": "it.interpolate_linear",
+      "header": "(it.)interpolate_linear",
+      "summary": "Linear interpolation between 2 values.",
+      "usage": "interpolate_linear(dv,v0,v1) : _",
+      "params": [
+        {
+          "name": "dv",
+          "description": "in the fractional value in [0..1] range"
+        },
+        {
+          "name": "v0",
+          "description": "is the first value"
+        },
+        {
+          "name": "v1",
+          "description": "is the second value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "interpolate_linear(dv,v0,v1) : _"
+      },
+      "testCode": "it = library(\"interpolators.lib\");\ninterpolate_linear_test = it.interpolate_linear(0.5, 0.0, 1.0);",
+      "references": [
+        "<https://github.com/jamoma/JamomaCore/blob/master/Foundation/library/includes/TTInterpolate.h>",
+        "--------------------------------------------"
+      ],
+      "tags": [
+        "interpolators"
+      ],
+      "source": {
+        "file": "interpolators.lib",
+        "path": "interpolators.lib",
+        "lineStart": 217,
+        "lineEnd": 241
+      }
+    },
+    {
+      "id": "interpolators.interpolate_cosine",
+      "name": "interpolate_cosine",
+      "qualifiedName": "it.interpolate_cosine",
+      "header": "(it.)interpolate_cosine",
+      "summary": "Cosine interpolation between 2 values.",
+      "usage": "interpolate_cosine(dv,v0,v1) : _",
+      "params": [
+        {
+          "name": "dv",
+          "description": "in the fractional value in [0..1] range"
+        },
+        {
+          "name": "v0",
+          "description": "is the first value"
+        },
+        {
+          "name": "v1",
+          "description": "is the second value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "interpolate_cosine(dv,v0,v1) : _"
+      },
+      "testCode": "it = library(\"interpolators.lib\");\ninterpolate_cosine_test = it.interpolate_cosine(0.5, 0.0, 1.0);",
+      "references": [
+        "<https://github.com/jamoma/JamomaCore/blob/master/Foundation/library/includes/TTInterpolate.h>",
+        "--------------------------------------------"
+      ],
+      "tags": [
+        "interpolators"
+      ],
+      "source": {
+        "file": "interpolators.lib",
+        "path": "interpolators.lib",
+        "lineStart": 248,
+        "lineEnd": 272
+      }
+    },
+    {
+      "id": "interpolators.interpolate_cubic",
+      "name": "interpolate_cubic",
+      "qualifiedName": "it.interpolate_cubic",
+      "header": "(it.)interpolate_cubic",
+      "summary": "Cubic interpolation between 4 values.",
+      "usage": "interpolate_cubic(dv,v0,v1,v2,v3) : _",
+      "params": [
+        {
+          "name": "dv",
+          "description": "in the fractional value in [0..1] range"
+        },
+        {
+          "name": "v0",
+          "description": "is the first value"
+        },
+        {
+          "name": "v1",
+          "description": "is the second value"
+        },
+        {
+          "name": "v2",
+          "description": "is the third value"
+        },
+        {
+          "name": "v3",
+          "description": "is the fourth value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "interpolate_cubic(dv,v0,v1,v2,v3) : _"
+      },
+      "testCode": "it = library(\"interpolators.lib\");\ninterpolate_cubic_test = it.interpolate_cubic(0.5, -1.0, 2.0, 1.0, 4.0);",
+      "references": [
+        "<https://www.paulinternet.nl/?page=bicubic>",
+        "--------------------------------------------"
+      ],
+      "tags": [
+        "interpolators"
+      ],
+      "source": {
+        "file": "interpolators.lib",
+        "path": "interpolators.lib",
+        "lineStart": 282,
+        "lineEnd": 308
+      }
+    },
+    {
+      "id": "interpolators.interpolator_two_points",
+      "name": "interpolator_two_points",
+      "qualifiedName": "it.interpolator_two_points",
+      "header": "(it.)interpolator_two_points",
+      "summary": "Generic interpolator on two points (current and next index), assuming an increasing index.",
+      "usage": "interpolator_two_points(gen, idv, interpolate_two_points) : si.bus(outputs(gen))",
+      "params": [
+        {
+          "name": "gen",
+          "description": "a circuit with an 'idv' reader input that produces N outputs"
+        },
+        {
+          "name": "idv",
+          "description": "a fractional read index expressed as a float value, or a (int,frac) pair"
+        },
+        {
+          "name": "interpolate_two_points",
+          "description": "a two points interpolation function"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "interpolator_two_points(gen, idv, interpolate_two_points) : si.bus(outputs(gen))"
+      },
+      "testCode": "it = library(\"interpolators.lib\");\nma = library(\"maths.lib\");\ninterpolator_two_points_test = it.interpolator_two_points(gen, idv, it.interpolate_linear)\nwith {\n    gen(idx) = waveform {0.0, 1.0, 4.0, 9.0, 16.0}, int(ma.modulo(idx, 5)) : rdtable;\n    step = 0.25;\n    idxFloat = ma.modulo((+(step)~_) - step, 4.0);\n    idv = it.make_idv(idxFloat);\n};",
+      "references": [],
+      "tags": [
+        "interpolators"
+      ],
+      "source": {
+        "file": "interpolators.lib",
+        "path": "interpolators.lib",
+        "lineStart": 319,
+        "lineEnd": 346
+      }
+    },
+    {
+      "id": "interpolators.interpolator_linear",
+      "name": "interpolator_linear",
+      "qualifiedName": "it.interpolator_linear",
+      "header": "(it.)interpolator_linear",
+      "summary": "Linear interpolator for a 'gen' circuit triggered by an 'idv' input to generate values.",
+      "usage": "interpolator_linear(gen, idv) : si.bus(outputs(gen))",
+      "params": [
+        {
+          "name": "gen",
+          "description": "a circuit with an 'idv' reader input that produces N outputs"
+        },
+        {
+          "name": "idv",
+          "description": "a fractional read index expressed as a float value, or a (int,frac) pair"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "interpolator_linear(gen, idv) : si.bus(outputs(gen))"
+      },
+      "testCode": "it = library(\"interpolators.lib\");\nma = library(\"maths.lib\");\ninterpolator_linear_test = it.interpolator_linear(gen, idv)\nwith {\n    gen(idx) = waveform {0.0, 1.0, 4.0, 9.0, 16.0}, int(ma.modulo(idx, 5)) : rdtable;\n    step = 0.25;\n    idxFloat = ma.modulo((+(step)~_) - step, 4.0);\n    idv = it.make_idv(idxFloat);\n};",
+      "references": [],
+      "tags": [
+        "interpolators"
+      ],
+      "source": {
+        "file": "interpolators.lib",
+        "path": "interpolators.lib",
+        "lineStart": 360,
+        "lineEnd": 386
+      }
+    },
+    {
+      "id": "interpolators.interpolator_cosine",
+      "name": "interpolator_cosine",
+      "qualifiedName": "it.interpolator_cosine",
+      "header": "(it.)interpolator_cosine",
+      "summary": "Cosine interpolator for a 'gen' circuit triggered by an 'idv' input to generate values.",
+      "usage": "interpolator_cosine(gen, idv) : si.bus(outputs(gen))",
+      "params": [
+        {
+          "name": "gen",
+          "description": "a circuit with an 'idv' reader input that produces N outputs"
+        },
+        {
+          "name": "idv",
+          "description": "a fractional read index expressed as a float value, or a (int,frac) pair"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "interpolator_cosine(gen, idv) : si.bus(outputs(gen))"
+      },
+      "testCode": "it = library(\"interpolators.lib\");\nma = library(\"maths.lib\");\ninterpolator_cosine_test = it.interpolator_cosine(gen, idv)\nwith {\n    gen(idx) = waveform {0.0, 1.0, 4.0, 9.0, 16.0}, int(ma.modulo(idx, 5)) : rdtable;\n    step = 0.25;\n    idxFloat = ma.modulo((+(step)~_) - step, 4.0);\n    idv = it.make_idv(idxFloat);\n};",
+      "references": [],
+      "tags": [
+        "interpolators"
+      ],
+      "source": {
+        "file": "interpolators.lib",
+        "path": "interpolators.lib",
+        "lineStart": 393,
+        "lineEnd": 419
+      }
+    },
+    {
+      "id": "interpolators.interpolator_four_points",
+      "name": "interpolator_four_points",
+      "qualifiedName": "it.interpolator_four_points",
+      "header": "(it.)interpolator_four_points",
+      "summary": "Generic interpolator on interpolator_four_points points (previous, current and two next indexes), assuming an increasing index.",
+      "usage": "interpolator_four_points(gen, idv, interpolate_four_points) : si.bus(outputs(gen))",
+      "params": [
+        {
+          "name": "gen",
+          "description": "a circuit with an 'idv' reader input that produces N outputs"
+        },
+        {
+          "name": "idv",
+          "description": "a fractional read index expressed as a float value, or a (int,frac) pair"
+        },
+        {
+          "name": "interpolate_four_points",
+          "description": "a four points interpolation function"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "interpolator_four_points(gen, idv, interpolate_four_points) : si.bus(outputs(gen))"
+      },
+      "testCode": "it = library(\"interpolators.lib\");\nma = library(\"maths.lib\");\ninterpolator_four_points_test = it.interpolator_four_points(gen, idv, it.interpolate_cubic)\nwith {\n    gen(idx) = waveform {-1.0, 2.0, 1.0, 4.0, 7.0, 3.0}, int(ma.modulo(idx, 6)) : rdtable;\n    step = 0.25;\n    idxFloat = ma.modulo((+(step)~_) - step, 5.0);\n    idv = it.make_idv(idxFloat);\n};",
+      "references": [],
+      "tags": [
+        "interpolators"
+      ],
+      "source": {
+        "file": "interpolators.lib",
+        "path": "interpolators.lib",
+        "lineStart": 433,
+        "lineEnd": 460
+      }
+    },
+    {
+      "id": "interpolators.interpolator_cubic",
+      "name": "interpolator_cubic",
+      "qualifiedName": "it.interpolator_cubic",
+      "header": "(it.)interpolator_cubic",
+      "summary": "Cubic interpolator for a 'gen' circuit triggered by an 'idv' input to generate values.",
+      "usage": "interpolator_cubic(gen, idv) : si.bus(outputs(gen))",
+      "params": [
+        {
+          "name": "gen",
+          "description": "a circuit with an 'idv' reader input that produces N outputs"
+        },
+        {
+          "name": "idv",
+          "description": "a fractional read index expressed as a float value, or a (int,frac) pair"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "interpolator_cubic(gen, idv) : si.bus(outputs(gen))"
+      },
+      "testCode": "it = library(\"interpolators.lib\");\nma = library(\"maths.lib\");\ninterpolator_cubic_test = it.interpolator_cubic(gen, idv)\nwith {\n    gen(idx) = waveform {-1.0, 2.0, 1.0, 4.0, 7.0, 3.0}, int(ma.modulo(idx, 6)) : rdtable;\n    step = 0.25;\n    idxFloat = ma.modulo((+(step)~_) - step, 5.0);\n    idv = it.make_idv(idxFloat);\n};",
+      "references": [],
+      "tags": [
+        "interpolators"
+      ],
+      "source": {
+        "file": "interpolators.lib",
+        "path": "interpolators.lib",
+        "lineStart": 476,
+        "lineEnd": 502
+      }
+    },
+    {
+      "id": "interpolators.interpolator_select",
+      "name": "interpolator_select",
+      "qualifiedName": "it.interpolator_select",
+      "header": "(it.)interpolator_select",
+      "summary": "Generic configurable interpolator (with selector between in [0..3]). The value 3 is used for no interpolation.",
+      "usage": "interpolator_select(gen, idv, sel) : _,_... (equal to N = outputs(gen))",
+      "params": [
+        {
+          "name": "gen",
+          "description": "a circuit with an 'idv' reader input that produces N outputs"
+        },
+        {
+          "name": "idv",
+          "description": "a fractional read index expressed as a float value, or a (int,frac) pair"
+        },
+        {
+          "name": "sel",
+          "description": "an interpolation algorithm selector in [0..3] (0 = linear, 1 = cosine, 2 = cubic, 3 = nointerp)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "interpolator_select(gen, idv, sel) : _,_... (equal to N = outputs(gen))"
+      },
+      "testCode": "it = library(\"interpolators.lib\");\nma = library(\"maths.lib\");\ninterpolator_select_test = it.interpolator_select(gen, idv, 2)\nwith {\n    gen(idx) = waveform {-1.0, 2.0, 1.0, 4.0, 7.0, 3.0}, int(ma.modulo(idx, 6)) : rdtable;\n    step = 0.25;\n    idxFloat = ma.modulo((+(step)~_) - step, 5.0);\n    idv = it.make_idv(idxFloat);\n};",
+      "references": [],
+      "tags": [
+        "interpolators"
+      ],
+      "source": {
+        "file": "interpolators.lib",
+        "path": "interpolators.lib",
+        "lineStart": 517,
+        "lineEnd": 544
+      }
+    },
+    {
+      "id": "interpolators.lerp",
+      "name": "lerp",
+      "qualifiedName": "it.lerp",
+      "header": "(it.)lerp",
+      "summary": "Linear interpolation between two points.",
+      "usage": "lerp(x0, x1, y0, y1, x) : si.bus(1);",
+      "params": [
+        {
+          "name": "x0",
+          "description": "x-coordinate origin"
+        },
+        {
+          "name": "x1",
+          "description": "x-coordinate destination"
+        },
+        {
+          "name": "y0",
+          "description": "y-coordinate origin"
+        },
+        {
+          "name": "y1",
+          "description": "y-coordinate destination"
+        },
+        {
+          "name": "x",
+          "description": "x-coordinate input"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "lerp(x0, x1, y0, y1, x) : si.bus(1);"
+      },
+      "testCode": "it = library(\"interpolators.lib\");\nlerp_test = it.lerp(0.0, 10.0, -5.0, 5.0, 2.5);",
+      "references": [],
+      "tags": [
+        "interpolators"
+      ],
+      "source": {
+        "file": "interpolators.lib",
+        "path": "interpolators.lib",
+        "lineStart": 559,
+        "lineEnd": 581
+      }
+    },
+    {
+      "id": "interpolators.piecewise",
+      "name": "piecewise",
+      "qualifiedName": "it.piecewise",
+      "header": "(it.)piecewise",
+      "summary": "Linear piecewise interpolation between N points.",
+      "usage": "piecewise(xList, yList, x) : si.bus(1);",
+      "params": [
+        {
+          "name": "xList",
+          "description": "x-coordinates list"
+        },
+        {
+          "name": "yList",
+          "description": "y-coordinates list"
+        },
+        {
+          "name": "x",
+          "description": "x-coordinate input"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "piecewise(xList, yList, x) : si.bus(1);"
+      },
+      "testCode": "it = library(\"interpolators.lib\");\npiecewise_test = it.piecewise((-5, -2, 0, 3), (1, 0, 4, -1), os.osc(0.1));",
+      "references": [],
+      "tags": [
+        "interpolators"
+      ],
+      "source": {
+        "file": "interpolators.lib",
+        "path": "interpolators.lib",
+        "lineStart": 594,
+        "lineEnd": 623
+      }
+    },
+    {
+      "id": "interpolators.lagrangeCoeffs",
+      "name": "lagrangeCoeffs",
+      "qualifiedName": "it.lagrangeCoeffs",
+      "header": "(it.)lagrangeCoeffs",
+      "summary": "This is a function to generate N + 1 coefficients for an Nth-order Lagrange basis polynomial with arbitrary spacing of the points.",
+      "usage": "lagrangeCoeffs(N, xCoordsList, x) : si.bus(N + 1)",
+      "params": [
+        {
+          "name": "N",
+          "description": "order of the interpolation filter, known at compile-time"
+        },
+        {
+          "name": "xCoordsList",
+          "description": "a list of N + 1 elements determining the x-axis coordinates of N + 1 values, known at compile-time"
+        },
+        {
+          "name": "x",
+          "description": "a fractional position on the x-axis to obtain the interpolated y-value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "lagrangeCoeffs(N, xCoordsList, x) : si.bus(N + 1)"
+      },
+      "testCode": "it = library(\"interpolators.lib\");\nlagrangeCoeffs_test = it.lagrangeCoeffs(2, (0.0, 0.5, 1.0), 0.25);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Lagrange_Interpolation.html>",
+        "<https://en.wikipedia.org/wiki/Lagrange_polynomial>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "interpolators"
+      ],
+      "source": {
+        "file": "interpolators.lib",
+        "path": "interpolators.lib",
+        "lineStart": 640,
+        "lineEnd": 667
+      }
+    },
+    {
+      "id": "interpolators.lagrangeInterpolation",
+      "name": "lagrangeInterpolation",
+      "qualifiedName": "it.lagrangeInterpolation",
+      "header": "(it.)lagrangeInterpolation",
+      "summary": "Nth-order Lagrange interpolator to interpolate between a set of arbitrarily spaced N + 1 points.",
+      "usage": "x , yCoords : lagrangeInterpolation(N, xCoordsList) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "order of the interpolator, known at compile-time"
+        },
+        {
+          "name": "xCoordsList",
+          "description": "a list of N + 1 elements determining the x-axis spacing of the points, known at compile-time"
+        },
+        {
+          "name": "x",
+          "description": "an x-axis position to interpolate between the y-values"
+        },
+        {
+          "name": "yCoords",
+          "description": "N + 1 elements determining the values of the interpolation points Example: find the centre position of a four-point set using an order-3 Lagrange function fitting the equally-spaced points [2, 5, -1, 3]: which outputs ~1.938. Example: output the dashed curve showed on the Wikipedia page (top figure in <https://en.wikipedia.org/wiki/Lagrange_polynomial>):"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "x , yCoords : lagrangeInterpolation(N, xCoordsList) : _"
+      },
+      "testCode": "it = library(\"interpolators.lib\");\nlagrangeInterpolation_test = (lagrange_x, lagrange_y0, lagrange_y1, lagrange_y2, lagrange_y3) : it.lagrangeInterpolation(3, (0, 1, 2, 3))\nwith {\n    lagrange_x = 1.5;\n    lagrange_y0 = 2.0;\n    lagrange_y1 = 5.0;\n    lagrange_y2 = -1.0;\n    lagrange_y3 = 3.0;\n};",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Lagrange_Interpolation.html>",
+        "Sanfilippo and Parker 2021, \"Combining zeroth and first\u2010order analysis with Lagrange polynomials to reduce artefacts in live concatenative granular processing.\" Proceedings of the DAFx conference 2021, Vienna, Austria.",
+        "<https://dafx2020.mdw.ac.at/proceedings/papers/DAFx20in21_paper_38.pdf>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "interpolators"
+      ],
+      "source": {
+        "file": "interpolators.lib",
+        "path": "interpolators.lib",
+        "lineStart": 685,
+        "lineEnd": 743
+      }
+    },
+    {
+      "id": "interpolators.frdtable",
+      "name": "frdtable",
+      "qualifiedName": "it.frdtable",
+      "header": "(it.)frdtable",
+      "summary": "Look-up circular table with Nth-order Lagrange interpolation for fractional indexes. The index is wrapped-around and the table is cycles for an index span of size S, which is the table size in samples.",
+      "usage": "frdtable(N, S, init, idx) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "Lagrange interpolation order, known at compile-time"
+        },
+        {
+          "name": "S",
+          "description": "table size in samples, known at compile-time"
+        },
+        {
+          "name": "init",
+          "description": "the initial table content, known at compile-time"
+        },
+        {
+          "name": "idx",
+          "description": "fractional index wrapped-around 0 and S"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "frdtable(N, S, init, idx) : _"
+      },
+      "testCode": "it = library(\"interpolators.lib\");\nos = library(\"oscillators.lib\");\nfrdtable_test = it.frdtable(3, 16, os.sinwaveform(16), os.phasor(16, 200));",
+      "references": [],
+      "tags": [
+        "interpolators"
+      ],
+      "source": {
+        "file": "interpolators.lib",
+        "path": "interpolators.lib",
+        "lineStart": 753,
+        "lineEnd": 791
+      }
+    },
+    {
+      "id": "interpolators.frwtable",
+      "name": "frwtable",
+      "qualifiedName": "it.frwtable",
+      "header": "(it.)frwtable",
+      "summary": "Look-up updatable circular table with Nth-order Lagrange interpolation for fractional indexes. The index is wrapped-around and the table is circular indexes ranging from 0 to S, which is the table size in samples.",
+      "usage": "frwtable(N, S, init, w_idx, x, r_idx) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "Lagrange interpolation order, known at compile-time"
+        },
+        {
+          "name": "S",
+          "description": "table size in samples, known at compile-time"
+        },
+        {
+          "name": "init",
+          "description": "the initial table content, known at compile-time"
+        },
+        {
+          "name": "w_idx",
+          "description": "it should be an INT between 0 and S - 1"
+        },
+        {
+          "name": "x",
+          "description": "input signal written on the w_idx positions"
+        },
+        {
+          "name": "r_idx",
+          "description": "fractional index wrapped-around 0 and S"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "frwtable(N, S, init, w_idx, x, r_idx) : _"
+      },
+      "testCode": "it = library(\"interpolators.lib\");\nos = library(\"oscillators.lib\");\nba = library(\"basics.lib\");\nfrwtable_test = it.frwtable(3, 16, os.sinwaveform(16), ba.period(16), os.osc(220), os.phasor(16, 150));",
+      "references": [],
+      "tags": [
+        "interpolators"
+      ],
+      "source": {
+        "file": "interpolators.lib",
+        "path": "interpolators.lib",
+        "lineStart": 805,
+        "lineEnd": 847
+      }
+    },
+    {
+      "id": "interpolators.remap",
+      "name": "remap",
+      "qualifiedName": "it.remap",
+      "header": "(it.)remap",
+      "summary": "Linearly map from an input domain to an output range.",
+      "usage": "_ : remap(from1, from2, to1, to2) : _",
+      "params": [
+        {
+          "name": "from1",
+          "description": "the domain's lower bound."
+        },
+        {
+          "name": "from2",
+          "description": "the domain's upper bound."
+        },
+        {
+          "name": "to1",
+          "description": "the range's lower bound."
+        },
+        {
+          "name": "to2",
+          "description": "the range's upper bound."
+        }
+      ],
+      "notes": [
+        "Note that having `from1` == `from2` in the mapping will cause a division by zero that has to be taken in account."
+      ],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : remap(from1, from2, to1, to2) : _"
+      },
+      "testCode": "it = library(\"interpolators.lib\");\nos = library(\"oscillators.lib\");\nremap_test = it.remap(-1.0, 1.0, 100.0, 1000.0, os.osc(0.5));",
+      "references": [],
+      "tags": [
+        "interpolators"
+      ],
+      "source": {
+        "file": "interpolators.lib",
+        "path": "interpolators.lib",
+        "lineStart": 863,
+        "lineEnd": 893
+      }
+    }
+  ]
+}

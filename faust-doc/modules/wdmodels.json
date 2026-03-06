@@ -1,0 +1,1804 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "wdmodels.lib",
+    "path": "wdmodels.lib",
+    "aliasHints": [
+      "wd"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "wdmodels.resistor",
+      "name": "resistor",
+      "qualifiedName": "wd.resistor",
+      "header": "(wd.)resistor",
+      "summary": "Adapted Resistor. A basic node implementing a resistor for use within Wave Digital Filter connection trees. It should be used as a leaf/terminating element of the connection tree.",
+      "usage": "r1(i) = resistor(i, R); buildtree( A : r1 );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared."
+        },
+        {
+          "name": "R",
+          "description": "Resistance/Impedance of the resistor being modeled in Ohms."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "r1(i) = resistor(i, R); buildtree( A : r1 );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\ndrive = os.osc(220);\n\nvsrc(i) = wd.u_voltage(i, drive);\nseries_node(i) = wd.series(i);\nres_leaf(i) = wd.resistor(i, 1000);\nprobe(i) = wd.resistor_Vout(i, 1000);\n\nresistor_test = wd.buildtree(vsrc : (series_node : (res_leaf, probe)));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.2.1",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 265,
+        "lineEnd": 305
+      }
+    },
+    {
+      "id": "wdmodels.resistor_Vout",
+      "name": "resistor_Vout",
+      "qualifiedName": "wd.resistor_Vout",
+      "header": "(wd.)resistor_Vout",
+      "summary": "Adapted Resistor + voltage Out. A basic adaptor implementing a resistor for use within Wave Digital Filter connection trees. It should be used as a leaf/terminating element of the connection tree. The resistor will also pass the voltage across itself as an output of the model.",
+      "usage": "rout(i) = resistor_Vout(i, R); buildtree( A : rout ) : _",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared."
+        },
+        {
+          "name": "R",
+          "description": "Resistance/Impedance of the resistor being modeled in Ohms."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "rout(i) = resistor_Vout(i, R); buildtree( A : rout ) : _"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\ndrive = os.osc(220);\n\nvsrc(i) = wd.u_voltage(i, drive);\nseries_node(i) = wd.series(i);\nres_probe(i) = wd.resistor_Vout(i, 820);\nres_load(i) = wd.resistor(i, 1800);\n\nresistor_Vout_test = wd.buildtree(vsrc : (series_node : (res_probe, res_load)));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.2.1",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 320,
+        "lineEnd": 361
+      }
+    },
+    {
+      "id": "wdmodels.resistor_Iout",
+      "name": "resistor_Iout",
+      "qualifiedName": "wd.resistor_Iout",
+      "header": "(wd.)resistor_Iout",
+      "summary": "Resistor + current Out. A basic adaptor implementing a resistor for use within Wave Digital Filter connection trees. It should be used as a leaf/terminating element of the connection tree. The resistor will also pass the current through itself as an output of the model.",
+      "usage": "rout(i) = resistor_Iout(i, R); buildtree( A : rout ) : _",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared."
+        },
+        {
+          "name": "R",
+          "description": "Resistance/Impedance of the resistor being modeled in Ohms."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "rout(i) = resistor_Iout(i, R); buildtree( A : rout ) : _"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\ndrive = os.osc(220);\n\nvsrc(i) = wd.u_voltage(i, drive);\nseries_node(i) = wd.series(i);\ncurrent_probe(i) = wd.resistor_Iout(i, 1000);\nload(i) = wd.resistor_Vout(i, 1500);\n\nresistor_Iout_test = wd.buildtree(vsrc : (series_node : (current_probe, load)));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.2.1",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 378,
+        "lineEnd": 419
+      }
+    },
+    {
+      "id": "wdmodels.u_voltage",
+      "name": "u_voltage",
+      "qualifiedName": "wd.u_voltage",
+      "header": "(wd.)u_voltage",
+      "summary": "Unadapted Ideal Voltage Source. An adaptor implementing an ideal voltage source within Wave Digital Filter connection trees. It should be used as the root/top element of the connection tree. Can be used for either DC (constant) or AC (signal) voltage sources.",
+      "usage": "v1(i) = u_Voltage(i, ein); buildtree( v1 : B );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared."
+        },
+        {
+          "name": "ein",
+          "description": "Voltage/Potential across ideal voltage source in Volts"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "v1(i) = u_Voltage(i, ein); buildtree( v1 : B );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\ndrive = os.osc(330);\n\nvsrc(i) = wd.u_voltage(i, drive);\nseries_node(i) = wd.series(i);\nbranch_a(i) = wd.resistor(i, 1200);\nbranch_b(i) = wd.resistor_Vout(i, 2200);\n\nu_voltage_test = wd.buildtree(vsrc : (series_node : (branch_a, branch_b)));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.2.2",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 434,
+        "lineEnd": 476
+      }
+    },
+    {
+      "id": "wdmodels.u_current",
+      "name": "u_current",
+      "qualifiedName": "wd.u_current",
+      "header": "(wd.)u_current",
+      "summary": "Unadapted Ideal Current Source. An unadapted adaptor implementing an ideal current source within Wave Digital Filter connection trees. It should be used as the root/top element of the connection tree. Can be used for either DC (constant) or AC (signal) current sources.",
+      "usage": "i1(i) = u_current(i, jin); buildtree( i1 : B );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared."
+        },
+        {
+          "name": "jin",
+          "description": "Current through the ideal current source in Amps"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "i1(i) = u_current(i, jin); buildtree( i1 : B );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\ndrive = os.osc(110);\n\nisrc(i) = wd.u_current(i, drive);\nparallel_node(i) = wd.parallel(i);\nbranch_a(i) = wd.resistor(i, 560);\nbranch_b(i) = wd.resistor_Vout(i, 2200);\n\nu_current_test = wd.buildtree(isrc : (parallel_node : (branch_a, branch_b)));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.2.3",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 493,
+        "lineEnd": 535
+      }
+    },
+    {
+      "id": "wdmodels.resVoltage",
+      "name": "resVoltage",
+      "qualifiedName": "wd.resVoltage",
+      "header": "(wd.)resVoltage",
+      "summary": "Adapted Resistive Voltage Source. An adaptor implementing a resistive voltage source within Wave Digital Filter connection trees. It should be used as a leaf/terminating element of the connection tree. It is comprised of an ideal voltage source in series with a resistor. Can be used for either DC (constant) or AC (signal) voltage sources.",
+      "usage": "v1(i) = resVoltage(i, R, ein); buildtree( A : v1 );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "R",
+          "description": "Resistance/Impedance of the series resistor in Ohms"
+        },
+        {
+          "name": "ein",
+          "description": "Voltage/Potential of the ideal voltage source in Volts"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "v1(i) = resVoltage(i, R, ein); buildtree( A : v1 );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\ndrive = os.osc(440);\n\nvsrc(i) = wd.u_voltage(i, drive);\nseries_node(i) = wd.series(i);\nbranch_source(i) = wd.resVoltage(i, 1000, 0.5);\nprobe(i) = wd.resistor_Vout(i, 1800);\n\nresVoltage_test = wd.buildtree(vsrc : (series_node : (branch_source, probe)));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.2.4",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 551,
+        "lineEnd": 594
+      }
+    },
+    {
+      "id": "wdmodels.resVoltage_Vout",
+      "name": "resVoltage_Vout",
+      "qualifiedName": "wd.resVoltage_Vout",
+      "header": "(wd.)resVoltage_Vout",
+      "summary": "Adapted Resistive Voltage Source + voltage output. An adaptor implementing an adapted resistive voltage source within Wave Digital Filter connection trees. It should be used as a leaf/terminating element of the connection tree. It is comprised of an ideal voltage source in series with a resistor. Can be used for either DC (constant) or AC (signal) voltage sources. The resistive voltage source will also pass the voltage across it as an output of the model.",
+      "usage": "vout(i) = resVoltage_Vout(i, R, ein); buildtree( A : vout ) : _",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "R",
+          "description": "Resistance/Impedance of the series resistor in Ohms"
+        },
+        {
+          "name": "ein",
+          "description": "Voltage/Potential across ideal voltage source in Volts"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 1,
+        "raw": "vout(i) = resVoltage_Vout(i, R, ein); buildtree( A : vout ) : _"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\ndrive = os.osc(330);\n\nvsrc(i) = wd.u_voltage(i, drive);\nseries_node(i) = wd.series(i);\nbranch_source(i) = wd.resVoltage_Vout(i, 1500, 0.3);\nload(i) = wd.resistor(i, 2200);\n\nresVoltage_Vout_test = wd.buildtree(vsrc : (series_node : (branch_source, load)));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.2.4",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 610,
+        "lineEnd": 654
+      }
+    },
+    {
+      "id": "wdmodels.u_resVoltage",
+      "name": "u_resVoltage",
+      "qualifiedName": "wd.u_resVoltage",
+      "header": "(wd.)u_resVoltage",
+      "summary": "Unadapted Resistive Voltage Source. An unadapted adaptor implementing a resistive voltage source within Wave Digital Filter connection trees. It should be used as the root/top element of the connection tree. It is comprised of an ideal voltage source in series with a resistor. Can be used for either DC (constant) or AC (signal) voltage sources.",
+      "usage": "v1(i) = u_resVoltage(i, R, ein); buildtree( v1 : B );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "R",
+          "description": "Resistance/Impedance of the series resistor in Ohms"
+        },
+        {
+          "name": "ein",
+          "description": "Voltage/Potential across ideal voltage source in Volts"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "v1(i) = u_resVoltage(i, R, ein); buildtree( v1 : B );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\ndrive = os.osc(220);\n\nroot(i) = wd.u_resVoltage(i, 1800, drive);\nseries_node(i) = wd.series(i);\nbranch_a(i) = wd.resistor(i, 1500);\nbranch_b(i) = wd.resistor_Vout(i, 2200);\n\nu_resVoltage_test = wd.buildtree(root : (series_node : (branch_a, branch_b)));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.2.4",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 670,
+        "lineEnd": 714
+      }
+    },
+    {
+      "id": "wdmodels.resCurrent",
+      "name": "resCurrent",
+      "qualifiedName": "wd.resCurrent",
+      "header": "(wd.)resCurrent",
+      "summary": "Adapted Resistive Current Source. An adaptor implementing a resistive current source within Wave Digital Filter connection trees. It should be used as a leaf/terminating element of the connection tree. It is comprised of an ideal current source in parallel with a resistor. Can be used for either DC (constant) or AC (signal) current sources.",
+      "usage": "i1(i) = resCurrent(i, R, jin); buildtree( A : i1 );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared."
+        },
+        {
+          "name": "R",
+          "description": "Resistance/Impedance of the parallel resistor in Ohms"
+        },
+        {
+          "name": "jin",
+          "description": "Current through the ideal current source in Amps"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "i1(i) = resCurrent(i, R, jin); buildtree( A : i1 );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\ndrive = os.osc(110);\n\nroot(i) = wd.u_current(i, drive);\nparallel_node(i) = wd.parallel(i);\nsource_branch(i) = wd.resCurrent(i, 2200, 0.15);\nprobe(i) = wd.resistor_Vout(i, 1500);\n\nresCurrent_test = wd.buildtree(root : (parallel_node : (source_branch, probe)));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.2.5",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 732,
+        "lineEnd": 775
+      }
+    },
+    {
+      "id": "wdmodels.u_resCurrent",
+      "name": "u_resCurrent",
+      "qualifiedName": "wd.u_resCurrent",
+      "header": "(wd.)u_resCurrent",
+      "summary": "Unadapted Resistive Current Source. An unadapted adaptor implementing a resistive current source within Wave Digital Filter connection trees. It should be used as the root/top element of the connection tree. It is comprised of an ideal current source in parallel with a resistor. Can be used for either DC (constant) or AC (signal) current sources.",
+      "usage": "i1(i) = u_resCurrent(i, R, jin); buildtree( i1 : B );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared."
+        },
+        {
+          "name": "R",
+          "description": "Resistance/Impedance of the series resistor in Ohms"
+        },
+        {
+          "name": "jin",
+          "description": "Current through the ideal current source in Amps"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "i1(i) = u_resCurrent(i, R, jin); buildtree( i1 : B );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\ndrive = os.osc(150);\n\nroot(i) = wd.u_resCurrent(i, 2000, drive);\nparallel_node(i) = wd.parallel(i);\nbranch_a(i) = wd.resistor(i, 1200);\nbranch_b(i) = wd.resistor_Vout(i, 1800);\n\nu_resCurrent_test = wd.buildtree(root : (parallel_node : (branch_a, branch_b)));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.2.5",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 791,
+        "lineEnd": 835
+      }
+    },
+    {
+      "id": "wdmodels.u_switch",
+      "name": "u_switch",
+      "qualifiedName": "wd.u_switch",
+      "header": "(wd.)u_switch",
+      "summary": "Unadapted Ideal Switch. An unadapted adaptor implementing an ideal switch for Wave Digital Filter connection trees. It should be used as the root/top element of the connection tree",
+      "usage": "s1(i) = u_resCurrent(i, lambda); buildtree( s1 : B );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared."
+        },
+        {
+          "name": "lambda",
+          "description": "switch state control. -1 for closed switch, 1 for open switch."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "s1(i) = u_resCurrent(i, lambda); buildtree( s1 : B );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\ndrive = os.osc(330);\nlambda = hslider(\"u_switch:lambda\", -1, -1, 1, 0.01);\n\nroot(i) = wd.u_switch(i, lambda);\nseries_node(i) = wd.series(i);\nbranch_a(i) = wd.resistor(i, 1000);\nbranch_b(i) = wd.resistor_Vout(i, 2200);\n\nu_switch_test = wd.buildtree(root : (series_node : (branch_a, branch_b)));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.2.8",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 855,
+        "lineEnd": 897
+      }
+    },
+    {
+      "id": "wdmodels.capacitor",
+      "name": "capacitor",
+      "qualifiedName": "wd.capacitor",
+      "header": "(wd.)capacitor",
+      "summary": "Adapted Capacitor. A basic adaptor implementing a capacitor for use within Wave Digital Filter connection trees. It should be used as a leaf/terminating element of the connection tree. This capacitor model was digitized using the bi-linear transform.",
+      "usage": "c1(i) = capacitor(i, R); buildtree( A : c1 ) : _",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared."
+        },
+        {
+          "name": "R",
+          "description": "Capacitance/Impedance of the capacitor being modeled in Farads."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "c1(i) = capacitor(i, R); buildtree( A : c1 ) : _"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\ndrive = os.osc(440);\n\nvsrc(i) = wd.u_voltage(i, drive);\nseries_node(i) = wd.series(i);\ncap_branch(i) = wd.capacitor(i, 1e-7);\nprobe(i) = wd.resistor_Vout(i, 1800);\n\ncapacitor_test = wd.buildtree(vsrc : (series_node : (cap_branch, probe)));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.3.1",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 915,
+        "lineEnd": 956
+      }
+    },
+    {
+      "id": "wdmodels.capacitor_Vout",
+      "name": "capacitor_Vout",
+      "qualifiedName": "wd.capacitor_Vout",
+      "header": "(wd.)capacitor_Vout",
+      "summary": "Adapted Capacitor + voltage out. A basic adaptor implementing a capacitor for use within Wave Digital Filter connection trees. It should be used as a leaf/terminating element of the connection tree. The capacitor will also pass the voltage across itself as an output of the model. This capacitor model was digitized using the bi-linear transform.",
+      "usage": "cout(i) = capacitor_Vout(i, R); buildtree( A : cout ) : _",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "R",
+          "description": "Capacitance/Impedence of the capacitor being modeled in Farads"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "cout(i) = capacitor_Vout(i, R); buildtree( A : cout ) : _"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\ndrive = os.osc(330);\n\nvsrc(i) = wd.u_voltage(i, drive);\nseries_node(i) = wd.series(i);\ncap_branch(i) = wd.capacitor_Vout(i, 2e-7);\nload(i) = wd.resistor(i, 1500);\n\ncapacitor_Vout_test = wd.buildtree(vsrc : (series_node : (cap_branch, load)));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.3.1",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 972,
+        "lineEnd": 1014
+      }
+    },
+    {
+      "id": "wdmodels.capacitor_Iout",
+      "name": "capacitor_Iout",
+      "qualifiedName": "wd.capacitor_Iout",
+      "header": "(wd.)capacitor_Iout",
+      "summary": "Adapted Capacitor + current out. A basic adaptor implementing a capacitor for use within Wave Digital Filter connection trees. It should be used as a leaf/terminating element of the connection tree. The capacitor will also pass the current through itself as an output of the model. This capacitor model was digitized using the bi-linear transform.",
+      "usage": "cout(i) = capacitor_Iout(i, C); buildtree( A : cout ) : _, _",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared."
+        },
+        {
+          "name": "C",
+          "description": "Capacitance of the capacitor being modeled in Farads."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "cout(i) = capacitor_Iout(i, C); buildtree( A : cout ) : _, _"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\ndrive = os.osc(440);\n\nvsrc(i) = wd.u_voltage(i, drive);\nseries_node(i) = wd.series(i);\ncap_branch(i) = wd.capacitor_Iout(i, 1e-6);\nload(i) = wd.resistor(i, 1000);\n\ncapacitor_Iout_test = wd.buildtree(vsrc : (series_node : (cap_branch, load)));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\"",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 1033,
+        "lineEnd": 1075
+      }
+    },
+    {
+      "id": "wdmodels.inductor",
+      "name": "inductor",
+      "qualifiedName": "wd.inductor",
+      "header": "(wd.)inductor",
+      "summary": "Unadapted Inductor. A basic adaptor implementing an inductor for use within Wave Digital Filter connection trees. It should be used as a leaf/terminating element of the connection tree. This inductor model was digitized using the bi-linear transform.",
+      "usage": "l1(i) = inductor(i, R); buildtree( A : l1 );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "R",
+          "description": "Inductance/Impedance of the inductor being modeled in Henries"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "l1(i) = inductor(i, R); buildtree( A : l1 );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\ndrive = os.osc(260);\n\nvsrc(i) = wd.u_voltage(i, drive);\nseries_node(i) = wd.series(i);\ninductive_branch(i) = wd.inductor(i, 0.01);\nprobe(i) = wd.resistor_Vout(i, 2200);\n\ninductor_test = wd.buildtree(vsrc : (series_node : (inductive_branch, probe)));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.3.2",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 1094,
+        "lineEnd": 1135
+      }
+    },
+    {
+      "id": "wdmodels.inductor_Vout",
+      "name": "inductor_Vout",
+      "qualifiedName": "wd.inductor_Vout",
+      "header": "(wd.)inductor_Vout",
+      "summary": "Unadapted Inductor + Voltage out. A basic adaptor implementing an inductor for use within Wave Digital Filter connection trees. It should be used as a leaf/terminating element of the connection tree. The inductor will also pass the voltage across itself as an output of the model. This inductor model was digitized using the bi-linear transform.",
+      "usage": "lout(i) = inductor_Vout(i, R); buildtree( A : lout ) : _",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "R",
+          "description": "Inductance/Impedance of the inductor being modeled in Henries"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "lout(i) = inductor_Vout(i, R); buildtree( A : lout ) : _"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\ndrive = os.osc(280);\n\nvsrc(i) = wd.u_voltage(i, drive);\nseries_node(i) = wd.series(i);\ninductive_branch(i) = wd.inductor_Vout(i, 0.02);\nload(i) = wd.resistor(i, 1500);\n\ninductor_Vout_test = wd.buildtree(vsrc : (series_node : (inductive_branch, load)));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.3.2",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 1151,
+        "lineEnd": 1193
+      }
+    },
+    {
+      "id": "wdmodels.inductor_Iout",
+      "name": "inductor_Iout",
+      "qualifiedName": "wd.inductor_Iout",
+      "header": "(wd.)inductor_Iout",
+      "summary": "Unadapted Inductor + current out. A basic adaptor implementing an inductor for use within Wave Digital Filter connection trees. It should be used as a leaf/terminating element of the connection tree. The inductor will also pass the current through itself as an output of the model. This inductor model was digitized using the bi-linear transform.",
+      "usage": "lout(i) = inductor_Iout(i, L); buildtree( A : lout ) : _, _",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared."
+        },
+        {
+          "name": "L",
+          "description": "Inductance of the inductor being modeled in Henries."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "lout(i) = inductor_Iout(i, L); buildtree( A : lout ) : _, _"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\ndrive = os.osc(280);\n\nvsrc(i) = wd.u_voltage(i, drive);\nseries_node(i) = wd.series(i);\ninductive_branch(i) = wd.inductor_Iout(i, 0.02);\nload(i) = wd.resistor(i, 1500);\n\ninductor_Iout_test = wd.buildtree(vsrc : (series_node : (inductive_branch, load)));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\"",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 1212,
+        "lineEnd": 1254
+      }
+    },
+    {
+      "id": "wdmodels.u_idealDiode",
+      "name": "u_idealDiode",
+      "qualifiedName": "wd.u_idealDiode",
+      "header": "(wd.)u_idealDiode",
+      "summary": "Unadapted Ideal Diode. An unadapted adaptor implementing an ideal diode for Wave Digital Filter connection trees. It should be used as the root/top element of the connection tree.",
+      "usage": "buildtree( u_idealDiode : B );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions when the adaptor is declared as `diode(i) = wd.u_idealDiode(i)`"
+        }
+      ],
+      "notes": [
+        "Note: only usable as the root of a tree. Correct implementation is shown above."
+      ],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "buildtree( u_idealDiode : B );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\ndiode(i) = wd.u_idealDiode(i);\nseries_node(i) = wd.series(i);\nbranch_a(i) = wd.resistor(i, 1200);\nbranch_b(i) = wd.resistor_Vout(i, 1800);\n\nu_idealDiode_test = wd.buildtree(diode : (series_node : (branch_a, branch_b)));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 3.2.3",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 1276,
+        "lineEnd": 1312
+      }
+    },
+    {
+      "id": "wdmodels.u_chua",
+      "name": "u_chua",
+      "qualifiedName": "wd.u_chua",
+      "header": "(wd.)u_chua",
+      "summary": "Unadapted Chua Diode. An adaptor implementing the chua diode / non-linear resistor within Wave Digital Filter connection trees. It should be used as the root/top element of the connection tree.",
+      "usage": "chua1(i) = u_chua(i, G1, G2, V0); buildtree( chua1 : B );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "G1",
+          "description": "resistance parameter 1 of the chua diode"
+        },
+        {
+          "name": "G2",
+          "description": "resistance parameter 2 of the chua diode"
+        },
+        {
+          "name": "V0",
+          "description": "voltage parameter of the chua diode"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "chua1(i) = u_chua(i, G1, G2, V0); buildtree( chua1 : B );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nchua_node(i) = wd.u_chua(i, 1e-3, 5e-4, 0.2);\nseries_node(i) = wd.series(i);\nbranch_a(i) = wd.resistor(i, 1500);\nbranch_b(i) = wd.resistor_Vout(i, 2200);\n\nu_chua_test = wd.buildtree(chua_node : (series_node : (branch_a, branch_b)));",
+      "references": [
+        "Meerkotter and Scholz, \"Digital Simulation of Nonlinear Circuits by Wave Digital Filter Principles\"",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 1326,
+        "lineEnd": 1367
+      }
+    },
+    {
+      "id": "wdmodels.lambert",
+      "name": "lambert",
+      "qualifiedName": "wd.lambert",
+      "header": "(wd.)lambert",
+      "summary": "An implementation of the lambert function. It uses Halley's method of iteration to approximate the output. Included in the WD library for use in non-linear diode models. Adapted from K M Brigg's c++ lambert function approximation.",
+      "usage": "lambert(n, itr) : _",
+      "params": [
+        {
+          "name": "n",
+          "description": "value at which the lambert function will be evaluated"
+        },
+        {
+          "name": "itr",
+          "description": "number of iterations before output"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "lambert(n, itr) : _"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nlambert_gain = wd.lambert(0.5, 6);\nlambert_test = os.osc(220) * lambert_gain;",
+      "references": [],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 1387,
+        "lineEnd": 1411
+      }
+    },
+    {
+      "id": "wdmodels.u_diodePair",
+      "name": "u_diodePair",
+      "qualifiedName": "wd.u_diodePair",
+      "header": "(wd.)u_diodePair",
+      "summary": "Unadapted pair of diodes facing in opposite directions. An unadapted adaptor implementing two antiparallel diodes for Wave Digital Filter connection trees. The behavior is approximated using Schottkey's ideal diode law.",
+      "usage": "d1(i) = u_diodePair(i, Is, Vt); buildtree( d1 : B );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "Is",
+          "description": "saturation current of the diodes"
+        },
+        {
+          "name": "Vt",
+          "description": "thermal resistances of the diodes"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "d1(i) = u_diodePair(i, Is, Vt); buildtree( d1 : B );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\n\nu_diodePair_test = wd.u_diodePair(2, 1e-12, 0.025);",
+      "references": [
+        "K. Werner et al. \"An Improved and Generalized Diode Clipper Model for Wave Digital Filters\"",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 1451,
+        "lineEnd": 1483
+      }
+    },
+    {
+      "id": "wdmodels.u_diodeSingle",
+      "name": "u_diodeSingle",
+      "qualifiedName": "wd.u_diodeSingle",
+      "header": "(wd.)u_diodeSingle",
+      "summary": "Unadapted single diode. An unadapted adaptor implementing a single diode for Wave Digital Filter connection trees. The behavior is approximated using Schottkey's ideal diode law.",
+      "usage": "d1(i) = u_diodeSingle(i, Is, Vt); buildtree( d1 : B );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "Is",
+          "description": "saturation current of the diodes"
+        },
+        {
+          "name": "Vt",
+          "description": "thermal resistances of the diodes"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "d1(i) = u_diodeSingle(i, Is, Vt); buildtree( d1 : B );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\n\nu_diodeSingle_test = wd.u_diodeSingle(2, 8e-13, 0.026);",
+      "references": [
+        "K. Werner et al. \"An Improved and Generalized Diode Clipper Model for Wave Digital Filters\"",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 1498,
+        "lineEnd": 1530
+      }
+    },
+    {
+      "id": "wdmodels.u_diodeAntiparallel",
+      "name": "u_diodeAntiparallel",
+      "qualifiedName": "wd.u_diodeAntiparallel",
+      "header": "(wd.)u_diodeAntiparallel",
+      "summary": "Unadapted set of antiparallel diodes with M diodes facing forwards and N diodes facing backwards. An unadapted adaptor implementing antiparallel diodes for Wave Digital Filter connection trees. The behavior is approximated using Schottkey's ideal diode law.",
+      "usage": "d1(i) = u_diodeAntiparallel(i, Is, Vt); buildtree( d1 : B );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "Is",
+          "description": "saturation current of the diodes"
+        },
+        {
+          "name": "Vt",
+          "description": "thermal resistances of the diodes"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "d1(i) = u_diodeAntiparallel(i, Is, Vt); buildtree( d1 : B );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nu_diodeAntiparallel_test = wd.u_diodeAntiparallel(2, 1e-12, 0.025, 2, 2);",
+      "references": [
+        "K. Werner et al. \"An Improved and Generalized Diode Clipper Model for Wave Digital Filters\"",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 1544,
+        "lineEnd": 1575
+      }
+    },
+    {
+      "id": "wdmodels.omega",
+      "name": "omega",
+      "qualifiedName": "wd.omega",
+      "header": "(wd.)omega",
+      "summary": "Wright Omega function approximation for diode modeling. An attempt at the Wright Omega function using a piecewise approach with third\u2011order polynomials and Newton\u2011Raphson refinement. This matches the approach used in chowdsp::wdf for diode modeling.",
+      "usage": "y = omega(x) : _;",
+      "params": [
+        {
+          "name": "x",
+          "description": "input value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "y = omega(x) : _;"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nomega_test = wd.omega(0.5);",
+      "references": [
+        "S. D'Angelo, L. Gabrielli, L. Turchet, \"Fast Approximation of the Lambert W",
+        "Function for Virtual Analog Modelling,\" Proc. 22nd Intl. Conf. Digital Audio",
+        "Effects (DAFx-19), Birmingham, UK, 2019",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 1596,
+        "lineEnd": 1625
+      }
+    },
+    {
+      "id": "wdmodels.u_diodeAntiparallel_omega",
+      "name": "u_diodeAntiparallel_omega",
+      "qualifiedName": "wd.u_diodeAntiparallel_omega",
+      "header": "(wd.)u_diodeAntiparallel_omega",
+      "summary": "Unadapted antiparallel diodes using Wright Omega function. An unadapted adaptor implementing antiparallel diodes for Wave Digital Filter connection trees. Uses the Wright Omega function instead of Lambert W.",
+      "usage": "d1(i) = u_diodeAntiparallel_omega(i, Is, Vt); buildtree( d1 : B );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "Is",
+          "description": "saturation current of the diodes (e.g., 2.52e-9 for 1N4148)"
+        },
+        {
+          "name": "Vt",
+          "description": "thermal voltage (typically 0.02585 at room temperature)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "d1(i) = u_diodeAntiparallel_omega(i, Is, Vt); buildtree( d1 : B );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nu_diodeAntiparallel_omega_test = wd.u_diodeAntiparallel_omega(2, 2.52e-9, 0.02585, 1, 1);",
+      "references": [
+        "S. D'Angelo, L. Gabrielli, L. Turchet, \"Fast Approximation of the Lambert W",
+        "Function for Virtual Analog Modelling,\" Proc. 22nd Intl. Conf. Digital Audio",
+        "Effects (DAFx-19), Birmingham, UK, 2019",
+        "J. Chowdhury, \"chowdsp_wdf: An Advanced C++ Library for Wave Digital Circuit",
+        "Modelling,\" arXiv:2210.12554, 2022",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 1650,
+        "lineEnd": 1685
+      }
+    },
+    {
+      "id": "wdmodels.u_parallel2Port",
+      "name": "u_parallel2Port",
+      "qualifiedName": "wd.u_parallel2Port",
+      "header": "(wd.)u_parallel2Port",
+      "summary": "Unadapted 2-port parallel connection. An unadapted adaptor implementing a 2-port parallel connection between adaptors for Wave Digital Filter connection trees. Elements connected to this adaptor will behave as if connected in parallel in circuit.",
+      "usage": "buildtree( u_parallel2Port : (A, B) );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions when the adaptor is declared as `root(i) = wd.u_parallel2Port(i)`"
+        }
+      ],
+      "notes": [
+        "Note: only usable as the root of a tree. This adaptor has no user-accessible parameters. Correct implementation is shown above."
+      ],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "buildtree( u_parallel2Port : (A, B) );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nroot(i) = wd.u_parallel2Port(i);\nbranch_source(i) = wd.resVoltage_Vout(i, 1500, 0.2 * os.osc(220));\nbranch_load(i) = wd.resistor(i, 1800);\n\nu_parallel2Port_test = wd.buildtree(root : (branch_source, branch_load));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.4.1",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 1710,
+        "lineEnd": 1745
+      }
+    },
+    {
+      "id": "wdmodels.parallel2Port",
+      "name": "parallel2Port",
+      "qualifiedName": "wd.parallel2Port",
+      "header": "(wd.)parallel2Port",
+      "summary": "Adapted 2-port parallel connection. An adaptor implementing a 2-port parallel connection between adaptors for Wave Digital Filter connection trees. Elements connected to this adaptor will behave as if connected in parallel in circuit.",
+      "usage": "buildtree( A : parallel2Port : B );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions when the adaptor is declared as `connector(i) = wd.parallel2Port(i)`"
+        }
+      ],
+      "notes": [
+        "Note: this adaptor has no user-accessible parameters. It should be used within the connection tree with one previous and one forward adaptor. Correct implementation is shown above."
+      ],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "buildtree( A : parallel2Port : B );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nvsrc(i) = wd.u_voltage(i, os.osc(260));\nconnector(i) = wd.parallel2Port(i);\nload(i) = wd.resistor_Vout(i, 1800);\n\nparallel2Port_test = wd.buildtree(vsrc : (connector : load));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.4.1",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 1764,
+        "lineEnd": 1799
+      }
+    },
+    {
+      "id": "wdmodels.u_series2Port",
+      "name": "u_series2Port",
+      "qualifiedName": "wd.u_series2Port",
+      "header": "(wd.)u_series2Port",
+      "summary": "Unadapted 2-port series connection. An unadapted adaptor implementing a 2-port series connection between adaptors for Wave Digital Filter connection trees. Elements connected to this adaptor will behave as if connected in series in circuit.",
+      "usage": "buildtree( u_series2Port : (A, B) );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions when the adaptor is declared as `root(i) = wd.u_series2Port(i)`"
+        }
+      ],
+      "notes": [
+        "Note: only usable as the root of a tree. This adaptor has no user-accessible parameters. Correct implementation is shown above."
+      ],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "buildtree( u_series2Port : (A, B) );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nroot(i) = wd.u_series2Port(i);\nbranch_source(i) = wd.resVoltage_Vout(i, 1200, 0.25 * os.osc(180));\nbranch_load(i) = wd.resistor(i, 1800);\n\nu_series2Port_test = wd.buildtree(root : (branch_source, branch_load));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.4.1",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 1821,
+        "lineEnd": 1856
+      }
+    },
+    {
+      "id": "wdmodels.series2Port",
+      "name": "series2Port",
+      "qualifiedName": "wd.series2Port",
+      "header": "(wd.)series2Port",
+      "summary": "Adapted 2-port series connection. An adaptor implementing a 2-port series connection between adaptors for Wave Digital Filter connection trees. Elements connected to this adaptor will behave as if connected in series in circuit.",
+      "usage": "buildtree( A : series2Port : B );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions when the adaptor is declared as `connector(i) = wd.series2Port(i)`"
+        }
+      ],
+      "notes": [
+        "Note: this adaptor has no user-accessible parameters. It should be used within the connection tree with one previous and one forward adaptor. Correct implementation is shown above."
+      ],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "buildtree( A : series2Port : B );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nvsrc(i) = wd.u_voltage(i, os.osc(200));\nconnector(i) = wd.series2Port(i);\nload(i) = wd.resistor_Vout(i, 2200);\n\nseries2Port_test = wd.buildtree(vsrc : (connector : load));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.4.1",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 1875,
+        "lineEnd": 1910
+      }
+    },
+    {
+      "id": "wdmodels.parallelCurrent",
+      "name": "parallelCurrent",
+      "qualifiedName": "wd.parallelCurrent",
+      "header": "(wd.)parallelCurrent",
+      "summary": "Adapted 2-port parallel connection + ideal current source. An adaptor implementing a 2-port series connection and internal idealized current source between adaptors for Wave Digital Filter connection trees. This adaptor connects the two connected elements and an additional ideal current source in parallel.",
+      "usage": "i1(i) = parallelCurrent(i, jin); buildtree(A : i1 : B);",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "jin",
+          "description": "Current through the ideal current source in Amps"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "i1(i) = parallelCurrent(i, jin); buildtree(A : i1 : B);"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nvsrc(i) = wd.u_voltage(i, os.osc(240));\nconnector(i) = wd.parallelCurrent(i, 0.1);\nload(i) = wd.resistor_Vout(i, 1500);\n\nparallelCurrent_test = wd.buildtree(vsrc : (connector : load));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.4.2",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 1933,
+        "lineEnd": 1970
+      }
+    },
+    {
+      "id": "wdmodels.seriesVoltage",
+      "name": "seriesVoltage",
+      "qualifiedName": "wd.seriesVoltage",
+      "header": "(wd.)seriesVoltage",
+      "summary": "Adapted 2-port series connection + ideal voltage source. An adaptor implementing a 2-port series connection and internal ideal voltage source between adaptors for Wave Digital Filter connection trees. This adaptor connects the two connected adaptors and an additional ideal voltage source in series.",
+      "usage": "v1(i) = seriesVoltage(i, vin) buildtree( A : v1 : B );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "vin",
+          "description": "voltage across the ideal current source in Volts"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "v1(i) = seriesVoltage(i, vin) buildtree( A : v1 : B );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nvsrc(i) = wd.u_voltage(i, os.osc(210));\nconnector(i) = wd.seriesVoltage(i, 0.3);\nload(i) = wd.resistor_Vout(i, 1500);\n\nseriesVoltage_test = wd.buildtree(vsrc : (connector : load));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.4.2",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 1995,
+        "lineEnd": 2031
+      }
+    },
+    {
+      "id": "wdmodels.u_transformer",
+      "name": "u_transformer",
+      "qualifiedName": "wd.u_transformer",
+      "header": "(wd.)u_transformer",
+      "summary": "Unadapted ideal transformer. An adaptor implementing an ideal transformer for Wave Digital Filter connection trees. The first downward-facing port corresponds to the primary winding connections, and the second downward-facing port to the secondary winding connections.",
+      "usage": "t1(i) = u_transformer(i, tr); buildtree(t1 : (A , B));",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "tr",
+          "description": "the turn ratio between the windings on the primary and secondary coils"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "t1(i) = u_transformer(i, tr); buildtree(t1 : (A , B));"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nroot(i) = wd.u_transformer(i, 2.0);\nprimary(i) = wd.resVoltage_Vout(i, 1500, 0.2 * os.osc(220));\nsecondary(i) = wd.resistor_Vout(i, 2200);\n\nu_transformer_test = wd.buildtree(root : (primary, secondary));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.4.3",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 2055,
+        "lineEnd": 2091
+      }
+    },
+    {
+      "id": "wdmodels.transformer",
+      "name": "transformer",
+      "qualifiedName": "wd.transformer",
+      "header": "(wd.)transformer",
+      "summary": "Adapted ideal transformer. An adaptor implementing an ideal transformer for Wave Digital Filter connection trees. The upward-facing port corresponds to the primary winding connections, and the downward-facing port to the secondary winding connections",
+      "usage": "t1(i) = transformer(i, tr); buildtree(A : t1 : B);",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "tr",
+          "description": "the turn ratio between the windings on the primary and secondary coils"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "t1(i) = transformer(i, tr); buildtree(A : t1 : B);"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nvsrc(i) = wd.u_voltage(i, os.osc(180));\nxfmr(i) = wd.transformer(i, 2.5);\nload(i) = wd.resistor_Vout(i, 2200);\n\ntransformer_test = wd.buildtree(vsrc : (xfmr : load));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.4.3",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 2111,
+        "lineEnd": 2147
+      }
+    },
+    {
+      "id": "wdmodels.u_transformerActive",
+      "name": "u_transformerActive",
+      "qualifiedName": "wd.u_transformerActive",
+      "header": "(wd.)u_transformerActive",
+      "summary": "Unadapted ideal active transformer. An adaptor implementing an ideal transformer for Wave Digital Filter connection trees. The first downward-facing port corresponds to the primary winding connections, and the second downward-facing port to the secondary winding connections.",
+      "usage": "t1(i) = u_transformerActive(i, gamma1, gamma2); buildtree(t1 : (A , B));",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "gamma1",
+          "description": "the turn ratio describing the voltage relationship between the primary and secondary coils"
+        },
+        {
+          "name": "gamma2",
+          "description": "the turn ratio describing the current relationship between the primary and secondary coils"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "t1(i) = u_transformerActive(i, gamma1, gamma2); buildtree(t1 : (A , B));"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nroot(i) = wd.u_transformerActive(i, 0.9, 0.8);\nprimary(i) = wd.resVoltage_Vout(i, 1200, 0.18 * os.osc(190));\nsecondary(i) = wd.resistor_Vout(i, 2200);\n\nu_transformerActive_test = wd.buildtree(root : (primary, secondary));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.4.3",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 2172,
+        "lineEnd": 2209
+      }
+    },
+    {
+      "id": "wdmodels.transformerActive",
+      "name": "transformerActive",
+      "qualifiedName": "wd.transformerActive",
+      "header": "(wd.)transformerActive",
+      "summary": "Adapted ideal active transformer. An adaptor implementing an ideal active transformer for Wave Digital Filter connection trees. The upward-facing port corresponds to the primary winding connections, and the downward-facing port to the secondary winding connections",
+      "usage": "t1(i) = transformerActive(i, gamma1, gamma2); buildtree(A : t1 : B);",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "gamma1",
+          "description": "the turn ratio describing the voltage relationship between the primary and secondary coils"
+        },
+        {
+          "name": "gamma2",
+          "description": "the turn ratio describing the current relationship between the primary and secondary coils"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 1,
+        "raw": "t1(i) = transformerActive(i, gamma1, gamma2); buildtree(A : t1 : B);"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nvsrc(i) = wd.u_voltage(i, os.osc(175));\nxfmr(i) = wd.transformerActive(i, 0.9, 0.8);\nload(i) = wd.resistor_Vout(i, 2200);\n\ntransformerActive_test = wd.buildtree(vsrc : (xfmr : load));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.4.3",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 2230,
+        "lineEnd": 2267
+      }
+    },
+    {
+      "id": "wdmodels.parallel",
+      "name": "parallel",
+      "qualifiedName": "wd.parallel",
+      "header": "(wd.)parallel",
+      "summary": "Adapted 3-port parallel connection. An adaptor implementing a 3-port parallel connection between adaptors for Wave Digital Filter connection trees. This adaptor is used to connect adaptors simulating components connected in parallel in the circuit.",
+      "usage": "buildtree( A : parallel : (B, C) );",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions when the adaptor is declared as `junction(i) = wd.parallel(i)`"
+        }
+      ],
+      "notes": [
+        "Note: this adaptor has no user-accessible parameters. It should be used within the connection tree with one previous and two forward adaptors."
+      ],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 2,
+        "raw": "buildtree( A : parallel : (B, C) );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nvsrc(i) = wd.u_voltage(i, os.osc(220));\njunction(i) = wd.parallel(i);\nbranch_a(i) = wd.resistor(i, 1200);\nbranch_b(i) = wd.resistor_Vout(i, 1800);\n\nparallel_test = wd.buildtree(vsrc : (junction : (branch_a, branch_b)));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.5.1",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 2296,
+        "lineEnd": 2331
+      }
+    },
+    {
+      "id": "wdmodels.series",
+      "name": "series",
+      "qualifiedName": "wd.series",
+      "header": "(wd.)series",
+      "summary": "Adapted 3-port series connection. An adaptor implementing a 3-port series connection between adaptors for Wave Digital Filter connection trees. This adaptor is used to connect adaptors simulating components connected in series in the circuit.",
+      "usage": "tree = A : (series : (B, C)); Note: this adaptor has no user-accessible parameters. It should be used within the connection tree with one previous and two forward adaptors.",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "tree = A : (series : (B, C)); Note: this adaptor has no user-accessible parameters. It should be used within the connection tree with one previous and two forward adaptors."
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nvsrc(i) = wd.u_voltage(i, os.osc(260));\njunction(i) = wd.series(i);\nbranch_a(i) = wd.resistor(i, 1000);\nbranch_b(i) = wd.resistor_Vout(i, 2200);\n\nseries_test = wd.buildtree(vsrc : (junction : (branch_a, branch_b)));",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 1.5.2",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 2356,
+        "lineEnd": 2388
+      }
+    },
+    {
+      "id": "wdmodels.u_sixportPassive",
+      "name": "u_sixportPassive",
+      "qualifiedName": "wd.u_sixportPassive",
+      "header": "(wd.)u_sixportPassive",
+      "summary": "Unadapted six-port rigid connection. An adaptor implementing a six-port passive rigid connection between elements. It implements the simplest possible rigid connection found in the Fender Bassman Tonestack circuit.",
+      "usage": "tree = u_sixportPassive : (A, B, C, D, E, F)); Note: this adaptor has no user-accessible parameters. It should be used within the connection tree with six forward adaptors.",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "tree = u_sixportPassive : (A, B, C, D, E, F)); Note: this adaptor has no user-accessible parameters. It should be used within the connection tree with six forward adaptors."
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nu_sixportPassive_test = (1000, 1200, 1400, 1600, 1800, 2000, os.osc(220), 0, 0, 0, 0, 0, 0)\n  : wd.u_sixportPassive(0) : _, !, !, !, !;",
+      "references": [
+        "K. Werner, \"Virtual Analog Modeling of Audio Circuitry Using Wave Digital Filters\", 2.1.5",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 2416,
+        "lineEnd": 2445
+      }
+    },
+    {
+      "id": "wdmodels.genericNode",
+      "name": "genericNode",
+      "qualifiedName": "wd.genericNode",
+      "header": "(wd.)genericNode",
+      "summary": "Function for generating an adapted node from another faust function or scattering matrix. This function generates a node which is suitable for use in the connection tree structure. `genericNode` separates the function that it is passed into upward-going and downward-going waves.",
+      "usage": "n1(i) = genericNode(i, scatter, upRes);",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "scatter",
+          "description": "the function which describes the the node's scattering behavior"
+        },
+        {
+          "name": "upRes",
+          "description": "the function which describes the node's upward-facing port-resistance"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 3,
+        "raw": "n1(i) = genericNode(i, scatter, upRes);"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nscatter(a) = -a * 0.5;\nupRes = 1200;\n\nnode(i) = wd.genericNode(i, scatter, upRes);\nvsrc(i) = wd.u_voltage(i, os.osc(220));\nbranch(i) = wd.series(i);\nprobe(i) = wd.resistor_Vout(i, 1800);\n\ngenericNode_test = wd.buildtree(vsrc : (branch : (node, probe)));",
+      "references": [],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 2500,
+        "lineEnd": 2578
+      }
+    },
+    {
+      "id": "wdmodels.genericNode_Vout",
+      "name": "genericNode_Vout",
+      "qualifiedName": "wd.genericNode_Vout",
+      "header": "(wd.)genericNode_Vout",
+      "summary": "Function for generating a terminating/leaf node which gives the voltage across itself as a model output. This function generates a node which is suitable for use in the connection tree structure. It also calculates the voltage across the element and gives it as a model output.",
+      "usage": "n1(i) = genericNode_Vout(i, scatter, upRes);",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "scatter",
+          "description": "the function which describes the the node's scattering behavior"
+        },
+        {
+          "name": "upRes",
+          "description": "the function which describes the node's upward-facing port-resistance"
+        }
+      ],
+      "notes": [
+        "Note: `scatter` must be a function with 1 input and 1 output. It should give the output from the node based on the incident wave. The model will automatically introduce a one-sample delay to the output of the function Thus, the output of the node at sample t based on the input, a[t], should be the output one sample ahead, b[t+1]. This may require transformation of the output signal. `upRes` must be a function with no inputs and 1 output. The output should give the upward-facing port resistance of the node. ----------------------------------------------------------"
+      ],
+      "io": {
+        "inSignals": null,
+        "outSignals": 3,
+        "raw": "n1(i) = genericNode_Vout(i, scatter, upRes);"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 2604,
+        "lineEnd": 2631
+      }
+    },
+    {
+      "id": "wdmodels.genericNode_Iout",
+      "name": "genericNode_Iout",
+      "qualifiedName": "wd.genericNode_Iout",
+      "header": "(wd.)genericNode_Iout",
+      "summary": "Function for generating a terminating/leaf node which gives the current through itself as a model output. This function generates a node which is suitable for use in the connection tree structure. It also calculates the current through the element and gives it as a model output.",
+      "usage": "n1(i) = genericNode_Iout(i, scatter, upRes);",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "scatter",
+          "description": "the function which describes the the node's scattering behavior"
+        },
+        {
+          "name": "upRes",
+          "description": "the function which describes the node's upward-facing port-resistance"
+        }
+      ],
+      "notes": [
+        "Note: `scatter` must be a function with 1 input and 1 output. It should give the output from the node based on the incident wave. The model will automatically introduce a one-sample delay to the output of the function. Thus, the output of the node at sample t based on the input, a[t], should be the output one sample ahead, b[t+1]. This may require transformation of the output signal. `upRes` must be a function with no inputs and 1 output. The output should give the upward-facing port resistance of the node. ----------------------------------------------------------"
+      ],
+      "io": {
+        "inSignals": null,
+        "outSignals": 3,
+        "raw": "n1(i) = genericNode_Iout(i, scatter, upRes);"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 2646,
+        "lineEnd": 2673
+      }
+    },
+    {
+      "id": "wdmodels.u_genericNode",
+      "name": "u_genericNode",
+      "qualifiedName": "wd.u_genericNode",
+      "header": "(wd.)u_genericNode",
+      "summary": "Function for generating an unadapted node from another Faust function or scattering matrix. This function generates a node which is suitable for use as the root of the connection tree structure.",
+      "usage": "n1(i) = u_genericNode(i, scatter);",
+      "params": [
+        {
+          "name": "i",
+          "description": "index used by model-building functions. Should never be user declared"
+        },
+        {
+          "name": "scatter",
+          "description": "the function which describes the the node's scattering behavior"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "n1(i) = u_genericNode(i, scatter);"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nscatter(a) = -a * 0.5;\n\nroot(i) = wd.u_genericNode(i, scatter);\nbranch(i) = wd.series(i);\nload_a(i) = wd.resistor(i, 1500);\nload_b(i) = wd.resistor_Vout(i, 2200);\n\nu_genericNode_test = wd.buildtree(root : (branch : (load_a, load_b)));",
+      "references": [],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 2689,
+        "lineEnd": 2724
+      }
+    },
+    {
+      "id": "wdmodels.builddown",
+      "name": "builddown",
+      "qualifiedName": "wd.builddown",
+      "header": "(wd.)builddown",
+      "summary": "Function for building the structure for calculating waves traveling down the WD connection tree. It recursively steps through the given tree, parametrizes the adaptors, and builds an algorithm. It is used in conjunction with the buildup() function to create a model.",
+      "usage": "builddown(A : B)~buildup(A : B);",
+      "params": [],
+      "notes": [
+        "`(A : B)` : is a connection tree composed of WD adaptors"
+      ],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "builddown(A : B)~buildup(A : B);"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nvsrc(i) = wd.u_voltage(i, os.osc(220));\nbranch(i) = wd.series(i);\nres_leaf(i) = wd.resistor(i, 1200);\nprobe(i) = wd.resistor_Vout(i, 1800);\ntree = vsrc : (branch : (res_leaf, probe));\n\nbuilddown_test = wd.builddown(tree) ~ wd.buildup(tree) : wd.buildout(tree);",
+      "references": [],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 2744,
+        "lineEnd": 2772
+      }
+    },
+    {
+      "id": "wdmodels.buildup",
+      "name": "buildup",
+      "qualifiedName": "wd.buildup",
+      "header": "(wd.)buildup",
+      "summary": "Function for building the structure for calculating waves traveling up the WD connection tree. It recursively steps through the given tree, parametrizes the adaptors, and builds an algorithm. It is used in conjunction with the builddown() function to create a full structure.",
+      "usage": "builddown(A : B)~buildup(A : B);",
+      "params": [],
+      "notes": [
+        "`(A : B)` : is a connection tree composed of WD adaptors"
+      ],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "builddown(A : B)~buildup(A : B);"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nvsrc(i) = wd.u_voltage(i, os.osc(220));\nbranch(i) = wd.series(i);\nres_leaf(i) = wd.resistor(i, 1200);\nprobe(i) = wd.resistor_Vout(i, 1800);\ntree = vsrc : (branch : (res_leaf, probe));\n\nbuildup_test = wd.builddown(tree) ~ wd.buildup(tree) : wd.buildout(tree);",
+      "references": [],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 2829,
+        "lineEnd": 2857
+      }
+    },
+    {
+      "id": "wdmodels.getres",
+      "name": "getres",
+      "qualifiedName": "wd.getres",
+      "header": "(wd.)getres",
+      "summary": "Function for determining the upward-facing port resistance of a partial WD connection tree. It recursively steps through the given tree, parametrizes the adaptors, and builds an algorithm. It is used by the buildup and builddown functions but is also helpful in testing.",
+      "usage": "getres(A : B)~getres(A : B);",
+      "params": [],
+      "notes": [
+        "`(A : B)` : is a partial connection tree composed of WD adaptors"
+      ],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "getres(A : B)~getres(A : B);"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nbranch(i) = wd.series(i);\nres_leaf(i) = wd.resistor(i, 1200);\nprobe(i) = wd.resistor_Vout(i, 1800);\nsubtree = branch : (res_leaf, probe);\n\ngetres_value = wd.getres(subtree);\ngetres_test = os.osc(110) * (1.0/(1.0 + getres_value));",
+      "references": [],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 2923,
+        "lineEnd": 2954
+      }
+    },
+    {
+      "id": "wdmodels.parres",
+      "name": "parres",
+      "qualifiedName": "wd.parres",
+      "header": "(wd.)parres",
+      "summary": "Function for determining the upward-facing port resistance of a partial WD connection tree. It recursively steps through the given tree, parametrizes the adaptors, and builds an algorithm. It is used by the buildup and builddown functions but is also helpful in testing. This function is a parallelized version of `getres`.",
+      "usage": "parres((A , B))~parres((A , B));",
+      "params": [],
+      "notes": [
+        "`(A , B)` : is a partial connection tree composed of WD adaptors"
+      ],
+      "io": {
+        "inSignals": null,
+        "outSignals": 3,
+        "raw": "parres((A , B))~parres((A , B));"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nbranchLeft(i) = wd.series(i);\nres_left(i) = wd.resistor(i, 1200);\nprobe_left(i) = wd.resistor(i, 1800);\nsubtree_left = branchLeft : (res_left, probe_left);\n\nbranchRight(i) = wd.parallel(i);\nres_right(i) = wd.resistor(i, 1500);\nprobe_right(i) = wd.resistor(i, 2200);\nsubtree_right = branchRight : (res_right, probe_right);\n\nparres_test = wd.parres((subtree_left, subtree_right)) : _, !;",
+      "references": [],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 2962,
+        "lineEnd": 2997
+      }
+    },
+    {
+      "id": "wdmodels.buildout",
+      "name": "buildout",
+      "qualifiedName": "wd.buildout",
+      "header": "(wd.)buildout",
+      "summary": "Function for creating the output matrix for a WD model from a WD connection tree. It recursively steps through the given tree and creates an output matrix passing only outputs.",
+      "usage": "buildout( A : B );",
+      "params": [],
+      "notes": [
+        "`(A : B)` : is a connection tree composed of WD adaptors"
+      ],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "buildout( A : B );"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nvsrc(i) = wd.u_voltage(i, os.osc(240));\nbranch(i) = wd.series(i);\nres_leaf(i) = wd.resistor(i, 1200);\nprobe(i) = wd.resistor_Vout(i, 1800);\ntree = vsrc : (branch : (res_leaf, probe));\n\nbuildout_matrix = wd.buildout(tree);\nbuildout_test = wd.builddown(tree) ~ wd.buildup(tree) : buildout_matrix;",
+      "references": [],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 3005,
+        "lineEnd": 3033
+      }
+    },
+    {
+      "id": "wdmodels.buildtree",
+      "name": "buildtree",
+      "qualifiedName": "wd.buildtree",
+      "header": "(wd.)buildtree",
+      "summary": "Function for building the DSP model from a WD connection tree structure. It recursively steps through the given tree, parametrizes the adaptors, and builds the algorithm.",
+      "usage": "buildtree(A : B);",
+      "params": [],
+      "notes": [
+        "`(A : B)` : a connection tree composed of WD adaptors"
+      ],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "buildtree(A : B);"
+      },
+      "testCode": "wd = library(\"wdmodels.lib\");\nos = library(\"oscillators.lib\");\n\nvsrc(i) = wd.u_voltage(i, os.osc(220));\nbranch(i) = wd.series(i);\nres_leaf(i) = wd.resistor(i, 1200);\nprobe(i) = wd.resistor_Vout(i, 1800);\ntree = vsrc : (branch : (res_leaf, probe));\n\nbuildtree_test = wd.buildtree(tree);",
+      "references": [],
+      "tags": [
+        "wdmodels"
+      ],
+      "source": {
+        "file": "wdmodels.lib",
+        "path": "wdmodels.lib",
+        "lineStart": 3049,
+        "lineEnd": 3076
+      }
+    }
+  ]
+}

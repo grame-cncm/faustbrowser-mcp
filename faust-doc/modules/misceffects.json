@@ -1,0 +1,959 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "misceffects.lib",
+    "path": "misceffects.lib",
+    "aliasHints": [
+      "ef"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "misceffects.cubicnl",
+      "name": "cubicnl",
+      "qualifiedName": "ef.cubicnl",
+      "header": "(ef.)cubicnl",
+      "summary": "Cubic nonlinearity distortion. `cubicnl` is a standard Faust function.",
+      "usage": "_ : cubicnl(drive,offset) : _ _ : cubicnl_nodc(drive,offset) : _",
+      "params": [
+        {
+          "name": "drive",
+          "description": "distortion amount, between 0 and 1"
+        },
+        {
+          "name": "offset",
+          "description": "constant added before nonlinearity to give even harmonics. Note: offset can introduce a nonzero mean - feed cubicnl output to dcblocker to remove this."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : cubicnl(drive,offset) : _ _ : cubicnl_nodc(drive,offset) : _"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nos = library(\"oscillators.lib\");\ncubicnl_test = os.osc(440) : ef.cubicnl(0.5, 0.0);\ncubicnl_nodc_test = os.osc(440) : ef.cubicnl_nodc(0.5, 0.0);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Cubic_Soft_Clipper.html>",
+        "<https://ccrma.stanford.edu/~jos/pasp/Nonlinear_Distortion.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 73,
+        "lineEnd": 102
+      }
+    },
+    {
+      "id": "misceffects.gate_mono",
+      "name": "gate_mono",
+      "qualifiedName": "ef.gate_mono",
+      "header": "(ef.)gate_mono",
+      "summary": "Mono signal gate. `gate_mono` is a standard Faust function.",
+      "usage": "_ : gate_mono(thresh,att,hold,rel) : _",
+      "params": [
+        {
+          "name": "thresh",
+          "description": "dB level threshold above which gate opens (e.g., -60 dB)"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) for gate to open (e.g., 0.0001 s = 0.1 ms)"
+        },
+        {
+          "name": "hold",
+          "description": "hold time = time (sec) gate stays open after signal level < thresh (e.g., 0.1 s)"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) for gate to close (e.g., 0.020 s = 20 ms)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : gate_mono(thresh,att,hold,rel) : _"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nos = library(\"oscillators.lib\");\ngate_mono_test = os.osc(440) : ef.gate_mono(-60, 0.0001, 0.1, 0.02);",
+      "references": [
+        "<http://en.wikipedia.org/wiki/Noise_gate>",
+        "<http://www.soundonsound.com/sos/apr01/articles/advanced.asp>",
+        "<http://en.wikipedia.org/wiki/Gating_(sound_engineering)>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 118,
+        "lineEnd": 147
+      }
+    },
+    {
+      "id": "misceffects.gate_stereo",
+      "name": "gate_stereo",
+      "qualifiedName": "ef.gate_stereo",
+      "header": "(ef.)gate_stereo",
+      "summary": "Stereo signal gates. `gate_stereo` is a standard Faust function.",
+      "usage": "_,_ : gate_stereo(thresh,att,hold,rel) : _,_",
+      "params": [
+        {
+          "name": "thresh",
+          "description": "dB level threshold above which gate opens (e.g., -60 dB)"
+        },
+        {
+          "name": "att",
+          "description": "attack time = time constant (sec) for gate to open (e.g., 0.0001 s = 0.1 ms)"
+        },
+        {
+          "name": "hold",
+          "description": "hold time = time (sec) gate stays open after signal level < thresh (e.g., 0.1 s)"
+        },
+        {
+          "name": "rel",
+          "description": "release time = time constant (sec) for gate to close (e.g., 0.020 s = 20 ms)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : gate_stereo(thresh,att,hold,rel) : _,_"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nos = library(\"oscillators.lib\");\ngate_stereo_test = os.osc(440), os.osc(441) : ef.gate_stereo(-60, 0.0001, 0.1, 0.02);",
+      "references": [
+        "<http://en.wikipedia.org/wiki/Noise_gate>",
+        "<http://www.soundonsound.com/sos/apr01/articles/advanced.asp>",
+        "<http://en.wikipedia.org/wiki/Gating_(sound_engineering)>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 153,
+        "lineEnd": 182
+      }
+    },
+    {
+      "id": "misceffects.fibonacci",
+      "name": "fibonacci",
+      "qualifiedName": "ef.fibonacci",
+      "header": "(ef.)fibonacci",
+      "summary": "Fibonacci system where the current output is the current input plus the sum of the previous N outputs.",
+      "usage": "_ : fibonacci(N) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "the Fibonacci system's order, where 2 is standard"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : fibonacci(N) : _"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nfibonacci_test = 0 : ef.fibonacci(2);",
+      "references": [],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 206,
+        "lineEnd": 232
+      }
+    },
+    {
+      "id": "misceffects.fibonacciGeneral",
+      "name": "fibonacciGeneral",
+      "qualifiedName": "ef.fibonacciGeneral",
+      "header": "(ef.)fibonacciGeneral",
+      "summary": "Fibonacci system with customizable coefficients. The order of the system is inferred from the number of coefficients.",
+      "usage": "_ : fibonacciGeneral(wave) : _",
+      "params": [
+        {
+          "name": "wave",
+          "description": "a waveform such as `waveform{1, 1}`"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : fibonacciGeneral(wave) : _"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nfibonacciGeneral_test = 0 : ef.fibonacciGeneral(waveform{2, 3});",
+      "references": [],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 238,
+        "lineEnd": 264
+      }
+    },
+    {
+      "id": "misceffects.fibonacciSeq",
+      "name": "fibonacciSeq",
+      "qualifiedName": "ef.fibonacciSeq",
+      "header": "(ef.)fibonacciSeq",
+      "summary": "First N numbers of the Fibonacci sequence [1, 1, 2, 3, 5, 8, ...] as parallel channels.",
+      "usage": "fibonacciSeq(N) : si.bus(N)",
+      "params": [
+        {
+          "name": "N",
+          "description": "The number of Fibonacci numbers to generate as channels."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "fibonacciSeq(N) : si.bus(N)"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nfibonacciSeq_test = ef.fibonacciSeq(5);",
+      "references": [],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 274,
+        "lineEnd": 294
+      }
+    },
+    {
+      "id": "misceffects.speakerbp",
+      "name": "speakerbp",
+      "qualifiedName": "ef.speakerbp",
+      "header": "(ef.)speakerbp",
+      "summary": "Dirt-simple speaker simulator (overall bandpass eq with observed roll-offs above and below the passband). `speakerbp` is a standard Faust function. Low-frequency speaker model = +12 dB/octave slope breaking to flat near f1. Implemented using two dc blockers in series. High-frequency model = -24 dB/octave slope implemented using a fourth-order Butterworth lowpass.",
+      "usage": "_ : speakerbp(f1,f2) : _",
+      "params": [
+        {
+          "name": "f1",
+          "description": "low-frequency break point in Hz for the speaker model"
+        },
+        {
+          "name": "f2",
+          "description": "high-frequency lowpass cutoff in Hz for the speaker model"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : speakerbp(f1,f2) : _"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nos = library(\"oscillators.lib\");\nspeakerbp_test = os.osc(440) : ef.speakerbp(100.0, 5000.0);",
+      "references": [],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 308,
+        "lineEnd": 344
+      }
+    },
+    {
+      "id": "misceffects.piano_dispersion_filter",
+      "name": "piano_dispersion_filter",
+      "qualifiedName": "ef.piano_dispersion_filter",
+      "header": "(ef.)piano_dispersion_filter",
+      "summary": "Piano dispersion allpass filter in closed form.",
+      "usage": "piano_dispersion_filter(M,B,f0) _ : piano_dispersion_filter(1,B,f0) : +(totalDelay),_ : fdelay(maxDelay) : _",
+      "params": [
+        {
+          "name": "M",
+          "description": "number of first-order allpass sections (compile-time only) Keep below 20. 8 is typical for medium-sized piano strings."
+        },
+        {
+          "name": "B",
+          "description": "string inharmonicity coefficient (0.0001 is typical)"
+        },
+        {
+          "name": "f0",
+          "description": "fundamental frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 1,
+        "raw": "piano_dispersion_filter(M,B,f0) _ : piano_dispersion_filter(1,B,f0) : +(totalDelay),_ : fdelay(maxDelay) : _"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nos = library(\"oscillators.lib\");\npiano_dispersion_filter_test = os.osc(110) : ef.piano_dispersion_filter(4, 0.0001, 110);",
+      "references": [
+        "\"Dispersion Modeling in Waveguide Piano Synthesis Using Tunable",
+        "Allpass Filters\", by Jukka Rauhala and Vesa Valimaki, DAFX-2006, pp. 71-76",
+        "<http://lib.tkk.fi/Diss/2007/isbn9789512290666/article2.pdf>",
+        "An erratum in Eq. (7) is corrected in Dr. Rauhala's encompassing",
+        "dissertation (and below).",
+        "<http://www.acoustics.hut.fi/research/asp/piano/>",
+        "------------------------------------------------------------",
+        "TODO: perhaps this should be moved to physmodels.lib?",
+        "[JOS: I vote yes when there is a piano model in physmodels.lib.]"
+      ],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 351,
+        "lineEnd": 392
+      }
+    },
+    {
+      "id": "misceffects.stereo_width",
+      "name": "stereo_width",
+      "qualifiedName": "ef.stereo_width",
+      "header": "(ef.)stereo_width",
+      "summary": "Stereo Width effect using the Blumlein Shuffler technique. `stereo_width` is a standard Faust function.",
+      "usage": "_,_ : stereo_width(w) : _,_",
+      "params": [
+        {
+          "name": "w",
+          "description": "stereo width between 0 and 1"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : stereo_width(w) : _,_"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nos = library(\"oscillators.lib\");\nstereo_width_test = os.osc(440), os.osc(550) : ef.stereo_width(0.5);",
+      "references": [
+        "\"Applications of Blumlein Shuffling to Stereo Microphone Techniques\"",
+        "Michael A. Gerzon, JAES vol. 42, no. 6, June 1994",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 418,
+        "lineEnd": 447
+      }
+    },
+    {
+      "id": "misceffects.mesh_square",
+      "name": "mesh_square",
+      "qualifiedName": "ef.mesh_square",
+      "header": "(ef.)mesh_square",
+      "summary": "Square Rectangular Digital Waveguide Mesh.",
+      "usage": "bus(4*N) : mesh_square(N) : bus(4*N)",
+      "params": [
+        {
+          "name": "N",
+          "description": "number of nodes along each edge - a power of two (1,2,4,8,...)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "bus(4*N) : mesh_square(N) : bus(4*N)"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nmesh_square_test = (0,0,0,0) : ef.mesh_square(1);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Digital_Waveguide_Mesh.html>",
+        "------------------------------------------------------------",
+        "four-port scattering junction:"
+      ],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 464,
+        "lineEnd": 546
+      }
+    },
+    {
+      "id": "misceffects.dryWetMixer",
+      "name": "dryWetMixer",
+      "qualifiedName": "ef.dryWetMixer",
+      "header": "(ef.)dryWetMixer",
+      "summary": "Linear dry-wet mixer for an N-inputs, N-outputs effect. The dry and wet gains sum to 1 for all positions, so this mixer is mono-safe but not constant-power: total power dips at the midpoint (each channel at \u22126 dB). * `wetAmount = 0`  : dry = 1.0 (0 dB),  wet = 0 * `wetAmount = 0.5`: dry = 0.5 (\u22126 dB), wet = 0.5 (\u22126 dB) * `wetAmount = 1`  : dry = 0,           wet = 1.0 (0 dB)",
+      "usage": "si.bus(inputs(FX)) : dryWetMixer(wetAmount, FX) : si.bus(inputs(FX))",
+      "params": [
+        {
+          "name": "wetAmount",
+          "description": "the wet amount (0-1). 0 produces only the dry signal at unity, and 1 produces only the wet signal at unity"
+        },
+        {
+          "name": "FX",
+          "description": "an arbitrary effect (N inputs and N outputs) to apply to the input bus"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(inputs(FX)) : dryWetMixer(wetAmount, FX) : si.bus(inputs(FX))"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nos = library(\"oscillators.lib\");\ndryWetMixer_test = os.osc(440) : ef.dryWetMixer(0.5, fi.dcblocker);",
+      "references": [],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 622,
+        "lineEnd": 650
+      }
+    },
+    {
+      "id": "misceffects.dryWetMixerConstantPower",
+      "name": "dryWetMixerConstantPower",
+      "qualifiedName": "ef.dryWetMixerConstantPower",
+      "header": "(ef.)dryWetMixerConstantPower",
+      "summary": "Constant-power dry-wet mixer for an N-inputs, N-outputs effect. The dry input is scaled by cos(\u03b8)/\u221a2 and the wet output by sin(\u03b8)/\u221a2, where \u03b8 = \u03c0*wetAmount/2. * `wetAmount = 0`  : dry = 1/\u221a2 \u2248 0.707 (\u22123 dB), wet = 0 * `wetAmount = 0.5`: dry = 0.5 (\u22126 dB),          wet = 0.5 (\u22126 dB) * `wetAmount = 1`  : dry = 0,                    wet = 1/\u221a2 \u2248 0.707 (\u22123 dB)",
+      "usage": "si.bus(inputs(FX)) : dryWetMixerConstantPower(wetAmount, FX) : si.bus(inputs(FX))",
+      "params": [
+        {
+          "name": "wetAmount",
+          "description": "the wet amount (0-1). 0 produces only the dry signal at \u22123 dB and 1 produces only the wet signal at \u22123 dB"
+        },
+        {
+          "name": "FX",
+          "description": "an arbitrary effect (N inputs and N outputs) to apply to the input bus"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(inputs(FX)) : dryWetMixerConstantPower(wetAmount, FX) : si.bus(inputs(FX))"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nos = library(\"oscillators.lib\");\ndryWetMixerConstantPower_test = os.osc(440) : ef.dryWetMixerConstantPower(0.5, fi.dcblocker);",
+      "references": [],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 656,
+        "lineEnd": 701
+      }
+    },
+    {
+      "id": "misceffects.mixLinearClamp",
+      "name": "mixLinearClamp",
+      "qualifiedName": "ef.mixLinearClamp",
+      "header": "(ef.)mixLinearClamp",
+      "summary": "Linear mixer for `N` buses, each with `C` channels. The output will be a sum of 2 buses determined by the mixing index `mix`. 0 produces the first bus, 1 produces the second, and so on. `mix` is clamped automatically. For example, `mixLinearClamp(4, 1, 1)` will weight its 4 inputs by `(0, 1, 0, 0)`. Similarly, `mixLinearClamp(4, 1, 1.1)` will weight its 4 inputs by `(0,.9,.1,0)`.",
+      "usage": "si.bus(N*C) : mixLinearClamp(N, C, mix) : si.bus(C)",
+      "params": [
+        {
+          "name": "N",
+          "description": "the number of input buses"
+        },
+        {
+          "name": "C",
+          "description": "the number of channels in each bus"
+        },
+        {
+          "name": "mix",
+          "description": "the mixing index, continuous in [0;N-1]."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N*C) : mixLinearClamp(N, C, mix) : si.bus(C)"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nmixLinearClamp_test = (1,0,0,0) : ef.mixLinearClamp(4, 1, 1.2);",
+      "references": [],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 811,
+        "lineEnd": 835
+      }
+    },
+    {
+      "id": "misceffects.mixLinearLoop",
+      "name": "mixLinearLoop",
+      "qualifiedName": "ef.mixLinearLoop",
+      "header": "(ef.)mixLinearLoop",
+      "summary": "Linear mixer for `N` buses, each with `C` channels. Refer to `mixLinearClamp`. `mix` will loop for multiples of `N`. For example, `mixLinearLoop(4, 1, 0)` has the same effect as `mixLinearLoop(4, 1, -4)` and `mixLinearLoop(4, 1, 4)`.",
+      "usage": "si.bus(N*C) : mixLinearLoop(N, C, mix) : si.bus(C)",
+      "params": [
+        {
+          "name": "N",
+          "description": "the number of input buses"
+        },
+        {
+          "name": "C",
+          "description": "the number of channels in each bus"
+        },
+        {
+          "name": "mix",
+          "description": "the mixing index (N-1) selects the last bus, and 0 or N selects the 0th bus."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N*C) : mixLinearLoop(N, C, mix) : si.bus(C)"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nmixLinearLoop_test = (1,0,0,0) : ef.mixLinearLoop(4, 1, -0.3);",
+      "references": [],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 841,
+        "lineEnd": 863
+      }
+    },
+    {
+      "id": "misceffects.mixPowerClamp",
+      "name": "mixPowerClamp",
+      "qualifiedName": "ef.mixPowerClamp",
+      "header": "(ef.)mixPowerClamp",
+      "summary": "Constant-power mixer for `N` buses, each with `C` channels. The output will be a sum of 2 buses determined by the mixing index `mix`. 0 produces the first bus, 1 produces the second, and so on. `mix` is clamped automatically. `mixPowerClamp(4, 1, 1)` will weight its 4 inputs by `(0, 1./sqrt(2), 0, 0)`. Similarly, `mixPowerClamp(4, 1, 1.5)` will weight its 4 inputs by `(0,.5,.5,0)`.",
+      "usage": "si.bus(N*C) : mixPowerClamp(N, C, mix) : si.bus(C)",
+      "params": [
+        {
+          "name": "N",
+          "description": "the number of input buses"
+        },
+        {
+          "name": "C",
+          "description": "the number of channels in each bus"
+        },
+        {
+          "name": "mix",
+          "description": "the mixing index, continuous in [0;N-1]."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N*C) : mixPowerClamp(N, C, mix) : si.bus(C)"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nmixPowerClamp_test = (1,0,0,0) : ef.mixPowerClamp(4, 1, 1.5);",
+      "references": [],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 869,
+        "lineEnd": 893
+      }
+    },
+    {
+      "id": "misceffects.mixPowerLoop",
+      "name": "mixPowerLoop",
+      "qualifiedName": "ef.mixPowerLoop",
+      "header": "(ef.)mixPowerLoop",
+      "summary": "Constant-power mixer for `N` buses, each with `C` channels. Refer to `mixPowerClamp`. `mix` will loop for multiples of `N`. For example, `mixPowerLoop(4, 1, 0)` has the same effect as `mixPowerLoop(4, 1, -4)` and `mixPowerLoop(4, 1, 4)`.",
+      "usage": "si.bus(N*C) : mixPowerLoop(N, C, mix) : si.bus(C)",
+      "params": [
+        {
+          "name": "N",
+          "description": "the number of input buses"
+        },
+        {
+          "name": "C",
+          "description": "the number of channels in each bus"
+        },
+        {
+          "name": "mix",
+          "description": "the mixing index (N-1) selects the last bus, and 0 or N selects the 0th bus."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N*C) : mixPowerLoop(N, C, mix) : si.bus(C)"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nmixPowerLoop_test = (1,0,0,0) : ef.mixPowerLoop(4, 1, -0.5);",
+      "references": [],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 899,
+        "lineEnd": 921
+      }
+    },
+    {
+      "id": "misceffects.echo",
+      "name": "echo",
+      "qualifiedName": "ef.echo",
+      "header": "(ef.)echo",
+      "summary": "A simple echo effect. `echo` is a standard Faust function.",
+      "usage": "_ : echo(maxDuration,duration,feedback) : _",
+      "params": [
+        {
+          "name": "maxDuration",
+          "description": "the max echo duration in seconds"
+        },
+        {
+          "name": "duration",
+          "description": "the echo duration in seconds"
+        },
+        {
+          "name": "feedback",
+          "description": "the feedback coefficient"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : echo(maxDuration,duration,feedback) : _"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nos = library(\"oscillators.lib\");\necho_test = os.osc(440) : ef.echo(0.5, 0.25, 0.4);",
+      "references": [],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 931,
+        "lineEnd": 952
+      }
+    },
+    {
+      "id": "misceffects.reverseEchoN",
+      "name": "reverseEchoN",
+      "qualifiedName": "ef.reverseEchoN",
+      "header": "(ef.)reverseEchoN",
+      "summary": "Reverse echo effect.",
+      "usage": "_ : ef.reverseEchoN(N,delay) : si.bus(N)",
+      "params": [
+        {
+          "name": "N",
+          "description": "Number of output channels desired (1 or more), a constant numerical expression"
+        },
+        {
+          "name": "delay",
+          "description": "echo delay (integer power of 2)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : ef.reverseEchoN(N,delay) : si.bus(N)"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nos = library(\"oscillators.lib\");\nreverseEchoN_test = os.osc(440) : ef.reverseEchoN(2, 32);",
+      "references": [],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 963,
+        "lineEnd": 994
+      }
+    },
+    {
+      "id": "misceffects.reverseDelayRamped",
+      "name": "reverseDelayRamped",
+      "qualifiedName": "ef.reverseDelayRamped",
+      "header": "(ef.)reverseDelayRamped",
+      "summary": "Reverse delay with amplitude ramp.",
+      "usage": "_ : ef.reverseDelayRamped(delay,phase) : _",
+      "params": [
+        {
+          "name": "delay",
+          "description": "echo delay (integer power of 2)"
+        },
+        {
+          "name": "phase",
+          "description": "float between 0 and 1 giving ramp delay phase*delay"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : ef.reverseDelayRamped(delay,phase) : _"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nos = library(\"oscillators.lib\");\nreverseDelayRamped_test = os.osc(440) : ef.reverseDelayRamped(32, 0.6);",
+      "references": [],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 1001,
+        "lineEnd": 1028
+      }
+    },
+    {
+      "id": "misceffects.uniformPanToStereo",
+      "name": "uniformPanToStereo",
+      "qualifiedName": "ef.uniformPanToStereo",
+      "header": "(ef.)uniformPanToStereo",
+      "summary": "Pan nChans channels to the stereo field, spread uniformly left to right.",
+      "usage": "si.bus(N) : ef.uniformPanToStereo(N) : _,_",
+      "params": [
+        {
+          "name": "N",
+          "description": "Number of input channels to pan down to stereo, a constant numerical expression"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 2,
+        "raw": "si.bus(N) : ef.uniformPanToStereo(N) : _,_"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nos = library(\"oscillators.lib\");\nuniformPanToStereo_test = os.osc(440), os.osc(550), os.osc(660) : ef.uniformPanToStereo(3);",
+      "references": [],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 1039,
+        "lineEnd": 1065
+      }
+    },
+    {
+      "id": "misceffects.tapeStop",
+      "name": "tapeStop",
+      "qualifiedName": "ef.tapeStop",
+      "header": "(ef.)tapeStop",
+      "summary": "A tape-stop effect, like putting a finger on a vinyl record player.",
+      "usage": "_,_ : tapeStop(2, LAGRANGE_ORDER, MAX_TIME_SAMP, crossfade, gainAlpha, stopAlpha, stopTime, stop) : _,_ _ : tapeStop(1, LAGRANGE_ORDER, MAX_TIME_SAMP, crossfade, gainAlpha, stopAlpha, stopTime, stop) : _",
+      "params": [
+        {
+          "name": "C",
+          "description": "The number of input and output channels."
+        },
+        {
+          "name": "LAGRANGE_ORDER",
+          "description": "The order of the Lagrange interpolation on the delay line. [2-3] recommended."
+        },
+        {
+          "name": "MAX_TIME_SAMP",
+          "description": "Maximum stop time in samples"
+        },
+        {
+          "name": "crossfade",
+          "description": "A crossfade in samples to apply when resuming normal playback. Crossfade is not applied during the enabling of the tape-stop."
+        },
+        {
+          "name": "gainAlpha",
+          "description": "During the tape-stop, lower alpha stays louder longer. Safe values are in the range [.01,2]."
+        },
+        {
+          "name": "stopAlpha",
+          "description": "`stopAlpha==1` represents a linear deceleration (constant force). `stopAlpha<1` represents an initially weaker, then stronger force. `stopAlpha>1` represents an initially stronger, then weaker force. Safe values are in the range [.01,2]."
+        },
+        {
+          "name": "stopTime",
+          "description": "Desired duration of the stop time, in samples."
+        },
+        {
+          "name": "stop",
+          "description": "When `stop` becomes positive, the tape-stop effect will start. When `stop` becomes zero, normal audio will resume via crossfade."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "_,_ : tapeStop(2, LAGRANGE_ORDER, MAX_TIME_SAMP, crossfade, gainAlpha, stopAlpha, stopTime, stop) : _,_ _ : tapeStop(1, LAGRANGE_ORDER, MAX_TIME_SAMP, crossfade, gainAlpha, stopAlpha, stopTime, stop) : _"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nos = library(\"oscillators.lib\");\ntapeStop_test = os.osc(440), os.osc(441) : ef.tapeStop(2, 3, 44100, 128, 1.0, 1.0, 22050, button(\"stop\"));",
+      "references": [],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 1074,
+        "lineEnd": 1105
+      }
+    },
+    {
+      "id": "misceffects.transpose",
+      "name": "transpose",
+      "qualifiedName": "ef.transpose",
+      "header": "(ef.)transpose",
+      "summary": "A simple pitch shifter based on 2 delay lines. `transpose` is a standard Faust function.",
+      "usage": "_ : transpose(w, x, s) : _",
+      "params": [
+        {
+          "name": "w",
+          "description": "the window length (samples)"
+        },
+        {
+          "name": "x",
+          "description": "crossfade duration duration (samples)"
+        },
+        {
+          "name": "s",
+          "description": "shift (semitones)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : transpose(w, x, s) : _"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nos = library(\"oscillators.lib\");\ntranspose_test = os.osc(440) : ef.transpose(1024, 512, 7);",
+      "references": [],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 1161,
+        "lineEnd": 1182
+      }
+    },
+    {
+      "id": "misceffects.doppler_shift",
+      "name": "doppler_shift",
+      "qualifiedName": "ef.doppler_shift",
+      "header": "(ef.)doppler_shift",
+      "summary": "Pitch shifter for signals with known fundamental frequency. Uses Doppler effect from a continuously ramping delay line, with phase-coherent phasor reset synced to the signal period. Best suited for harmonic/periodic signals like oscillator outputs.",
+      "usage": "_ : doppler_shift(freq, ratio) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "fundamental frequency of the input signal (Hz)"
+        },
+        {
+          "name": "ratio",
+          "description": "pitch ratio (1.0 = no shift, 2.0 = octave up, 0.5 = octave down)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : doppler_shift(freq, ratio) : _"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nos = library(\"oscillators.lib\");\ndoppler_shift_test = os.sawtooth(220) : ef.doppler_shift(220, 1.5);",
+      "references": [
+        "<https://www.researchgate.net/publication/325654284>",
+        "-----------------------------------------"
+      ],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 1191,
+        "lineEnd": 1218
+      }
+    },
+    {
+      "id": "misceffects.softclipQuadratic",
+      "name": "softclipQuadratic",
+      "qualifiedName": "ef.softclipQuadratic",
+      "header": "(ef.)softclipQuadratic",
+      "summary": "Quadratic softclip nonlinearity.",
+      "usage": "_ : softclipQuadratic : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : softclipQuadratic : _"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nos = library(\"oscillators.lib\");\nsoftclipQuadratic_test = os.osc(440) : ef.softclipQuadratic;",
+      "references": [
+        "U. Z\u00f6lzer: Digital Audio Signal Processing. John Wiley & Sons Ltd, 2022.",
+        "---------------------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 1260,
+        "lineEnd": 1279
+      }
+    },
+    {
+      "id": "misceffects.wavefold",
+      "name": "wavefold",
+      "qualifiedName": "ef.wavefold",
+      "header": "(ef.)wavefold",
+      "summary": "Wavefolding nonlinearity.",
+      "usage": "_ : wavefold(width) : _",
+      "params": [
+        {
+          "name": "width",
+          "description": "The width of the folded section [0..1] (float)."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : wavefold(width) : _"
+      },
+      "testCode": "ef = library(\"misceffects.lib\");\nos = library(\"oscillators.lib\");\nwavefold_test = os.osc(440) : ef.wavefold(0.5);",
+      "references": [],
+      "tags": [
+        "misceffects"
+      ],
+      "source": {
+        "file": "misceffects.lib",
+        "path": "misceffects.lib",
+        "lineStart": 1294,
+        "lineEnd": 1313
+      }
+    }
+  ]
+}

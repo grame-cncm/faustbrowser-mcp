@@ -1,0 +1,488 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "quantizers.lib",
+    "path": "quantizers.lib",
+    "aliasHints": [
+      "qu"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "quantizers.quantize",
+      "name": "quantize",
+      "qualifiedName": "qu.quantize",
+      "header": "(qu.)quantize",
+      "summary": "Configurable frequency quantization tool. Snaps input frequencies to exact scale notes. Works for positive audio frequencies.",
+      "usage": "_ : quantize(rf,nl) : _",
+      "params": [
+        {
+          "name": "rf",
+          "description": "frequency of the root note of the scale"
+        },
+        {
+          "name": "nl",
+          "description": "list of frequency ratios for each note relative to root"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : quantize(rf,nl) : _"
+      },
+      "testCode": "qu = library(\"quantizers.lib\");\nquantize_test = qu.quantize(440, qu.ionian, hslider(\"input\", 450, 100, 1000, 1));",
+      "references": [],
+      "tags": [
+        "quantizers"
+      ],
+      "source": {
+        "file": "quantizers.lib",
+        "path": "quantizers.lib",
+        "lineStart": 101,
+        "lineEnd": 126
+      }
+    },
+    {
+      "id": "quantizers.quantizeSmoothed",
+      "name": "quantizeSmoothed",
+      "qualifiedName": "qu.quantizeSmoothed",
+      "header": "(qu.)quantizeSmoothed",
+      "summary": "Configurable frequency quantization tool. Smoothly transitions between scale notes. Works for positive audio frequencies.",
+      "usage": "_ : quantizeSmoothed(rf,nl) : _",
+      "params": [
+        {
+          "name": "rf",
+          "description": "frequency of the root note of the scale"
+        },
+        {
+          "name": "nl",
+          "description": "list of frequency ratios for each note relative to root"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : quantizeSmoothed(rf,nl) : _"
+      },
+      "testCode": "qu = library(\"quantizers.lib\");\nquantizeSmoothed_test = qu.quantizeSmoothed(440, qu.ionian, hslider(\"input\", 450, 100, 1000, 1));",
+      "references": [],
+      "tags": [
+        "quantizers"
+      ],
+      "source": {
+        "file": "quantizers.lib",
+        "path": "quantizers.lib",
+        "lineStart": 130,
+        "lineEnd": 155
+      }
+    },
+    {
+      "id": "quantizers.ionian",
+      "name": "ionian",
+      "qualifiedName": "qu.ionian",
+      "header": "(qu.)ionian",
+      "summary": "List of the frequency ratios of the notes of the ionian mode.",
+      "usage": "_ : quantize(rf,ionian) : _",
+      "params": [
+        {
+          "name": "rf",
+          "description": "frequency of the root note of the scale"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : quantize(rf,ionian) : _"
+      },
+      "testCode": "qu = library(\"quantizers.lib\");\nionian_test = qu.quantize(220, qu.ionian, 260);",
+      "references": [],
+      "tags": [
+        "quantizers"
+      ],
+      "source": {
+        "file": "quantizers.lib",
+        "path": "quantizers.lib",
+        "lineStart": 159,
+        "lineEnd": 176
+      }
+    },
+    {
+      "id": "quantizers.dorian",
+      "name": "dorian",
+      "qualifiedName": "qu.dorian",
+      "header": "(qu.)dorian",
+      "summary": "List of the frequency ratios of the notes of the dorian mode.",
+      "usage": "_ : quantize(rf,dorian) : _",
+      "params": [
+        {
+          "name": "rf",
+          "description": "frequency of the root note of the scale"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : quantize(rf,dorian) : _"
+      },
+      "testCode": "qu = library(\"quantizers.lib\");\ndorian_test = qu.quantize(220, qu.dorian, 260);",
+      "references": [],
+      "tags": [
+        "quantizers"
+      ],
+      "source": {
+        "file": "quantizers.lib",
+        "path": "quantizers.lib",
+        "lineStart": 180,
+        "lineEnd": 197
+      }
+    },
+    {
+      "id": "quantizers.phrygian",
+      "name": "phrygian",
+      "qualifiedName": "qu.phrygian",
+      "header": "(qu.)phrygian",
+      "summary": "List of the frequency ratios of the notes of the phrygian mode.",
+      "usage": "_ : quantize(rf,phrygian) : _",
+      "params": [
+        {
+          "name": "rf",
+          "description": "frequency of the root note of the scale"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : quantize(rf,phrygian) : _"
+      },
+      "testCode": "qu = library(\"quantizers.lib\");\nphrygian_test = qu.quantize(220, qu.phrygian, 260);",
+      "references": [],
+      "tags": [
+        "quantizers"
+      ],
+      "source": {
+        "file": "quantizers.lib",
+        "path": "quantizers.lib",
+        "lineStart": 201,
+        "lineEnd": 218
+      }
+    },
+    {
+      "id": "quantizers.lydian",
+      "name": "lydian",
+      "qualifiedName": "qu.lydian",
+      "header": "(qu.)lydian",
+      "summary": "List of the frequency ratios of the notes of the lydian mode.",
+      "usage": "_ : quantize(rf,lydian) : _",
+      "params": [
+        {
+          "name": "rf",
+          "description": "frequency of the root note of the scale"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : quantize(rf,lydian) : _"
+      },
+      "testCode": "qu = library(\"quantizers.lib\");\nlydian_test = qu.quantize(220, qu.lydian, 260);",
+      "references": [],
+      "tags": [
+        "quantizers"
+      ],
+      "source": {
+        "file": "quantizers.lib",
+        "path": "quantizers.lib",
+        "lineStart": 222,
+        "lineEnd": 239
+      }
+    },
+    {
+      "id": "quantizers.mixo",
+      "name": "mixo",
+      "qualifiedName": "qu.mixo",
+      "header": "(qu.)mixo",
+      "summary": "List of the frequency ratios of the notes of the mixolydian mode.",
+      "usage": "_ : quantize(rf,mixo) : _",
+      "params": [
+        {
+          "name": "rf",
+          "description": "frequency of the root note of the scale"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : quantize(rf,mixo) : _"
+      },
+      "testCode": "qu = library(\"quantizers.lib\");\nmixo_test = qu.quantize(220, qu.mixo, 260);",
+      "references": [],
+      "tags": [
+        "quantizers"
+      ],
+      "source": {
+        "file": "quantizers.lib",
+        "path": "quantizers.lib",
+        "lineStart": 243,
+        "lineEnd": 260
+      }
+    },
+    {
+      "id": "quantizers.eolian",
+      "name": "eolian",
+      "qualifiedName": "qu.eolian",
+      "header": "(qu.)eolian",
+      "summary": "List of the frequency ratios of the notes of the eolian mode.",
+      "usage": "_ : quantize(rf,eolian) : _",
+      "params": [
+        {
+          "name": "rf",
+          "description": "frequency of the root note of the scale"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : quantize(rf,eolian) : _"
+      },
+      "testCode": "qu = library(\"quantizers.lib\");\neolian_test = qu.quantize(220, qu.eolian, 260);",
+      "references": [],
+      "tags": [
+        "quantizers"
+      ],
+      "source": {
+        "file": "quantizers.lib",
+        "path": "quantizers.lib",
+        "lineStart": 264,
+        "lineEnd": 281
+      }
+    },
+    {
+      "id": "quantizers.locrian",
+      "name": "locrian",
+      "qualifiedName": "qu.locrian",
+      "header": "(qu.)locrian",
+      "summary": "List of the frequency ratios of the notes of the locrian mode.",
+      "usage": "_ : quantize(rf,locrian) : _",
+      "params": [
+        {
+          "name": "rf",
+          "description": "frequency of the root note of the scale"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : quantize(rf,locrian) : _"
+      },
+      "testCode": "qu = library(\"quantizers.lib\");\nlocrian_test = qu.quantize(220, qu.locrian, 260);",
+      "references": [],
+      "tags": [
+        "quantizers"
+      ],
+      "source": {
+        "file": "quantizers.lib",
+        "path": "quantizers.lib",
+        "lineStart": 285,
+        "lineEnd": 302
+      }
+    },
+    {
+      "id": "quantizers.pentanat",
+      "name": "pentanat",
+      "qualifiedName": "qu.pentanat",
+      "header": "(qu.)pentanat",
+      "summary": "List of the frequency ratios of the notes of the pythagorean tuning for the minor pentatonic scale.",
+      "usage": "_ : quantize(rf,pentanat) : _",
+      "params": [
+        {
+          "name": "rf",
+          "description": "frequency of the root note of the scale"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : quantize(rf,pentanat) : _"
+      },
+      "testCode": "qu = library(\"quantizers.lib\");\npentanat_test = qu.quantize(220, qu.pentanat, 260);",
+      "references": [],
+      "tags": [
+        "quantizers"
+      ],
+      "source": {
+        "file": "quantizers.lib",
+        "path": "quantizers.lib",
+        "lineStart": 306,
+        "lineEnd": 323
+      }
+    },
+    {
+      "id": "quantizers.kumoi",
+      "name": "kumoi",
+      "qualifiedName": "qu.kumoi",
+      "header": "(qu.)kumoi",
+      "summary": "List of the frequency ratios of the notes of the kumoijoshi, the japanese pentatonic scale.",
+      "usage": "_ : quantize(rf,kumoi) : _",
+      "params": [
+        {
+          "name": "rf",
+          "description": "frequency of the root note of the scale"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : quantize(rf,kumoi) : _"
+      },
+      "testCode": "qu = library(\"quantizers.lib\");\nkumoi_test = qu.quantize(220, qu.kumoi, 260);",
+      "references": [],
+      "tags": [
+        "quantizers"
+      ],
+      "source": {
+        "file": "quantizers.lib",
+        "path": "quantizers.lib",
+        "lineStart": 327,
+        "lineEnd": 344
+      }
+    },
+    {
+      "id": "quantizers.natural",
+      "name": "natural",
+      "qualifiedName": "qu.natural",
+      "header": "(qu.)natural",
+      "summary": "List of the frequency ratios of the notes of the natural major scale.",
+      "usage": "_ : quantize(rf,natural) : _",
+      "params": [
+        {
+          "name": "rf",
+          "description": "frequency of the root note of the scale"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : quantize(rf,natural) : _"
+      },
+      "testCode": "qu = library(\"quantizers.lib\");\nnatural_test = qu.quantize(220, qu.natural, 260);",
+      "references": [],
+      "tags": [
+        "quantizers"
+      ],
+      "source": {
+        "file": "quantizers.lib",
+        "path": "quantizers.lib",
+        "lineStart": 348,
+        "lineEnd": 365
+      }
+    },
+    {
+      "id": "quantizers.dodeca",
+      "name": "dodeca",
+      "qualifiedName": "qu.dodeca",
+      "header": "(qu.)dodeca",
+      "summary": "List of the frequency ratios of the notes of the dodecaphonic scale.",
+      "usage": "_ : quantize(rf,dodeca) : _",
+      "params": [
+        {
+          "name": "rf",
+          "description": "frequency of the root note of the scale"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : quantize(rf,dodeca) : _"
+      },
+      "testCode": "qu = library(\"quantizers.lib\");\ndodeca_test = qu.quantize(220, qu.dodeca, 260);",
+      "references": [],
+      "tags": [
+        "quantizers"
+      ],
+      "source": {
+        "file": "quantizers.lib",
+        "path": "quantizers.lib",
+        "lineStart": 369,
+        "lineEnd": 386
+      }
+    },
+    {
+      "id": "quantizers.dimin",
+      "name": "dimin",
+      "qualifiedName": "qu.dimin",
+      "header": "(qu.)dimin",
+      "summary": "List of the frequency ratios of the notes of the diminished scale.",
+      "usage": "_ : quantize(rf,dimin) : _",
+      "params": [
+        {
+          "name": "rf",
+          "description": "frequency of the root note of the scale"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : quantize(rf,dimin) : _"
+      },
+      "testCode": "qu = library(\"quantizers.lib\");\ndimin_test = qu.quantize(220, qu.dimin, 260);",
+      "references": [],
+      "tags": [
+        "quantizers"
+      ],
+      "source": {
+        "file": "quantizers.lib",
+        "path": "quantizers.lib",
+        "lineStart": 390,
+        "lineEnd": 407
+      }
+    },
+    {
+      "id": "quantizers.penta",
+      "name": "penta",
+      "qualifiedName": "qu.penta",
+      "header": "(qu.)penta",
+      "summary": "List of the frequency ratios of the notes of the minor pentatonic scale.",
+      "usage": "_ : quantize(rf,penta) : _",
+      "params": [
+        {
+          "name": "rf",
+          "description": "frequency of the root note of the scale"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : quantize(rf,penta) : _"
+      },
+      "testCode": "qu = library(\"quantizers.lib\");\npenta_test = qu.quantize(220, qu.penta, 260);",
+      "references": [],
+      "tags": [
+        "quantizers"
+      ],
+      "source": {
+        "file": "quantizers.lib",
+        "path": "quantizers.lib",
+        "lineStart": 411,
+        "lineEnd": 428
+      }
+    }
+  ]
+}

@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "reducemaps.lib",
+    "path": "reducemaps.lib",
+    "aliasHints": [
+      "rm"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "reducemaps.parReduce",
+      "name": "parReduce",
+      "qualifiedName": "rm.parReduce",
+      "header": "(rm.)parReduce",
+      "summary": "`parReduce(op,N)` combines a set of `N` parallel signals into a single one using a binary operation `op`. With `parReduce`, this reduction process simultaneously occurs on each half of the incoming signals. In other words, `parReduce(max,256)` is equivalent to `parReduce(max,128),parReduce(max,128) : max`. To be used with `parReduce`, binary operation `op` must be associative. Additionally, the concept of a binary operation extends to operations that have `2*n` inputs and `n` outputs. For example, complex signals can be simulated using two signals for the real and imaginary parts. In such case, a binary operation would have 4 inputs and 2 outputs. Please note also that `parReduce` is faster than `topReduce` or `botReduce` for large number of signals. It is therefore the recommended operation whenever `op` is associative.",
+      "usage": "_,...,_ : parReduce(op, N) : _",
+      "params": [
+        {
+          "name": "op",
+          "description": "binary reduction operation"
+        },
+        {
+          "name": "N",
+          "description": "number of incoming signals (`N > 0`), known at compile time"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 1,
+        "raw": "_,...,_ : parReduce(op, N) : _"
+      },
+      "testCode": "rm = library(\"reducemaps.lib\");\nparReduce_test = (1,2,3,4) : rm.parReduce(+, 4);",
+      "references": [],
+      "tags": [
+        "reducemaps"
+      ],
+      "source": {
+        "file": "reducemaps.lib",
+        "path": "reducemaps.lib",
+        "lineStart": 60,
+        "lineEnd": 94
+      }
+    },
+    {
+      "id": "reducemaps.topReduce",
+      "name": "topReduce",
+      "qualifiedName": "rm.topReduce",
+      "header": "(rm.)topReduce",
+      "summary": "`topReduce(op,N)` involves combining a set of `N` parallel signals into a single one using a binary operation `op`. With `topReduce`, the reduction process starts from the top two incoming signals, down to the bottom. In other words, `topReduce(max,256)` is equivalent to `topReduce(max,255),_ : max`. Contrary to `parReduce`, the binary operation `op` doesn't have to be associative here. Like with `parReduce` the concept of a binary operation can be extended to operations that have 2*n inputs and n outputs. For example, complex signals can be simulated using two signals representing the real and imaginary parts. In such cases, a binary operation would have 4 inputs and 2 outputs.",
+      "usage": "_,...,_ : topReduce(op, N) : _",
+      "params": [
+        {
+          "name": "op",
+          "description": "is a binary operation"
+        },
+        {
+          "name": "N",
+          "description": "is the number of incomming signals (`N>0`). We use a capital letter here to indicate that the number of incomming signals must be constant and known at compile time."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 1,
+        "raw": "_,...,_ : topReduce(op, N) : _"
+      },
+      "testCode": "rm = library(\"reducemaps.lib\");\ntopReduce_test = (1,2,3,4) : rm.topReduce(+, 4);",
+      "references": [],
+      "tags": [
+        "reducemaps"
+      ],
+      "source": {
+        "file": "reducemaps.lib",
+        "path": "reducemaps.lib",
+        "lineStart": 100,
+        "lineEnd": 131
+      }
+    },
+    {
+      "id": "reducemaps.botReduce",
+      "name": "botReduce",
+      "qualifiedName": "rm.botReduce",
+      "header": "(rm.)botReduce",
+      "summary": "`botReduce(op,N)` combines a set of `N` parallel signals into a single one using a binary operation `op`. With `botReduce`, the reduction process starts from the bottom two incoming signals, up to the top. In other words, `botReduce(max,256)` is equivalent to `_,botReduce(max,255): max`. Contrary to `parReduce`, the binary operation `op` doesn't have to be associative here. Like with `parReduce` the concept of a binary operation can be extended to operations that have 2*n inputs and n outputs. For example, complex signals can be simulated using two signals representing the real and imaginary parts. In such cases, a binary operation would have 4 inputs and 2 outputs.",
+      "usage": "_,...,_ : botReduce(op, N) : _",
+      "params": [
+        {
+          "name": "op",
+          "description": "binary reduction operation"
+        },
+        {
+          "name": "N",
+          "description": "number of incoming signals (`N > 0`), known at compile time"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 1,
+        "raw": "_,...,_ : botReduce(op, N) : _"
+      },
+      "testCode": "rm = library(\"reducemaps.lib\");\nbotReduce_test = (1,2,3,4) : rm.botReduce(+, 4);",
+      "references": [],
+      "tags": [
+        "reducemaps"
+      ],
+      "source": {
+        "file": "reducemaps.lib",
+        "path": "reducemaps.lib",
+        "lineStart": 137,
+        "lineEnd": 166
+      }
+    },
+    {
+      "id": "reducemaps.reduce",
+      "name": "reduce",
+      "qualifiedName": "rm.reduce",
+      "header": "(rm.)reduce",
+      "summary": "Reduce a block of `n` consecutive samples of the incomming signal using a binary operation `op`. For example: `reduce(max,128)` will compute the maximun value of each block of 128 samples. Please note that the resulting value, while computed continuously, will be constant for the duration of a block. A new value is only produced at the end of a block. Note also that blocks should be of at least one sample (n>0).",
+      "usage": "_ : reduce(op, n) : _",
+      "params": [
+        {
+          "name": "op",
+          "description": "is a binary operation"
+        },
+        {
+          "name": "n",
+          "description": "is the number of consecutive samples in a block."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : reduce(op, n) : _"
+      },
+      "testCode": "rm = library(\"reducemaps.lib\");\nreduce_test = rm.reduce(max, 4, hslider(\"reduce:input\", 0, -1, 1, 0.01));",
+      "references": [],
+      "tags": [
+        "reducemaps"
+      ],
+      "source": {
+        "file": "reducemaps.lib",
+        "path": "reducemaps.lib",
+        "lineStart": 172,
+        "lineEnd": 196
+      }
+    },
+    {
+      "id": "reducemaps.reducemap",
+      "name": "reducemap",
+      "qualifiedName": "rm.reducemap",
+      "header": "(rm.)reducemap",
+      "summary": "Like `reduce` but a `foo` function is applied to the result. From a mathematical point of view: `reducemap(op,foo,n)` is equivalent to `reduce(op,n):foo` but more efficient.",
+      "usage": "_ : reducemap(op, foo, n) : _",
+      "params": [
+        {
+          "name": "op",
+          "description": "is a binary operation"
+        },
+        {
+          "name": "foo",
+          "description": "is a function applied to the result of the reduction"
+        },
+        {
+          "name": "n",
+          "description": "is the number of consecutive samples in a block."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : reducemap(op, foo, n) : _"
+      },
+      "testCode": "rm = library(\"reducemaps.lib\");\nreducemap_test = rm.reducemap(+, /(4), 4, hslider(\"reducemap:input\", 0, -1, 1, 0.01));",
+      "references": [],
+      "tags": [
+        "reducemaps"
+      ],
+      "source": {
+        "file": "reducemaps.lib",
+        "path": "reducemaps.lib",
+        "lineStart": 206,
+        "lineEnd": 229
+      }
+    }
+  ]
+}

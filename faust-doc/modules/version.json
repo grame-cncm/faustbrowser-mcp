@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "version.lib",
+    "path": "version.lib",
+    "aliasHints": [
+      "vl"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "version.version",
+      "name": "version",
+      "qualifiedName": "vl.version",
+      "header": "(vl.)version",
+      "summary": "Return the version number of the Faust standard libraries as a MAJOR, MINOR, PATCH versioning triplet.",
+      "usage": "version : _,_,_ ------------------------------------------------------------",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 3,
+        "raw": "version : _,_,_ ------------------------------------------------------------"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "version"
+      ],
+      "source": {
+        "file": "version.lib",
+        "path": "version.lib",
+        "lineStart": 10,
+        "lineEnd": 19
+      }
+    }
+  ]
+}

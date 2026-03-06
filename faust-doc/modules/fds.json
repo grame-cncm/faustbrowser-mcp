@@ -1,0 +1,722 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "fds.lib",
+    "path": "fds.lib",
+    "aliasHints": [
+      "fd"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "fds.model1D",
+      "name": "model1D",
+      "qualifiedName": "fd.model1D",
+      "header": "(fd.)model1D",
+      "summary": "This function can be used to obtain a physical model in 1 dimension. Takes a force input signal for each point and outputs the state of each point.",
+      "usage": "si.bus(points) : model1D(points,R,T,scheme) : si.bus(points)",
+      "params": [
+        {
+          "name": "points",
+          "description": "size of the mesh in points"
+        },
+        {
+          "name": "R",
+          "description": "neighbourhood radius, indicates how many side points are needed (i.e. if R=1 the mesh depends on one point on the left and one on the right)"
+        },
+        {
+          "name": "T",
+          "description": "time coefficient, indicates how much steps back in time are needed (i. e. if T=1 the maximum delay needed for a neighbour state is 1 sample)"
+        },
+        {
+          "name": "scheme",
+          "description": "coefficients scheme"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(points) : model1D(points,R,T,scheme) : si.bus(points)"
+      },
+      "testCode": "fd = library(\"fds.lib\");\nsi = library(\"signals.lib\");\n\nscheme = 0, 0;\nmodel1D_test = si.bus(2)\n  : fd.model1D(2, 0, 0, scheme)\n  : si.bus(2);",
+      "references": [],
+      "tags": [
+        "fds"
+      ],
+      "source": {
+        "file": "fds.lib",
+        "path": "fds.lib",
+        "lineStart": 76,
+        "lineEnd": 106
+      }
+    },
+    {
+      "id": "fds.model2D",
+      "name": "model2D",
+      "qualifiedName": "fd.model2D",
+      "header": "(fd.)model2D",
+      "summary": "This function can be used to obtain a physical model in 2 dimension. Takes a force input signal for each point and outputs the state of each point. IMPORTANT: 2D models with more than 30x20 points might crash the c++ compiler. 2D models need to be compiled with the command line compiler, the online one presents some issues.",
+      "usage": "si.bus(pointsX*pointsY) : model2D(pointsX,pointsY,R,T,scheme) : si.bus(pointsX*pointsY)",
+      "params": [
+        {
+          "name": "pointsX",
+          "description": "horizontal size of the mesh in points"
+        },
+        {
+          "name": "pointsY",
+          "description": "vertical size of the mesh in points"
+        },
+        {
+          "name": "R",
+          "description": "neighbourhood radius, indicates how many side points are needed (i.e. if R=1 the mesh depends on one point on the left and one on the right)"
+        },
+        {
+          "name": "T",
+          "description": "time coefficient, indicates how much steps back in time are needed (i. e. if T=1 the maximum delay needed for a neighbour state is 1 sample)"
+        },
+        {
+          "name": "scheme",
+          "description": "coefficients scheme"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(pointsX*pointsY) : model2D(pointsX,pointsY,R,T,scheme) : si.bus(pointsX*pointsY)"
+      },
+      "testCode": "fd = library(\"fds.lib\");\nsi = library(\"signals.lib\");\n\nscheme = 0, 0, 0, 0;\nmodel2D_test = si.bus(4)\n  : fd.model2D(2, 2, 0, 0, scheme)\n  : si.bus(4);",
+      "references": [],
+      "tags": [
+        "fds"
+      ],
+      "source": {
+        "file": "fds.lib",
+        "path": "fds.lib",
+        "lineStart": 110,
+        "lineEnd": 145
+      }
+    },
+    {
+      "id": "fds.stairsInterp1D",
+      "name": "stairsInterp1D",
+      "qualifiedName": "fd.stairsInterp1D",
+      "header": "(fd.)stairsInterp1D",
+      "summary": "Stairs interpolator in 1 dimension. Takes a number of signals and outputs the same number of signals, where each one is multiplied by zero except the one specified by the argument. This can vary at run time (i.e. a slider), but must be an integer.",
+      "usage": "si.bus(points) : stairsInterp1D(points,point) : si.bus(points)",
+      "params": [
+        {
+          "name": "points",
+          "description": "total number of points in the mesh"
+        },
+        {
+          "name": "point",
+          "description": "number of the desired nonzero signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(points) : stairsInterp1D(points,point) : si.bus(points)"
+      },
+      "testCode": "fd = library(\"fds.lib\");\nsi = library(\"signals.lib\");\n\nstairsInterp1D_test = si.bus(4)\n  : fd.stairsInterp1D(4, 1);",
+      "references": [],
+      "tags": [
+        "fds"
+      ],
+      "source": {
+        "file": "fds.lib",
+        "path": "fds.lib",
+        "lineStart": 160,
+        "lineEnd": 185
+      }
+    },
+    {
+      "id": "fds.stairsInterp2D",
+      "name": "stairsInterp2D",
+      "qualifiedName": "fd.stairsInterp2D",
+      "header": "(fd.)stairsInterp2D",
+      "summary": "Stairs interpolator in 2 dimensions. Similar to the 1-D version.",
+      "usage": "si.bus(pointsX*pointsY) : stairsInterp2D(pointsX,pointsY,pointX,pointY) : si.bus(pointsX*pointsY)",
+      "params": [
+        {
+          "name": "pointsX",
+          "description": "total number of points in the X direction"
+        },
+        {
+          "name": "pointsY",
+          "description": "total number of points in the Y direction"
+        },
+        {
+          "name": "pointX",
+          "description": "horizontal index of the desired nonzero signal"
+        },
+        {
+          "name": "pointY",
+          "description": "vertical index of the desired nonzero signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(pointsX*pointsY) : stairsInterp2D(pointsX,pointsY,pointX,pointY) : si.bus(pointsX*pointsY)"
+      },
+      "testCode": "fd = library(\"fds.lib\");\nsi = library(\"signals.lib\");\n\nstairsInterp2D_test = si.bus(4)\n  : fd.stairsInterp2D(2, 2, 1, 0);",
+      "references": [],
+      "tags": [
+        "fds"
+      ],
+      "source": {
+        "file": "fds.lib",
+        "path": "fds.lib",
+        "lineStart": 188,
+        "lineEnd": 213
+      }
+    },
+    {
+      "id": "fds.linInterp1D",
+      "name": "linInterp1D",
+      "qualifiedName": "fd.linInterp1D",
+      "header": "(fd.)linInterp1D",
+      "summary": "Linear interpolator in 1 dimension. Takes a number of signals and outputs the same number of signals, where each one is multiplied by zero except two signals around a floating point index. This is essentially a Faust implementation of the $J(x_i)$ operator, not scaled by the spatial step. (see Stefan Bilbao's book, Numerical Sound Synthesis). The index can vary at run time.",
+      "usage": "si.bus(points) : linInterp1D(points,point) : si.bus(points)",
+      "params": [
+        {
+          "name": "points",
+          "description": "total number of points in the mesh"
+        },
+        {
+          "name": "point",
+          "description": "floating point index"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(points) : linInterp1D(points,point) : si.bus(points)"
+      },
+      "testCode": "fd = library(\"fds.lib\");\nsi = library(\"signals.lib\");\n\nlinInterp1D_test = si.bus(4)\n  : fd.linInterp1D(4, 1.25);",
+      "references": [],
+      "tags": [
+        "fds"
+      ],
+      "source": {
+        "file": "fds.lib",
+        "path": "fds.lib",
+        "lineStart": 218,
+        "lineEnd": 245
+      }
+    },
+    {
+      "id": "fds.linInterp2D",
+      "name": "linInterp2D",
+      "qualifiedName": "fd.linInterp2D",
+      "header": "(fd.)linInterp2D",
+      "summary": "Linear interpolator in 2 dimensions. Similar to the 1 D version.",
+      "usage": "si.bus(pointsX*pointsY) : linInterp2D(pointsX,pointsY,pointX,pointY) : si.bus(pointsX*pointsY)",
+      "params": [
+        {
+          "name": "pointsX",
+          "description": "total number of points in the X direction"
+        },
+        {
+          "name": "pointsY",
+          "description": "total number of points in the Y direction"
+        },
+        {
+          "name": "pointX",
+          "description": "horizontal float index"
+        },
+        {
+          "name": "pointY",
+          "description": "vertical float index"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(pointsX*pointsY) : linInterp2D(pointsX,pointsY,pointX,pointY) : si.bus(pointsX*pointsY)"
+      },
+      "testCode": "fd = library(\"fds.lib\");\nsi = library(\"signals.lib\");\n\nlinInterp2D_test = si.bus(4)\n  : fd.linInterp2D(2, 2, 0.6, 1.2);",
+      "references": [],
+      "tags": [
+        "fds"
+      ],
+      "source": {
+        "file": "fds.lib",
+        "path": "fds.lib",
+        "lineStart": 253,
+        "lineEnd": 278
+      }
+    },
+    {
+      "id": "fds.stairsInterp1DOut",
+      "name": "stairsInterp1DOut",
+      "qualifiedName": "fd.stairsInterp1DOut",
+      "header": "(fd.)stairsInterp1DOut",
+      "summary": "Stairs interpolator in 1 dimension. Similar to `stairsInterp1D`, except it outputs only the desired signal.",
+      "usage": "si.bus(points) : stairsInterp1DOut(points,point) : _",
+      "params": [
+        {
+          "name": "points",
+          "description": "total number of points in the mesh"
+        },
+        {
+          "name": "point",
+          "description": "number of the desired nonzero signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(points) : stairsInterp1DOut(points,point) : _"
+      },
+      "testCode": "fd = library(\"fds.lib\");\nsi = library(\"signals.lib\");\n\nstairsInterp1DOut_test = si.bus(4)\n  : fd.stairsInterp1DOut(4, 2);",
+      "references": [],
+      "tags": [
+        "fds"
+      ],
+      "source": {
+        "file": "fds.lib",
+        "path": "fds.lib",
+        "lineStart": 299,
+        "lineEnd": 322
+      }
+    },
+    {
+      "id": "fds.stairsInterp2DOut",
+      "name": "stairsInterp2DOut",
+      "qualifiedName": "fd.stairsInterp2DOut",
+      "header": "(fd.)stairsInterp2DOut",
+      "summary": "Stairs interpolator in 2 dimensions which outputs only one signal.",
+      "usage": "si.bus(pointsX*pointsY) : stairsInterp2DOut(pointsX,pointsY,pointX,pointY) : _",
+      "params": [
+        {
+          "name": "pointsX",
+          "description": "total number of points in the X direction"
+        },
+        {
+          "name": "pointsY",
+          "description": "total number of points in the Y direction"
+        },
+        {
+          "name": "pointX",
+          "description": "horizontal index of the desired nonzero signal"
+        },
+        {
+          "name": "pointY",
+          "description": "vertical index of the desired nonzero signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(pointsX*pointsY) : stairsInterp2DOut(pointsX,pointsY,pointX,pointY) : _"
+      },
+      "testCode": "fd = library(\"fds.lib\");\nsi = library(\"signals.lib\");\n\nstairsInterp2DOut_test = si.bus(4)\n  : fd.stairsInterp2DOut(2, 2, 1, 0);",
+      "references": [],
+      "tags": [
+        "fds"
+      ],
+      "source": {
+        "file": "fds.lib",
+        "path": "fds.lib",
+        "lineStart": 325,
+        "lineEnd": 349
+      }
+    },
+    {
+      "id": "fds.linInterp1DOut",
+      "name": "linInterp1DOut",
+      "qualifiedName": "fd.linInterp1DOut",
+      "header": "(fd.)linInterp1DOut",
+      "summary": "Linear interpolator in 1 dimension. Similar to `stairsInterp1D`, except it sums each output signal and provides only one output value.",
+      "usage": "si.bus(points) : linInterp1DOut(points,point) : _",
+      "params": [
+        {
+          "name": "points",
+          "description": "total number of points in the mesh"
+        },
+        {
+          "name": "point",
+          "description": "floating point index"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(points) : linInterp1DOut(points,point) : _"
+      },
+      "testCode": "fd = library(\"fds.lib\");\nsi = library(\"signals.lib\");\n\nlinInterp1DOut_test = si.bus(4)\n  : fd.linInterp1DOut(4, 1.5);",
+      "references": [],
+      "tags": [
+        "fds"
+      ],
+      "source": {
+        "file": "fds.lib",
+        "path": "fds.lib",
+        "lineStart": 353,
+        "lineEnd": 376
+      }
+    },
+    {
+      "id": "fds.stairsInterp2DOut",
+      "name": "stairsInterp2DOut",
+      "qualifiedName": "fd.stairsInterp2DOut",
+      "header": "(fd.)stairsInterp2DOut",
+      "summary": "Linear interpolator in 2 dimensions which outputs only one signal.",
+      "usage": "si.bus(pointsX*pointsY) : linInterp2DOut(pointsX,pointsY,pointX,pointY) : _",
+      "params": [
+        {
+          "name": "pointsX",
+          "description": "total number of points in the X direction"
+        },
+        {
+          "name": "pointsY",
+          "description": "total number of points in the Y direction"
+        },
+        {
+          "name": "pointX",
+          "description": "horizontal float index"
+        },
+        {
+          "name": "pointY",
+          "description": "vertical float index"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(pointsX*pointsY) : linInterp2DOut(pointsX,pointsY,pointX,pointY) : _"
+      },
+      "testCode": "fd = library(\"fds.lib\");\nsi = library(\"signals.lib\");\n\nlinInterp2DOut_test = si.bus(4)\n  : fd.linInterp2DOut(2, 2, 0.6, 1.2);",
+      "references": [],
+      "tags": [
+        "fds"
+      ],
+      "source": {
+        "file": "fds.lib",
+        "path": "fds.lib",
+        "lineStart": 379,
+        "lineEnd": 403
+      }
+    },
+    {
+      "id": "fds.route1D",
+      "name": "route1D",
+      "qualifiedName": "fd.route1D",
+      "header": "(fd.)route1D",
+      "summary": "Routing function for 1 dimensional schemes.",
+      "usage": "si.bus((2*R+1)*(T+1)*points),si.bus(points*2) : route1D(points, R, T) : si.bus((1 + ((2*R+1)*(T+1)) + (2*R+1))*points)",
+      "params": [
+        {
+          "name": "points",
+          "description": "total number of points in the mesh"
+        },
+        {
+          "name": "R",
+          "description": "neighbourhood radius"
+        },
+        {
+          "name": "T",
+          "description": "time coefficient"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "si.bus((2*R+1)*(T+1)*points),si.bus(points*2) : route1D(points, R, T) : si.bus((1 + ((2*R+1)*(T+1)) + (2*R+1))*points)"
+      },
+      "testCode": "fd = library(\"fds.lib\");\nsi = library(\"signals.lib\");\n\nroute1D_test = par(i, 3, 0)\n  : fd.route1D(1, 0, 0)\n  : si.bus(3);",
+      "references": [],
+      "tags": [
+        "fds"
+      ],
+      "source": {
+        "file": "fds.lib",
+        "path": "fds.lib",
+        "lineStart": 417,
+        "lineEnd": 442
+      }
+    },
+    {
+      "id": "fds.route2D",
+      "name": "route2D",
+      "qualifiedName": "fd.route2D",
+      "header": "(fd.)route2D",
+      "summary": "Routing function for 2 dimensional schemes.",
+      "usage": "si.bus((2*R+1)^2*(T+1)*pointsX*pointsY),si.bus(pointsX*pointsY*2) : route2D(pointsX, pointsY, R, T) : si.bus((1 + ((2*R+1)^2*(T+1)) + (2*R+1)^2)*pointsX*pointsY)",
+      "params": [
+        {
+          "name": "pointsX",
+          "description": "total number of points in the X direction"
+        },
+        {
+          "name": "pointsY",
+          "description": "total number of points in the Y direction"
+        },
+        {
+          "name": "R",
+          "description": "neighbourhood radius"
+        },
+        {
+          "name": "T",
+          "description": "time coefficient"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "si.bus((2*R+1)^2*(T+1)*pointsX*pointsY),si.bus(pointsX*pointsY*2) : route2D(pointsX, pointsY, R, T) : si.bus((1 + ((2*R+1)^2*(T+1)) + (2*R+1)^2)*pointsX*pointsY)"
+      },
+      "testCode": "fd = library(\"fds.lib\");\nsi = library(\"signals.lib\");\n\nroute2D_test = par(i, 3, 0)\n  : fd.route2D(1, 1, 0, 0)\n  : si.bus(3);",
+      "references": [],
+      "tags": [
+        "fds"
+      ],
+      "source": {
+        "file": "fds.lib",
+        "path": "fds.lib",
+        "lineStart": 459,
+        "lineEnd": 486
+      }
+    },
+    {
+      "id": "fds.schemePoint",
+      "name": "schemePoint",
+      "qualifiedName": "fd.schemePoint",
+      "header": "(fd.)schemePoint",
+      "summary": "This function calculates the next state for each mesh point, in order to form a scheme, several of these blocks need to be stacked in parallel. This function takes in input, in order, the force, the coefficient matrices and the neighbours\u2019 signals and outputs the next point state.",
+      "usage": "_,si.bus((2*R+1)^D*(T+1)),si.bus((2*R+1)^D) : schemePoint(R,T,D) : _",
+      "params": [
+        {
+          "name": "R",
+          "description": "neighbourhood radius"
+        },
+        {
+          "name": "T",
+          "description": "time coefficient"
+        },
+        {
+          "name": "D",
+          "description": "scheme spatial dimensions (i.e. 1 if 1-D, 2 if 2-D)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 1,
+        "raw": "_,si.bus((2*R+1)^D*(T+1)),si.bus((2*R+1)^D) : schemePoint(R,T,D) : _"
+      },
+      "testCode": "fd = library(\"fds.lib\");\nsi = library(\"signals.lib\");\n\nschemePoint_test = par(i, 3, 0)\n  : fd.schemePoint(0, 0, 1);",
+      "references": [],
+      "tags": [
+        "fds"
+      ],
+      "source": {
+        "file": "fds.lib",
+        "path": "fds.lib",
+        "lineStart": 518,
+        "lineEnd": 544
+      }
+    },
+    {
+      "id": "fds.buildScheme1D",
+      "name": "buildScheme1D",
+      "qualifiedName": "fd.buildScheme1D",
+      "header": "(fd.)buildScheme1D",
+      "summary": "This function is used to stack in parallel several schemePoint functions in 1 dimension, according to the number of points.",
+      "usage": "si.bus((1 + ((2*R+1)*(T+1)) + (2*R+1))*points) : buildScheme1D(points,R,T) : si.bus(points)",
+      "params": [
+        {
+          "name": "points",
+          "description": "total number of points in the mesh"
+        },
+        {
+          "name": "R",
+          "description": "neighbourhood radius"
+        },
+        {
+          "name": "T",
+          "description": "time coefficient"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus((1 + ((2*R+1)*(T+1)) + (2*R+1))*points) : buildScheme1D(points,R,T) : si.bus(points)"
+      },
+      "testCode": "fd = library(\"fds.lib\");\nsi = library(\"signals.lib\");\n\nbuildScheme1D_test = par(i, 3, 0)\n  : fd.buildScheme1D(1, 0, 0);",
+      "references": [],
+      "tags": [
+        "fds"
+      ],
+      "source": {
+        "file": "fds.lib",
+        "path": "fds.lib",
+        "lineStart": 559,
+        "lineEnd": 584
+      }
+    },
+    {
+      "id": "fds.buildScheme2D",
+      "name": "buildScheme2D",
+      "qualifiedName": "fd.buildScheme2D",
+      "header": "(fd.)buildScheme2D",
+      "summary": "This function is used to stack in parallel several schemePoint functions in 2 dimensions, according to the number of points in the X and Y directions.",
+      "usage": "si.bus((1 + ((2*R+1)^2*(T+1)) + (2*R+1)^2)*pointsX*pointsY) : buildScheme2D(pointsX,pointsY,R,T) : si.bus(pointsX*pointsY)",
+      "params": [
+        {
+          "name": "pointsX",
+          "description": "total number of points in the X direction"
+        },
+        {
+          "name": "pointsY",
+          "description": "total number of points in the Y direction"
+        },
+        {
+          "name": "R",
+          "description": "neighbourhood radius"
+        },
+        {
+          "name": "T",
+          "description": "time coefficient"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus((1 + ((2*R+1)^2*(T+1)) + (2*R+1)^2)*pointsX*pointsY) : buildScheme2D(pointsX,pointsY,R,T) : si.bus(pointsX*pointsY)"
+      },
+      "testCode": "fd = library(\"fds.lib\");\nsi = library(\"signals.lib\");\n\nbuildScheme2D_test = par(i, 3, 0)\n  : fd.buildScheme2D(1, 1, 0, 0);",
+      "references": [],
+      "tags": [
+        "fds"
+      ],
+      "source": {
+        "file": "fds.lib",
+        "path": "fds.lib",
+        "lineStart": 588,
+        "lineEnd": 614
+      }
+    },
+    {
+      "id": "fds.hammer",
+      "name": "hammer",
+      "qualifiedName": "fd.hammer",
+      "header": "(fd.)hammer",
+      "summary": "Implementation of a nonlinear collision model. The hammer is essentially a finite difference scheme of a linear damped oscillator, which is coupled with the mesh through the collision model (see Stefan Bilbao's book, Numerical Sound Synthesis).",
+      "usage": "_ :hammer(coeff,omega0Sqr,sigma0,kH,alpha,k,offset,fIn) : _",
+      "params": [
+        {
+          "name": "coeff",
+          "description": "output force scaling coefficient"
+        },
+        {
+          "name": "omega0Sqr",
+          "description": "squared angular frequency of the hammer oscillator"
+        },
+        {
+          "name": "sigma0",
+          "description": "damping coefficient of the hammer oscillator"
+        },
+        {
+          "name": "kH",
+          "description": "hammer stiffness coefficient"
+        },
+        {
+          "name": "alpha",
+          "description": "nonlinearity parameter"
+        },
+        {
+          "name": "k",
+          "description": "time sampling step (the same as for the mesh)"
+        },
+        {
+          "name": "offset",
+          "description": "distance between the string and the hammer at rest in meters"
+        },
+        {
+          "name": "fIn",
+          "description": "hammer excitation signal (i.e. a button)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ :hammer(coeff,omega0Sqr,sigma0,kH,alpha,k,offset,fIn) : _"
+      },
+      "testCode": "fd = library(\"fds.lib\");\nos = library(\"oscillators.lib\");\n\nhammer_test = os.osc(5)\n  : fd.hammer(\n      0.1,\n      1000,\n      0.01,\n      1e5,\n      2.0,\n      1.0/48000,\n      0.001,\n      button(\"hammer:trigger\")\n    );",
+      "references": [],
+      "tags": [
+        "fds"
+      ],
+      "source": {
+        "file": "fds.lib",
+        "path": "fds.lib",
+        "lineStart": 628,
+        "lineEnd": 668
+      }
+    },
+    {
+      "id": "fds.bow",
+      "name": "bow",
+      "qualifiedName": "fd.bow",
+      "header": "(fd.)bow",
+      "summary": "Implementation of a nonlinear friction based interaction model that induces Helmholtz motion. (see Stefan Bilbao's book, Numerical Sound Synthesis).",
+      "usage": "_ :bow(coeff,alpha,k,vb) : _",
+      "params": [
+        {
+          "name": "coeff",
+          "description": "output force scaling coefficient"
+        },
+        {
+          "name": "alpha",
+          "description": "nonlinearity parameter"
+        },
+        {
+          "name": "k",
+          "description": "time sampling step (the same as for the mesh)"
+        },
+        {
+          "name": "vb",
+          "description": "bow velocity [m/s]"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ :bow(coeff,alpha,k,vb) : _"
+      },
+      "testCode": "fd = library(\"fds.lib\");\nos = library(\"oscillators.lib\");\n\nbow_test = os.osc(5)\n  : fd.bow(0.05, 2.0, 1.0/48000, 0.1);",
+      "references": [],
+      "tags": [
+        "fds"
+      ],
+      "source": {
+        "file": "fds.lib",
+        "path": "fds.lib",
+        "lineStart": 681,
+        "lineEnd": 706
+      }
+    }
+  ]
+}

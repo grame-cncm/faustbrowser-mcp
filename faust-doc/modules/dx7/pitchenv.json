@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "pitchenv.lib",
+    "path": "dx7/pitchenv.lib",
+    "aliasHints": [
+      "pi"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "pitchenv.pitchenv",
+      "name": "pitchenv",
+      "qualifiedName": "dx.pitchenv",
+      "header": "(dx.)pitchenv",
+      "summary": "Global Pitch Envelope in the DX7, based on Dexed/MSFA code. The output is a Q24 number, so you may want to divide by 67108864 to get a number in [-1,1].",
+      "usage": "pitchenv(rates, levels, gate) : _",
+      "params": [
+        {
+          "name": "rates",
+          "description": "4 channels of rates between 0-99"
+        },
+        {
+          "name": "levels",
+          "description": "4 channels of levels between 0-99"
+        },
+        {
+          "name": "gate",
+          "description": "trigger"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "pitchenv(rates, levels, gate) : _"
+      },
+      "testCode": "pi = library(\"pitchenv.lib\");\npitchenv_test = pi.pitchenv((60,61,62,63), (60,61,62,63), button(\"gate\"));",
+      "references": [
+        "<https://github.com/asb2m10/dexed/blob/master/Source/msfa/pitchenv.cc>",
+        "-----------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "pitchenv"
+      ],
+      "source": {
+        "file": "pitchenv.lib",
+        "path": "dx7/pitchenv.lib",
+        "lineStart": 10,
+        "lineEnd": 35
+      }
+    }
+  ]
+}

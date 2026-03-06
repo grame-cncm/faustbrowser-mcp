@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "dx7.lib",
+    "path": "dx7/dx7.lib",
+    "aliasHints": [
+      "dx"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "dx7.fdbkscalef",
+      "name": "fdbkscalef",
+      "qualifiedName": "dx.fdbkscalef",
+      "header": "(dx.)fdbkscalef",
+      "summary": "DX7 feedback scaling conversion function. Index 0 is special: it disables the feedback path entirely.",
+      "usage": "fdbkscalef(fb_shift) : _",
+      "params": [
+        {
+          "name": "fb_shift",
+          "description": "DX7 feedback value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "fdbkscalef(fb_shift) : _"
+      },
+      "testCode": "dx = library(\"dx.lib\");\nfdbkscalef_test = dx.fdbkscalef(0.5);",
+      "references": [
+        "<https://github.com/asb2m10/dexed/blob/master/Source/EngineMkI.cpp>",
+        "-----------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "dx7"
+      ],
+      "source": {
+        "file": "dx7.lib",
+        "path": "dx7/dx7.lib",
+        "lineStart": 67,
+        "lineEnd": 88
+      }
+    },
+    {
+      "id": "dx7.fdbkscalef2",
+      "name": "fdbkscalef2",
+      "qualifiedName": "dx.fdbkscalef2",
+      "header": "(dx.)fdbkscalef2",
+      "summary": "DX7 feedback scaling conversion function for algos 4, 6, 32. Index 0 is special: it disables the feedback path entirely.",
+      "usage": "fdbkscalef2(fb_shift) : _",
+      "params": [
+        {
+          "name": "fb_shift",
+          "description": "DX7 feedback value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "fdbkscalef2(fb_shift) : _"
+      },
+      "testCode": "dx = library(\"dx.lib\");\nfdbkscalef2_test = dx.fdbkscalef2(0.5);",
+      "references": [
+        "<https://github.com/asb2m10/dexed/blob/master/Source/EngineMkI.cpp>",
+        "-----------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "dx7"
+      ],
+      "source": {
+        "file": "dx7.lib",
+        "path": "dx7/dx7.lib",
+        "lineStart": 98,
+        "lineEnd": 120
+      }
+    },
+    {
+      "id": "dx7.algorithms",
+      "name": "algorithms",
+      "qualifiedName": "dx.algorithms",
+      "header": "(dx.)algorithms",
+      "summary": "Generic DX7 function where all parameters are controllable using UI elements. This function is MIDI-compatible.",
+      "usage": "algorithms : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "algorithms : _"
+      },
+      "testCode": "dx = library(\"dx.lib\");\nalgorithms_test = dx.algorithms;",
+      "references": [],
+      "tags": [
+        "dx7"
+      ],
+      "source": {
+        "file": "dx7.lib",
+        "path": "dx7/dx7.lib",
+        "lineStart": 130,
+        "lineEnd": 145
+      }
+    },
+    {
+      "id": "dx7.algorithm",
+      "name": "algorithm",
+      "qualifiedName": "dx.algorithm",
+      "header": "(dx.)algorithm",
+      "summary": "DX7 function for a specific algorithm at compile-time. This function comes with a GUI and is MIDI-compatible.",
+      "usage": "algorithm(algo) : _",
+      "params": [
+        {
+          "name": "algo",
+          "description": "algorithm identifier (1-32)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "algorithm(algo) : _"
+      },
+      "testCode": "dx = library(\"dx.lib\");\nalgorithm1_test = dx.algorithm(1) <: _,_;\nalgorithm2_test = dx.algorithm(2) <: _,_;\nalgorithm3_test = dx.algorithm(3) <: _,_;\nalgorithm4_test = dx.algorithm(4) <: _,_;\nalgorithm5_test = dx.algorithm(5) <: _,_;\nalgorithm6_test = dx.algorithm(6) <: _,_;\nalgorithm7_test = dx.algorithm(7) <: _,_;\nalgorithm8_test = dx.algorithm(8) <: _,_;\nalgorithm9_test = dx.algorithm(9) <: _,_;\nalgorithm10_test = dx.algorithm(10) <: _,_;\nalgorithm11_test = dx.algorithm(11) <: _,_;\nalgorithm12_test = dx.algorithm(12) <: _,_;\nalgorithm13_test = dx.algorithm(13) <: _,_;\nalgorithm14_test = dx.algorithm(14) <: _,_;\nalgorithm15_test = dx.algorithm(15) <: _,_;\nalgorithm16_test = dx.algorithm(16) <: _,_;\nalgorithm17_test = dx.algorithm(17) <: _,_;\nalgorithm18_test = dx.algorithm(18) <: _,_;\nalgorithm19_test = dx.algorithm(19) <: _,_;\nalgorithm20_test = dx.algorithm(20) <: _,_;\nalgorithm21_test = dx.algorithm(21) <: _,_;\nalgorithm22_test = dx.algorithm(22) <: _,_;\nalgorithm23_test = dx.algorithm(23) <: _,_;\nalgorithm24_test = dx.algorithm(24) <: _,_;\nalgorithm25_test = dx.algorithm(25) <: _,_;\nalgorithm26_test = dx.algorithm(26) <: _,_;\nalgorithm27_test = dx.algorithm(27) <: _,_;\nalgorithm28_test = dx.algorithm(28) <: _,_;\nalgorithm29_test = dx.algorithm(29) <: _,_;\nalgorithm30_test = dx.algorithm(30) <: _,_;\nalgorithm31_test = dx.algorithm(31) <: _,_;\nalgorithm32_test = dx.algorithm(32) <: _,_;",
+      "references": [],
+      "tags": [
+        "dx7"
+      ],
+      "source": {
+        "file": "dx7.lib",
+        "path": "dx7/dx7.lib",
+        "lineStart": 155,
+        "lineEnd": 205
+      }
+    }
+  ]
+}

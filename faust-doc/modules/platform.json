@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "platform.lib",
+    "path": "platform.lib",
+    "aliasHints": [
+      "pl"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "platform.SR",
+      "name": "SR",
+      "qualifiedName": "pl.SR",
+      "header": "(pl.)SR",
+      "summary": "Current sampling rate (between 1 and 192000Hz). Constant during program execution. Setting this value to a constant will allow the compiler to optimize the code by computing constant expressions at compile time, and can be valuable for performance, especially on embedded systems.",
+      "usage": "SR : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "SR : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "platform"
+      ],
+      "source": {
+        "file": "platform.lib",
+        "path": "platform.lib",
+        "lineStart": 47,
+        "lineEnd": 53
+      }
+    },
+    {
+      "id": "platform.BS",
+      "name": "BS",
+      "qualifiedName": "pl.BS",
+      "header": "(pl.)BS",
+      "summary": "Current block-size (between 1 and 16384 frames). Can change during the execution.",
+      "usage": "BS : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "BS : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "platform"
+      ],
+      "source": {
+        "file": "platform.lib",
+        "path": "platform.lib",
+        "lineStart": 56,
+        "lineEnd": 58
+      }
+    },
+    {
+      "id": "platform.tablesize",
+      "name": "tablesize",
+      "qualifiedName": "pl.tablesize",
+      "header": "(pl.)tablesize",
+      "summary": "Oscillator table size. This value is used to define the size of the table used by the oscillators. It is usually a power of 2 and can be lowered to save memory. The default value is 65536.",
+      "usage": "tablesize : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "tablesize : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "platform"
+      ],
+      "source": {
+        "file": "platform.lib",
+        "path": "platform.lib",
+        "lineStart": 61,
+        "lineEnd": 65
+      }
+    }
+  ]
+}

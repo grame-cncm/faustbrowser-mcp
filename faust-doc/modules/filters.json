@@ -1,0 +1,4003 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "filters.lib",
+    "path": "filters.lib",
+    "aliasHints": [
+      "fi"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "filters.zero",
+      "name": "zero",
+      "qualifiedName": "fi.zero",
+      "header": "(fi.)zero",
+      "summary": "One zero filter. Difference equation: \\(y(n) = x(n) - zx(n-1)\\).",
+      "usage": "_ : zero(z) : _",
+      "params": [
+        {
+          "name": "z",
+          "description": "location of zero along real axis in z-plane"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : zero(z) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nzero_test = os.osc(440) : fi.zero(0.5);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/filters/One_Zero.html>",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 61,
+        "lineEnd": 83
+      }
+    },
+    {
+      "id": "filters.pole",
+      "name": "pole",
+      "qualifiedName": "fi.pole",
+      "header": "(fi.)pole",
+      "summary": "One pole filter. Could also be called a \"leaky integrator\". Difference equation: \\(y(n) = x(n) + py(n-1)\\).",
+      "usage": "_ : pole(p) : _",
+      "params": [
+        {
+          "name": "p",
+          "description": "pole location = feedback coefficient"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : pole(p) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\npole_test = os.osc(440) : fi.pole(0.9);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/filters/One_Pole.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 89,
+        "lineEnd": 112
+      }
+    },
+    {
+      "id": "filters.integrator",
+      "name": "integrator",
+      "qualifiedName": "fi.integrator",
+      "header": "(fi.)integrator",
+      "summary": "Same as `pole(1)` [implemented separately for block-diagram clarity].",
+      "usage": "_ : integrator : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : integrator : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nintegrator_test = os.osc(440) : fi.integrator;",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 118,
+        "lineEnd": 133
+      }
+    },
+    {
+      "id": "filters.dcblockerat",
+      "name": "dcblockerat",
+      "qualifiedName": "fi.dcblockerat",
+      "header": "(fi.)dcblockerat",
+      "summary": "DC blocker with configurable \"break frequency\". The amplitude response is substantially flat above `fb`, and sloped at about +6 dB/octave below `fb`. Derived from the analog transfer function: $$H(s) = \\frac{s}{(s + 2 \\pi f_b)}$$ (which can be seen as a 1st-order Butterworth highpass filter) by the low-frequency-matching bilinear transform method (i.e., using the typical frequency-scaling constant `2*SR`).",
+      "usage": "_ : dcblockerat(fb) : _",
+      "params": [
+        {
+          "name": "fb",
+          "description": "\"break frequency\" in Hz, i.e., -3 dB gain frequency (see 2nd reference below)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : dcblockerat(fb) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\ndcblockerat_test = os.osc(440) : fi.dcblockerat(30);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Bilinear_Transformation.html>",
+        "<https://ccrma.stanford.edu/~jos/spectilt/Bode_Plots.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 140,
+        "lineEnd": 171
+      }
+    },
+    {
+      "id": "filters.dcblocker",
+      "name": "dcblocker",
+      "qualifiedName": "fi.dcblocker",
+      "header": "(fi.)dcblocker",
+      "summary": "DC blocker. Default dc blocker has -3dB point near 35 Hz (at 44.1 kHz) and high-frequency gain near 1.0025 (due to no scaling). `dcblocker` is as standard Faust function.",
+      "usage": "_ : dcblocker : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : dcblocker : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\ndcblocker_test = os.osc(440) : fi.dcblocker;",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 182,
+        "lineEnd": 199
+      }
+    },
+    {
+      "id": "filters.lptN",
+      "name": "lptN",
+      "qualifiedName": "fi.lptN",
+      "header": "(fi.)lptN",
+      "summary": "One-pole lowpass filter with arbitrary dis/charging factors set in dB and times set in seconds.",
+      "usage": "_ : lptN(N, tN) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "is the attenuation factor in dB"
+        },
+        {
+          "name": "tN",
+          "description": "is the filter period in seconds, that is, the time for the impulse response to decay by `N` dB"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : lptN(N, tN) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nlptN_test = os.osc(440) : fi.lptN(60, 0.1);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/mdft/Exponentials.html>",
+        "----------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 205,
+        "lineEnd": 231
+      }
+    },
+    {
+      "id": "filters.lptau",
+      "name": "lptau",
+      "qualifiedName": "fi.lptau",
+      "header": "(fi.)lptau",
+      "summary": "One-pole lowpass with a tau time constant (1/e attenuation after `tN` seconds).",
+      "usage": "_ : lptau(tN) : _",
+      "params": [
+        {
+          "name": "tN",
+          "description": "tau time constant in seconds (1/e attenuation after `tN` seconds)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : lptau(tN) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nlptau_test = os.osc(440) : fi.lptau(0.1);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 237,
+        "lineEnd": 256
+      }
+    },
+    {
+      "id": "filters.lpt60",
+      "name": "lpt60",
+      "qualifiedName": "fi.lpt60",
+      "header": "(fi.)lpt60",
+      "summary": "One-pole lowpass with a T60 time constant (60 dB attenuation after `tN` seconds).",
+      "usage": "_ : lpt60(tN) : _",
+      "params": [
+        {
+          "name": "tN",
+          "description": "T60 time constant in seconds (60 dB attenuation after `tN` seconds)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : lpt60(tN) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nlpt60_test = os.osc(440) : fi.lpt60(0.3);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 259,
+        "lineEnd": 278
+      }
+    },
+    {
+      "id": "filters.lpt19",
+      "name": "lpt19",
+      "qualifiedName": "fi.lpt19",
+      "header": "(fi.)lpt19",
+      "summary": "One-pole lowpass with a T19 time constant (approx. 19 dB attenuation after `tN` seconds).",
+      "usage": "_ : lpt19(tN) : _",
+      "params": [
+        {
+          "name": "tN",
+          "description": "T19 time constant in seconds (approximately 19 dB attenuation after `tN` seconds)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : lpt19(tN) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nlpt19_test = os.osc(440) : fi.lpt19(0.2);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 281,
+        "lineEnd": 300
+      }
+    },
+    {
+      "id": "filters.ff_comb",
+      "name": "ff_comb",
+      "qualifiedName": "fi.ff_comb",
+      "header": "(fi.)ff_comb",
+      "summary": "Feed-Forward Comb Filter. Note that `ff_comb` requires integer delays (uses `delay`  internally). `ff_comb` is a standard Faust function.",
+      "usage": "_ : ff_comb(maxdel,intdel,b0,bM) : _",
+      "params": [
+        {
+          "name": "maxdel",
+          "description": "maximum delay (a power of 2)"
+        },
+        {
+          "name": "intdel",
+          "description": "current (integer) comb-filter delay between 0 and maxdel"
+        },
+        {
+          "name": "del",
+          "description": "current (float) comb-filter delay between 0 and maxdel"
+        },
+        {
+          "name": "b0",
+          "description": "gain applied to delay-line input"
+        },
+        {
+          "name": "bM",
+          "description": "gain applied to delay-line output and then summed with input"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : ff_comb(maxdel,intdel,b0,bM) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nff_comb_test = os.osc(440) : fi.ff_comb(2048, 64, 1, 0.7);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Feedforward_Comb_Filters.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 306,
+        "lineEnd": 335
+      }
+    },
+    {
+      "id": "filters.ff_fcomb",
+      "name": "ff_fcomb",
+      "qualifiedName": "fi.ff_fcomb",
+      "header": "(fi.)ff_fcomb",
+      "summary": "Feed-Forward Comb Filter. Note that `ff_fcomb` takes floating-point delays (uses `fdelay` internally). `ff_fcomb` is a standard Faust function.",
+      "usage": "_ : ff_fcomb(maxdel,del,b0,bM) : _",
+      "params": [
+        {
+          "name": "maxdel",
+          "description": "maximum delay (a power of 2)"
+        },
+        {
+          "name": "del",
+          "description": "current (float) comb-filter delay between 0 and maxdel"
+        },
+        {
+          "name": "b0",
+          "description": "gain applied to delay-line input"
+        },
+        {
+          "name": "bM",
+          "description": "gain applied to delay-line output and then summed with input"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : ff_fcomb(maxdel,del,b0,bM) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nff_fcomb_test = os.osc(440) : fi.ff_fcomb(2048, 64.5, 1, 0.7);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Feedforward_Comb_Filters.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 341,
+        "lineEnd": 369
+      }
+    },
+    {
+      "id": "filters.ffcombfilter",
+      "name": "ffcombfilter",
+      "qualifiedName": "fi.ffcombfilter",
+      "header": "(fi.)ffcombfilter",
+      "summary": "Typical special case of `ff_comb()` where: `b0 = 1`.",
+      "usage": null,
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": null,
+        "raw": null
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nffcombfilter_test = os.osc(440) : fi.ffcombfilter(2048, 64, 0.7);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 375,
+        "lineEnd": 384
+      }
+    },
+    {
+      "id": "filters.fb_comb_common",
+      "name": "fb_comb_common",
+      "qualifiedName": "fi.fb_comb_common",
+      "header": "(fi.)fb_comb_common",
+      "summary": "A generic feedback comb filter.",
+      "usage": "_ : fb_comb_common(dop,N,b0,aN) : _",
+      "params": [
+        {
+          "name": "dop",
+          "description": "delay operator, e.g. `@` or `de.fdelay4a(2048)`"
+        },
+        {
+          "name": "N",
+          "description": "current delay"
+        },
+        {
+          "name": "b0",
+          "description": "gain applied to input"
+        },
+        {
+          "name": "aN",
+          "description": "gain applied to delay-line output"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : fb_comb_common(dop,N,b0,aN) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nfb_comb_common_test = os.osc(440) : fi.fb_comb_common(@, 64, 0.8, 0.6);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 390,
+        "lineEnd": 424
+      }
+    },
+    {
+      "id": "filters.fb_comb",
+      "name": "fb_comb",
+      "qualifiedName": "fi.fb_comb",
+      "header": "(fi.)fb_comb",
+      "summary": "Feed-Back Comb Filter (integer delay).",
+      "usage": "_ : fb_comb(maxdel,del,b0,aN) : _",
+      "params": [
+        {
+          "name": "maxdel",
+          "description": "maximum delay (a power of 2)"
+        },
+        {
+          "name": "del",
+          "description": "current (float) comb-filter delay between 0 and maxdel"
+        },
+        {
+          "name": "b0",
+          "description": "gain applied to delay-line input and forwarded to output"
+        },
+        {
+          "name": "aN",
+          "description": "minus the gain applied to delay-line output before summing with the input and feeding to the delay line"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : fb_comb(maxdel,del,b0,aN) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nfb_comb_test = os.osc(440) : fi.fb_comb(2048, 64, 0.7, 0.6);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Feedback_Comb_Filters.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 428,
+        "lineEnd": 455
+      }
+    },
+    {
+      "id": "filters.fb_fcomb",
+      "name": "fb_fcomb",
+      "qualifiedName": "fi.fb_fcomb",
+      "header": "(fi.)fb_fcomb",
+      "summary": "Feed-Back Comb Filter (floating point delay).",
+      "usage": "_ : fb_fcomb(maxdel,del,b0,aN) : _",
+      "params": [
+        {
+          "name": "maxdel",
+          "description": "maximum delay (a power of 2)"
+        },
+        {
+          "name": "del",
+          "description": "current (float) comb-filter delay between 0 and maxdel"
+        },
+        {
+          "name": "b0",
+          "description": "gain applied to delay-line input and forwarded to output"
+        },
+        {
+          "name": "aN",
+          "description": "minus the gain applied to delay-line output before summing with the input and feeding to the delay line"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : fb_fcomb(maxdel,del,b0,aN) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nfb_fcomb_test = os.osc(440) : fi.fb_fcomb(2048, 64.5, 0.7, 0.6);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Feedback_Comb_Filters.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 461,
+        "lineEnd": 488
+      }
+    },
+    {
+      "id": "filters.rev1",
+      "name": "rev1",
+      "qualifiedName": "fi.rev1",
+      "header": "(fi.)rev1",
+      "summary": "Special case of `fb_comb` (`rev1(maxdel,N,g)`). The \"rev1 section\" dates back to the 1960s in computer-music reverberation. See the `jcrev` and `brassrev` in `reverbs.lib` for usage examples.",
+      "usage": null,
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": null,
+        "raw": null
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nrev1_test = os.osc(440) : fi.rev1(2048, 64, 0.6);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 494,
+        "lineEnd": 505
+      }
+    },
+    {
+      "id": "filters.allpass_comb",
+      "name": "allpass_comb",
+      "qualifiedName": "fi.allpass_comb",
+      "header": "(fi.)allpass_comb",
+      "summary": "Schroeder Allpass Comb Filter. Note that: which is a direct-form-1 implementation, requiring two delay lines. The implementation here is direct-form-2 requiring only one delay line.",
+      "usage": "_ : allpass_comb(maxdel,intdel,aN) : _",
+      "params": [
+        {
+          "name": "maxdel",
+          "description": "maximum delay (a power of 2)"
+        },
+        {
+          "name": "intdel",
+          "description": "current (integer) comb-filter delay between 0 and maxdel"
+        },
+        {
+          "name": "del",
+          "description": "current (float) comb-filter delay between 0 and maxdel"
+        },
+        {
+          "name": "aN",
+          "description": "minus the feedback gain"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : allpass_comb(maxdel,intdel,aN) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nallpass_comb_test = os.osc(440) : fi.allpass_comb(2048, 64, 0.6);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Allpass_Two_Combs.html>",
+        "<https://ccrma.stanford.edu/~jos/pasp/Schroeder_Allpass_Sections.html>",
+        "<https://ccrma.stanford.edu/~jos/filters/Four_Direct_Forms.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 551,
+        "lineEnd": 586
+      }
+    },
+    {
+      "id": "filters.allpass_fcomb",
+      "name": "allpass_fcomb",
+      "qualifiedName": "fi.allpass_fcomb",
+      "header": "(fi.)allpass_fcomb",
+      "summary": "Schroeder Allpass Comb Filter. Note that: which is a direct-form-1 implementation, requiring two delay lines. The implementation here is direct-form-2 requiring only one delay line. `allpass_fcomb` is a standard Faust library.",
+      "usage": "_ : allpass_comb(maxdel,intdel,aN) : _ _ : allpass_fcomb(maxdel,del,aN) : _",
+      "params": [
+        {
+          "name": "maxdel",
+          "description": "maximum delay (a power of 2)"
+        },
+        {
+          "name": "intdel",
+          "description": "current (float) comb-filter delay between 0 and maxdel"
+        },
+        {
+          "name": "del",
+          "description": "current (float) comb-filter delay between 0 and maxdel"
+        },
+        {
+          "name": "aN",
+          "description": "minus the feedback gain"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : allpass_comb(maxdel,intdel,aN) : _ _ : allpass_fcomb(maxdel,del,aN) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nallpass_fcomb_test = os.osc(440) : fi.allpass_fcomb(2048, 64.5, 0.6);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Allpass_Two_Combs.html>",
+        "<https://ccrma.stanford.edu/~jos/pasp/Schroeder_Allpass_Sections.html>",
+        "<https://ccrma.stanford.edu/~jos/filters/Four_Direct_Forms.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 593,
+        "lineEnd": 631
+      }
+    },
+    {
+      "id": "filters.rev2",
+      "name": "rev2",
+      "qualifiedName": "fi.rev2",
+      "header": "(fi.)rev2",
+      "summary": "Special case of `allpass_comb` (`rev2(maxlen,len,g)`). The \"rev2 section\" dates back to the 1960s in computer-music reverberation. See the `jcrev` and `brassrev` in `reverbs.lib` for usage examples.",
+      "usage": null,
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": null,
+        "raw": null
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nrev2_test = os.osc(440) : fi.rev2(2048, 64, 0.6);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 638,
+        "lineEnd": 649
+      }
+    },
+    {
+      "id": "filters.iir",
+      "name": "iir",
+      "qualifiedName": "fi.iir",
+      "header": "(fi.)iir",
+      "summary": "Nth-order Infinite-Impulse-Response (IIR) digital filter, implemented in terms of the Transfer-Function (TF) coefficients. Such filter structures are termed \"direct form\". `iir` is a standard Faust function.",
+      "usage": "_ : iir(bcoeffs,acoeffs) : _",
+      "params": [
+        {
+          "name": "bcoeffs",
+          "description": "(b0,b1,...,b_order) = TF numerator coefficients"
+        },
+        {
+          "name": "acoeffs",
+          "description": "(a1,...,a_order) = TF denominator coeffs (a0=1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : iir(bcoeffs,acoeffs) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\niir_test = os.osc(440) : fi.iir((0.5, 0.5), (0.3));",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/filters/Four_Direct_Forms.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 684,
+        "lineEnd": 712
+      }
+    },
+    {
+      "id": "filters.fir",
+      "name": "fir",
+      "qualifiedName": "fi.fir",
+      "header": "(fi.)fir",
+      "summary": "FIR filter (convolution of FIR filter coefficients with a signal). `fir` is standard Faust function.",
+      "usage": "_ : fir(bv) : _",
+      "params": [
+        {
+          "name": "bv",
+          "description": "`b0,b1,...,bn`, a parallel bank of coefficient signals"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : fir(bv) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nfir_test = os.osc(440) : fi.fir((0.2, 0.2, 0.2, 0.2, 0.2));",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 718,
+        "lineEnd": 759
+      }
+    },
+    {
+      "id": "filters.notchw",
+      "name": "notchw",
+      "qualifiedName": "fi.notchw",
+      "header": "(fi.)notchw",
+      "summary": "Simple notch filter based on a biquad (`tf2`). `notchw` is a standard Faust function.",
+      "usage": "_ : notchw(width,freq) : _",
+      "params": [
+        {
+          "name": "width",
+          "description": "\"notch width\" in Hz (approximate)"
+        },
+        {
+          "name": "freq",
+          "description": "\"notch frequency\" in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : notchw(width,freq) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nnotchw_test = os.osc(440) : fi.notchw(200, 1000);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Phasing_2nd_Order_Allpass_Filters.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 854,
+        "lineEnd": 879
+      }
+    },
+    {
+      "id": "filters.av2sv",
+      "name": "av2sv",
+      "qualifiedName": "fi.av2sv",
+      "header": "(fi.)av2sv",
+      "summary": "Compute reflection coefficients sv from transfer-function denominator av.",
+      "usage": "sv = av2sv(av)",
+      "params": [
+        {
+          "name": "av",
+          "description": "parallel signal bank `a1,...,aN`"
+        },
+        {
+          "name": "sv",
+          "description": "parallel signal bank `s1,...,sN` where `ro = ith` reflection coefficient, and `ai` = coefficient of `z^(-i)` in the filter transfer-function denominator `A(z)`."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "sv = av2sv(av)"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nsi = library(\"signals.lib\");\nav2sv_test = fi.av2sv((-0.4, 0.1)) : si.bus(2);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/filters/Step_Down_Procedure.html>",
+        "(where reflection coefficients are denoted by k rather than s).",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 983,
+        "lineEnd": 1012
+      }
+    },
+    {
+      "id": "filters.bvav2nuv",
+      "name": "bvav2nuv",
+      "qualifiedName": "fi.bvav2nuv",
+      "header": "(fi.)bvav2nuv",
+      "summary": "Compute lattice tap coefficients from transfer-function coefficients.",
+      "usage": "nuv = bvav2nuv(bv,av)",
+      "params": [
+        {
+          "name": "av",
+          "description": "parallel signal bank `a1,...,aN`"
+        },
+        {
+          "name": "bv",
+          "description": "parallel signal bank `b0,b1,...,aN`"
+        },
+        {
+          "name": "nuv",
+          "description": "parallel signal bank  `nu1,...,nuN` where `nui` is the i'th tap coefficient, `bi` is the coefficient of `z^(-i)` in the filter numerator, `ai` is the coefficient of `z^(-i)` in the filter denominator"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "nuv = bvav2nuv(bv,av)"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nsi = library(\"signals.lib\");\nbvav2nuv_test = fi.bvav2nuv((0.1, 0.2, 0.3), (-0.4, 0.1)) : si.bus(3);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1026,
+        "lineEnd": 1051
+      }
+    },
+    {
+      "id": "filters.iir_lat2",
+      "name": "iir_lat2",
+      "qualifiedName": "fi.iir_lat2",
+      "header": "(fi.)iir_lat2",
+      "summary": "Two-multiply lattice IIR filter of arbitrary order.",
+      "usage": "_ : iir_lat2(bv,av) : _",
+      "params": [
+        {
+          "name": "bv",
+          "description": "transfer-function numerator"
+        },
+        {
+          "name": "av",
+          "description": "transfer-function denominator (monic)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : iir_lat2(bv,av) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\niir_lat2_test = os.osc(440) : fi.iir_lat2((0.1, 0.2, 0.3), (-0.4, 0.1));",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1069,
+        "lineEnd": 1089
+      }
+    },
+    {
+      "id": "filters.allpassnt",
+      "name": "allpassnt",
+      "qualifiedName": "fi.allpassnt",
+      "header": "(fi.)allpassnt",
+      "summary": "Two-multiply lattice allpass (nested order-1 direct-form-ii allpasses), with taps.",
+      "usage": "_ : allpassnt(n,sv) : si.bus(n+1)",
+      "params": [
+        {
+          "name": "n",
+          "description": "the order of the filter"
+        },
+        {
+          "name": "sv",
+          "description": "the reflection coefficients (-1 1) The first output is the n-th order allpass output, while the remaining outputs are taps taken from the input of each delay element from the input to the output. See (fi.)allpassn for the single-output case."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : allpassnt(n,sv) : si.bus(n+1)"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nsi = library(\"signals.lib\");\nallpassnt_test = os.osc(440) : fi.allpassnt(2, (0.3, -0.2)) : si.bus(3);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1100,
+        "lineEnd": 1126
+      }
+    },
+    {
+      "id": "filters.iir_kl",
+      "name": "iir_kl",
+      "qualifiedName": "fi.iir_kl",
+      "header": "(fi.)iir_kl",
+      "summary": "Kelly-Lochbaum ladder IIR filter of arbitrary order.",
+      "usage": "_ : iir_kl(bv,av) : _",
+      "params": [
+        {
+          "name": "bv",
+          "description": "transfer-function numerator"
+        },
+        {
+          "name": "av",
+          "description": "transfer-function denominator (monic)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : iir_kl(bv,av) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\niir_kl_test = os.osc(440) : fi.iir_kl((0.1, 0.2, 0.3), (-0.4, 0.1));",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1139,
+        "lineEnd": 1159
+      }
+    },
+    {
+      "id": "filters.allpassnklt",
+      "name": "allpassnklt",
+      "qualifiedName": "fi.allpassnklt",
+      "header": "(fi.)allpassnklt",
+      "summary": "Kelly-Lochbaum ladder allpass.",
+      "usage": "_ : allpassnklt(n,sv) : _",
+      "params": [
+        {
+          "name": "n",
+          "description": "the order of the filter"
+        },
+        {
+          "name": "sv",
+          "description": "the reflection coefficients (-1 1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : allpassnklt(n,sv) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nsi = library(\"signals.lib\");\nallpassnklt_test = os.osc(440) : fi.allpassnklt(2, (0.3, -0.2)) : si.bus(3);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1174,
+        "lineEnd": 1195
+      }
+    },
+    {
+      "id": "filters.iir_lat1",
+      "name": "iir_lat1",
+      "qualifiedName": "fi.iir_lat1",
+      "header": "(fi.)iir_lat1",
+      "summary": "One-multiply lattice IIR filter of arbitrary order.",
+      "usage": "_ : iir_lat1(bv,av) : _",
+      "params": [
+        {
+          "name": "bv",
+          "description": "transfer-function numerator as a bank of parallel signals"
+        },
+        {
+          "name": "av",
+          "description": "transfer-function denominator as a bank of parallel signals"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : iir_lat1(bv,av) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\niir_lat1_test = os.osc(440) : fi.iir_lat1((0.1, 0.2, 0.3), (-0.4, 0.1));",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1209,
+        "lineEnd": 1229
+      }
+    },
+    {
+      "id": "filters.allpassn1mt",
+      "name": "allpassn1mt",
+      "qualifiedName": "fi.allpassn1mt",
+      "header": "(fi.)allpassn1mt",
+      "summary": "One-multiply lattice allpass with tap lines.",
+      "usage": "_ : allpassn1mt(N,sv) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "the order of the filter (fixed at compile time)"
+        },
+        {
+          "name": "sv",
+          "description": "the reflection coefficients (-1 1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : allpassn1mt(N,sv) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nsi = library(\"signals.lib\");\nallpassn1mt_test = os.osc(440) : fi.allpassn1mt(2, (0.3, -0.2)) : si.bus(3);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1244,
+        "lineEnd": 1265
+      }
+    },
+    {
+      "id": "filters.iir_nl",
+      "name": "iir_nl",
+      "qualifiedName": "fi.iir_nl",
+      "header": "(fi.)iir_nl",
+      "summary": "Normalized ladder filter of arbitrary order.",
+      "usage": "_ : iir_nl(bv,av) : _",
+      "params": [
+        {
+          "name": "bv",
+          "description": "transfer-function numerator"
+        },
+        {
+          "name": "av",
+          "description": "transfer-function denominator (monic)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : iir_nl(bv,av) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\niir_nl_test = os.osc(440) : fi.iir_nl((0.1, 0.2, 0.3), (-0.4, 0.1));",
+      "references": [
+        "J. D. Markel and A. H. Gray, Linear Prediction of Speech, New York: Springer Verlag, 1976.",
+        "<https://ccrma.stanford.edu/~jos/pasp/Normalized_Scattering_Junctions.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1279,
+        "lineEnd": 1304
+      }
+    },
+    {
+      "id": "filters.allpassnnlt",
+      "name": "allpassnnlt",
+      "qualifiedName": "fi.allpassnnlt",
+      "header": "(fi.)allpassnnlt",
+      "summary": "Normalized ladder allpass filter of arbitrary order.",
+      "usage": "_ : allpassnnlt(N,sv) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "the order of the filter (fixed at compile time)"
+        },
+        {
+          "name": "sv",
+          "description": "the reflection coefficients (-1 1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : allpassnnlt(N,sv) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nsi = library(\"signals.lib\");\nallpassnnlt_test = os.osc(440) : fi.allpassnnlt(2, (0.3, -0.2)) : si.bus(3);",
+      "references": [
+        "J. D. Markel and A. H. Gray, Linear Prediction of Speech, New York: Springer Verlag, 1976.",
+        "<https://ccrma.stanford.edu/~jos/pasp/Normalized_Scattering_Junctions.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1321,
+        "lineEnd": 1347
+      }
+    },
+    {
+      "id": "filters.tf2np",
+      "name": "tf2np",
+      "qualifiedName": "fi.tf2np",
+      "header": "(fi.)tf2np",
+      "summary": "Biquad based on a stable second-order Normalized Ladder Filter (more robust to modulation than `tf2` and protected against instability).",
+      "usage": "_ : tf2np(b0,b1,b2,a1,a2) : _",
+      "params": [
+        {
+          "name": "b",
+          "description": "transfer-function numerator"
+        },
+        {
+          "name": "a",
+          "description": "transfer-function denominator (monic)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : tf2np(b0,b1,b2,a1,a2) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\ntf2np_test = os.osc(440) : fi.tf2np(0.6, 0.3, 0.2, -0.5, 0.2);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1366,
+        "lineEnd": 1387
+      }
+    },
+    {
+      "id": "filters.wgr",
+      "name": "wgr",
+      "qualifiedName": "fi.wgr",
+      "header": "(fi.)wgr",
+      "summary": "Second-order transformer-normalized digital waveguide resonator.",
+      "usage": "_ : wgr(f,r) : _",
+      "params": [
+        {
+          "name": "f",
+          "description": "resonance frequency (Hz)"
+        },
+        {
+          "name": "r",
+          "description": "loss factor for exponential decay (set to 1 to make a numerically stable oscillator)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : wgr(f,r) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nwgr_test = fi.wgr(440, 0.995, os.osc(440));",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Power_Normalized_Waveguide_Filters.html>",
+        "<https://ccrma.stanford.edu/~jos/pasp/Digital_Waveguide_Oscillator.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1411,
+        "lineEnd": 1436
+      }
+    },
+    {
+      "id": "filters.nlf2",
+      "name": "nlf2",
+      "qualifiedName": "fi.nlf2",
+      "header": "(fi.)nlf2",
+      "summary": "Second order normalized digital waveguide resonator.",
+      "usage": "_ : nlf2(f,r) : _",
+      "params": [
+        {
+          "name": "f",
+          "description": "resonance frequency (Hz)"
+        },
+        {
+          "name": "r",
+          "description": "loss factor for exponential decay (set to 1 to make a sinusoidal oscillator)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : nlf2(f,r) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nnlf2_test = fi.nlf2(440, 0.995, os.osc(440));",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Power_Normalized_Waveguide_Filters.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1448,
+        "lineEnd": 1472
+      }
+    },
+    {
+      "id": "filters.apnl",
+      "name": "apnl",
+      "qualifiedName": "fi.apnl",
+      "header": "(fi.)apnl",
+      "summary": "Passive Nonlinear Allpass based on Pierce switching springs idea. Switch between allpass coefficient `a1` and `a2` at signal zero crossings.",
+      "usage": "_ : apnl(a1,a2) : _",
+      "params": [
+        {
+          "name": "a1",
+          "description": "first allpass coefficient"
+        },
+        {
+          "name": "a2",
+          "description": "second allpass coefficient"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : apnl(a1,a2) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\napnl_test = fi.apnl(0.5, -0.5, os.osc(440));",
+      "references": [
+        "\"A Passive Nonlinear Digital Filter Design ...\" by John R. Pierce and Scott",
+        "A. Van Duyne, JASA, vol. 101, no. 2, pp. 1120-1126, 1997",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1486,
+        "lineEnd": 1512
+      }
+    },
+    {
+      "id": "filters.scatN",
+      "name": "scatN",
+      "qualifiedName": "fi.scatN",
+      "header": "(fi.)scatN",
+      "summary": "N-port scattering junction.",
+      "usage": "si.bus(N) : scatN(N,av,filter) : si.bus(N)",
+      "params": [
+        {
+          "name": "N",
+          "description": "number of incoming/outgoing waves"
+        },
+        {
+          "name": "av",
+          "description": "vector (list) of `N` alpha parameters (each between 0 and 2, and normally summing to 2): <https://ccrma.stanford.edu/~jos/pasp/Alpha_Parameters.html>"
+        },
+        {
+          "name": "filter",
+          "description": "optional junction filter to apply (`_` for none, see below) With no filter: - The junction is _lossless_ when the alpha parameters sum to 2 (\"allpass\"). - The junction is _passive_ but lossy when the alpha parameters sum to less than 2 (\"resistive loss\"). - Dynamic and reactive junctions are obtained using the `filter` argument. For guaranteed stability, the filter should be _positive real_. (See 2nd ref. below). For \\(N=2\\) (two-port scattering), the reflection coefficient \\(\\rho\\) corresponds to alpha parameters \\(1\\pm\\rho\\)."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N) : scatN(N,av,filter) : si.bus(N)"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nscatN_test = (os.osc(440), os.osc(660)) : fi.scatN(2, (1, 1), _);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Loaded_Waveguide_Junctions.html>",
+        "<https://ccrma.stanford.edu/~jos/pasp/Passive_String_Terminations.html>",
+        "<https://ccrma.stanford.edu/~jos/pasp/Unloaded_Junctions_Alpha_Parameters.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1535,
+        "lineEnd": 1582
+      }
+    },
+    {
+      "id": "filters.scat",
+      "name": "scat",
+      "qualifiedName": "fi.scat",
+      "header": "(fi.)scat",
+      "summary": "Scatter off of reflectance r with reflection coefficient s.",
+      "usage": "_ : scat(s,r) : _",
+      "params": [
+        {
+          "name": "s",
+          "description": "reflection coefficient between -1 and 1 for stability"
+        },
+        {
+          "name": "r",
+          "description": "single-input, single-output block diagram, having gain less than 1 at all frequencies for stability."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : scat(s,r) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nscat_test = os.osc(440) : fi.scat(0.5, _);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Scattering_Impedance_Changes.html>",
+        "----------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1597,
+        "lineEnd": 1628
+      }
+    },
+    {
+      "id": "filters.allpassn",
+      "name": "allpassn",
+      "qualifiedName": "fi.allpassn",
+      "header": "(fi.)allpassn",
+      "summary": "Two-multiply lattice filter.",
+      "usage": "_ : allpassn(n,sv) : _",
+      "params": [
+        {
+          "name": "n",
+          "description": "the order of the filter"
+        },
+        {
+          "name": "sv",
+          "description": "the reflection coefficients `(s1,s2,...,sN)`, each between -1 and 1 Equivalent to `fi.allpassnt(n,sv) : _, par(i,n,!);` Equivalent to `fi.scat( s(n), fi.scat( s(n-1), ..., fi.scat( s(1), _ ))) with { s(k) = ba.take(k,sv); } ;` Identical to `allpassn` in `old/filter.lib`."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : allpassn(n,sv) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nallpassn_test = os.osc(440) : fi.allpassn(3, (0.3, 0.2, 0.1));",
+      "references": [
+        "J. D. Markel and A. H. Gray: Linear Prediction of Speech, New York: Springer Verlag, 1976.",
+        "<https://ccrma.stanford.edu/~jos/pasp/Conventional_Ladder_Filters.html>",
+        "----------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1635,
+        "lineEnd": 1666
+      }
+    },
+    {
+      "id": "filters.allpassnn",
+      "name": "allpassnn",
+      "qualifiedName": "fi.allpassnn",
+      "header": "(fi.)allpassnn",
+      "summary": "Normalized form - four multiplies and two adds per section, but coefficients can be time varying and nonlinear without \"parametric amplification\" (modulation of signal energy).",
+      "usage": "_ : allpassnn(n,tv) : _",
+      "params": [
+        {
+          "name": "n",
+          "description": "the order of the filter"
+        },
+        {
+          "name": "tv",
+          "description": "the reflection coefficients (-PI PI)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : allpassnn(n,tv) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nallpassnn_test = os.osc(440) : fi.allpassnn(3, (0.3, 0.2, 0.1));",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1674,
+        "lineEnd": 1697
+      }
+    },
+    {
+      "id": "filters.allpassnkl",
+      "name": "allpassnkl",
+      "qualifiedName": "fi.allpassnkl",
+      "header": "(fi.)allpassnkl",
+      "summary": "Kelly-Lochbaum form - four multiplies and two adds per section, but all signals have an immediate physical interpretation as traveling pressure waves, etc.",
+      "usage": "_ : allpassnkl(n,sv) : _",
+      "params": [
+        {
+          "name": "n",
+          "description": "the order of the filter"
+        },
+        {
+          "name": "sv",
+          "description": "the reflection coefficients (-1 1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : allpassnkl(n,sv) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nallpassnkl_test = os.osc(440) : fi.allpassnkl(3, (0.3, 0.2, 0.1));",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1707,
+        "lineEnd": 1730
+      }
+    },
+    {
+      "id": "filters.allpass1m",
+      "name": "allpass1m",
+      "qualifiedName": "fi.allpass1m",
+      "header": "(fi.)allpass1m",
+      "summary": "One-multiply form - one multiply and three adds per section. Normally the most efficient in special-purpose hardware.",
+      "usage": "_ : allpassn1m(n,sv) : _",
+      "params": [
+        {
+          "name": "n",
+          "description": "the order of the filter"
+        },
+        {
+          "name": "sv",
+          "description": "the reflection coefficients (-1 1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : allpassn1m(n,sv) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nallpassn1m_test = os.osc(440) : fi.allpassn1m(3, (0.3, 0.2, 0.1));",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1740,
+        "lineEnd": 1762
+      }
+    },
+    {
+      "id": "filters.tf1snp",
+      "name": "tf1snp",
+      "qualifiedName": "fi.tf1snp",
+      "header": "(fi.)tf1snp",
+      "summary": "First-order special case of tf2snp above.",
+      "usage": "_ : tf1snp(b1,b0,a0,w1) : _",
+      "params": [
+        {
+          "name": "b1",
+          "description": "analog numerator coefficient for `s`"
+        },
+        {
+          "name": "b0",
+          "description": "analog numerator constant coefficient"
+        },
+        {
+          "name": "a0",
+          "description": "analog denominator constant coefficient"
+        },
+        {
+          "name": "w1",
+          "description": "desired digital frequency (radians/second) corresponding to analog frequency `1 rad/sec`"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : tf1snp(b1,b0,a0,w1) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nma = library(\"maths.lib\");\ntf1snp_test = os.osc(440) : fi.tf1snp(0, 1, 1, ma.PI*ma.SR/2);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1866,
+        "lineEnd": 1889
+      }
+    },
+    {
+      "id": "filters.tf3slf",
+      "name": "tf3slf",
+      "qualifiedName": "fi.tf3slf",
+      "header": "(fi.)tf3slf",
+      "summary": "Analogous to `tf2s` above, but third order, and using the typical low-frequency-matching bilinear-transform constant 2/T (\"lf\" series) instead of the specific-frequency-matching value used in `tf2s` and `tf1s`. Note the lack of a \"w1\" argument.",
+      "usage": "_ : tf3slf(b3,b2,b1,b0,a3,a2,a1,a0) : _",
+      "params": [
+        {
+          "name": "b3",
+          "description": "analog numerator coefficient of `s^3`"
+        },
+        {
+          "name": "b2",
+          "description": "analog numerator coefficient of `s^2`"
+        },
+        {
+          "name": "b1",
+          "description": "analog numerator coefficient of `s`"
+        },
+        {
+          "name": "b0",
+          "description": "analog numerator constant term"
+        },
+        {
+          "name": "a3",
+          "description": "analog denominator coefficient of `s^3`"
+        },
+        {
+          "name": "a2",
+          "description": "analog denominator coefficient of `s^2`"
+        },
+        {
+          "name": "a1",
+          "description": "analog denominator coefficient of `s`"
+        },
+        {
+          "name": "a0",
+          "description": "analog denominator constant term"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : tf3slf(b3,b2,b1,b0,a3,a2,a1,a0) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\ntf3slf_test = os.osc(440) : fi.tf3slf(0, 0, 0, 1, 1, 2, 2, 1);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1896,
+        "lineEnd": 1925
+      }
+    },
+    {
+      "id": "filters.tf1s",
+      "name": "tf1s",
+      "qualifiedName": "fi.tf1s",
+      "header": "(fi.)tf1s",
+      "summary": "First-order direct-form digital filter, specified by ANALOG transfer-function polynomials B(s)/A(s), and a frequency-scaling parameter.",
+      "usage": "_ : tf1s(b1,b0,a0,w1) : _",
+      "params": [
+        {
+          "name": "b1",
+          "description": "analog numerator coefficient of `s`"
+        },
+        {
+          "name": "b0",
+          "description": "analog numerator constant term"
+        },
+        {
+          "name": "a0",
+          "description": "analog denominator constant term in `s + a0`"
+        },
+        {
+          "name": "w1",
+          "description": "desired digital frequency in radians per second corresponding to analog frequency `1 rad/s`"
+        }
+      ],
+      "notes": [
+        "b1 s + b0 H(s) = ---------- s + a0 and `w1` is the desired digital frequency (in radians/second) corresponding to analog frequency 1 rad/sec (i.e., `s = j`)."
+      ],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : tf1s(b1,b0,a0,w1) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nma = library(\"maths.lib\");\ntf1s_test = os.osc(440) : fi.tf1s(0, 1, 1, ma.PI*ma.SR/2);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Bilinear_Transformation.html>",
+        "----------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 1944,
+        "lineEnd": 2003
+      }
+    },
+    {
+      "id": "filters.tf2sb",
+      "name": "tf2sb",
+      "qualifiedName": "fi.tf2sb",
+      "header": "(fi.)tf2sb",
+      "summary": "Bandpass mapping of `tf2s`: In addition to a frequency-scaling parameter `w1` (set to HALF the desired passband width in rad/sec), there is a desired center-frequency parameter wc (also in rad/s). Thus, `tf2sb` implements a fourth-order digital bandpass filter section specified by the coefficients of a second-order analog lowpass prototype section.  Such sections can be combined in series for higher orders. The order of mappings is (1) frequency scaling (to set lowpass cutoff w1), (2) bandpass mapping to wc, then (3) the bilinear transform, with the usual scale parameter `2*SR`.  Algebra carried out in maxima and pasted here.",
+      "usage": "_ : tf2sb(b2,b1,b0,a1,a0,w1,wc) : _",
+      "params": [
+        {
+          "name": "w1",
+          "description": "half the desired passband width in radians/second"
+        },
+        {
+          "name": "wc",
+          "description": "desired center frequency in radians/second"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : tf2sb(b2,b1,b0,a1,a0,w1,wc) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nma = library(\"maths.lib\");\ntf2sb_test = os.osc(440) : fi.tf2sb(0, 0, 1, sqrt(2), 1, 2*ma.PI*200, 2*ma.PI*1000);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2016,
+        "lineEnd": 2047
+      }
+    },
+    {
+      "id": "filters.tf1sb",
+      "name": "tf1sb",
+      "qualifiedName": "fi.tf1sb",
+      "header": "(fi.)tf1sb",
+      "summary": "First-to-second-order lowpass-to-bandpass section mapping, analogous to tf2sb above.",
+      "usage": "_ : tf1sb(b1,b0,a0,w1,wc) : _",
+      "params": [
+        {
+          "name": "a0",
+          "description": "analog denominator constant coefficient"
+        },
+        {
+          "name": "w1",
+          "description": "half the desired passband width in radians/second"
+        },
+        {
+          "name": "wc",
+          "description": "desired center frequency in radians/second"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : tf1sb(b1,b0,a0,w1,wc) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nma = library(\"maths.lib\");\ntf1sb_test = os.osc(440) : fi.tf1sb(0, 1, 1, 2*ma.PI*200, 2*ma.PI*1000);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2067,
+        "lineEnd": 2091
+      }
+    },
+    {
+      "id": "filters.resonlp",
+      "name": "resonlp",
+      "qualifiedName": "fi.resonlp",
+      "header": "(fi.)resonlp",
+      "summary": "Simple resonant lowpass filter based on `tf2s` (virtual analog). `resonlp` is a standard Faust function.",
+      "usage": "_ : resonlp(fc,Q,gain) : _ _ : resonhp(fc,Q,gain) : _ _ : resonbp(fc,Q,gain) : _",
+      "params": [
+        {
+          "name": "fc",
+          "description": "center frequency (Hz)"
+        },
+        {
+          "name": "Q",
+          "description": "q"
+        },
+        {
+          "name": "gain",
+          "description": "gain (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : resonlp(fc,Q,gain) : _ _ : resonhp(fc,Q,gain) : _ _ : resonbp(fc,Q,gain) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nresonlp_test = os.osc(440) : fi.resonlp(1000, 2, 0.8);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2109,
+        "lineEnd": 2135
+      }
+    },
+    {
+      "id": "filters.resonhp",
+      "name": "resonhp",
+      "qualifiedName": "fi.resonhp",
+      "header": "(fi.)resonhp",
+      "summary": "Simple resonant highpass filters based on `tf2s` (virtual analog). `resonhp` is a standard Faust function.",
+      "usage": "_ : resonlp(fc,Q,gain) : _ _ : resonhp(fc,Q,gain) : _ _ : resonbp(fc,Q,gain) : _",
+      "params": [
+        {
+          "name": "fc",
+          "description": "center frequency (Hz)"
+        },
+        {
+          "name": "Q",
+          "description": "q"
+        },
+        {
+          "name": "gain",
+          "description": "gain (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : resonlp(fc,Q,gain) : _ _ : resonhp(fc,Q,gain) : _ _ : resonbp(fc,Q,gain) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nresonhp_test = fi.resonhp(1000, 2, 0.8, os.osc(440));",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2151,
+        "lineEnd": 2177
+      }
+    },
+    {
+      "id": "filters.resonbp",
+      "name": "resonbp",
+      "qualifiedName": "fi.resonbp",
+      "header": "(fi.)resonbp",
+      "summary": "Simple resonant bandpass filters based on `tf2s` (virtual analog). `resonbp` is a standard Faust function.",
+      "usage": "_ : resonlp(fc,Q,gain) : _ _ : resonhp(fc,Q,gain) : _ _ : resonbp(fc,Q,gain) : _",
+      "params": [
+        {
+          "name": "fc",
+          "description": "center frequency (Hz)"
+        },
+        {
+          "name": "Q",
+          "description": "q"
+        },
+        {
+          "name": "gain",
+          "description": "gain (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : resonlp(fc,Q,gain) : _ _ : resonhp(fc,Q,gain) : _ _ : resonbp(fc,Q,gain) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nresonbp_test = os.osc(440) : fi.resonbp(1000, 2, 0.8);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2185,
+        "lineEnd": 2211
+      }
+    },
+    {
+      "id": "filters.lowpass",
+      "name": "lowpass",
+      "qualifiedName": "fi.lowpass",
+      "header": "(fi.)lowpass",
+      "summary": "Nth-order Butterworth lowpass filter. `lowpass` is a standard Faust function.",
+      "usage": "_ : lowpass(N,fc) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "filter order (number of poles), nonnegative constant numerical expression"
+        },
+        {
+          "name": "fc",
+          "description": "desired cut-off frequency (-3dB frequency) in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : lowpass(N,fc) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nlowpass_test = os.osc(440) : fi.lowpass(4, 2000);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/filters/Butterworth_Lowpass_Design.html>",
+        "`butter` function in Octave `(\"[z,p,g] = butter(N,1,'s');\")`",
+        "------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2230,
+        "lineEnd": 2256
+      }
+    },
+    {
+      "id": "filters.highpass",
+      "name": "highpass",
+      "qualifiedName": "fi.highpass",
+      "header": "(fi.)highpass",
+      "summary": "Nth-order Butterworth highpass filter. `highpass` is a standard Faust function.",
+      "usage": "_ : highpass(N,fc) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "filter order (number of poles), nonnegative constant numerical expression"
+        },
+        {
+          "name": "fc",
+          "description": "desired cut-off frequency (-3dB frequency) in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : highpass(N,fc) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nhighpass_test = os.osc(440) : fi.highpass(4, 500);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/filters/Butterworth_Lowpass_Design.html>",
+        "`butter` function in Octave `(\"[z,p,g] = butter(N,1,'s');\")`",
+        "------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2264,
+        "lineEnd": 2290
+      }
+    },
+    {
+      "id": "filters.lowpass0_highpass1",
+      "name": "lowpass0_highpass1",
+      "qualifiedName": "fi.lowpass0_highpass1",
+      "header": "(fi.)lowpass0_highpass1",
+      "summary": "",
+      "usage": null,
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": null,
+        "raw": null
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nlowpass0_highpass1_test = os.osc(440) : fi.lowpass0_highpass1(0, 2, 1000);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2298,
+        "lineEnd": 2306
+      }
+    },
+    {
+      "id": "filters.highpass_plus_lowpass",
+      "name": "highpass_plus_lowpass",
+      "qualifiedName": "fi.highpass_plus_lowpass",
+      "header": "(fi.)highpass_plus_lowpass",
+      "summary": "",
+      "usage": null,
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": null,
+        "raw": null
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nhighpass_plus_lowpass_test = os.osc(440) : fi.highpass_plus_lowpass(3, 1000);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2330,
+        "lineEnd": 2338
+      }
+    },
+    {
+      "id": "filters.highpass_minus_lowpass",
+      "name": "highpass_minus_lowpass",
+      "qualifiedName": "fi.highpass_minus_lowpass",
+      "header": "(fi.)highpass_minus_lowpass",
+      "summary": "",
+      "usage": null,
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": null,
+        "raw": null
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nhighpass_minus_lowpass_test = os.osc(440) : fi.highpass_minus_lowpass(3, 1000);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2357,
+        "lineEnd": 2365
+      }
+    },
+    {
+      "id": "filters.highpass_plus_lowpass_even",
+      "name": "highpass_plus_lowpass_even",
+      "qualifiedName": "fi.highpass_plus_lowpass_even",
+      "header": "(fi.)highpass_plus_lowpass_even",
+      "summary": "",
+      "usage": null,
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": null,
+        "raw": null
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nhighpass_plus_lowpass_even_test = os.osc(440) : fi.highpass_plus_lowpass_even(4, 1000);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2382,
+        "lineEnd": 2390
+      }
+    },
+    {
+      "id": "filters.highpass_plus_lowpass_even",
+      "name": "highpass_plus_lowpass_even",
+      "qualifiedName": "fi.highpass_plus_lowpass_even",
+      "header": "(fi.)highpass_plus_lowpass_even",
+      "summary": "",
+      "usage": null,
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": null,
+        "raw": null
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nhighpass_minus_lowpass_even_test = os.osc(440) : fi.highpass_minus_lowpass_even(4, 1000);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2396,
+        "lineEnd": 2404
+      }
+    },
+    {
+      "id": "filters.highpass_minus_lowpass_odd",
+      "name": "highpass_minus_lowpass_odd",
+      "qualifiedName": "fi.highpass_minus_lowpass_odd",
+      "header": "(fi.)highpass_minus_lowpass_odd",
+      "summary": "Difference between the odd-order highpass and lowpass responses.",
+      "usage": "_ : highpass_minus_lowpass_odd(N,fc) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "odd Butterworth order"
+        },
+        {
+          "name": "fc",
+          "description": "cutoff frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : highpass_minus_lowpass_odd(N,fc) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nhighpass_plus_lowpass_odd_test = os.osc(440) : fi.highpass_plus_lowpass_odd(3, 1000);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2411,
+        "lineEnd": 2433
+      }
+    },
+    {
+      "id": "filters.highpass_minus_lowpass_odd",
+      "name": "highpass_minus_lowpass_odd",
+      "qualifiedName": "fi.highpass_minus_lowpass_odd",
+      "header": "(fi.)highpass_minus_lowpass_odd",
+      "summary": "Difference between the odd-order highpass and lowpass responses.",
+      "usage": "_ : highpass_minus_lowpass_odd(N,fc) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "odd Butterworth order"
+        },
+        {
+          "name": "fc",
+          "description": "cutoff frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : highpass_minus_lowpass_odd(N,fc) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nhighpass_minus_lowpass_odd_test = os.osc(440) : fi.highpass_minus_lowpass_odd(3, 1000);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2439,
+        "lineEnd": 2461
+      }
+    },
+    {
+      "id": "filters.lowpass3e",
+      "name": "lowpass3e",
+      "qualifiedName": "fi.lowpass3e",
+      "header": "(fi.)lowpass3e",
+      "summary": "Third-order Elliptic (Cauer) lowpass filter.",
+      "usage": "_ : lowpass3e(fc) : _",
+      "params": [
+        {
+          "name": "fc",
+          "description": "-3dB frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : lowpass3e(fc) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nlowpass3e_test = os.osc(440) : fi.lowpass3e(1000);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2477,
+        "lineEnd": 2506
+      }
+    },
+    {
+      "id": "filters.lowpass6e",
+      "name": "lowpass6e",
+      "qualifiedName": "fi.lowpass6e",
+      "header": "(fi.)lowpass6e",
+      "summary": "Sixth-order Elliptic/Cauer lowpass filter.",
+      "usage": "_ : lowpass6e(fc) : _",
+      "params": [
+        {
+          "name": "fc",
+          "description": "-3dB frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : lowpass6e(fc) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nlowpass6e_test = os.osc(440) : fi.lowpass6e(1000);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2522,
+        "lineEnd": 2551
+      }
+    },
+    {
+      "id": "filters.highpass3e",
+      "name": "highpass3e",
+      "qualifiedName": "fi.highpass3e",
+      "header": "(fi.)highpass3e",
+      "summary": "Third-order Elliptic (Cauer) highpass filter. Inversion of `lowpass3e` wrt unit circle in s plane (s <- 1/s).",
+      "usage": "_ : highpass3e(fc) : _",
+      "params": [
+        {
+          "name": "fc",
+          "description": "-3dB frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : highpass3e(fc) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nhighpass3e_test = os.osc(440) : fi.highpass3e(1000);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2586,
+        "lineEnd": 2606
+      }
+    },
+    {
+      "id": "filters.highpass6e",
+      "name": "highpass6e",
+      "qualifiedName": "fi.highpass6e",
+      "header": "(fi.)highpass6e",
+      "summary": "Sixth-order Elliptic/Cauer highpass filter. Inversion of `lowpass3e` wrt unit circle in s plane (s <- 1/s).",
+      "usage": "_ : highpass6e(fc) : _",
+      "params": [
+        {
+          "name": "fc",
+          "description": "-3dB frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : highpass6e(fc) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nhighpass6e_test = os.osc(440) : fi.highpass6e(1000);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2622,
+        "lineEnd": 2642
+      }
+    },
+    {
+      "id": "filters.bandpass",
+      "name": "bandpass",
+      "qualifiedName": "fi.bandpass",
+      "header": "(fi.)bandpass",
+      "summary": "Order 2*Nh Butterworth bandpass filter made using the transformation `s <- s + wc^2/s` on `lowpass(Nh)`, where `wc` is the desired bandpass center frequency.  The `lowpass(Nh)` cutoff `w1` is half the desired bandpass width. `bandpass` is a standard Faust function.",
+      "usage": "_ : bandpass(Nh,fl,fu) : _",
+      "params": [
+        {
+          "name": "Nh",
+          "description": "HALF the desired bandpass order (which is therefore even)"
+        },
+        {
+          "name": "fl",
+          "description": "lower -3dB frequency in Hz"
+        },
+        {
+          "name": "fu",
+          "description": "upper -3dB frequency in Hz Thus, the passband width is `fu-fl`, and its center frequency is `(fl+fu)/2`."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : bandpass(Nh,fl,fu) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nbandpass_test = os.osc(440) : fi.bandpass(2, 500, 1500);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2676,
+        "lineEnd": 2702
+      }
+    },
+    {
+      "id": "filters.bandstop",
+      "name": "bandstop",
+      "qualifiedName": "fi.bandstop",
+      "header": "(fi.)bandstop",
+      "summary": "Order 2*Nh Butterworth bandstop filter made using the transformation `s <- s + wc^2/s` on `highpass(Nh)`, where `wc` is the desired bandpass center frequency.  The `highpass(Nh)` cutoff `w1` is half the desired bandpass width. `bandstop` is a standard Faust function.",
+      "usage": "_ : bandstop(Nh,fl,fu) : _",
+      "params": [
+        {
+          "name": "Nh",
+          "description": "HALF the desired bandstop order (which is therefore even)"
+        },
+        {
+          "name": "fl",
+          "description": "lower -3dB frequency in Hz"
+        },
+        {
+          "name": "fu",
+          "description": "upper -3dB frequency in Hz Thus, the passband (stopband) width is `fu-fl`, and its center frequency is `(fl+fu)/2`."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : bandstop(Nh,fl,fu) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nbandstop_test = os.osc(440) : fi.bandstop(2, 500, 1500);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2709,
+        "lineEnd": 2734
+      }
+    },
+    {
+      "id": "filters.bandstop",
+      "name": "bandstop",
+      "qualifiedName": "fi.bandstop",
+      "header": "(fi.)bandstop",
+      "summary": "",
+      "usage": null,
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": null,
+        "raw": null
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nbandpass0_bandstop1_test = os.osc(440) : fi.bandpass0_bandstop1(0, 2, 500, 1500);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2740,
+        "lineEnd": 2748
+      }
+    },
+    {
+      "id": "filters.bandpass6e",
+      "name": "bandpass6e",
+      "qualifiedName": "fi.bandpass6e",
+      "header": "(fi.)bandpass6e",
+      "summary": "Order 12 elliptic bandpass filter analogous to `bandpass(6)`.",
+      "usage": null,
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": null,
+        "raw": null
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2778,
+        "lineEnd": 2780
+      }
+    },
+    {
+      "id": "filters.bandpass12e",
+      "name": "bandpass12e",
+      "qualifiedName": "fi.bandpass12e",
+      "header": "(fi.)bandpass12e",
+      "summary": "Order 24 elliptic bandpass filter analogous to `bandpass(6)`.",
+      "usage": null,
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": null,
+        "raw": null
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2804,
+        "lineEnd": 2806
+      }
+    },
+    {
+      "id": "filters.pospass",
+      "name": "pospass",
+      "qualifiedName": "fi.pospass",
+      "header": "(fi.)pospass",
+      "summary": "Positive-Pass Filter (single-side-band filter).",
+      "usage": "_ : pospass(N,fc) : _,_",
+      "params": [
+        {
+          "name": "N",
+          "description": "filter order (Butterworth bandpass for positive frequencies)."
+        },
+        {
+          "name": "fc",
+          "description": "lower bandpass cutoff frequency in Hz. - Highpass cutoff frequency at ma.SR/2 - fc Hz."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 2,
+        "raw": "_ : pospass(N,fc) : _,_"
+      },
+      "testCode": null,
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/mdft/Analytic_Signals_Hilbert_Transform.html>",
+        "<https://ccrma.stanford.edu/~jos/sasp/Comparison_Optimal_Chebyshev_FIR_I.html>",
+        "<https://ccrma.stanford.edu/~jos/sasp/Hilbert_Transform.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2845,
+        "lineEnd": 2886
+      }
+    },
+    {
+      "id": "filters.lowshelf",
+      "name": "lowshelf",
+      "qualifiedName": "fi.lowshelf",
+      "header": "(fi.)lowshelf",
+      "summary": "First-order \"low shelf\" filter (gain boost|cut between dc and some frequency) `low_shelf` is a standard Faust function.",
+      "usage": "_ : lowshelf(N,L0,fx) : _ _ : low_shelf(L0,fx) : _ // default case (order 3) _ : lowshelf_other_freq(N,L0,fx) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "filter order 1, 3, 5, ... (odd only, default should be 3, a constant numerical expression)"
+        },
+        {
+          "name": "L0",
+          "description": "desired level (dB) between dc and fx (boost `L0>0` or cut `L0<0`)"
+        },
+        {
+          "name": "fx",
+          "description": "-3dB frequency of lowpass band (`L0>0`) or upper band (`L0<0`) (see \"SHELF SHAPE\" below). The gain at SR/2 is constrained to be 1. The generalization to arbitrary odd orders is based on the well known fact that odd-order Butterworth band-splits are allpass-complementary (see filterbank documentation below for references)."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : lowshelf(N,L0,fx) : _ _ : low_shelf(L0,fx) : _ // default case (order 3) _ : lowshelf_other_freq(N,L0,fx) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nlowshelf_test = os.osc(440) : fi.lowshelf(3, 6, 500);",
+      "references": [
+        "See \"Parametric Equalizers\" above for references regarding `low_shelf`, `high_shelf`, and `peak_eq`.",
+        "--------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2927,
+        "lineEnd": 2979
+      }
+    },
+    {
+      "id": "filters.low_shelf",
+      "name": "low_shelf",
+      "qualifiedName": "fi.low_shelf",
+      "header": "(fi.)low_shelf",
+      "summary": "",
+      "usage": null,
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": null,
+        "raw": null
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nlow_shelf_test = os.osc(440) : fi.low_shelf(6, 500);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 2987,
+        "lineEnd": 2994
+      }
+    },
+    {
+      "id": "filters.low_shelf1_l",
+      "name": "low_shelf1_l",
+      "qualifiedName": "fi.low_shelf1_l",
+      "header": "(fi.)low_shelf1_l",
+      "summary": "",
+      "usage": null,
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": null,
+        "raw": null
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nlow_shelf1_l_test = fi.low_shelf1_l(2, 500, os.osc(440));",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3001,
+        "lineEnd": 3008
+      }
+    },
+    {
+      "id": "filters.low_shelf1_l",
+      "name": "low_shelf1_l",
+      "qualifiedName": "fi.low_shelf1_l",
+      "header": "(fi.)low_shelf1_l",
+      "summary": "",
+      "usage": null,
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": null,
+        "raw": null
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nlow_shelf1_l_test = fi.low_shelf1_l(2, 500, os.osc(440));",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3015,
+        "lineEnd": 3022
+      }
+    },
+    {
+      "id": "filters.lowshelf_other_freq",
+      "name": "lowshelf_other_freq",
+      "qualifiedName": "fi.lowshelf_other_freq",
+      "header": "(fi.)lowshelf_other_freq",
+      "summary": "",
+      "usage": null,
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": null,
+        "raw": null
+      },
+      "testCode": "fi = library(\"filters.lib\");\nlowshelf_other_freq_test = fi.lowshelf_other_freq(3, 6, 500);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3029,
+        "lineEnd": 3035
+      }
+    },
+    {
+      "id": "filters.high_shelf",
+      "name": "high_shelf",
+      "qualifiedName": "fi.high_shelf",
+      "header": "(fi.)high_shelf",
+      "summary": "First-order \"high shelf\" filter (gain boost|cut above some frequency). `high_shelf` is a standard Faust function.",
+      "usage": "_ : highshelf(N,Lpi,fx) : _ _ : high_shelf(L0,fx) : _ // default case (order 3) _ : highshelf_other_freq(N,Lpi,fx) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "filter order 1, 3, 5, ... (odd only, a constant numerical expression)."
+        },
+        {
+          "name": "Lpi",
+          "description": "desired level (dB) between fx and SR/2 (boost Lpi>0 or cut Lpi<0)"
+        },
+        {
+          "name": "fx",
+          "description": "-3dB frequency of highpass band (L0>0) or lower band (L0<0) (Use highshelf_other_freq() below to find the other one.) The gain at dc is constrained to be 1. See `lowshelf` documentation above for more details on shelf shape."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : highshelf(N,Lpi,fx) : _ _ : high_shelf(L0,fx) : _ // default case (order 3) _ : highshelf_other_freq(N,Lpi,fx) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nhighshelf_test = os.osc(440) : fi.highshelf(3, 6, 2000);",
+      "references": [
+        "See \"Parametric Equalizers\" above for references regarding `low_shelf`, `high_shelf`, and `peak_eq`.",
+        "--------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3041,
+        "lineEnd": 3073
+      }
+    },
+    {
+      "id": "filters.high_shelf",
+      "name": "high_shelf",
+      "qualifiedName": "fi.high_shelf",
+      "header": "(fi.)high_shelf",
+      "summary": "",
+      "usage": "high_shelf : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "high_shelf : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nhigh_shelf_test = os.osc(440) : fi.high_shelf(6, 2000);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3081,
+        "lineEnd": 3088
+      }
+    },
+    {
+      "id": "filters.high_shelf1",
+      "name": "high_shelf1",
+      "qualifiedName": "fi.high_shelf1",
+      "header": "(fi.)high_shelf1",
+      "summary": "",
+      "usage": null,
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": null,
+        "raw": null
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nhigh_shelf1_test = fi.high_shelf1(6, 2000, os.osc(440));",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3091,
+        "lineEnd": 3098
+      }
+    },
+    {
+      "id": "filters.high_shelf1_l",
+      "name": "high_shelf1_l",
+      "qualifiedName": "fi.high_shelf1_l",
+      "header": "(fi.)high_shelf1_l",
+      "summary": "",
+      "usage": null,
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": null,
+        "raw": null
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nhigh_shelf1_l_test = fi.high_shelf1_l(2, 2000, os.osc(440));",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3104,
+        "lineEnd": 3111
+      }
+    },
+    {
+      "id": "filters.highshelf_other_freq",
+      "name": "highshelf_other_freq",
+      "qualifiedName": "fi.highshelf_other_freq",
+      "header": "(fi.)highshelf_other_freq",
+      "summary": "",
+      "usage": null,
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": null,
+        "raw": null
+      },
+      "testCode": "fi = library(\"filters.lib\");\nhighshelf_other_freq_test = fi.highshelf_other_freq(3, 6, 2000);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3119,
+        "lineEnd": 3125
+      }
+    },
+    {
+      "id": "filters.peak_eq",
+      "name": "peak_eq",
+      "qualifiedName": "fi.peak_eq",
+      "header": "(fi.)peak_eq",
+      "summary": "Second order \"peaking equalizer\" section (gain boost or cut near some frequency) Also called a \"parametric equalizer\" section. `peak_eq` is a standard Faust function.",
+      "usage": "_ : peak_eq(Lfx,fx,B) : _",
+      "params": [
+        {
+          "name": "Lfx",
+          "description": "level (dB) at fx (boost Lfx>0 or cut Lfx<0)"
+        },
+        {
+          "name": "fx",
+          "description": "peak frequency (Hz)"
+        },
+        {
+          "name": "B",
+          "description": "bandwidth (B) of peak in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : peak_eq(Lfx,fx,B) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\npeak_eq_test = os.osc(440) : fi.peak_eq(6, 1000, 200);",
+      "references": [
+        "See \"Parametric Equalizers\" above for references regarding `low_shelf`, `high_shelf`, and `peak_eq`.",
+        "--------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3132,
+        "lineEnd": 3159
+      }
+    },
+    {
+      "id": "filters.peak_eq_cq",
+      "name": "peak_eq_cq",
+      "qualifiedName": "fi.peak_eq_cq",
+      "header": "(fi.)peak_eq_cq",
+      "summary": "Constant-Q second order peaking equalizer section.",
+      "usage": "_ : peak_eq_cq(Lfx,fx,Q) : _",
+      "params": [
+        {
+          "name": "Lfx",
+          "description": "level (dB) at fx"
+        },
+        {
+          "name": "fx",
+          "description": "boost or cut frequency (Hz)"
+        },
+        {
+          "name": "Q",
+          "description": "\"Quality factor\" = fx/B where B = bandwidth of peak in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : peak_eq_cq(Lfx,fx,Q) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\npeak_eq_cq_test = os.osc(440) : fi.peak_eq_cq(6, 1000, 4);",
+      "references": [
+        "See \"Parametric Equalizers\" above for references regarding `low_shelf`, `high_shelf`, and `peak_eq`.",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3174,
+        "lineEnd": 3199
+      }
+    },
+    {
+      "id": "filters.peak_eq_rm",
+      "name": "peak_eq_rm",
+      "qualifiedName": "fi.peak_eq_rm",
+      "header": "(fi.)peak_eq_rm",
+      "summary": "Regalia-Mitra second order peaking equalizer section.",
+      "usage": "_ : peak_eq_rm(Lfx,fx,tanPiBT) : _",
+      "params": [
+        {
+          "name": "Lfx",
+          "description": "level (dB) at fx"
+        },
+        {
+          "name": "fx",
+          "description": "boost or cut frequency (Hz)"
+        },
+        {
+          "name": "tanPiBT",
+          "description": "`tan(PI*B/SR)`, where B = -3dB bandwidth (Hz) when 10^(Lfx/20) = 0 ~ PI*B/SR for narrow bandwidths B"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : peak_eq_rm(Lfx,fx,tanPiBT) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nma = library(\"maths.lib\");\npeak_eq_rm_test = os.osc(440) : fi.peak_eq_rm(6, 1000, ma.tan(ma.PI*200/ma.SR));",
+      "references": [
+        "P.A. Regalia, S.K. Mitra, and P.P. Vaidyanathan,",
+        "\"The Digital All-Pass Filter: A Versatile Signal Processing Building Block\"",
+        "Proceedings of the IEEE, 76(1):19-37, Jan. 1988.  (See pp. 29-30.)",
+        "See also \"Parametric Equalizers\" above for references on shelf",
+        "and peaking equalizers in general.",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3205,
+        "lineEnd": 3236
+      }
+    },
+    {
+      "id": "filters.spectral_tilt",
+      "name": "spectral_tilt",
+      "qualifiedName": "fi.spectral_tilt",
+      "header": "(fi.)spectral_tilt",
+      "summary": "Spectral tilt filter, providing an arbitrary spectral rolloff factor alpha in (-1,1), where -1 corresponds to one pole (-6 dB per octave), and +1 corresponds to one zero (+6 dB per octave). In other words, alpha is the slope of the ln magnitude versus ln frequency. For a \"pinking filter\" (e.g., to generate 1/f noise from white noise), set alpha to -1/2.",
+      "usage": "_ : spectral_tilt(N,f0,bw,alpha) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "desired integer filter order (fixed at compile time)"
+        },
+        {
+          "name": "f0",
+          "description": "lower frequency limit for desired roll-off band > 0"
+        },
+        {
+          "name": "bw",
+          "description": "bandwidth of desired roll-off band"
+        },
+        {
+          "name": "alpha",
+          "description": "slope of roll-off desired in nepers per neper, between -1 and 1 (ln mag / ln radian freq)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : spectral_tilt(N,f0,bw,alpha) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nspectral_tilt_test = os.osc(440) : fi.spectral_tilt(4, 200, 2000, -0.5);",
+      "references": [
+        "J.O. Smith and H.F. Smith,",
+        "\"Closed Form Fractional Integration and Differentiation via Real Exponentially Spaced Pole-Zero Pairs\",",
+        "arXiv.org publication arXiv:1606.06154 [cs.CE], June 7, 2016, <http://arxiv.org/abs/1606.06154>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3248,
+        "lineEnd": 3286
+      }
+    },
+    {
+      "id": "filters.levelfilter",
+      "name": "levelfilter",
+      "qualifiedName": "fi.levelfilter",
+      "header": "(fi.)levelfilter",
+      "summary": "Dynamic level lowpass filter. `levelfilter` is a standard Faust function.",
+      "usage": "_ : levelfilter(L,freq) : _",
+      "params": [
+        {
+          "name": "L",
+          "description": "desired level (in dB) at Nyquist limit (SR/2), e.g., -60"
+        },
+        {
+          "name": "freq",
+          "description": "corner frequency (-3dB point) usually set to fundamental freq"
+        },
+        {
+          "name": "N",
+          "description": "Number of filters in series where L = L/N"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : levelfilter(L,freq) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nlevelfilter_test = fi.levelfilter(0.1, 200, os.osc(440));",
+      "references": [
+        "<https://ccrma.stanford.edu/realsimple/faust_strings/Dynamic_Level_Lowpass_Filter.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3309,
+        "lineEnd": 3335
+      }
+    },
+    {
+      "id": "filters.levelfilterN",
+      "name": "levelfilterN",
+      "qualifiedName": "fi.levelfilterN",
+      "header": "(fi.)levelfilterN",
+      "summary": "Dynamic level lowpass filter.",
+      "usage": "_ : levelfilterN(N,freq,L) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "Number of filters in series where L = L/N, a constant numerical expression"
+        },
+        {
+          "name": "freq",
+          "description": "corner frequency (-3dB point) usually set to fundamental freq"
+        },
+        {
+          "name": "L",
+          "description": "desired level (in dB) at Nyquist limit (SR/2), e.g., -60"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : levelfilterN(N,freq,L) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nlevelfilterN_test = os.osc(440) : fi.levelfilterN(3, 200, 0.1);",
+      "references": [
+        "<https://ccrma.stanford.edu/realsimple/faust_strings/Dynamic_Level_Lowpass_Filter.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3349,
+        "lineEnd": 3374
+      }
+    },
+    {
+      "id": "filters.mth_octave_filterbank[n]",
+      "name": "mth_octave_filterbank[n]",
+      "qualifiedName": "fi.mth_octave_filterbank[n]",
+      "header": "(fi.)mth_octave_filterbank[n]",
+      "summary": "Allpass-complementary filter banks based on Butterworth band-splitting. For Butterworth band-splits, the needed delay equalizer is easily found.",
+      "usage": "_ : mth_octave_filterbank(O,M,ftop,N) : par(i,N,_) // Oth-order _ : mth_octave_filterbank_alt(O,M,ftop,N) : par(i,N,_) // dc-inverted version Also for convenience: _ : mth_octave_filterbank3(M,ftop,N) : par(i,N,_) // 3rd-order Butterworth _ : mth_octave_filterbank5(M,ftop,N) : par(i,N,_) // 5th-order Butterworth mth_octave_filterbank_default = mth_octave_filterbank5;",
+      "params": [
+        {
+          "name": "O",
+          "description": "order of filter used to split each frequency band into two, a constant numerical expression"
+        },
+        {
+          "name": "M",
+          "description": "number of band-slices per octave, a constant numerical expression"
+        },
+        {
+          "name": "ftop",
+          "description": "highest band-split crossover frequency (e.g., 20 kHz)"
+        },
+        {
+          "name": "N",
+          "description": "total number of bands (including dc and Nyquist), a constant numerical expression"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 3,
+        "raw": "_ : mth_octave_filterbank(O,M,ftop,N) : par(i,N,_) // Oth-order _ : mth_octave_filterbank_alt(O,M,ftop,N) : par(i,N,_) // dc-inverted version Also for convenience: _ : mth_octave_filterbank3(M,ftop,N) : par(i,N,_) // 3rd-order Butterworth _ : mth_octave_filterbank5(M,ftop,N) : par(i,N,_) // 5th-order Butterworth mth_octave_filterbank_default = mth_octave_filterbank5;"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nmth_octave_filterbank_test = os.osc(440) : fi.mth_octave_filterbank(3, 2, 8000, 2);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3427,
+        "lineEnd": 3459
+      }
+    },
+    {
+      "id": "filters.mth_octave_filterbank_alt",
+      "name": "mth_octave_filterbank_alt",
+      "qualifiedName": "fi.mth_octave_filterbank_alt",
+      "header": "(fi.)mth_octave_filterbank_alt",
+      "summary": "",
+      "usage": "_ : mth_octave_filterbank_alt(O,M,ftop,N) : par(i,N,_)",
+      "params": [
+        {
+          "name": "O",
+          "description": "filter order used to split each band"
+        },
+        {
+          "name": "M",
+          "description": "number of band-slices per octave"
+        },
+        {
+          "name": "ftop",
+          "description": "highest band-split crossover frequency"
+        },
+        {
+          "name": "N",
+          "description": "total number of bands"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 3,
+        "raw": "_ : mth_octave_filterbank_alt(O,M,ftop,N) : par(i,N,_)"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nmth_octave_filterbank_alt_test = os.osc(440) : fi.mth_octave_filterbank_alt(3, 2, 8000, 2);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3479,
+        "lineEnd": 3500
+      }
+    },
+    {
+      "id": "filters.mth_octave_filterbank3",
+      "name": "mth_octave_filterbank3",
+      "qualifiedName": "fi.mth_octave_filterbank3",
+      "header": "(fi.)mth_octave_filterbank3",
+      "summary": "",
+      "usage": "_ : mth_octave_filterbank3(M,ftop,N) : par(i,N,_)",
+      "params": [
+        {
+          "name": "M",
+          "description": "number of band-slices per octave"
+        },
+        {
+          "name": "ftop",
+          "description": "highest band-split crossover frequency"
+        },
+        {
+          "name": "N",
+          "description": "total number of bands"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 3,
+        "raw": "_ : mth_octave_filterbank3(M,ftop,N) : par(i,N,_)"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nmth_octave_filterbank3_test = os.osc(440) : fi.mth_octave_filterbank3(2, 8000, 2);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3515,
+        "lineEnd": 3535
+      }
+    },
+    {
+      "id": "filters.mth_octave_filterbank5",
+      "name": "mth_octave_filterbank5",
+      "qualifiedName": "fi.mth_octave_filterbank5",
+      "header": "(fi.)mth_octave_filterbank5",
+      "summary": "",
+      "usage": "_ : mth_octave_filterbank5(M,ftop,N) : par(i,N,_)",
+      "params": [
+        {
+          "name": "M",
+          "description": "number of band-slices per octave"
+        },
+        {
+          "name": "ftop",
+          "description": "highest band-split crossover frequency"
+        },
+        {
+          "name": "N",
+          "description": "total number of bands"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 3,
+        "raw": "_ : mth_octave_filterbank5(M,ftop,N) : par(i,N,_)"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nmth_octave_filterbank5_test = os.osc(440) : fi.mth_octave_filterbank5(2, 8000, 2);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3542,
+        "lineEnd": 3562
+      }
+    },
+    {
+      "id": "filters.mth_octave_filterbank_default",
+      "name": "mth_octave_filterbank_default",
+      "qualifiedName": "fi.mth_octave_filterbank_default",
+      "header": "(fi.)mth_octave_filterbank_default",
+      "summary": "",
+      "usage": "mth_octave_filterbank_default : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "mth_octave_filterbank_default : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nmth_octave_filterbank_default_test = os.osc(440) : fi.mth_octave_filterbank_default(2, 8000, 2);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3569,
+        "lineEnd": 3577
+      }
+    },
+    {
+      "id": "filters.filterbank",
+      "name": "filterbank",
+      "qualifiedName": "fi.filterbank",
+      "header": "(fi.)filterbank",
+      "summary": "Filter bank. `filterbank` is a standard Faust function.",
+      "usage": "_ : filterbank (O,freqs) : par(i,N,_) // Butterworth band-splits",
+      "params": [
+        {
+          "name": "O",
+          "description": "band-split filter order (odd integer required for filterbank[i], a constant numerical expression)"
+        },
+        {
+          "name": "freqs",
+          "description": "(fc1,fc2,...,fcNs) [in numerically ascending order], where Ns=N-1 is the number of octave band-splits (total number of bands N=Ns+1). If frequencies are listed explicitly as arguments, enclose them in parens:"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 3,
+        "raw": "_ : filterbank (O,freqs) : par(i,N,_) // Butterworth band-splits"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nfilterbank_test = os.osc(440) : fi.filterbank(3, (500, 2000));",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3590,
+        "lineEnd": 3618
+      }
+    },
+    {
+      "id": "filters.filterbanki",
+      "name": "filterbanki",
+      "qualifiedName": "fi.filterbanki",
+      "header": "(fi.)filterbanki",
+      "summary": "Inverted-dc filter bank.",
+      "usage": "_ : filterbanki(O,freqs) : par(i,N,_) // Inverted-dc version",
+      "params": [
+        {
+          "name": "O",
+          "description": "band-split filter order (odd integer required for `filterbank[i]`, a constant numerical expression)"
+        },
+        {
+          "name": "freqs",
+          "description": "(fc1,fc2,...,fcNs) [in numerically ascending order], where Ns=N-1 is the number of octave band-splits (total number of bands N=Ns+1). If frequencies are listed explicitly as arguments, enclose them in parens:"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 3,
+        "raw": "_ : filterbanki(O,freqs) : par(i,N,_) // Inverted-dc version"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nfilterbanki_test = os.osc(440) : fi.filterbanki(3, (500, 2000));",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3633,
+        "lineEnd": 3661
+      }
+    },
+    {
+      "id": "filters.svf",
+      "name": "svf",
+      "qualifiedName": "fi.svf",
+      "header": "(fi.)svf",
+      "summary": "An environment with `lp`, `bp`, `hp`, `notch`, `peak`, `ap`, `bell`, `ls`, `hs` SVF based filters. All filters have `freq` and `Q` parameters, the `bell`, `ls`, `hs` ones also have a `gain` third parameter.",
+      "usage": "_ : svf.xx(freq, Q, [gain]) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "cut frequency"
+        },
+        {
+          "name": "Q",
+          "description": "quality factor"
+        },
+        {
+          "name": "[gain]",
+          "description": "gain in dB"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : svf.xx(freq, Q, [gain]) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nsvf_lp_test = fi.svf.lp(1000, 0.707, os.osc(440));\nsvf_bp_test = fi.svf.bp(1000, 0.707, os.osc(440));\nsvf_hp_test = fi.svf.hp(1000, 0.707, os.osc(440));\nsvf_notch_test = fi.svf.notch(1000, 0.707, os.osc(440));\nsvf_peak_test = fi.svf.peak(1000, 0.707, os.osc(440));\nsvf_ap_test = fi.svf.ap(1000, 0.707, os.osc(440));\nsvf_bell_test = fi.svf.bell(1000, 0.707, 6, os.osc(440));\nsvf_ls_test = fi.svf.ls(500, 0.707, 6, os.osc(440));\nsvf_hs_test = fi.svf.hs(3000, 0.707, 6, os.osc(440));",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3686,
+        "lineEnd": 3716
+      }
+    },
+    {
+      "id": "filters.svf_morph",
+      "name": "svf_morph",
+      "qualifiedName": "fi.svf_morph",
+      "header": "(fi.)svf_morph",
+      "summary": "An SVF-based filter that can smoothly morph between being lowpass, bandpass, and highpass.",
+      "usage": "_ : svf_morph(freq, Q, blend) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "cutoff frequency"
+        },
+        {
+          "name": "Q",
+          "description": "quality factor"
+        },
+        {
+          "name": "blend",
+          "description": "[0..2] continuous, where 0 is `lowpass`, 1 is `bandpass`, and 2 is `highpass`. For performance, the value is not clamped to [0..2]."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : svf_morph(freq, Q, blend) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nsvf_morph_test = fi.svf_morph(1000, 0.707, 1, os.osc(440));",
+      "references": [
+        "<https://github.com/mtytel/vital/blob/636ca0ef517a4db087a6a08a6a8a5e704e21f836/src/synthesis/filters/digital_svf.cpp#L292-L295>",
+        "-----------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3774,
+        "lineEnd": 3811
+      }
+    },
+    {
+      "id": "filters.svf_notch_morph",
+      "name": "svf_notch_morph",
+      "qualifiedName": "fi.svf_notch_morph",
+      "header": "(fi.)svf_notch_morph",
+      "summary": "An SVF-based notch-filter that can smoothly morph between being lowpass, notch, and highpass.",
+      "usage": "_ : svf_notch_morph(freq, Q, blend) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "cutoff frequency"
+        },
+        {
+          "name": "Q",
+          "description": "quality factor"
+        },
+        {
+          "name": "blend",
+          "description": "[0..2] continuous, where 0 is `lowpass`, 1 is `notch`, and 2 is `highpass`. For performance, the value is not clamped to [0..2]."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : svf_notch_morph(freq, Q, blend) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nsvf_notch_morph_test = fi.svf_notch_morph(1000, 0.707, 1, os.osc(440));",
+      "references": [
+        "<https://github.com/mtytel/vital/blob/636ca0ef517a4db087a6a08a6a8a5e704e21f836/src/synthesis/filters/digital_svf.cpp#L256C36-L263>",
+        "-----------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3824,
+        "lineEnd": 3861
+      }
+    },
+    {
+      "id": "filters.SVFTPT",
+      "name": "SVFTPT",
+      "qualifiedName": "fi.SVFTPT",
+      "header": "(fi.)SVFTPT",
+      "summary": "Topology-preserving transform implementation following Zavalishin's method. Outputs: lowpass, highpass, bandpass, normalised bandpass, notch, allpass, peaking. Each individual output can be recalled with its name in the environment as in: `SVFTPT.LP2(1000.0, .707)`. The 7 outputs can be recalled by using `SVF` name as in: `SVFTPT.SVF(1000.0, .707)`. Even though the implementation is different, the characteristics of this filter are comparable to those of the `svf` environment in this library.",
+      "usage": "_ : SVFTPT.xxx(CF, Q) : _",
+      "params": [
+        {
+          "name": "CF",
+          "description": "cutoff in Hz"
+        },
+        {
+          "name": "Q",
+          "description": "resonance"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : SVFTPT.xxx(CF, Q) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nSVFTPT_SVF_test = fi.SVFTPT.SVF(1000, 0.707, os.osc(440));\nSVFTPT_LP2_test = fi.SVFTPT.LP2(1000, 0.707, os.osc(440));\nSVFTPT_HP2_test = fi.SVFTPT.HP2(1000, 0.707, os.osc(440));\nSVFTPT_BP2_test = fi.SVFTPT.BP2(1000, 0.707, os.osc(440));\nSVFTPT_BP2Norm_test = fi.SVFTPT.BP2Norm(1000, 0.707, os.osc(440));\nSVFTPT_Notch2_test = fi.SVFTPT.Notch2(1000, 0.707, os.osc(440));\nSVFTPT_AP2_test = fi.SVFTPT.AP2(1000, 0.707, os.osc(440));\nSVFTPT_Peaking2_test = fi.SVFTPT.Peaking2(1000, 0.707, os.osc(440));",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3873,
+        "lineEnd": 3914
+      }
+    },
+    {
+      "id": "filters.dynamicSmoothing",
+      "name": "dynamicSmoothing",
+      "qualifiedName": "fi.dynamicSmoothing",
+      "header": "(fi.)dynamicSmoothing",
+      "summary": "Adaptive smoother based on Andy Simper's paper. This filter uses both the lowpass and bandpass outputs of a state-variable filter. The lowpass is used to smooth out the input signal, the bandpass, which is a smoothed out version of the highpass, provides information on the rate of change of the input. Hence, the bandpass signal can be used to adjust the cutoff of the filter to quickly follow the input's fast and large variations while effectively filtering out local perturbations. This implementation does not use an approximation for the CF computation, and it deploys guards to prevent overshooting with extreme sensitivity values.",
+      "usage": "_ : dynamicSmoothing(sensitivity, baseCF) : _",
+      "params": [
+        {
+          "name": "sensitivity",
+          "description": "sensitivity to changes in the input signal. The range is, theoretically, from 0 to INF, though anything between 0.0 and 1.0 should be reasonable"
+        },
+        {
+          "name": "baseCF",
+          "description": "cutoff frequency, in Hz, when there is no variation in the input signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : dynamicSmoothing(sensitivity, baseCF) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\ndynamicSmoothing_test = fi.dynamicSmoothing(0.5, 500, os.osc(440));",
+      "references": [
+        "<https://cytomic.com/files/dsp/DynamicSmoothing.pdf>",
+        "------------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 3949,
+        "lineEnd": 3989
+      }
+    },
+    {
+      "id": "filters.oneEuro",
+      "name": "oneEuro",
+      "qualifiedName": "fi.oneEuro",
+      "header": "(fi.)oneEuro",
+      "summary": "The One Euro Filter (1\u20ac Filter) is an adaptive lowpass filter. This kind of filter is commonly used in object-tracking, not necessarily audio processing.",
+      "usage": "_ : oneEuro(derivativeCutoff, beta, minCutoff) : _",
+      "params": [
+        {
+          "name": "derivativeCutoff",
+          "description": "Used to filter the first derivative of the input. 1 Hz is a good default."
+        },
+        {
+          "name": "beta",
+          "description": "\"Speed\" parameter where higher values reduce latency."
+        },
+        {
+          "name": "minCutoff",
+          "description": "Minimum cutoff frequency in Hz. Lower values remove more jitter."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : oneEuro(derivativeCutoff, beta, minCutoff) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\noneEuro_test = os.osc(440) : fi.oneEuro(1, 0.5, 5);",
+      "references": [
+        "<https://gery.casiez.net/1euro/>",
+        "------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 4003,
+        "lineEnd": 4030
+      }
+    },
+    {
+      "id": "filters.lowpassLR4",
+      "name": "lowpassLR4",
+      "qualifiedName": "fi.lowpassLR4",
+      "header": "(fi.)lowpassLR4",
+      "summary": "4th-order Linkwitz-Riley lowpass.",
+      "usage": "_ : lowpassLR4(cf) : _",
+      "params": [
+        {
+          "name": "cf",
+          "description": "lowpass cutoff in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : lowpassLR4(cf) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nlowpassLR4_test = os.osc(440) : fi.lowpassLR4(1000);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 4073,
+        "lineEnd": 4092
+      }
+    },
+    {
+      "id": "filters.highpassLR4",
+      "name": "highpassLR4",
+      "qualifiedName": "fi.highpassLR4",
+      "header": "(fi.)highpassLR4",
+      "summary": "4th-order Linkwitz-Riley highpass.",
+      "usage": "_ : highpassLR4(cf) : _",
+      "params": [
+        {
+          "name": "cf",
+          "description": "highpass cutoff in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : highpassLR4(cf) : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nhighpassLR4_test = os.osc(440) : fi.highpassLR4(1000);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 4100,
+        "lineEnd": 4119
+      }
+    },
+    {
+      "id": "filters.crossover2LR4",
+      "name": "crossover2LR4",
+      "qualifiedName": "fi.crossover2LR4",
+      "header": "(fi.)crossover2LR4",
+      "summary": "Two-way 4th-order Linkwitz-Riley crossover.",
+      "usage": "_ : crossover2LR4(cf) : si.bus(2)",
+      "params": [
+        {
+          "name": "cf",
+          "description": "crossover split cutoff in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : crossover2LR4(cf) : si.bus(2)"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\ncrossover2LR4_test = os.osc(440) : fi.crossover2LR4(1000);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 4127,
+        "lineEnd": 4146
+      }
+    },
+    {
+      "id": "filters.crossover3LR4",
+      "name": "crossover3LR4",
+      "qualifiedName": "fi.crossover3LR4",
+      "header": "(fi.)crossover3LR4",
+      "summary": "Three-way 4th-order Linkwitz-Riley crossover.",
+      "usage": "_ : crossover3LR4(cf1, cf2) : si.bus(3)",
+      "params": [
+        {
+          "name": "cf1",
+          "description": "crossover lower split cutoff in Hz"
+        },
+        {
+          "name": "cf2",
+          "description": "crossover upper split cutoff in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : crossover3LR4(cf1, cf2) : si.bus(3)"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\ncrossover3LR4_test = os.osc(440) : fi.crossover3LR4(500, 2000);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 4154,
+        "lineEnd": 4174
+      }
+    },
+    {
+      "id": "filters.crossover4LR4",
+      "name": "crossover4LR4",
+      "qualifiedName": "fi.crossover4LR4",
+      "header": "(fi.)crossover4LR4",
+      "summary": "Four-way 4th-order Linkwitz-Riley crossover.",
+      "usage": "_ : crossover4LR4(cf1, cf2, cf3) : si.bus(4)",
+      "params": [
+        {
+          "name": "cf1",
+          "description": "crossover lower split cutoff in Hz"
+        },
+        {
+          "name": "cf2",
+          "description": "crossover mid split cutoff in Hz"
+        },
+        {
+          "name": "cf3",
+          "description": "crossover upper split cutoff in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : crossover4LR4(cf1, cf2, cf3) : si.bus(4)"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\ncrossover4LR4_test = os.osc(440) : fi.crossover4LR4(300, 1000, 3000);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 4183,
+        "lineEnd": 4204
+      }
+    },
+    {
+      "id": "filters.crossover8LR4",
+      "name": "crossover8LR4",
+      "qualifiedName": "fi.crossover8LR4",
+      "header": "(fi.)crossover8LR4",
+      "summary": "Eight-way 4th-order Linkwitz-Riley crossover.",
+      "usage": "_ : crossover8LR4(cf1, cf2, cf3, cf4, cf5, cf6, cf7) : si.bus(8)",
+      "params": [
+        {
+          "name": "cf1",
+          "description": "lowest crossover cutoff frequency in Hz"
+        },
+        {
+          "name": "cf2",
+          "description": "second crossover cutoff frequency in Hz"
+        },
+        {
+          "name": "cf3",
+          "description": "third crossover cutoff frequency in Hz"
+        },
+        {
+          "name": "cf4",
+          "description": "fourth crossover cutoff frequency in Hz"
+        },
+        {
+          "name": "cf5",
+          "description": "fifth crossover cutoff frequency in Hz"
+        },
+        {
+          "name": "cf6",
+          "description": "sixth crossover cutoff frequency in Hz"
+        },
+        {
+          "name": "cf7",
+          "description": "highest crossover cutoff frequency in Hz"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : crossover8LR4(cf1, cf2, cf3, cf4, cf5, cf6, cf7) : si.bus(8)"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\ncrossover8LR4_test = os.osc(440) : fi.crossover8LR4(100, 200, 400, 800, 1600, 3200, 6400);",
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 4217,
+        "lineEnd": 4242
+      }
+    },
+    {
+      "id": "filters.itu_r_bs_1770_4_kfilter",
+      "name": "itu_r_bs_1770_4_kfilter",
+      "qualifiedName": "fi.itu_r_bs_1770_4_kfilter",
+      "header": "(fi.)itu_r_bs_1770_4_kfilter",
+      "summary": "The prefilter from Recommendation ITU-R BS.1770-4 for loudness measurement. Also known as \"K-filter\". The recommendation defines biquad filter coefficients for a fixed sample rate of 48kHz (page 4-5). Here, we construct biquads for arbitrary samplerates.  The resulting filter is normalized, such that the magnitude at 997Hz is unity gain 1.0. Please note, the ITU-recommendation handles the normalization in equation (2) by subtracting 0.691dB, which is not needed with `itu_r_bs_1770_4_kfilter`. One option for future improvement might be, to round those filter coefficients, that are almost equal to one. Second, the maximum magnitude difference at 48kHz between the ITU-defined filter and `itu_r_bs_1770_4_kfilter` is 0.001dB, which obviously could be less.",
+      "usage": "_ : itu_r_bs_1770_4_kfilter : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : itu_r_bs_1770_4_kfilter : _"
+      },
+      "testCode": "fi = library(\"filters.lib\");\nos = library(\"oscillators.lib\");\nitu_r_bs_1770_4_kfilter_test = os.osc(440) : fi.itu_r_bs_1770_4_kfilter;",
+      "references": [
+        "<https://www.itu.int/rec/R-REC-BS.1770>",
+        "<https://gist.github.com/jkbd/07521a98f7873a2dc3dbe16417930791>",
+        "-----------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 4272,
+        "lineEnd": 4307
+      }
+    },
+    {
+      "id": "filters.avg_rect",
+      "name": "avg_rect",
+      "qualifiedName": "fi.avg_rect",
+      "header": "(fi.)avg_rect",
+      "summary": "Moving average.",
+      "usage": "_ : avg_rect(period) : _",
+      "params": [
+        {
+          "name": "period",
+          "description": "averaging frame duration in seconds -----------------------------------------------------------------------------"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : avg_rect(period) : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 4357,
+        "lineEnd": 4369
+      }
+    },
+    {
+      "id": "filters.avg_tau",
+      "name": "avg_tau",
+      "qualifiedName": "fi.avg_tau",
+      "header": "(fi.)avg_tau",
+      "summary": "Averaging function based on a one-pole filter and the tau response time. Tau represents the effective length of the one-pole impulse response, that is, tau is the integral of the filter's impulse response. This response is slower to reach the final value but has less ripples in non-steady signals.",
+      "usage": "_ : avg_tau(period) : _",
+      "params": [
+        {
+          "name": "period",
+          "description": "time, in seconds, for the system to decay by 1/e, or to reach 1-1/e of its final value."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : avg_tau(period) : _"
+      },
+      "testCode": null,
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/mdft/Exponentials.html>",
+        "-----------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 4378,
+        "lineEnd": 4399
+      }
+    },
+    {
+      "id": "filters.avg_t60",
+      "name": "avg_t60",
+      "qualifiedName": "fi.avg_t60",
+      "header": "(fi.)avg_t60",
+      "summary": "Averaging function based on a one-pole filter and the t60 response time. This response is particularly useful when the system is required to reach the final value after about `period` seconds.",
+      "usage": "_ : avg_t60(period) : _",
+      "params": [
+        {
+          "name": "period",
+          "description": "time, in seconds, for the system to decay by 1/1000, or to reach 1-1/1000 of its final value."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : avg_t60(period) : _"
+      },
+      "testCode": null,
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/mdft/Audio_Decay_Time_T60.html>",
+        "-----------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 4408,
+        "lineEnd": 4427
+      }
+    },
+    {
+      "id": "filters.avg_t19",
+      "name": "avg_t19",
+      "qualifiedName": "fi.avg_t19",
+      "header": "(fi.)avg_t19",
+      "summary": "Averaging function based on a one-pole filter and the t19 response time. This response is close to the moving-average algorithm as it roughly reaches the final value after `period` seconds and shows about the same oscillations for non-steady signals.",
+      "usage": "_ : avg_t19(period) : _",
+      "params": [
+        {
+          "name": "period",
+          "description": "time, in seconds, for the system to decay by 1/e^2.2, or to reach 1-1/e^2.2 of its final value."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : avg_t19(period) : _"
+      },
+      "testCode": null,
+      "references": [
+        "Z\u00f6lzer, U. (2008). Digital audio signal processing (Vol. 9). New York: Wiley.",
+        "-----------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 4436,
+        "lineEnd": 4456
+      }
+    },
+    {
+      "id": "filters.kalman",
+      "name": "kalman",
+      "qualifiedName": "fi.kalman",
+      "header": "(fi.)kalman",
+      "summary": "The Kalman filter. It returns the state (a bus of size `N`). Note that the only compile-time constant arguments are `N` and `M`. Other arguments are capitalized because they're matrices, and it makes reading them much easier.",
+      "usage": "kalman(N, M, B, R, H, Q, F, reset, u, z) : si.bus(N)",
+      "params": [
+        {
+          "name": "N",
+          "description": "State size (constant int)"
+        },
+        {
+          "name": "M",
+          "description": "Measurement size (constant int)"
+        },
+        {
+          "name": "B",
+          "description": "Control input matrix (NxM)"
+        },
+        {
+          "name": "R",
+          "description": "Measurement noise covariance matrix (MxM)"
+        },
+        {
+          "name": "H",
+          "description": "Observation matrix (MxN)"
+        },
+        {
+          "name": "Q",
+          "description": "Process noise covariance matrix (NxN)"
+        },
+        {
+          "name": "F",
+          "description": "State transition matrix (NxN)"
+        },
+        {
+          "name": "reset",
+          "description": "Reset trigger. Whenever `reset>0`, the internal state `x` and covariance matrix `P` are reset."
+        },
+        {
+          "name": "u",
+          "description": "Control input (Mx1)"
+        },
+        {
+          "name": "z",
+          "description": "Measurement signal (Mx1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "kalman(N, M, B, R, H, Q, F, reset, u, z) : si.bus(N)"
+      },
+      "testCode": null,
+      "references": [
+        "<https://en.wikipedia.org/wiki/Kalman_filter>",
+        "<https://www.cs.unc.edu/~welch/kalman/index.html>",
+        "----------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "filters"
+      ],
+      "source": {
+        "file": "filters.lib",
+        "path": "filters.lib",
+        "lineStart": 4608,
+        "lineEnd": 4684
+      }
+    }
+  ]
+}

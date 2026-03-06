@@ -1,0 +1,1134 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "hoa.lib",
+    "path": "hoa.lib",
+    "aliasHints": [
+      "ho"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "hoa.encoder",
+      "name": "encoder",
+      "qualifiedName": "ho.encoder",
+      "header": "(ho.)encoder",
+      "summary": "Ambisonic encoder. Encodes a signal in the circular harmonics domain depending on an order of decomposition and an angle.",
+      "usage": "encoder(N, x, a) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        },
+        {
+          "name": "x",
+          "description": "the signal"
+        },
+        {
+          "name": "a",
+          "description": "the angle"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "encoder(N, x, a) : _"
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nencoder_test = ho.encoder(1, os.osc(440), 0.0);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 75,
+        "lineEnd": 97
+      }
+    },
+    {
+      "id": "hoa.rEncoder",
+      "name": "rEncoder",
+      "qualifiedName": "ho.rEncoder",
+      "header": "(ho.)rEncoder",
+      "summary": "Ambisonic encoder in 2D including source rotation. A mono signal is encoded at a certain ambisonic order with two possible modes: either rotation with an angular speed, or static with a fixed angle (when speed is zero).",
+      "usage": "_ : rEncoder(N, sp, a, it) : _,_, ...",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        },
+        {
+          "name": "sp",
+          "description": "the azimuth speed expressed as angular speed (2PI/sec), positive or negative"
+        },
+        {
+          "name": "a",
+          "description": "the fixed azimuth when the rotation stops (sp = 0) in radians"
+        },
+        {
+          "name": "it",
+          "description": "interpolation time (in milliseconds) between the rotation and the fixed modes"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 3,
+        "raw": "_ : rEncoder(N, sp, a, it) : _,_, ..."
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nrEncoder_test = os.osc(440) : ho.rEncoder(1, 0.5, 0.0, 0.05);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 102,
+        "lineEnd": 125
+      }
+    },
+    {
+      "id": "hoa.stereoEncoder",
+      "name": "stereoEncoder",
+      "qualifiedName": "ho.stereoEncoder",
+      "header": "(ho.)stereoEncoder",
+      "summary": "Encoding of a stereo pair of channels with symetric angles (a/2, -a/2).",
+      "usage": "_,_ : stereoEncoder(N, a) : _,_, ...",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        },
+        {
+          "name": "a",
+          "description": "opening angle in radians, left channel at a/2 angle, right channel at -a/2 angle"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 3,
+        "raw": "_,_ : stereoEncoder(N, a) : _,_, ..."
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nstereoEncoder_test = os.osc(440), os.osc(660) : ho.stereoEncoder(1, 1.0);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 141,
+        "lineEnd": 161
+      }
+    },
+    {
+      "id": "hoa.multiEncoder",
+      "name": "multiEncoder",
+      "qualifiedName": "ho.multiEncoder",
+      "header": "(ho.)multiEncoder",
+      "summary": "Encoding of a set of P signals distributed on the unit circle according to a list of P speeds and P angles.",
+      "usage": "_,_, ... : multiEncoder(N, lspeed, langle, it) : _,_, ...",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        },
+        {
+          "name": "lspeed",
+          "description": "a list of P speeds in turns by second (one speed per input signal, positive or negative)"
+        },
+        {
+          "name": "langle",
+          "description": "a list of P angles in radians on the unit circle to localize the sources (one angle per input signal)"
+        },
+        {
+          "name": "it",
+          "description": "interpolation time (in milliseconds) between the rotation and the fixed modes."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 3,
+        "raw": "_,_, ... : multiEncoder(N, lspeed, langle, it) : _,_, ..."
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nmultiEncoder_test = os.osc(440), os.osc(660) : ho.multiEncoder(1, (0.0, 0.0), (0.0, 1.57), 0.05);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 170,
+        "lineEnd": 192
+      }
+    },
+    {
+      "id": "hoa.decoder",
+      "name": "decoder",
+      "qualifiedName": "ho.decoder",
+      "header": "(ho.)decoder",
+      "summary": "Decodes an ambisonics sound field for a circular array of loudspeakers.",
+      "usage": "_ : decoder(N, P) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        },
+        {
+          "name": "P",
+          "description": "the number of speakers (constant numerical expression)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : decoder(N, P) : _"
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nambi = ho.encoder(1, os.osc(440), 0.0);\ndecoder_test = ambi : ho.decoder(1, 4);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 209,
+        "lineEnd": 235
+      }
+    },
+    {
+      "id": "hoa.decoderStereo",
+      "name": "decoderStereo",
+      "qualifiedName": "ho.decoderStereo",
+      "header": "(ho.)decoderStereo",
+      "summary": "Decodes an ambisonic sound field for stereophonic configuration. An \"home made\" ambisonic decoder for stereophonic restitution (30\u00b0 - 330\u00b0): Sound field lose energy around 180\u00b0. You should use `inPhase` optimization with ponctual sources.",
+      "usage": "_ : decoderStereo(N) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : decoderStereo(N) : _"
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nambi = ho.encoder(1, os.osc(440), 0.0);\ndecoderStereo_test = ambi : ho.decoderStereo(1);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 242,
+        "lineEnd": 264
+      }
+    },
+    {
+      "id": "hoa.iBasicDecoder",
+      "name": "iBasicDecoder",
+      "qualifiedName": "ho.iBasicDecoder",
+      "header": "(ho.)iBasicDecoder",
+      "summary": "The irregular basic decoder is a simple decoder that projects the incoming ambisonic situation to the loudspeaker situation (P loudspeakers) whatever it is, without compensation. When there is a strong irregularity, there can be some discontinuity in the sound field.",
+      "usage": "_,_, ... : iBasicDecoder(N,la, direct, shift) : _,_, ...",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (there are 2*N+1 inputs to this function)"
+        },
+        {
+          "name": "la",
+          "description": "the list of P angles in degrees, for instance (0, 85, 182, 263) for four loudspeakers"
+        },
+        {
+          "name": "direct",
+          "description": "1 for direct mode, -1 for the indirect mode (changes the rotation direction)"
+        },
+        {
+          "name": "shift",
+          "description": "angular shift in degrees to easily adjust angles"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 3,
+        "raw": "_,_, ... : iBasicDecoder(N,la, direct, shift) : _,_, ..."
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nambi = ho.encoder(1, os.osc(440), 0.0);\niBasicDecoder_test = ambi : ho.iBasicDecoder(1, (0, 120, 240), 1, 0);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 284,
+        "lineEnd": 309
+      }
+    },
+    {
+      "id": "hoa.circularScaledVBAP",
+      "name": "circularScaledVBAP",
+      "qualifiedName": "ho.circularScaledVBAP",
+      "header": "(ho.)circularScaledVBAP",
+      "summary": "The function provides a circular scaled VBAP with all loudspeakers and the virtual source on the unit-circle.",
+      "usage": "_ : circularScaledVBAP(l, t) : _,_, ...",
+      "params": [
+        {
+          "name": "l",
+          "description": "the list of angles of the loudspeakers in degrees, for instance (0, 85, 182, 263) for four loudspeakers"
+        },
+        {
+          "name": "t",
+          "description": "the current angle of the virtual source in degrees"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 3,
+        "raw": "_ : circularScaledVBAP(l, t) : _,_, ..."
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\ncircularScaledVBAP_test = os.osc(440) : ho.circularScaledVBAP((0, 120, 240), 60);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 318,
+        "lineEnd": 338
+      }
+    },
+    {
+      "id": "hoa.imlsDecoder",
+      "name": "imlsDecoder",
+      "qualifiedName": "ho.imlsDecoder",
+      "header": "(ho.)imlsDecoder",
+      "summary": "Irregular decoder in 2D for an irregular configuration of P loudspeakers using 2D VBAP for compensation.",
+      "usage": "_,_, ... : imlsDecoder(N,la, direct, shift) : _,_, ...",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        },
+        {
+          "name": "la",
+          "description": "the list of P angles in degrees, for instance (0, 85, 182, 263) for four loudspeakers"
+        },
+        {
+          "name": "direct",
+          "description": "1 for direct mode, -1 for the indirect mode (changes the rotation direction)"
+        },
+        {
+          "name": "shift",
+          "description": "angular shift in degrees to easily adjust angles"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 3,
+        "raw": "_,_, ... : imlsDecoder(N,la, direct, shift) : _,_, ..."
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nambi = ho.encoder(1, os.osc(440), 0.0);\nimlsDecoder_test = ambi : ho.imlsDecoder(1, (0, 90, 180, 270), 1, 0);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 374,
+        "lineEnd": 398
+      }
+    },
+    {
+      "id": "hoa.iDecoder",
+      "name": "iDecoder",
+      "qualifiedName": "ho.iDecoder",
+      "header": "(ho.)iDecoder",
+      "summary": "General decoder in 2D enabling an irregular multi-loudspeaker configuration and to switch between multi-channel and stereo.",
+      "usage": "_,_, ... : iDecoder(N, la, direct, st, g) : _,_, ...",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        },
+        {
+          "name": "la",
+          "description": "the list of angles in degrees"
+        },
+        {
+          "name": "direct",
+          "description": "1 for direct mode, -1 for the indirect mode (changes the rotation direction)"
+        },
+        {
+          "name": "shift",
+          "description": "angular shift in degrees to easily adjust angles"
+        },
+        {
+          "name": "st",
+          "description": "1 for stereo, 0 for multi-loudspeaker configuration. When 1, stereo sounds goes through the first two channels"
+        },
+        {
+          "name": "g",
+          "description": "gain between 0 and 1"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 3,
+        "raw": "_,_, ... : iDecoder(N, la, direct, st, g) : _,_, ..."
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nambi = ho.encoder(1, os.osc(440), 0.0);\niDecoder_test = (ambi, 0.0) : ho.iDecoder(1, (0, 120, 240), 1, 0, 0.8);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 408,
+        "lineEnd": 434
+      }
+    },
+    {
+      "id": "hoa.optimBasic",
+      "name": "optimBasic",
+      "qualifiedName": "ho.optimBasic",
+      "header": "(ho.)optimBasic",
+      "summary": "The basic optimization has no effect and should be used for a perfect circle of loudspeakers with one listener at the perfect center loudspeakers array.",
+      "usage": "_ : optimBasic(N) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : optimBasic(N) : _"
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nambi = ho.encoder(1, os.osc(440), 0.0);\noptimBasic_test = ambi : ho.optimBasic(1);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 460,
+        "lineEnd": 482
+      }
+    },
+    {
+      "id": "hoa.optimMaxRe",
+      "name": "optimMaxRe",
+      "qualifiedName": "ho.optimMaxRe",
+      "header": "(ho.)optimMaxRe",
+      "summary": "The maxRe optimization optimizes energy vector. It should be used for an auditory confined in the center of the loudspeakers array.",
+      "usage": "_ : optimMaxRe(N) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : optimMaxRe(N) : _"
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nambi = ho.encoder(1, os.osc(440), 0.0);\noptimMaxRe_test = ambi : ho.optimMaxRe(1);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 486,
+        "lineEnd": 507
+      }
+    },
+    {
+      "id": "hoa.optimInPhase",
+      "name": "optimInPhase",
+      "qualifiedName": "ho.optimInPhase",
+      "header": "(ho.)optimInPhase",
+      "summary": "The inPhase optimization optimizes energy vector and put all loudspeakers signals in phase. It should be used for an auditory.",
+      "usage": "_ : optimInPhase(N) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : optimInPhase(N) : _"
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nambi = ho.encoder(1, os.osc(440), 0.0);\noptimInPhase_test = ambi : ho.optimInPhase(1);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 518,
+        "lineEnd": 539
+      }
+    },
+    {
+      "id": "hoa.optim",
+      "name": "optim",
+      "qualifiedName": "ho.optim",
+      "header": "(ho.)optim",
+      "summary": "Ambisonic optimizer including the three elementary optimizers: `(ho).optimBasic`, `(ho).optimMaxRe` and `(ho.)optimInPhase`.",
+      "usage": "_,_, ... : optim(N, ot) : _,_, ...",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        },
+        {
+          "name": "ot",
+          "description": "optimization type (0 for `optimBasic`, 1 for `optimMaxRe`, 2 for `optimInPhase`)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 3,
+        "raw": "_,_, ... : optim(N, ot) : _,_, ..."
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nambi = ho.encoder(1, os.osc(440), 0.0);\noptim_test = ambi : ho.optim(1, 1);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 551,
+        "lineEnd": 573
+      }
+    },
+    {
+      "id": "hoa.wider",
+      "name": "wider",
+      "qualifiedName": "ho.wider",
+      "header": "(ho.)wider",
+      "summary": "Can be used to wide the diffusion of a localized sound. The order depending signals are weighted and appear in a logarithmic way to have linear changes.",
+      "usage": "_ : wider(N,w) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        },
+        {
+          "name": "w",
+          "description": "the width value between 0 - 1"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : wider(N,w) : _"
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nambi = ho.encoder(1, os.osc(440), 0.0);\nwider_test = ambi : ho.wider(1, 0.5);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 583,
+        "lineEnd": 606
+      }
+    },
+    {
+      "id": "hoa.mirror",
+      "name": "mirror",
+      "qualifiedName": "ho.mirror",
+      "header": "(ho.)mirror",
+      "summary": "Mirroring effect on the sound field.",
+      "usage": "_,_, ... : mirror(N, fa) : _,_, ...",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        },
+        {
+          "name": "fa",
+          "description": "mirroring type (1 = original sound field, 0 = original+mirrored sound field, -1 = mirrored sound field)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 3,
+        "raw": "_,_, ... : mirror(N, fa) : _,_, ..."
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nambi = ho.encoder(1, os.osc(440), 0.0);\nmirror_test = ambi : ho.mirror(1, -1);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 623,
+        "lineEnd": 644
+      }
+    },
+    {
+      "id": "hoa.map",
+      "name": "map",
+      "qualifiedName": "ho.map",
+      "header": "(ho.)map",
+      "summary": "It simulates the distance of the source by applying a gain on the signal and a wider processing on the soundfield.",
+      "usage": "map(N, x, r, a)",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        },
+        {
+          "name": "x",
+          "description": "the signal"
+        },
+        {
+          "name": "r",
+          "description": "the radius"
+        },
+        {
+          "name": "a",
+          "description": "the angle in radian"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 4,
+        "raw": "map(N, x, r, a)"
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nmap_test = ho.map(1, os.osc(440), 0.5, 0.0);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 648,
+        "lineEnd": 671
+      }
+    },
+    {
+      "id": "hoa.rotate",
+      "name": "rotate",
+      "qualifiedName": "ho.rotate",
+      "header": "(ho.)rotate",
+      "summary": "Rotates the sound field.",
+      "usage": "_ : rotate(N, a) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        },
+        {
+          "name": "a",
+          "description": "the angle in radian"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : rotate(N, a) : _"
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nrotate_test = ho.encoder(1, os.osc(440), 0.0) : ho.rotate(1, 0.78);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 679,
+        "lineEnd": 699
+      }
+    },
+    {
+      "id": "hoa.scope",
+      "name": "scope",
+      "qualifiedName": "ho.scope",
+      "header": "(ho.)scope",
+      "summary": "Produces an XY pair of signals representing the ambisonic sound field.",
+      "usage": "_,_, ... : scope(N, rt) : _,_",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        },
+        {
+          "name": "rt",
+          "description": "refreshment time in milliseconds"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 2,
+        "raw": "_,_, ... : scope(N, rt) : _,_"
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nscope_test = ho.encoder(1, os.osc(440), 0.0) : ho.scope(1, 0.1);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 712,
+        "lineEnd": 732
+      }
+    },
+    {
+      "id": "hoa..fxDecorrelation",
+      "name": ".fxDecorrelation",
+      "qualifiedName": "ho..fxDecorrelation",
+      "header": "(ho.).fxDecorrelation",
+      "summary": "Spatial ambisonic decorrelation in fx mode. `fxDecorrelation` applies decorrelations to spatial components already created. The decorrelation is defined for each #i spatial component among P=2\\*N+1 at the ambisonic order `N` as a delay of 0 if factor `fa` is under a certain value 1-(i+1)/P and d\\*F((i+1)/p) in the contrary case, where `d` is the maximum delay applied (in samples) and F is a distribution function for durations. The user can choose this delay time distribution among 22 different ones. The delay increases according to the index of ambisonic components. But it increases at each step and it is modulated by a threshold. Therefore, delays are progressively revealed when the factor increases: * when the factor is close to 0, only upper components are delayed; * when the factor increases, more and more components are delayed. H                 THRESHOLD            DELAY 0                 1-1/P                0 OR DELAY*F(1/P) -1                1-2/P                0 OR DELAY*F(2/P) 1                 1-3/P                0 OR DELAY*F(3/P) -2                1-4/P                0 OR DELAY*F(4/P) 2                 1-5/P                0 OR DELAY*F(5/P) ... -(N-1)            1-(P-3)/P            0 OR DELAY*F((P-3)/P) (N-1)             1-(P-2)/P            0 OR DELAY*F((P-2)/P) -N                1-(P-1)/P            0 OR DELAY*F((P-1)/P) N                 1-P/P                0 OR DELAY*F(P/P)",
+      "usage": "_,_, ... : fxDecorrelation(N, d, wf, fa, fd, tf) : _,_, ...",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        },
+        {
+          "name": "d",
+          "description": "the maximum delay applied (in samples)"
+        },
+        {
+          "name": "wf",
+          "description": "window frequency (in Hz) for the overlapped delay"
+        },
+        {
+          "name": "fa",
+          "description": "decorrelation factor (between 0 and 1)"
+        },
+        {
+          "name": "fd",
+          "description": "feedback / level of reinjection (between 0 and 1)"
+        },
+        {
+          "name": "tf",
+          "description": "type of function of delay distribution (integer, between 0 and 21)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 3,
+        "raw": "_,_, ... : fxDecorrelation(N, d, wf, fa, fd, tf) : _,_, ..."
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nfxDecorrelation_test = ho.encoder(1, os.osc(440), 0.0) : ho.fxDecorrelation(1, 64, 5, 0.5, 0.2, 0);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 760,
+        "lineEnd": 809
+      }
+    },
+    {
+      "id": "hoa..synDecorrelation",
+      "name": ".synDecorrelation",
+      "qualifiedName": "ho..synDecorrelation",
+      "header": "(ho.).synDecorrelation",
+      "summary": "Spatial ambisonic decorrelation in syn mode. `synDecorrelation` generates spatial decorrelated components in ambisonics from one mono signal. The decorrelation is defined for each #i spatial component among P=2\\*N+1 at the ambisonic order `N` as a delay of 0 if factor `fa` is under a certain value 1-(i+1)/P and d\\*F((i+1)/p) in the contrary case, where `d` is the maximum delay applied (in samples) and F is a distribution function for durations. The user can choose this delay time distribution among 22 different ones. The delay increases according to the index of ambisonic components. But it increases at each step and it is modulated by a threshold. Therefore, delays are progressively revealed when the factor increases: * when the factor is close to 0, only upper components are delayed; * when the factor increases, more and more components are delayed. When the factor is between [0; 1/P], upper harmonics are progressively faded and the level of the H0 component is compensated to avoid source localization and to produce a large mono. H                THRESHOLD            DELAY 0                1-1/P                0 OR DELAY*F(1/P) -1               1-2/P                0 OR DELAY*F(2/P) 1                1-3/P                0 OR DELAY*F(3/P) -2               1-4/P                0 OR DELAY*F(4/P) 2                1-5/P                0 OR DELAY*F(5/P) ... -(N-1)           1-(P-3)/P            0 OR DELAY*F((P-3)/P) (N-1)            1-(P-2)/P            0 OR DELAY*F((P-2)/P) -N               1-(P-1)/P            0 OR DELAY*F((P-1)/P) N                1-P/P                0 OR DELAY*F(P/P)",
+      "usage": "_,_, ... : synDecorrelation(N, d, wf, fa, fd, tf) : _,_, ...",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        },
+        {
+          "name": "d",
+          "description": "the maximum delay applied (in samples)"
+        },
+        {
+          "name": "wf",
+          "description": "window frequency (in Hz) for the overlapped delay"
+        },
+        {
+          "name": "fa",
+          "description": "decorrelation factor (between 0 and 1)"
+        },
+        {
+          "name": "fd",
+          "description": "feedback / level of reinjection (between 0 and 1)"
+        },
+        {
+          "name": "tf",
+          "description": "type of function of delay distribution (integer, between 0 and 21)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 3,
+        "raw": "_,_, ... : synDecorrelation(N, d, wf, fa, fd, tf) : _,_, ..."
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nsynDecorrelation_test = os.osc(440) : ho.synDecorrelation(1, 64, 5, 0.5, 0.2, 0);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 828,
+        "lineEnd": 880
+      }
+    },
+    {
+      "id": "hoa..fxRingMod",
+      "name": ".fxRingMod",
+      "qualifiedName": "ho..fxRingMod",
+      "header": "(ho.).fxRingMod",
+      "summary": "Spatial ring modulation in syn mode. `fxRingMod` applies ring modulation to spatial components already created. The ring modulation is defined for each spatial component among P=2\\*n+1 at the ambisonic order `N`. For each spatial component #i, the result is either the original signal or a ring modulated signal according to a threshold that is i/P. The general process is drive by a factor `fa` between 0 and 1 and a modulation frequency `f0`. If `fa` is greater than theshold (P-i-1)/P, the ith ring modulator is on with carrier frequency of f0\\*(i+1)/P. On the contrary, it provides the original signal. Therefore ring modulators are progressively revealed when `fa` increases. H                THRESHOLD                OUTPUT 0                (P-1)/P                  ORIGINAL OR RING MODULATION BY F0*1/P -1               (P-2)/P                  ORIGINAL OR RING MODULATION BY F0*2/P 1                (P-3)/P                  ORIGINAL OR RING MODULATION BY F0*3/P -2               (P-4)/P                  ORIGINAL OR RING MODULATION BY F0*4/P 2                (P-5)/P                  ORIGINAL OR RING MODULATION BY F0*5/P ... -(N-1)           3/P                      ORIGINAL OR RING MODULATION BY F0*(P-3)/P (N-1)            2/P                      ORIGINAL OR RING MODULATION BY F0*(P-2)/P -N               1/P                      ORIGINAL OR RING MODULATION BY F0*(P-1)/P N                0                        ORIGINAL OR RING MODULATION BY F0*P/P=F0",
+      "usage": "_,_, ... : fxRingMod(N, f0, fa, tf) : _,_, ...",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        },
+        {
+          "name": "f0",
+          "description": "the maximum delay applied (in samples)"
+        },
+        {
+          "name": "fa",
+          "description": "decorrelation factor (between 0 and 1)"
+        },
+        {
+          "name": "tf",
+          "description": "type of function of delay distribution (integer, between 0 and 21)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 3,
+        "raw": "_,_, ... : fxRingMod(N, f0, fa, tf) : _,_, ..."
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nfxRingMod_test = ho.encoder(1, os.osc(440), 0.0) : ho.fxRingMod(1, 200, 0.5, 0);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 900,
+        "lineEnd": 946
+      }
+    },
+    {
+      "id": "hoa..synRingMod",
+      "name": ".synRingMod",
+      "qualifiedName": "ho..synRingMod",
+      "header": "(ho.).synRingMod",
+      "summary": "Spatial ring modulation in syn mode. `synRingMod` generates spatial components in ambisonics from one mono signal thanks to ring modulation. The ring modulation is defined for each spatial component among P=2\\*n+1 at the ambisonic order `N`. For each spatial component #i, the result is either the original signal or a ring modulated signal according to a threshold that is i/P. The general process is drive by a factor `fa` between 0 and 1 and a modulation frequency `f0`. If `fa` is greater than theshold (P-i-1)/P, the ith ring modulator is on with carrier frequency of f0\\*(i+1)/P. On the contrary, it provides the original signal. Therefore ring modulators are progressively revealed when `fa` increases. When the factor is between [0; 1/P], upper harmonics are progressively faded and the level of the H0 component is compensated to avoid source localization and to produce a large mono. H                 THRESHOLD                OUTPUT 0                 (P-1)/P                  ORIGINAL OR RING MODULATION BY F0*1/P -1                (P-2)/P                  ORIGINAL OR RING MODULATION BY F0*2/P 1                 (P-3)/P                  ORIGINAL OR RING MODULATION BY F0*3/P -2                (P-4)/P                  ORIGINAL OR RING MODULATION BY F0*4/P 2                 (P-5)/P                  ORIGINAL OR RING MODULATION BY F0*5/P ... -(N-1)            3/P                      ORIGINAL OR RING MODULATION BY F0*(P-3)/P (N-1)             2/P                      ORIGINAL OR RING MODULATION BY F0*(P-2)/P -N                1/P                      ORIGINAL OR RING MODULATION BY F0*(P-1)/P N                 0                        ORIGINAL OR RING MODULATION BY F0*P/P=F0",
+      "usage": "_,_, ... : synRingMod(N, f0, fa, tf) : _,_, ...",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        },
+        {
+          "name": "f0",
+          "description": "the maximum delay applied (in samples)"
+        },
+        {
+          "name": "fa",
+          "description": "decorrelation factor (between 0 and 1)"
+        },
+        {
+          "name": "tf",
+          "description": "type of function of delay distribution (integer, between 0 and 21)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 3,
+        "raw": "_,_, ... : synRingMod(N, f0, fa, tf) : _,_, ..."
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nsynRingMod_test = os.osc(440) : ho.synRingMod(1, 200, 0.5, 0);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 964,
+        "lineEnd": 1012
+      }
+    },
+    {
+      "id": "hoa.encoder3D",
+      "name": "encoder3D",
+      "qualifiedName": "ho.encoder3D",
+      "header": "(ho.)encoder3D",
+      "summary": "Ambisonic encoder. Encodes a signal in the circular harmonics domain depending on an order of decomposition, an angle and an elevation.",
+      "usage": "encoder3D(N, x, a, e) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        },
+        {
+          "name": "x",
+          "description": "the signal"
+        },
+        {
+          "name": "a",
+          "description": "the angle"
+        },
+        {
+          "name": "e",
+          "description": "the elevation"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "encoder3D(N, x, a, e) : _"
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nencoder3D_test = ho.encoder3D(1, os.osc(440), 0.0, 0.0);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 1064,
+        "lineEnd": 1087
+      }
+    },
+    {
+      "id": "hoa.rEncoder3D",
+      "name": "rEncoder3D",
+      "qualifiedName": "ho.rEncoder3D",
+      "header": "(ho.)rEncoder3D",
+      "summary": "Ambisonic encoder in 3D including source rotation. A mono signal is encoded at at certain ambisonic order with two possible modes: either rotation with 2 angular speeds (azimuth and elevation), or static with a fixed pair of angles. `rEncoder3D` is a standard Faust function.",
+      "usage": "_ : rEncoder3D(N, azsp, elsp, az, el, it) : _,_, ...",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        },
+        {
+          "name": "azsp",
+          "description": "the azimuth speed expressed as angular speed (2PI/sec), positive or negative"
+        },
+        {
+          "name": "elsp",
+          "description": "the elevation speed expressed as angular speed (2PI/sec), positive or negative"
+        },
+        {
+          "name": "az",
+          "description": "the fixed azimuth when the azimuth rotation stops (azsp = 0) in radians"
+        },
+        {
+          "name": "el",
+          "description": "the fixed elevation when the elevation rotation stops (elsp = 0) in radians"
+        },
+        {
+          "name": "it",
+          "description": "interpolation time (in milliseconds) between the rotation and the fixed modes"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 3,
+        "raw": "_ : rEncoder3D(N, azsp, elsp, az, el, it) : _,_, ..."
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nrEncoder3D_test = os.osc(440) : ho.rEncoder3D(1, 0.5, 0.3, 0.0, 0.0, 0.05);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 1149,
+        "lineEnd": 1176
+      }
+    },
+    {
+      "id": "hoa.optimBasic3D",
+      "name": "optimBasic3D",
+      "qualifiedName": "ho.optimBasic3D",
+      "header": "(ho.)optimBasic3D",
+      "summary": "The basic optimization has no effect and should be used for a perfect sphere of loudspeakers with one listener at the perfect center loudspeakers array.",
+      "usage": "_ : optimBasic3D(N) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : optimBasic3D(N) : _"
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nambi3D = ho.encoder3D(1, os.osc(440), 0.0, 0.0);\noptimBasic3D_test = ambi3D : ho.optimBasic3D(1);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 1192,
+        "lineEnd": 1214
+      }
+    },
+    {
+      "id": "hoa.optimMaxRe3D",
+      "name": "optimMaxRe3D",
+      "qualifiedName": "ho.optimMaxRe3D",
+      "header": "(ho.)optimMaxRe3D",
+      "summary": "The maxRe optimization optimize energy vector. It should be used for an auditory confined in the center of the loudspeakers array.",
+      "usage": "_ : optimMaxRe3D(N) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : optimMaxRe3D(N) : _"
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nambi3D = ho.encoder3D(1, os.osc(440), 0.0, 0.0);\noptimMaxRe3D_test = ambi3D : ho.optimMaxRe3D(1);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 1218,
+        "lineEnd": 1239
+      }
+    },
+    {
+      "id": "hoa.optimInPhase3D",
+      "name": "optimInPhase3D",
+      "qualifiedName": "ho.optimInPhase3D",
+      "header": "(ho.)optimInPhase3D",
+      "summary": "The inPhase Optimization optimizes energy vector and put all loudspeakers signals in phase. It should be used for an auditory.",
+      "usage": "_ : optimInPhase3D(N) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : optimInPhase3D(N) : _"
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nambi3D = ho.encoder3D(1, os.osc(440), 0.0, 0.0);\noptimInPhase3D_test = ambi3D : ho.optimInPhase3D(1);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 1248,
+        "lineEnd": 1269
+      }
+    },
+    {
+      "id": "hoa.optim3D",
+      "name": "optim3D",
+      "qualifiedName": "ho.optim3D",
+      "header": "(ho.)optim3D",
+      "summary": "Ambisonic optimizer including the three elementary optimizers: `(ho).optimBasic3D`, `(ho).optimMaxRe3D` and `(ho.)optimInPhase3D`.",
+      "usage": "_,_, ... : optim3D(N, ot) : _,_, ...",
+      "params": [
+        {
+          "name": "N",
+          "description": "the ambisonic order (constant numerical expression)"
+        },
+        {
+          "name": "ot",
+          "description": "optimization type (0 for optimBasic, 1 for optimMaxRe, 2 for optimInPhase)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 3,
+        "raw": "_,_, ... : optim3D(N, ot) : _,_, ..."
+      },
+      "testCode": "ho = library(\"hoa.lib\");\nos = library(\"oscillators.lib\");\nambi3D = ho.encoder3D(1, os.osc(440), 0.0, 0.0);\noptim3D_test = ambi3D : ho.optim3D(1, 2);",
+      "references": [],
+      "tags": [
+        "hoa"
+      ],
+      "source": {
+        "file": "hoa.lib",
+        "path": "hoa.lib",
+        "lineStart": 1282,
+        "lineEnd": 1304
+      }
+    }
+  ]
+}

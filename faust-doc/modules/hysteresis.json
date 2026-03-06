@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "hysteresis.lib",
+    "path": "hysteresis.lib",
+    "aliasHints": [
+      "hy"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "hysteresis.ja_hysteresis",
+      "name": "ja_hysteresis",
+      "qualifiedName": "hy.ja_hysteresis",
+      "header": "(hy.)ja_hysteresis",
+      "summary": "Jiles-Atherton hysteresis core with 4x substep interpolation. Implements magnetic hysteresis with smooth transient response using cubic Hermite interpolation between samples.",
+      "usage": "_ : ja_hysteresis(Ms, a, alpha, k, c) : _",
+      "params": [
+        {
+          "name": "Ms",
+          "description": "saturation magnetization, controls maximum output level (100-1000, default 380)"
+        },
+        {
+          "name": "a",
+          "description": "anhysteretic curve shape parameter (100-2000, default 720)"
+        },
+        {
+          "name": "alpha",
+          "description": "mean-field coupling coefficient (0.001-0.1, default 0.015)"
+        },
+        {
+          "name": "k",
+          "description": "coercivity, controls hysteresis loop width (50-1000, default 380)"
+        },
+        {
+          "name": "c",
+          "description": "reversibility factor, ratio of reversible to irreversible magnetization (0-1, default 0.25)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : ja_hysteresis(Ms, a, alpha, k, c) : _"
+      },
+      "testCode": "hy = library(\"hysteresis.lib\");\nos = library(\"oscillators.lib\");\nja_hysteresis_test = os.osc(100) * 0.5 : hy.ja_hysteresis(380, 720, 0.015, 380, 0.25);",
+      "references": [
+        "<https://en.wikipedia.org/wiki/Jiles-Atherton_model>",
+        "<https://www.sciencedirect.com/science/article/abs/pii/S0304885321006466>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "hysteresis"
+      ],
+      "source": {
+        "file": "hysteresis.lib",
+        "path": "hysteresis.lib",
+        "lineStart": 81,
+        "lineEnd": 111
+      }
+    },
+    {
+      "id": "hysteresis.ja_processor",
+      "name": "ja_processor",
+      "qualifiedName": "hy.ja_processor",
+      "header": "(hy.)ja_processor",
+      "summary": "Complete mono Jiles-Atherton hysteresis processor with drive control, automatic gain compensation, and DC blocking.",
+      "usage": "_ : ja_processor(Ms, a, alpha, k, c, drive, trim) : _",
+      "params": [
+        {
+          "name": "Ms",
+          "description": "saturation magnetization (100-1000)"
+        },
+        {
+          "name": "a",
+          "description": "anhysteretic curve shape (100-2000)"
+        },
+        {
+          "name": "alpha",
+          "description": "mean-field coupling (0.001-0.1)"
+        },
+        {
+          "name": "k",
+          "description": "coercivity/loop width (50-1000)"
+        },
+        {
+          "name": "c",
+          "description": "reversibility factor (0-1)"
+        },
+        {
+          "name": "drive",
+          "description": "input drive in linear gain (use ba.db2linear for dB)"
+        },
+        {
+          "name": "trim",
+          "description": "output trim in linear gain (use ba.db2linear for dB)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : ja_processor(Ms, a, alpha, k, c, drive, trim) : _"
+      },
+      "testCode": "hy = library(\"hysteresis.lib\");\nba = library(\"basics.lib\");\nos = library(\"oscillators.lib\");\nja_processor_test = os.osc(100) : hy.ja_processor(380, 720, 0.015, 380, 0.25, ba.db2linear(10), 1);",
+      "references": [],
+      "tags": [
+        "hysteresis"
+      ],
+      "source": {
+        "file": "hysteresis.lib",
+        "path": "hysteresis.lib",
+        "lineStart": 191,
+        "lineEnd": 218
+      }
+    },
+    {
+      "id": "hysteresis.ja_processor_stereo",
+      "name": "ja_processor_stereo",
+      "qualifiedName": "hy.ja_processor_stereo",
+      "header": "(hy.)ja_processor_stereo",
+      "summary": "Stereo Jiles-Atherton hysteresis processor applying identical processing to both channels.",
+      "usage": "_,_ : ja_processor_stereo(Ms, a, alpha, k, c, drive, trim) : _,_",
+      "params": [
+        {
+          "name": "Ms",
+          "description": "saturation magnetization (100-1000)"
+        },
+        {
+          "name": "a",
+          "description": "anhysteretic curve shape (100-2000)"
+        },
+        {
+          "name": "alpha",
+          "description": "mean-field coupling (0.001-0.1)"
+        },
+        {
+          "name": "k",
+          "description": "coercivity/loop width (50-1000)"
+        },
+        {
+          "name": "c",
+          "description": "reversibility factor (0-1)"
+        },
+        {
+          "name": "drive",
+          "description": "input drive in linear gain"
+        },
+        {
+          "name": "trim",
+          "description": "output trim in linear gain"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : ja_processor_stereo(Ms, a, alpha, k, c, drive, trim) : _,_"
+      },
+      "testCode": "hy = library(\"hysteresis.lib\");\nba = library(\"basics.lib\");\nos = library(\"oscillators.lib\");\nja_processor_stereo_test = os.osc(100), os.osc(150) : hy.ja_processor_stereo(380, 720, 0.015, 380, 0.25, ba.db2linear(10), 1);",
+      "references": [],
+      "tags": [
+        "hysteresis"
+      ],
+      "source": {
+        "file": "hysteresis.lib",
+        "path": "hysteresis.lib",
+        "lineStart": 245,
+        "lineEnd": 272
+      }
+    },
+    {
+      "id": "hysteresis.ja_processor_ui",
+      "name": "ja_processor_ui",
+      "qualifiedName": "hy.ja_processor_ui",
+      "header": "(hy.)ja_processor_ui",
+      "summary": "Mono Jiles-Atherton hysteresis processor with full UI controls for all parameters. Includes smoothed controls and sensible defaults.",
+      "usage": "_ : ja_processor_ui : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : ja_processor_ui : _"
+      },
+      "testCode": "hy = library(\"hysteresis.lib\");\nos = library(\"oscillators.lib\");\nja_processor_ui_test = os.osc(100) : hy.ja_processor_ui;",
+      "references": [],
+      "tags": [
+        "hysteresis"
+      ],
+      "source": {
+        "file": "hysteresis.lib",
+        "path": "hysteresis.lib",
+        "lineStart": 284,
+        "lineEnd": 300
+      }
+    },
+    {
+      "id": "hysteresis.ja_processor_stereo_ui",
+      "name": "ja_processor_stereo_ui",
+      "qualifiedName": "hy.ja_processor_stereo_ui",
+      "header": "(hy.)ja_processor_stereo_ui",
+      "summary": "Stereo Jiles-Atherton hysteresis processor with full UI controls. Applies identical processing to both channels with shared parameters.",
+      "usage": "_,_ : ja_processor_stereo_ui : _,_",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : ja_processor_stereo_ui : _,_"
+      },
+      "testCode": "hy = library(\"hysteresis.lib\");\nos = library(\"oscillators.lib\");\nja_processor_stereo_ui_test = os.osc(100), os.osc(150) : hy.ja_processor_stereo_ui;",
+      "references": [],
+      "tags": [
+        "hysteresis"
+      ],
+      "source": {
+        "file": "hysteresis.lib",
+        "path": "hysteresis.lib",
+        "lineStart": 324,
+        "lineEnd": 340
+      }
+    }
+  ]
+}

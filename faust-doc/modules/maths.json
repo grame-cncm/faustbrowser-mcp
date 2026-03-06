@@ -1,0 +1,1720 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "maths.lib",
+    "path": "maths.lib",
+    "aliasHints": [
+      "ma"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "maths.SR",
+      "name": "SR",
+      "qualifiedName": "ma.SR",
+      "header": "(ma.)SR",
+      "summary": "Current sampling rate given at init time. Constant during program execution.",
+      "usage": "SR : _",
+      "params": [
+        {
+          "name": "SR",
+          "description": "initialization-time sampling rate constant"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "SR : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nSR_test = ma.SR;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 77,
+        "lineEnd": 95
+      }
+    },
+    {
+      "id": "maths.T",
+      "name": "T",
+      "qualifiedName": "ma.T",
+      "header": "(ma.)T",
+      "summary": "Current sample duration in seconds computed from the sampling rate given at init time. Constant during program execution.",
+      "usage": "T : _",
+      "params": [
+        {
+          "name": "T",
+          "description": "sample duration (`1/SR`) constant"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "T : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nT_test = ma.T;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 98,
+        "lineEnd": 116
+      }
+    },
+    {
+      "id": "maths.BS",
+      "name": "BS",
+      "qualifiedName": "ma.BS",
+      "header": "(ma.)BS",
+      "summary": "Current block-size. Can change during the execution at each block.",
+      "usage": "BS : _",
+      "params": [
+        {
+          "name": "BS",
+          "description": "current processing block size"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "BS : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nBS_test = ma.BS;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 119,
+        "lineEnd": 137
+      }
+    },
+    {
+      "id": "maths.PI",
+      "name": "PI",
+      "qualifiedName": "ma.PI",
+      "header": "(ma.)PI",
+      "summary": "Constant PI in double precision.",
+      "usage": "PI : _",
+      "params": [
+        {
+          "name": "PI",
+          "description": "double-precision \u03c0 constant"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "PI : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nPI_test = ma.PI;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 141,
+        "lineEnd": 159
+      }
+    },
+    {
+      "id": "maths.deg2rad",
+      "name": "deg2rad",
+      "qualifiedName": "ma.deg2rad",
+      "header": "(ma.)deg2rad",
+      "summary": "Convert degrees to radians.",
+      "usage": "45. : deg2rad",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "45. : deg2rad"
+      },
+      "testCode": "ma = library(\"maths.lib\");\ndeg2rad_test = 45.0 : ma.deg2rad;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 163,
+        "lineEnd": 181
+      }
+    },
+    {
+      "id": "maths.rad2deg",
+      "name": "rad2deg",
+      "qualifiedName": "ma.rad2deg",
+      "header": "(ma.)rad2deg",
+      "summary": "Convert radians to degrees.",
+      "usage": "ma.PI : rad2deg",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "ma.PI : rad2deg"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nrad2deg_test = ma.PI : ma.rad2deg;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 185,
+        "lineEnd": 203
+      }
+    },
+    {
+      "id": "maths.E",
+      "name": "E",
+      "qualifiedName": "ma.E",
+      "header": "(ma.)E",
+      "summary": "Constant e in double precision.",
+      "usage": "E : _",
+      "params": [
+        {
+          "name": "E",
+          "description": "double-precision Euler's number constant"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "E : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nE_test = ma.E;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 207,
+        "lineEnd": 225
+      }
+    },
+    {
+      "id": "maths.EPSILON",
+      "name": "EPSILON",
+      "qualifiedName": "ma.EPSILON",
+      "header": "(ma.)EPSILON",
+      "summary": "Constant EPSILON available in simple/double/quad precision, as defined in the [floating-point standard](https://en.wikipedia.org/wiki/IEEE_754) and [machine epsilon](https://en.wikipedia.org/wiki/Machine_epsilon), that is smallest positive number such that `1.0 + EPSILON != 1.0`.",
+      "usage": "EPSILON : _",
+      "params": [
+        {
+          "name": "EPSILON",
+          "description": "machine epsilon constant for the current floating-point precision"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "EPSILON : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nEPSILON_test = ma.EPSILON;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 229,
+        "lineEnd": 250
+      }
+    },
+    {
+      "id": "maths.MIN",
+      "name": "MIN",
+      "qualifiedName": "ma.MIN",
+      "header": "(ma.)MIN",
+      "summary": "Constant MIN available in simple/double/quad precision (minimal positive value).",
+      "usage": "MIN : _",
+      "params": [
+        {
+          "name": "MIN",
+          "description": "minimal positive normalized value for the current precision"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "MIN : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nMIN_test = ma.MIN;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 257,
+        "lineEnd": 275
+      }
+    },
+    {
+      "id": "maths.MAX",
+      "name": "MAX",
+      "qualifiedName": "ma.MAX",
+      "header": "(ma.)MAX",
+      "summary": "Constant MAX available in simple/double/quad precision (maximal positive value).",
+      "usage": "MAX : _",
+      "params": [
+        {
+          "name": "MAX",
+          "description": "maximal finite value for the current precision"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "MAX : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nMAX_test = ma.MAX;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 282,
+        "lineEnd": 300
+      }
+    },
+    {
+      "id": "maths.FTZ",
+      "name": "FTZ",
+      "qualifiedName": "ma.FTZ",
+      "header": "(ma.)FTZ",
+      "summary": "Flush to zero: force samples under the \"maximum subnormal number\" to be zero. Usually not needed in C++ because the architecture file take care of this, but can be useful in JavaScript for instance.",
+      "usage": "_ : FTZ : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "input signal to flush if its magnitude is subnormal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : FTZ : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nFTZ_test = (ma.MIN * 0.5) : ma.FTZ;",
+      "references": [
+        "<http://docs.oracle.com/cd/E19957-01/806-3568/ncg_math.html>",
+        "-----------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 309,
+        "lineEnd": 333
+      }
+    },
+    {
+      "id": "maths.copysign",
+      "name": "copysign",
+      "qualifiedName": "ma.copysign",
+      "header": "(ma.)copysign",
+      "summary": "Changes the sign of x (first input) to that of y (second input).",
+      "usage": "_,_ : copysign : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "value whose magnitude is preserved"
+        },
+        {
+          "name": "y",
+          "description": "value providing the sign"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "_,_ : copysign : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\ncopysign_test = (-1.0, 2.0) : ma.copysign;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 337,
+        "lineEnd": 356
+      }
+    },
+    {
+      "id": "maths.neg",
+      "name": "neg",
+      "qualifiedName": "ma.neg",
+      "header": "(ma.)neg",
+      "summary": "Invert the sign (-x) of a signal.",
+      "usage": "_ : neg : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "value to negate"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : neg : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nneg_test = 3.5 : ma.neg;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 360,
+        "lineEnd": 378
+      }
+    },
+    {
+      "id": "maths.not",
+      "name": "not",
+      "qualifiedName": "ma.not",
+      "header": "(ma.)not",
+      "summary": "Bitwise `not` implemented with [xor](https://faustdoc.grame.fr/manual/syntax/#xor-primitive) as `not(x) = x xor -1;`. So working regardless of the size of the integer, assuming negative numbers in two's complement.",
+      "usage": "_ : not : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "integer input value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : not : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nnot_test = 5 : ma.not;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 382,
+        "lineEnd": 401
+      }
+    },
+    {
+      "id": "maths.sub(x,y)",
+      "name": "sub(x,y)",
+      "qualifiedName": "ma.sub(x,y)",
+      "header": "(ma.)sub(x,y)",
+      "summary": "Subtract `x` and `y`.",
+      "usage": "_,_ : sub : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "first operand"
+        },
+        {
+          "name": "y",
+          "description": "second operand"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "_,_ : sub : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nsub_test = (3, 10) : ma.sub;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 405,
+        "lineEnd": 424
+      }
+    },
+    {
+      "id": "maths.inv",
+      "name": "inv",
+      "qualifiedName": "ma.inv",
+      "header": "(ma.)inv",
+      "summary": "Compute the inverse (1/x) of the input signal.",
+      "usage": "_ : inv : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "denominator input (non-zero)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : inv : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\ninv_test = 4.0 : ma.inv;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 428,
+        "lineEnd": 446
+      }
+    },
+    {
+      "id": "maths.cbrt",
+      "name": "cbrt",
+      "qualifiedName": "ma.cbrt",
+      "header": "(ma.)cbrt",
+      "summary": "Computes the cube root of of the input signal.",
+      "usage": "_ : cbrt : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "value whose cube root is computed"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : cbrt : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\ncbrt_test = 8.0 : ma.cbrt;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 450,
+        "lineEnd": 468
+      }
+    },
+    {
+      "id": "maths.hypot",
+      "name": "hypot",
+      "qualifiedName": "ma.hypot",
+      "header": "(ma.)hypot",
+      "summary": "Computes the euclidian distance of the two input signals sqrt(x*x+y*y) without undue overflow or underflow.",
+      "usage": "_,_ : hypot : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "first operand"
+        },
+        {
+          "name": "y",
+          "description": "second operand"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "_,_ : hypot : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nhypot_test = (3.0, 4.0) : ma.hypot;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 472,
+        "lineEnd": 492
+      }
+    },
+    {
+      "id": "maths.ldexp",
+      "name": "ldexp",
+      "qualifiedName": "ma.ldexp",
+      "header": "(ma.)ldexp",
+      "summary": "Takes two input signals: x and n, and multiplies x by 2 to the power n.",
+      "usage": "_,_ : ldexp : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "significand input"
+        },
+        {
+          "name": "n",
+          "description": "exponent (integer) input"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "_,_ : ldexp : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nldexp_test = (1.5, 3) : ma.ldexp;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 496,
+        "lineEnd": 515
+      }
+    },
+    {
+      "id": "maths.scalb",
+      "name": "scalb",
+      "qualifiedName": "ma.scalb",
+      "header": "(ma.)scalb",
+      "summary": "Takes two input signals: x and n, and multiplies x by 2 to the power n.",
+      "usage": "_,_ : scalb : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "significand input"
+        },
+        {
+          "name": "n",
+          "description": "exponent (integer) input"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "_,_ : scalb : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nscalb_test = (2.0, -1) : ma.scalb;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 519,
+        "lineEnd": 538
+      }
+    },
+    {
+      "id": "maths.log1p",
+      "name": "log1p",
+      "qualifiedName": "ma.log1p",
+      "header": "(ma.)log1p",
+      "summary": "Computes log(1 + x) without undue loss of accuracy when x is nearly zero.",
+      "usage": "_ : log1p : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "offset used in `log(1 + x)` (must be greater than -1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : log1p : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nlog1p_test = 0.5 : ma.log1p;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 542,
+        "lineEnd": 560
+      }
+    },
+    {
+      "id": "maths.logb",
+      "name": "logb",
+      "qualifiedName": "ma.logb",
+      "header": "(ma.)logb",
+      "summary": "Return exponent of the input signal as a floating-point number.",
+      "usage": "_ : logb : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "positive value whose exponent part is returned"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : logb : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nlogb_test = 8.0 : ma.logb;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 564,
+        "lineEnd": 582
+      }
+    },
+    {
+      "id": "maths.ilogb",
+      "name": "ilogb",
+      "qualifiedName": "ma.ilogb",
+      "header": "(ma.)ilogb",
+      "summary": "Return exponent of the input signal as an integer number.",
+      "usage": "_ : ilogb : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "positive value whose exponent part is returned"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : ilogb : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nilogb_test = 8.0 : ma.ilogb;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 586,
+        "lineEnd": 604
+      }
+    },
+    {
+      "id": "maths.log2",
+      "name": "log2",
+      "qualifiedName": "ma.log2",
+      "header": "(ma.)log2",
+      "summary": "Returns the base 2 logarithm of x.",
+      "usage": "_ : log2 : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "positive value whose base-2 logarithm is computed"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : log2 : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nlog2_test = 8.0 : ma.log2;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 608,
+        "lineEnd": 626
+      }
+    },
+    {
+      "id": "maths.expm1",
+      "name": "expm1",
+      "qualifiedName": "ma.expm1",
+      "header": "(ma.)expm1",
+      "summary": "Return exponent of the input signal minus 1 with better precision.",
+      "usage": "_ : expm1 : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "input value used for the `exp(x) - 1` computation"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : expm1 : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nexpm1_test = 0.5 : ma.expm1;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 630,
+        "lineEnd": 648
+      }
+    },
+    {
+      "id": "maths.acosh",
+      "name": "acosh",
+      "qualifiedName": "ma.acosh",
+      "header": "(ma.)acosh",
+      "summary": "Computes the principle value of the inverse hyperbolic cosine of the input signal.",
+      "usage": "_ : acosh : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "input value (greater than or equal to 1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : acosh : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nacosh_test = 1.5 : ma.acosh;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 652,
+        "lineEnd": 671
+      }
+    },
+    {
+      "id": "maths.asinh",
+      "name": "asinh",
+      "qualifiedName": "ma.asinh",
+      "header": "(ma.)asinh",
+      "summary": "Computes the inverse hyperbolic sine of the input signal.",
+      "usage": "_ : asinh : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "input value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : asinh : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nasinh_test = 0.5 : ma.asinh;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 675,
+        "lineEnd": 693
+      }
+    },
+    {
+      "id": "maths.atanh",
+      "name": "atanh",
+      "qualifiedName": "ma.atanh",
+      "header": "(ma.)atanh",
+      "summary": "Computes the inverse hyperbolic tangent of the input signal.",
+      "usage": "_ : atanh : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "input value in (-1, 1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : atanh : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\natanh_test = 0.5 : ma.atanh;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 697,
+        "lineEnd": 715
+      }
+    },
+    {
+      "id": "maths.sinh",
+      "name": "sinh",
+      "qualifiedName": "ma.sinh",
+      "header": "(ma.)sinh",
+      "summary": "Computes the hyperbolic sine of the input signal.",
+      "usage": "_ : sinh : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "input value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : sinh : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nsinh_test = 0.5 : ma.sinh;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 719,
+        "lineEnd": 737
+      }
+    },
+    {
+      "id": "maths.cosh",
+      "name": "cosh",
+      "qualifiedName": "ma.cosh",
+      "header": "(ma.)cosh",
+      "summary": "Computes the hyperbolic cosine of the input signal.",
+      "usage": "_ : cosh : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "input value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : cosh : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\ncosh_test = 0.5 : ma.cosh;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 741,
+        "lineEnd": 759
+      }
+    },
+    {
+      "id": "maths.tanh",
+      "name": "tanh",
+      "qualifiedName": "ma.tanh",
+      "header": "(ma.)tanh",
+      "summary": "Computes the hyperbolic tangent of the input signal.",
+      "usage": "_ : tanh : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "input value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : tanh : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\ntanh_test = 0.5 : ma.tanh;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 763,
+        "lineEnd": 781
+      }
+    },
+    {
+      "id": "maths.erf",
+      "name": "erf",
+      "qualifiedName": "ma.erf",
+      "header": "(ma.)erf",
+      "summary": "Computes the error function of the input signal.",
+      "usage": "_ : erf : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "input value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : erf : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nerf_test = 0.5 : ma.erf;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 785,
+        "lineEnd": 803
+      }
+    },
+    {
+      "id": "maths.erfc",
+      "name": "erfc",
+      "qualifiedName": "ma.erfc",
+      "header": "(ma.)erfc",
+      "summary": "Computes the complementary error function of the input signal.",
+      "usage": "_ : erfc : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "input value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : erfc : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nerfc_test = 0.5 : ma.erfc;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 807,
+        "lineEnd": 825
+      }
+    },
+    {
+      "id": "maths.gamma",
+      "name": "gamma",
+      "qualifiedName": "ma.gamma",
+      "header": "(ma.)gamma",
+      "summary": "Computes the gamma function of the input signal.",
+      "usage": "_ : gamma : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "positive input value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : gamma : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\ngamma_test = 3.0 : ma.gamma;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 829,
+        "lineEnd": 847
+      }
+    },
+    {
+      "id": "maths.lgamma",
+      "name": "lgamma",
+      "qualifiedName": "ma.lgamma",
+      "header": "(ma.)lgamma",
+      "summary": "Calculates the natural logorithm of the absolute value of the gamma function of the input signal.",
+      "usage": "_ : lgamma : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "positive input value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : lgamma : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nlgamma_test = 3.0 : ma.lgamma;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 851,
+        "lineEnd": 870
+      }
+    },
+    {
+      "id": "maths.J0",
+      "name": "J0",
+      "qualifiedName": "ma.J0",
+      "header": "(ma.)J0",
+      "summary": "Computes the Bessel function of the first kind of order 0 of the input signal.",
+      "usage": "_ : J0 : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "input value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : J0 : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nJ0_test = 1.0 : ma.J0;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 874,
+        "lineEnd": 893
+      }
+    },
+    {
+      "id": "maths.J1",
+      "name": "J1",
+      "qualifiedName": "ma.J1",
+      "header": "(ma.)J1",
+      "summary": "Computes the Bessel function of the first kind of order 1 of the input signal.",
+      "usage": "_ : J1 : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "input value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : J1 : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nJ1_test = 1.0 : ma.J1;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 897,
+        "lineEnd": 916
+      }
+    },
+    {
+      "id": "maths.Jn",
+      "name": "Jn",
+      "qualifiedName": "ma.Jn",
+      "header": "(ma.)Jn",
+      "summary": "Computes the Bessel function of the first kind of order n (first input signal) of the second input signal.",
+      "usage": "_,_ : Jn : _",
+      "params": [
+        {
+          "name": "n",
+          "description": "integer order"
+        },
+        {
+          "name": "x",
+          "description": "input value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "_,_ : Jn : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nJn_test = (2, 1.0) : ma.Jn;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 920,
+        "lineEnd": 940
+      }
+    },
+    {
+      "id": "maths.Y0",
+      "name": "Y0",
+      "qualifiedName": "ma.Y0",
+      "header": "(ma.)Y0",
+      "summary": "Computes the linearly independent Bessel function of the second kind of order 0 of the input signal.",
+      "usage": "_ : Y0 : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "positive input value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : Y0 : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nY0_test = 1.0 : ma.Y0;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 944,
+        "lineEnd": 963
+      }
+    },
+    {
+      "id": "maths.Y1",
+      "name": "Y1",
+      "qualifiedName": "ma.Y1",
+      "header": "(ma.)Y1",
+      "summary": "Computes the linearly independent Bessel function of the second kind of order 1 of the input signal.",
+      "usage": "_ : Y0 : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "positive input value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : Y0 : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nY1_test = 1.0 : ma.Y1;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 967,
+        "lineEnd": 986
+      }
+    },
+    {
+      "id": "maths.Yn",
+      "name": "Yn",
+      "qualifiedName": "ma.Yn",
+      "header": "(ma.)Yn",
+      "summary": "Computes the linearly independent Bessel function of the second kind of order n (first input signal) of the second input signal.",
+      "usage": "_,_ : Yn : _",
+      "params": [
+        {
+          "name": "n",
+          "description": "integer order"
+        },
+        {
+          "name": "x",
+          "description": "positive input value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "_,_ : Yn : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nYn_test = (2, 1.0) : ma.Yn;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 990,
+        "lineEnd": 1010
+      }
+    },
+    {
+      "id": "maths.np2",
+      "name": "np2",
+      "qualifiedName": "ma.np2",
+      "header": "(ma.)np2",
+      "summary": "Gives the next power of 2 of x.",
+      "usage": "np2(n) : _",
+      "params": [
+        {
+          "name": "n",
+          "description": "an integer"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "np2(n) : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nnp2_test = 5 : ma.np2;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 1027,
+        "lineEnd": 1045
+      }
+    },
+    {
+      "id": "maths.frac",
+      "name": "frac",
+      "qualifiedName": "ma.frac",
+      "header": "(ma.)frac",
+      "summary": "Gives the fractional part of n.",
+      "usage": "frac(n) : _",
+      "params": [
+        {
+          "name": "n",
+          "description": "a decimal number"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "frac(n) : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nfrac_test = 3.75 : ma.frac;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 1049,
+        "lineEnd": 1067
+      }
+    },
+    {
+      "id": "maths.modulo",
+      "name": "modulo",
+      "qualifiedName": "ma.modulo",
+      "header": "(ma.)modulo",
+      "summary": "Modulus operation using the `(x%y+y)%y` formula to ensures the result is always non-negative, even if `x` is negative.",
+      "usage": "modulo(x,y) : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "the numerator"
+        },
+        {
+          "name": "y",
+          "description": "the denominator"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "modulo(x,y) : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nmodulo_test = (-3, 4) : ma.modulo;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 1077,
+        "lineEnd": 1096
+      }
+    },
+    {
+      "id": "maths.isnan",
+      "name": "isnan",
+      "qualifiedName": "ma.isnan",
+      "header": "(ma.)isnan",
+      "summary": "Return non-zero if x is a NaN.",
+      "usage": "isnan(x) _ : isnan : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "signal to analyse"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "isnan(x) _ : isnan : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nisnan_test = 1.0 : ma.isnan;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 1100,
+        "lineEnd": 1119
+      }
+    },
+    {
+      "id": "maths.isinf",
+      "name": "isinf",
+      "qualifiedName": "ma.isinf",
+      "header": "(ma.)isinf",
+      "summary": "Return non-zero if x is a positive or negative infinity.",
+      "usage": "isinf(x) _ : isinf : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "signal to analyse"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "isinf(x) _ : isinf : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nisinf_test = 1.0 : ma.isinf;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 1123,
+        "lineEnd": 1142
+      }
+    },
+    {
+      "id": "maths.chebychev",
+      "name": "chebychev",
+      "qualifiedName": "ma.chebychev",
+      "header": "(ma.)chebychev",
+      "summary": "Chebychev transformation of order N.",
+      "usage": "_ : chebychev(N) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "the order of the polynomial, a constant numerical expression"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : chebychev(N) : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nchebychev_test = 0.5 : ma.chebychev(3);",
+      "references": [
+        "<http://en.wikipedia.org/wiki/Chebyshev_polynomial>",
+        "-------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 1148,
+        "lineEnd": 1178
+      }
+    },
+    {
+      "id": "maths.chebychevpoly",
+      "name": "chebychevpoly",
+      "qualifiedName": "ma.chebychevpoly",
+      "header": "(ma.)chebychevpoly",
+      "summary": "Linear combination of the first Chebyshev polynomials.",
+      "usage": "_ : chebychevpoly((c0,c1,...,cn)) : _",
+      "params": [
+        {
+          "name": "cn",
+          "description": "the different Chebychevs polynomials such that: chebychevpoly((c0,c1,...,cn)) = Sum of chebychev(i)*ci"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : chebychevpoly((c0,c1,...,cn)) : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nchebychevpoly_test = 0.5 : ma.chebychevpoly((1, 0, 1));",
+      "references": [
+        "<http://www.csounds.com/manual/html/chebyshevpoly.html>",
+        "-------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 1184,
+        "lineEnd": 1207
+      }
+    },
+    {
+      "id": "maths.diffn",
+      "name": "diffn",
+      "qualifiedName": "ma.diffn",
+      "header": "(ma.)diffn",
+      "summary": "Negated first-order difference.",
+      "usage": "_ : diffn : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "input signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : diffn : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nos = library(\"oscillators.lib\");\ndiffn_test = os.osc(440) : ma.diffn;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 1215,
+        "lineEnd": 1234
+      }
+    },
+    {
+      "id": "maths.signum",
+      "name": "signum",
+      "qualifiedName": "ma.signum",
+      "header": "(ma.)signum",
+      "summary": "The signum function signum(x) is defined as -1 for x<0, 0 for x==0, and 1 for x>0.",
+      "usage": "_ : signum : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "input value"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : signum : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nsignum_test = (-5.0) : ma.signum;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 1238,
+        "lineEnd": 1257
+      }
+    },
+    {
+      "id": "maths.nextpow2",
+      "name": "nextpow2",
+      "qualifiedName": "ma.nextpow2",
+      "header": "(ma.)nextpow2",
+      "summary": "The nextpow2(x) returns the lowest integer m such that 2^m >= x.",
+      "usage": "2^nextpow2(n) : _ Useful for allocating delay lines, e.g., delay(2^nextpow2(maxDelayNeeded), currentDelay);",
+      "params": [
+        {
+          "name": "n",
+          "description": "positive value whose next power-of-two exponent is computed"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 4,
+        "raw": "2^nextpow2(n) : _ Useful for allocating delay lines, e.g., delay(2^nextpow2(maxDelayNeeded), currentDelay);"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nnextpow2_test = 10.0 : ma.nextpow2;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 1261,
+        "lineEnd": 1284
+      }
+    },
+    {
+      "id": "maths.zc",
+      "name": "zc",
+      "qualifiedName": "ma.zc",
+      "header": "(ma.)zc",
+      "summary": "Indicator function for zero-crossing: it returns 1 if a zero-crossing occurs, 0 otherwise.",
+      "usage": "_ : zc : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "input signal to monitor for zero crossings"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : zc : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nos = library(\"oscillators.lib\");\nzc_test = os.osc(440) : ma.zc;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 1288,
+        "lineEnd": 1308
+      }
+    },
+    {
+      "id": "maths.unwrap",
+      "name": "unwrap",
+      "qualifiedName": "ma.unwrap",
+      "header": "(ma.)unwrap",
+      "summary": "Unwrap the input signal so that successive output values never differ by more than `pi`, switching to a 2*pi-complementary value when needed.",
+      "usage": "_ : unwrap(pi) : _",
+      "params": [
+        {
+          "name": "pi",
+          "description": "maximum discontinuity between the output values (typically `ma.PI`)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : unwrap(pi) : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nos = library(\"oscillators.lib\");\nunwrap_test = os.oscrc(100) : ma.unwrap(ma.PI);",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 1311,
+        "lineEnd": 1340
+      }
+    },
+    {
+      "id": "maths.primes",
+      "name": "primes",
+      "qualifiedName": "ma.primes",
+      "header": "(ma.)primes",
+      "summary": "Return the n-th prime using a waveform primitive. Note that primes(0) is 2, primes(1) is 3, and so on. The waveform is length 2048, so the largest precomputed prime is primes(2047) which is 17863.",
+      "usage": "_ : primes : _",
+      "params": [
+        {
+          "name": "x",
+          "description": "index of the prime number sequence (0-based)."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : primes : _"
+      },
+      "testCode": "ma = library(\"maths.lib\");\nprimes_test = 10 : ma.primes;",
+      "references": [],
+      "tags": [
+        "maths"
+      ],
+      "source": {
+        "file": "maths.lib",
+        "path": "maths.lib",
+        "lineStart": 1346,
+        "lineEnd": 1366
+      }
+    }
+  ]
+}

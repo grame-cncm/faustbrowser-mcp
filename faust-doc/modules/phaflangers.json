@@ -1,0 +1,263 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "phaflangers.lib",
+    "path": "phaflangers.lib",
+    "aliasHints": [
+      "pf"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "phaflangers.flanger_mono",
+      "name": "flanger_mono",
+      "qualifiedName": "pf.flanger_mono",
+      "header": "(pf.)flanger_mono",
+      "summary": "Mono flanging effect.",
+      "usage": "_ : flanger_mono(dmax,curdel,depth,fb,invert) : _",
+      "params": [
+        {
+          "name": "dmax",
+          "description": "maximum delay-line length (power of 2) - 10 ms typical"
+        },
+        {
+          "name": "curdel",
+          "description": "current dynamic delay (not to exceed dmax)"
+        },
+        {
+          "name": "depth",
+          "description": "effect strength between 0 and 1 (1 typical)"
+        },
+        {
+          "name": "fb",
+          "description": "feedback gain between 0 and 1 (0 typical)"
+        },
+        {
+          "name": "invert",
+          "description": "0 for normal, 1 to invert sign of flanging sum"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : flanger_mono(dmax,curdel,depth,fb,invert) : _"
+      },
+      "testCode": "pf = library(\"phaflangers.lib\");\nos = library(\"oscillators.lib\");\nflanger_mono_test = os.osc(440) : pf.flanger_mono(4096, 1024, 0.7, 0.25, 0);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Flanging.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "phaflangers"
+      ],
+      "source": {
+        "file": "phaflangers.lib",
+        "path": "phaflangers.lib",
+        "lineStart": 43,
+        "lineEnd": 70
+      }
+    },
+    {
+      "id": "phaflangers.flanger_stereo",
+      "name": "flanger_stereo",
+      "qualifiedName": "pf.flanger_stereo",
+      "header": "(pf.)flanger_stereo",
+      "summary": "Stereo flanging effect. `flanger_stereo` is a standard Faust function.",
+      "usage": "_,_ : flanger_stereo(dmax,curdel1,curdel2,depth,fb,invert) : _,_",
+      "params": [
+        {
+          "name": "dmax",
+          "description": "maximum delay-line length (power of 2) - 10 ms typical"
+        },
+        {
+          "name": "curdel1",
+          "description": "current dynamic delay for the left channel (not to exceed dmax)"
+        },
+        {
+          "name": "curdel2",
+          "description": "current dynamic delay for the right channel (not to exceed dmax)"
+        },
+        {
+          "name": "depth",
+          "description": "effect strength between 0 and 1 (1 typical)"
+        },
+        {
+          "name": "fb",
+          "description": "feedback gain between 0 and 1 (0 typical)"
+        },
+        {
+          "name": "invert",
+          "description": "0 for normal, 1 to invert sign of flanging sum"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 2,
+        "raw": "_,_ : flanger_stereo(dmax,curdel1,curdel2,depth,fb,invert) : _,_"
+      },
+      "testCode": "pf = library(\"phaflangers.lib\");\nos = library(\"oscillators.lib\");\nflanger_stereo_test = os.osc(440), os.osc(660) : pf.flanger_stereo(4096, 1024, 1536, 0.7, 0.25, 0);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Flanging.html>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "phaflangers"
+      ],
+      "source": {
+        "file": "phaflangers.lib",
+        "path": "phaflangers.lib",
+        "lineStart": 76,
+        "lineEnd": 105
+      }
+    },
+    {
+      "id": "phaflangers.phaser2_mono",
+      "name": "phaser2_mono",
+      "qualifiedName": "pf.phaser2_mono",
+      "header": "(pf.)phaser2_mono",
+      "summary": "Mono phasing effect.",
+      "usage": "_,_,_,_,_,_,_,_,_,_ : phaser2_mono(_,_,_,_,_,_,_,_,_,_) : _",
+      "params": [
+        {
+          "name": "Notches",
+          "description": "number of spectral notches (MACRO ARGUMENT - not a signal)"
+        },
+        {
+          "name": "phase",
+          "description": "phase of the oscillator (0-1)"
+        },
+        {
+          "name": "width",
+          "description": "approximate width of spectral notches in Hz"
+        },
+        {
+          "name": "frqmin",
+          "description": "approximate minimum frequency of first spectral notch in Hz"
+        },
+        {
+          "name": "fratio",
+          "description": "ratio of adjacent notch frequencies"
+        },
+        {
+          "name": "frqmax",
+          "description": "approximate maximum frequency of first spectral notch in Hz"
+        },
+        {
+          "name": "speed",
+          "description": "LFO frequency in Hz (rate of periodic notch sweep cycles)"
+        },
+        {
+          "name": "depth",
+          "description": "effect strength between 0 and 1 (1 typical) (aka \"intensity\") when depth=2, \"vibrato mode\" is obtained (pure allpass chain)"
+        },
+        {
+          "name": "fb",
+          "description": "feedback gain between -1 and 1 (0 typical)"
+        },
+        {
+          "name": "invert",
+          "description": "0 for normal, 1 to invert sign of flanging sum"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 10,
+        "outSignals": 1,
+        "raw": "_,_,_,_,_,_,_,_,_,_ : phaser2_mono(_,_,_,_,_,_,_,_,_,_) : _"
+      },
+      "testCode": "pf = library(\"phaflangers.lib\");\nos = library(\"oscillators.lib\");\nphaser2_mono_test = os.osc(330) : pf.phaser2_mono(4, 0.0, 50, 200, 1.5, 4000, 0.5, 0.8, 0.2, 0);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Phasing.html>",
+        "<http://www.geofex.com/Article_Folders/phasers/phase.html>",
+        "'An Allpass Approach to Digital Phasing and Flanging', Julius O. Smith III,",
+        "Proc. Int. Computer Music Conf. (ICMC-84), pp. 103-109, Paris, 1984.",
+        "CCRMA Tech. Report STAN-M-21: <https://ccrma.stanford.edu/STANM/stanms/stanm21/>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "phaflangers"
+      ],
+      "source": {
+        "file": "phaflangers.lib",
+        "path": "phaflangers.lib",
+        "lineStart": 133,
+        "lineEnd": 170
+      }
+    },
+    {
+      "id": "phaflangers.phaser2_stereo",
+      "name": "phaser2_stereo",
+      "qualifiedName": "pf.phaser2_stereo",
+      "header": "(pf.)phaser2_stereo",
+      "summary": "Stereo phasing effect. `phaser2_stereo` is a standard Faust function.",
+      "usage": null,
+      "params": [
+        {
+          "name": "Notches",
+          "description": "number of spectral notches (MACRO ARGUMENT - not a signal)"
+        },
+        {
+          "name": "width",
+          "description": "approximate width of spectral notches in Hz"
+        },
+        {
+          "name": "frqmin",
+          "description": "approximate minimum frequency of first spectral notch in Hz"
+        },
+        {
+          "name": "fratio",
+          "description": "ratio of adjacent notch frequencies"
+        },
+        {
+          "name": "frqmax",
+          "description": "approximate maximum frequency of first spectral notch in Hz"
+        },
+        {
+          "name": "speed",
+          "description": "LFO frequency in Hz (rate of periodic notch sweep cycles)"
+        },
+        {
+          "name": "depth",
+          "description": "effect strength between 0 and 1 (1 typical) (aka \"intensity\") when depth=2, \"vibrato mode\" is obtained (pure allpass chain)"
+        },
+        {
+          "name": "fb",
+          "description": "feedback gain between -1 and 1 (0 typical)"
+        },
+        {
+          "name": "invert",
+          "description": "0 for normal, 1 to invert sign of flanging sum"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": null,
+        "raw": null
+      },
+      "testCode": "pf = library(\"phaflangers.lib\");\nos = library(\"oscillators.lib\");\nphaser2_stereo_test = os.osc(220), os.osc(330) : pf.phaser2_stereo(4, 50, 200, 1.5, 4000, 0.5, 0.8, 0.2, 0);",
+      "references": [
+        "<https://ccrma.stanford.edu/~jos/pasp/Phasing.html>",
+        "<http://www.geofex.com/Article_Folders/phasers/phase.html>",
+        "'An Allpass Approach to Digital Phasing and Flanging', Julius O. Smith III,",
+        "Proc. Int. Computer Music Conf. (ICMC-84), pp. 103-109, Paris, 1984.",
+        "CCRMA Tech. Report STAN-M-21: <https://ccrma.stanford.edu/STANM/stanms/stanm21/>",
+        "------------------------------------------------------------"
+      ],
+      "tags": [
+        "phaflangers"
+      ],
+      "source": {
+        "file": "phaflangers.lib",
+        "path": "phaflangers.lib",
+        "lineStart": 180,
+        "lineEnd": 217
+      }
+    }
+  ]
+}

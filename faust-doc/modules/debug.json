@@ -1,0 +1,1234 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "debug.lib",
+    "path": "debug.lib",
+    "aliasHints": [
+      "db"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "debug.probe_rms_lin",
+      "name": "probe_rms_lin",
+      "qualifiedName": "db.probe_rms_lin",
+      "header": "(db.)probe_rms_lin",
+      "summary": "RMS level probe (linear).",
+      "usage": "_ : probe_rms_lin(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_rms_lin(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_rms_lin_test = db.probe_rms_lin(1, 1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 51,
+        "lineEnd": 71
+      }
+    },
+    {
+      "id": "debug.probe_rms_db",
+      "name": "probe_rms_db",
+      "qualifiedName": "db.probe_rms_db",
+      "header": "(db.)probe_rms_db",
+      "summary": "RMS level probe (dB). Bargraph includes `[unit:dB]`.",
+      "usage": "_ : probe_rms_db(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_rms_db(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_rms_db_test = db.probe_rms_db(0, 1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 77,
+        "lineEnd": 97
+      }
+    },
+    {
+      "id": "debug.probe_peak_lin",
+      "name": "probe_peak_lin",
+      "qualifiedName": "db.probe_peak_lin",
+      "header": "(db.)probe_peak_lin",
+      "summary": "Peak level probe (linear).",
+      "usage": "_ : probe_peak_lin(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_peak_lin(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_peak_lin_test = db.probe_peak_lin(3, 1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 104,
+        "lineEnd": 124
+      }
+    },
+    {
+      "id": "debug.probe_peak_db",
+      "name": "probe_peak_db",
+      "qualifiedName": "db.probe_peak_db",
+      "header": "(db.)probe_peak_db",
+      "summary": "Peak level probe (dB). Bargraph includes `[unit:dB]`.",
+      "usage": "_ : probe_peak_db(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_peak_db(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_peak_db_test = db.probe_peak_db(2, 1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 131,
+        "lineEnd": 151
+      }
+    },
+    {
+      "id": "debug.probe_crest_db",
+      "name": "probe_crest_db",
+      "qualifiedName": "db.probe_crest_db",
+      "header": "(db.)probe_crest_db",
+      "summary": "Crest factor probe (peak/rms ratio in dB).",
+      "usage": "_ : probe_crest_db(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_crest_db(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_crest_db_test = db.probe_crest_db(4, 1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 163,
+        "lineEnd": 183
+      }
+    },
+    {
+      "id": "debug.probe_env",
+      "name": "probe_env",
+      "qualifiedName": "db.probe_env",
+      "header": "(db.)probe_env",
+      "summary": "Envelope follower probe (attack/release).",
+      "usage": "_ : probe_env(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_env(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_env_test = db.probe_env(5, 1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 191,
+        "lineEnd": 211
+      }
+    },
+    {
+      "id": "debug.probe_min",
+      "name": "probe_min",
+      "qualifiedName": "db.probe_min",
+      "header": "(db.)probe_min",
+      "summary": "Minimum-hold probe (inverted peak envelope).",
+      "usage": "_ : probe_min(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_min(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_min_test = db.probe_min(6, 1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 218,
+        "lineEnd": 238
+      }
+    },
+    {
+      "id": "debug.probe_max",
+      "name": "probe_max",
+      "qualifiedName": "db.probe_max",
+      "header": "(db.)probe_max",
+      "summary": "Maximum-hold probe (slow peak envelope).",
+      "usage": "_ : probe_max(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_max(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_max_test = db.probe_max(7, 1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 245,
+        "lineEnd": 265
+      }
+    },
+    {
+      "id": "debug.probe_dc",
+      "name": "probe_dc",
+      "qualifiedName": "db.probe_dc",
+      "header": "(db.)probe_dc",
+      "summary": "DC offset probe (very lowpass).",
+      "usage": "_ : probe_dc(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_dc(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_dc_test = db.probe_dc(8, 1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 277,
+        "lineEnd": 297
+      }
+    },
+    {
+      "id": "debug.probe_slew",
+      "name": "probe_slew",
+      "qualifiedName": "db.probe_slew",
+      "header": "(db.)probe_slew",
+      "summary": "Slew rate probe (RMS of signal derivative).",
+      "usage": "_ : probe_slew(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_slew(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_slew_test = db.probe_slew(9, 1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 304,
+        "lineEnd": 324
+      }
+    },
+    {
+      "id": "debug.probe_zcr",
+      "name": "probe_zcr",
+      "qualifiedName": "db.probe_zcr",
+      "header": "(db.)probe_zcr",
+      "summary": "Zero-crossing rate probe (lowpassed).",
+      "usage": "_ : probe_zcr(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_zcr(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_zcr_test = db.probe_zcr(10, 1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 331,
+        "lineEnd": 351
+      }
+    },
+    {
+      "id": "debug.probe_value",
+      "name": "probe_value",
+      "qualifiedName": "db.probe_value",
+      "header": "(db.)probe_value",
+      "summary": "Raw value probe (no smoothing).",
+      "usage": "_ : probe_value(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_value(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_value_test = db.probe_value(11, 1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 363,
+        "lineEnd": 383
+      }
+    },
+    {
+      "id": "debug.probe_bool",
+      "name": "probe_bool",
+      "qualifiedName": "db.probe_bool",
+      "header": "(db.)probe_bool",
+      "summary": "Boolean probe (gate/trigger state).",
+      "usage": "_ : probe_bool(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_bool(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_bool_test = db.probe_bool(12, 1, os.osc(220) > 0);",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 389,
+        "lineEnd": 409
+      }
+    },
+    {
+      "id": "debug.probe_band_lo",
+      "name": "probe_band_lo",
+      "qualifiedName": "db.probe_band_lo",
+      "header": "(db.)probe_band_lo",
+      "summary": "Low-band energy probe (<300 Hz).",
+      "usage": "_ : probe_band_lo(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_band_lo(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_band_lo_test = db.probe_band_lo(13, 1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 420,
+        "lineEnd": 440
+      }
+    },
+    {
+      "id": "debug.probe_band_mid",
+      "name": "probe_band_mid",
+      "qualifiedName": "db.probe_band_mid",
+      "header": "(db.)probe_band_mid",
+      "summary": "Mid-band energy probe (300 Hz - 3 kHz).",
+      "usage": "_ : probe_band_mid(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_band_mid(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_band_mid_test = db.probe_band_mid(14, 1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 447,
+        "lineEnd": 467
+      }
+    },
+    {
+      "id": "debug.probe_band_hi",
+      "name": "probe_band_hi",
+      "qualifiedName": "db.probe_band_hi",
+      "header": "(db.)probe_band_hi",
+      "summary": "High-band energy probe (>3 kHz).",
+      "usage": "_ : probe_band_hi(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_band_hi(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_band_hi_test = db.probe_band_hi(15, 1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 474,
+        "lineEnd": 494
+      }
+    },
+    {
+      "id": "debug.probe_spectral_centroid",
+      "name": "probe_spectral_centroid",
+      "qualifiedName": "db.probe_spectral_centroid",
+      "header": "(db.)probe_spectral_centroid",
+      "summary": "Spectral centroid estimate using multi-band analysis. Outputs frequency estimate of spectral \"center of mass\".",
+      "usage": "_ : probe_spectral_centroid(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_spectral_centroid(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_spectral_centroid_test = db.probe_spectral_centroid(43, 1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 502,
+        "lineEnd": 523
+      }
+    },
+    {
+      "id": "debug.probe_multiband",
+      "name": "probe_multiband",
+      "qualifiedName": "db.probe_multiband",
+      "header": "(db.)probe_multiband",
+      "summary": "Multi-band analyzer - outputs energy in N frequency bands. Designed for STFT-like time-frequency analysis via time-series capture.",
+      "usage": "_ : probe_multiband(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) base probe id used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI Creates 8 probes at IDs ID through ID+7."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_multiband(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_multiband_test = db.probe_multiband(44, 1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 557,
+        "lineEnd": 580
+      }
+    },
+    {
+      "id": "debug.probe_freq_lin",
+      "name": "probe_freq_lin",
+      "qualifiedName": "db.probe_freq_lin",
+      "header": "(db.)probe_freq_lin",
+      "summary": "Parametric bandpass energy probe at a specific frequency. Use to verify presence of expected oscillator frequencies.",
+      "usage": "_ : probe_freq_lin(ID, HIDE, freq, q) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        },
+        {
+          "name": "freq",
+          "description": "center frequency in Hz"
+        },
+        {
+          "name": "q",
+          "description": "filter Q (higher = narrower band, typically 5-20)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_freq_lin(ID, HIDE, freq, q) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_freq_lin_test = db.probe_freq_lin(34, 1, 440, 10, os.osc(440));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 622,
+        "lineEnd": 645
+      }
+    },
+    {
+      "id": "debug.probe_freq_db",
+      "name": "probe_freq_db",
+      "qualifiedName": "db.probe_freq_db",
+      "header": "(db.)probe_freq_db",
+      "summary": "Parametric bandpass energy probe in dB at a specific frequency.",
+      "usage": "_ : probe_freq_db(ID, HIDE, freq, q) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        },
+        {
+          "name": "freq",
+          "description": "center frequency in Hz"
+        },
+        {
+          "name": "q",
+          "description": "filter Q (higher = narrower band, typically 5-20)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_freq_db(ID, HIDE, freq, q) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_freq_db_test = db.probe_freq_db(35, 1, 440, 10, os.osc(440));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 653,
+        "lineEnd": 675
+      }
+    },
+    {
+      "id": "debug.probe_freq_ratio",
+      "name": "probe_freq_ratio",
+      "qualifiedName": "db.probe_freq_ratio",
+      "header": "(db.)probe_freq_ratio",
+      "summary": "Ratio between two frequency bands (useful for verifying oscillator balance).",
+      "usage": "_ : probe_freq_ratio(ID, HIDE, f1, f2, q) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        },
+        {
+          "name": "f1",
+          "description": "center frequency in Hz for the first band"
+        },
+        {
+          "name": "f2",
+          "description": "center frequency in Hz for the second band"
+        },
+        {
+          "name": "q",
+          "description": "filter Q (higher = narrower band, typically 5-20)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_freq_ratio(ID, HIDE, f1, f2, q) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_freq_ratio_test = db.probe_freq_ratio(36, 1, 440, 660, 12, os.osc(440));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 684,
+        "lineEnd": 707
+      }
+    },
+    {
+      "id": "debug.probe_env_lin",
+      "name": "probe_env_lin",
+      "qualifiedName": "db.probe_env_lin",
+      "header": "(db.)probe_env_lin",
+      "summary": "Envelope state probe - outputs current envelope level for time-series capture.",
+      "usage": "_ : probe_env_lin(ID, HIDE, att_s, rel_s) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        },
+        {
+          "name": "att_s",
+          "description": "envelope attack time in seconds (e.g., 0.001)"
+        },
+        {
+          "name": "rel_s",
+          "description": "envelope release time in seconds (e.g., 0.1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_env_lin(ID, HIDE, att_s, rel_s) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_env_lin_test = db.probe_env_lin(37, 1, 0.001, 0.1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 724,
+        "lineEnd": 746
+      }
+    },
+    {
+      "id": "debug.probe_env_db",
+      "name": "probe_env_db",
+      "qualifiedName": "db.probe_env_db",
+      "header": "(db.)probe_env_db",
+      "summary": "Envelope state probe in dB - for decay time analysis.",
+      "usage": "_ : probe_env_db(ID, HIDE, att_s, rel_s) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        },
+        {
+          "name": "att_s",
+          "description": "envelope attack time in seconds (e.g., 0.001)"
+        },
+        {
+          "name": "rel_s",
+          "description": "envelope release time in seconds (e.g., 0.1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_env_db(ID, HIDE, att_s, rel_s) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_env_db_test = db.probe_env_db(38, 1, 0.001, 0.1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 754,
+        "lineEnd": 776
+      }
+    },
+    {
+      "id": "debug.probe_peak_hold",
+      "name": "probe_peak_hold",
+      "qualifiedName": "db.probe_peak_hold",
+      "header": "(db.)probe_peak_hold",
+      "summary": "Peak hold probe - captures and holds peak value until reset. Useful for measuring maximum amplitude reached.",
+      "usage": "_ : probe_peak_hold(ID, HIDE, decay_s) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        },
+        {
+          "name": "decay_s",
+          "description": "time for held peak to decay (set high for true hold, e.g., 10.0)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_peak_hold(ID, HIDE, decay_s) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_peak_hold_test = db.probe_peak_hold(39, 1, 2.0, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 785,
+        "lineEnd": 807
+      }
+    },
+    {
+      "id": "debug.probe_below_threshold",
+      "name": "probe_below_threshold",
+      "qualifiedName": "db.probe_below_threshold",
+      "header": "(db.)probe_below_threshold",
+      "summary": "Threshold crossing probe - outputs 1 when signal drops below threshold. Useful for detecting when decay is \"complete\".",
+      "usage": "_ : probe_below_threshold(ID, HIDE, thresh_db) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        },
+        {
+          "name": "thresh_db",
+          "description": "threshold in dB for \"below\" detection"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_below_threshold(ID, HIDE, thresh_db) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_below_threshold_test = db.probe_below_threshold(40, 1, -40, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 819,
+        "lineEnd": 841
+      }
+    },
+    {
+      "id": "debug.probe_attack_state",
+      "name": "probe_attack_state",
+      "qualifiedName": "db.probe_attack_state",
+      "header": "(db.)probe_attack_state",
+      "summary": "Attack phase detector - outputs 1 during attack, 0 otherwise. Attack is defined as: envelope rising AND above noise floor.",
+      "usage": "_ : probe_attack_state(ID, HIDE, floor_db) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        },
+        {
+          "name": "floor_db",
+          "description": "noise floor threshold in dB"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_attack_state(ID, HIDE, floor_db) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_attack_state_test = db.probe_attack_state(41, 1, -60, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 857,
+        "lineEnd": 879
+      }
+    },
+    {
+      "id": "debug.probe_onset",
+      "name": "probe_onset",
+      "qualifiedName": "db.probe_onset",
+      "header": "(db.)probe_onset",
+      "summary": "Onset detector - pulses 1 at signal onset (transition from silence to sound).",
+      "usage": "_ : probe_onset(ID, HIDE, thresh_db, holdoff_ms) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        },
+        {
+          "name": "thresh_db",
+          "description": "threshold for \"sound present\" (e.g., -40)"
+        },
+        {
+          "name": "holdoff_ms",
+          "description": "minimum time between onsets in ms"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_onset(ID, HIDE, thresh_db, holdoff_ms) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_onset_test = db.probe_onset(42, 1, -40, 50, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 893,
+        "lineEnd": 915
+      }
+    },
+    {
+      "id": "debug.probe_dc_precise",
+      "name": "probe_dc_precise",
+      "qualifiedName": "db.probe_dc_precise",
+      "header": "(db.)probe_dc_precise",
+      "summary": "Precise DC offset probe with very low cutoff for accurate measurement.",
+      "usage": "_ : probe_dc_precise(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_dc_precise(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_dc_precise_test = db.probe_dc_precise(56, 1, os.osc(2));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 937,
+        "lineEnd": 957
+      }
+    },
+    {
+      "id": "debug.probe_silence",
+      "name": "probe_silence",
+      "qualifiedName": "db.probe_silence",
+      "header": "(db.)probe_silence",
+      "summary": "Silence detector - outputs 1 when signal is effectively silent.",
+      "usage": "_ : probe_silence(ID, HIDE, thresh_db) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        },
+        {
+          "name": "thresh_db",
+          "description": "threshold in dB below which the signal is considered silent"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_silence(ID, HIDE, thresh_db) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_silence_test = db.probe_silence(57, 1, -60, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 965,
+        "lineEnd": 986
+      }
+    },
+    {
+      "id": "debug.probe_sample_count",
+      "name": "probe_sample_count",
+      "qualifiedName": "db.probe_sample_count",
+      "header": "(db.)probe_sample_count",
+      "summary": "Sample counter probe - outputs current sample number (wraps at 2^24). Useful for synchronizing time-series data.",
+      "usage": "_ : probe_sample_count(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_sample_count(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_sample_count_test = db.probe_sample_count(58, 1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 1002,
+        "lineEnd": 1023
+      }
+    },
+    {
+      "id": "debug.probe_time_ms",
+      "name": "probe_time_ms",
+      "qualifiedName": "db.probe_time_ms",
+      "header": "(db.)probe_time_ms",
+      "summary": "Time probe in milliseconds (wraps at ~16 seconds at 44.1kHz).",
+      "usage": "_ : probe_time_ms(ID, HIDE) : _",
+      "params": [
+        {
+          "name": "ID",
+          "description": "(CNE) probe id integer used in `[probe:ID]`"
+        },
+        {
+          "name": "HIDE",
+          "description": "(CNE) 0 to show, 1 to hide in UI"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_time_ms(ID, HIDE) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\nprobe_time_ms_test = db.probe_time_ms(59, 1, os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 1031,
+        "lineEnd": 1051
+      }
+    },
+    {
+      "id": "debug.probe_tap",
+      "name": "probe_tap",
+      "qualifiedName": "db.probe_tap",
+      "header": "(db.)probe_tap",
+      "summary": "Tap a signal for side-effect analysis without changing output arity.",
+      "usage": "_ : probe_tap(F) : _",
+      "params": [
+        {
+          "name": "F",
+          "description": "signal processor for the tap (e.g., meter, analyser)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : probe_tap(F) : _"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\ntap_test = db.probe_tap(db.probe_rms_db(0, 1), os.osc(220));",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 1064,
+        "lineEnd": 1099
+      }
+    },
+    {
+      "id": "debug.probe_tap_n",
+      "name": "probe_tap_n",
+      "qualifiedName": "db.probe_tap_n",
+      "header": "(db.)probe_tap_n",
+      "summary": "Tap an N-channel signal with a processor that takes N inputs and produces 1 output. The original N-channel signal passes through unchanged.",
+      "usage": "probe_tap_n(N, F)",
+      "params": [
+        {
+          "name": "N",
+          "description": "(CNE) number of channels"
+        },
+        {
+          "name": "F",
+          "description": "processor with N inputs and 1 output (e.g., sum or mix meter)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "probe_tap_n(N, F)"
+      },
+      "testCode": "db = library(\"debug.lib\");\nos = library(\"oscillators.lib\");\ntap_n_test = (os.osc(220), os.osc(330)) : db.probe_tap_n(2, +);",
+      "references": [],
+      "tags": [
+        "debug"
+      ],
+      "source": {
+        "file": "debug.lib",
+        "path": "debug.lib",
+        "lineStart": 1104,
+        "lineEnd": 1145
+      }
+    }
+  ]
+}

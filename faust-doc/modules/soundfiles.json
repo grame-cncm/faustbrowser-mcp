@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "soundfiles.lib",
+    "path": "soundfiles.lib",
+    "aliasHints": [
+      "so"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "soundfiles.loop",
+      "name": "loop",
+      "qualifiedName": "so.loop",
+      "header": "(so.)loop",
+      "summary": "Play a soundfile in a loop taking into account its sampling rate. `loop` is a standard Faust function.",
+      "usage": "loop(sf, part) : si.bus(outputs(sf))",
+      "params": [
+        {
+          "name": "sf",
+          "description": "the soundfile"
+        },
+        {
+          "name": "part",
+          "description": "the part in the soundfile list of sounds"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "loop(sf, part) : si.bus(outputs(sf))"
+      },
+      "testCode": "so = library(\"soundfiles.lib\");\nsf = soundfile(\"sound[url:{'tests/assets/silence.wav'}]\", 1);\nloop_test = so.loop(sf, 0);",
+      "references": [],
+      "tags": [
+        "soundfiles"
+      ],
+      "source": {
+        "file": "soundfiles.lib",
+        "path": "soundfiles.lib",
+        "lineStart": 106,
+        "lineEnd": 127
+      }
+    },
+    {
+      "id": "soundfiles.loop_speed",
+      "name": "loop_speed",
+      "qualifiedName": "so.loop_speed",
+      "header": "(so.)loop_speed",
+      "summary": "Play a soundfile in a loop taking into account its sampling rate, with speed control. `loop_speed` is a standard Faust function.",
+      "usage": "loop_speed(sf, part, speed) : si.bus(outputs(sf))",
+      "params": [
+        {
+          "name": "sf",
+          "description": "the soundfile"
+        },
+        {
+          "name": "part",
+          "description": "the part in the soundfile list of sounds"
+        },
+        {
+          "name": "speed",
+          "description": "the speed between 0 and n"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "loop_speed(sf, part, speed) : si.bus(outputs(sf))"
+      },
+      "testCode": "so = library(\"soundfiles.lib\");\nsf = soundfile(\"sound[url:{'tests/assets/silence.wav'}]\", 1);\nloop_speed_test = so.loop_speed(sf, 0, hslider(\"loop_speed:speed\", 1, 0, 2, 0.01));",
+      "references": [],
+      "tags": [
+        "soundfiles"
+      ],
+      "source": {
+        "file": "soundfiles.lib",
+        "path": "soundfiles.lib",
+        "lineStart": 131,
+        "lineEnd": 153
+      }
+    },
+    {
+      "id": "soundfiles.loop_speed_level",
+      "name": "loop_speed_level",
+      "qualifiedName": "so.loop_speed_level",
+      "header": "(so.)loop_speed_level",
+      "summary": "Play a soundfile in a loop taking into account its sampling rate, with speed and level controls. `loop_speed_level` is a standard Faust function.",
+      "usage": "loop_speed_level(sf, part, speed, level) : si.bus(outputs(sf))",
+      "params": [
+        {
+          "name": "sf",
+          "description": "the soundfile"
+        },
+        {
+          "name": "part",
+          "description": "the part in the soundfile list of sounds"
+        },
+        {
+          "name": "speed",
+          "description": "the speed between 0 and n"
+        },
+        {
+          "name": "level",
+          "description": "the volume between 0 and n"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "loop_speed_level(sf, part, speed, level) : si.bus(outputs(sf))"
+      },
+      "testCode": "so = library(\"soundfiles.lib\");\nsf = soundfile(\"sound[url:{'tests/assets/silence.wav'}]\", 1);\nloop_speed_level_test = so.loop_speed_level(\n    sf,\n    0,\n    hslider(\"loop_speed_level:speed\", 1, 0, 2, 0.01),\n    hslider(\"loop_speed_level:level\", 0.5, 0, 1, 0.01)\n);",
+      "references": [],
+      "tags": [
+        "soundfiles"
+      ],
+      "source": {
+        "file": "soundfiles.lib",
+        "path": "soundfiles.lib",
+        "lineStart": 157,
+        "lineEnd": 185
+      }
+    }
+  ]
+}

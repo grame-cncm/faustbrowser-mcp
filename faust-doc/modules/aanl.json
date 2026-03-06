@@ -1,0 +1,1085 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "aanl.lib",
+    "path": "aanl.lib",
+    "aliasHints": [
+      "aa"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "aanl.Rsqrt",
+      "name": "Rsqrt",
+      "qualifiedName": "aa.Rsqrt",
+      "header": "(aa.)Rsqrt",
+      "summary": "Real-valued sqrt().",
+      "usage": "_ : Rsqrt(_) : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : Rsqrt(_) : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 54,
+        "lineEnd": 56
+      }
+    },
+    {
+      "id": "aanl.Rlog",
+      "name": "Rlog",
+      "qualifiedName": "aa.Rlog",
+      "header": "(aa.)Rlog",
+      "summary": "Real-valued log().",
+      "usage": "_ : Rlog(_) : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : Rlog(_) : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 60,
+        "lineEnd": 62
+      }
+    },
+    {
+      "id": "aanl.Rtan",
+      "name": "Rtan",
+      "qualifiedName": "aa.Rtan",
+      "header": "(aa.)Rtan",
+      "summary": "Real-valued tan().",
+      "usage": "_ : Rtan(_) : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : Rtan(_) : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 66,
+        "lineEnd": 68
+      }
+    },
+    {
+      "id": "aanl.Racos",
+      "name": "Racos",
+      "qualifiedName": "aa.Racos",
+      "header": "(aa.)Racos",
+      "summary": "Real-valued acos().",
+      "usage": "_ : Racos(_) : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : Racos(_) : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 72,
+        "lineEnd": 74
+      }
+    },
+    {
+      "id": "aanl.Rasin",
+      "name": "Rasin",
+      "qualifiedName": "aa.Rasin",
+      "header": "(aa.)Rasin",
+      "summary": "Real-valued asin().",
+      "usage": "_ : Rasin(_) : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : Rasin(_) : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 78,
+        "lineEnd": 80
+      }
+    },
+    {
+      "id": "aanl.Racosh",
+      "name": "Racosh",
+      "qualifiedName": "aa.Racosh",
+      "header": "(aa.)Racosh",
+      "summary": "Real-valued acosh()",
+      "usage": "_ : Racosh(_) : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : Racosh(_) : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 84,
+        "lineEnd": 86
+      }
+    },
+    {
+      "id": "aanl.Rcosh",
+      "name": "Rcosh",
+      "qualifiedName": "aa.Rcosh",
+      "header": "(aa.)Rcosh",
+      "summary": "Real-valued cosh().",
+      "usage": "_ : Rcosh(_) : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : Rcosh(_) : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 90,
+        "lineEnd": 92
+      }
+    },
+    {
+      "id": "aanl.Rsinh",
+      "name": "Rsinh",
+      "qualifiedName": "aa.Rsinh",
+      "header": "(aa.)Rsinh",
+      "summary": "Real-valued sinh().",
+      "usage": "_ : Rsinh(_) : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : Rsinh(_) : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 96,
+        "lineEnd": 98
+      }
+    },
+    {
+      "id": "aanl.Ratanh",
+      "name": "Ratanh",
+      "qualifiedName": "aa.Ratanh",
+      "header": "(aa.)Ratanh",
+      "summary": "Real-valued atanh().",
+      "usage": "_ : Ratanh(_) : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : Ratanh(_) : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 102,
+        "lineEnd": 104
+      }
+    },
+    {
+      "id": "aanl.ADAA1",
+      "name": "ADAA1",
+      "qualifiedName": "aa.ADAA1",
+      "header": "(aa.)ADAA1",
+      "summary": "Generalised first-order Antiderivative Anti-Aliasing (ADAA) function. Implements a first-order ADAA approximation to reduce aliasing in nonlinear audio processing.",
+      "usage": "_ : ADAA1(EPS, f, F1) : _",
+      "params": [
+        {
+          "name": "EPS",
+          "description": "a threshold for switching between safe and ill-conditioned paths"
+        },
+        {
+          "name": "f",
+          "description": "a function that we want to process with ADAA"
+        },
+        {
+          "name": "F1",
+          "description": "f's first antiderivative"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : ADAA1(EPS, f, F1) : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nba = library(\"basics.lib\");\nma = library(\"maths.lib\");\nos = library(\"oscillators.lib\");\nADAA1_test = aa.ADAA1(0.001, f, F1, os.osc(110))\n    with {\n        f(x) = aa.clip(-1.0, 1.0, x);\n        F1(x) = ba.if((x <= 1.0) & (x >= -1.0), 0.5 * x^2, x * ma.signum(x) - 0.5);\n    };",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 109,
+        "lineEnd": 138
+      }
+    },
+    {
+      "id": "aanl.ADAA2",
+      "name": "ADAA2",
+      "qualifiedName": "aa.ADAA2",
+      "header": "(aa.)ADAA2",
+      "summary": "Generalised second-order Antiderivative Anti-Aliasing (ADAA) function. Implements a second-order ADAA approximation for even better aliasing reduction at the cost of additional computation.",
+      "usage": "_ : ADAA2(EPS, f, F1, F2) : _",
+      "params": [
+        {
+          "name": "EPS",
+          "description": "a threshold for switching between safe and ill-conditioned paths"
+        },
+        {
+          "name": "f",
+          "description": "a function that we want to process with ADAA"
+        },
+        {
+          "name": "F1",
+          "description": "f's first antiderivative"
+        },
+        {
+          "name": "F2",
+          "description": "f's second antiderivative"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : ADAA2(EPS, f, F1, F2) : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nba = library(\"basics.lib\");\nma = library(\"maths.lib\");\nos = library(\"oscillators.lib\");\nADAA2_test = aa.ADAA2(0.001, f, F1, F2, os.osc(110))\n    with {\n        f(x) = aa.clip(-1.0, 1.0, x);\n        F1(x) = ba.if((x <= 1.0) & (x >= -1.0), 0.5 * x^2, x * ma.signum(x) - 0.5);\n        F2(x) = ba.if((x <= 1.0) & (x >= -1.0), (1.0 / 3.0) * x^3, ((0.5 * x^2) - 1.0 / 6.0) * ma.signum(x));\n    };",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 156,
+        "lineEnd": 186
+      }
+    },
+    {
+      "id": "aanl.hardclip",
+      "name": "hardclip",
+      "qualifiedName": "aa.hardclip",
+      "header": "(aa.)hardclip",
+      "summary": "First-order ADAA hard-clip. The domain of this function is \u211d; its theoretical range is [-1.0; 1.0].",
+      "usage": "_ : aa.hardclip : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.hardclip : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\nhardclip_test = aa.hardclip(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 225,
+        "lineEnd": 241
+      }
+    },
+    {
+      "id": "aanl.hardclip2",
+      "name": "hardclip2",
+      "qualifiedName": "aa.hardclip2",
+      "header": "(aa.)hardclip2",
+      "summary": "Second-order ADAA hard-clip. The domain of this function is \u211d; its theoretical range is [-1.0; 1.0].",
+      "usage": "_ : aa.hardclip2 : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.hardclip2 : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\nhardclip2_test = aa.hardclip2(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 256,
+        "lineEnd": 272
+      }
+    },
+    {
+      "id": "aanl.cubic1",
+      "name": "cubic1",
+      "qualifiedName": "aa.cubic1",
+      "header": "(aa.)cubic1",
+      "summary": "First-order ADAA cubic saturator. The domain of this function is \u211d; its theoretical range is [-2.0/3.0; 2.0/3.0].",
+      "usage": "_ : aa.cubic1 : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.cubic1 : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\ncubic1_test = aa.cubic1(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 291,
+        "lineEnd": 308
+      }
+    },
+    {
+      "id": "aanl.parabolic",
+      "name": "parabolic",
+      "qualifiedName": "aa.parabolic",
+      "header": "(aa.)parabolic",
+      "summary": "First-order ADAA parabolic saturator. The domain of this function is \u211d; its theoretical range is [-1.0; 1.0].",
+      "usage": "_ : aa.parabolic : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.parabolic : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\nparabolic_test = aa.parabolic(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 327,
+        "lineEnd": 343
+      }
+    },
+    {
+      "id": "aanl.parabolic2",
+      "name": "parabolic2",
+      "qualifiedName": "aa.parabolic2",
+      "header": "(aa.)parabolic2",
+      "summary": "Second-order ADAA parabolic saturator. The domain of this function is \u211d; its theoretical range is [-1.0; 1.0].",
+      "usage": "_ : aa.parabolic2 : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.parabolic2 : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\nparabolic2_test = aa.parabolic2(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 361,
+        "lineEnd": 377
+      }
+    },
+    {
+      "id": "aanl.hyperbolic",
+      "name": "hyperbolic",
+      "qualifiedName": "aa.hyperbolic",
+      "header": "(aa.)hyperbolic",
+      "summary": "First-order ADAA hyperbolic saturator. The domain of this function is \u211d; its theoretical range is [-1.0; 1.0].",
+      "usage": "_ : aa.hyperbolic : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.hyperbolic : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\nhyperbolic_test = aa.hyperbolic(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 399,
+        "lineEnd": 415
+      }
+    },
+    {
+      "id": "aanl.hyperbolic2",
+      "name": "hyperbolic2",
+      "qualifiedName": "aa.hyperbolic2",
+      "header": "(aa.)hyperbolic2",
+      "summary": "Second-order ADAA hyperbolic saturator. The domain of this function is \u211d; its theoretical range is [-1.0; 1.0].",
+      "usage": "_ : aa.hyperbolic2 : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.hyperbolic2 : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\nhyperbolic2_test = aa.hyperbolic2(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 428,
+        "lineEnd": 444
+      }
+    },
+    {
+      "id": "aanl.sinarctan",
+      "name": "sinarctan",
+      "qualifiedName": "aa.sinarctan",
+      "header": "(aa.)sinarctan",
+      "summary": "First-order ADAA sin(atan()) saturator. The domain of this function is \u211d; its theoretical range is [-1.0; 1.0].",
+      "usage": "_ : aa.sinarctan : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.sinarctan : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\nsinarctan_test = aa.sinarctan(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 459,
+        "lineEnd": 475
+      }
+    },
+    {
+      "id": "aanl.sinarctan2",
+      "name": "sinarctan2",
+      "qualifiedName": "aa.sinarctan2",
+      "header": "(aa.)sinarctan2",
+      "summary": "Second-order ADAA sin(atan()) saturator. The domain of this function is \u211d; its theoretical range is [-1.0; 1.0].",
+      "usage": "_ : aa.sinarctan2 : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.sinarctan2 : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\nsinarctan2_test = aa.sinarctan2(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 491,
+        "lineEnd": 507
+      }
+    },
+    {
+      "id": "aanl.softclipQuadratic1",
+      "name": "softclipQuadratic1",
+      "qualifiedName": "aa.softclipQuadratic1",
+      "header": "(aa.)softclipQuadratic1",
+      "summary": "First-order ADAA quadratic softclip. The domain of this function is \u211d; its theoretical range is [-1.0; 1.0].",
+      "usage": "_ : aa.softclipQuadratic1 : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.softclipQuadratic1 : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\nsoftclipQuadratic1_test = aa.softclipQuadratic1(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 561,
+        "lineEnd": 577
+      }
+    },
+    {
+      "id": "aanl.softclipQuadratic2",
+      "name": "softclipQuadratic2",
+      "qualifiedName": "aa.softclipQuadratic2",
+      "header": "(aa.)softclipQuadratic2",
+      "summary": "Second-order ADAA quadratic softclip. The domain of this function is \u211d; its theoretical range is [-1.0; 1.0].",
+      "usage": "_ : aa.softclipQuadratic2 : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.softclipQuadratic2 : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\nsoftclipQuadratic2_test = aa.softclipQuadratic2(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 585,
+        "lineEnd": 601
+      }
+    },
+    {
+      "id": "aanl.tanh1",
+      "name": "tanh1",
+      "qualifiedName": "aa.tanh1",
+      "header": "(aa.)tanh1",
+      "summary": "First-order ADAA tanh() saturator. The domain of this function is \u211d; its theoretical range is [-1.0; 1.0].",
+      "usage": "_ : aa.tanh1 : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.tanh1 : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\ntanh1_test = aa.tanh1(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 609,
+        "lineEnd": 625
+      }
+    },
+    {
+      "id": "aanl.arctan",
+      "name": "arctan",
+      "qualifiedName": "aa.arctan",
+      "header": "(aa.)arctan",
+      "summary": "First-order ADAA atan(). The domain of this function is \u211d; its theoretical range is [-\u03c0/2.0; \u03c0/2.0].",
+      "usage": "_ : aa.arctan : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.arctan : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\narctan_test = aa.arctan(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 638,
+        "lineEnd": 654
+      }
+    },
+    {
+      "id": "aanl.arctan2",
+      "name": "arctan2",
+      "qualifiedName": "aa.arctan2",
+      "header": "(aa.)arctan2",
+      "summary": "Second-order ADAA atan(). The domain of this function is \u211d; its theoretical range is ]-\u03c0/2.0; \u03c0/2.0[.",
+      "usage": "_ : aa.arctan2 : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.arctan2 : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\narctan2_test = aa.arctan2(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 667,
+        "lineEnd": 683
+      }
+    },
+    {
+      "id": "aanl.asinh1",
+      "name": "asinh1",
+      "qualifiedName": "aa.asinh1",
+      "header": "(aa.)asinh1",
+      "summary": "First-order ADAA asinh() saturator (unbounded). The domain of this function is \u211d; its theoretical range is \u211d.",
+      "usage": "_ : aa.asinh1 : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.asinh1 : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\nasinh1_test = aa.asinh1(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 697,
+        "lineEnd": 713
+      }
+    },
+    {
+      "id": "aanl.asinh2",
+      "name": "asinh2",
+      "qualifiedName": "aa.asinh2",
+      "header": "(aa.)asinh2",
+      "summary": "Second-order ADAA asinh() saturator (unbounded). The domain of this function is \u211d; its theoretical range is \u211d.",
+      "usage": "_ : aa.asinh2 : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.asinh2 : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\nasinh2_test = aa.asinh2(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 729,
+        "lineEnd": 745
+      }
+    },
+    {
+      "id": "aanl.cosine1",
+      "name": "cosine1",
+      "qualifiedName": "aa.cosine1",
+      "header": "(aa.)cosine1",
+      "summary": "First-order ADAA cos(). The domain of this function is \u211d; its theoretical range is [-1.0; 1.0].",
+      "usage": "_ : aa.cosine1 : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.cosine1 : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\ncosine1_test = aa.cosine1(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 767,
+        "lineEnd": 783
+      }
+    },
+    {
+      "id": "aanl.cosine2",
+      "name": "cosine2",
+      "qualifiedName": "aa.cosine2",
+      "header": "(aa.)cosine2",
+      "summary": "Second-order ADAA cos(). The domain of this function is \u211d; its theoretical range is [-1.0; 1.0].",
+      "usage": "_ : aa.cosine2 : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.cosine2 : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\ncosine2_test = aa.cosine2(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 796,
+        "lineEnd": 812
+      }
+    },
+    {
+      "id": "aanl.arccos",
+      "name": "arccos",
+      "qualifiedName": "aa.arccos",
+      "header": "(aa.)arccos",
+      "summary": "First-order ADAA acos(). The domain of this function is [-1.0; 1.0]; its theoretical range is [\u03c0; 0.0].",
+      "usage": "_ : aa.arccos : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.arccos : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\narccos_test = aa.arccos(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 826,
+        "lineEnd": 843
+      }
+    },
+    {
+      "id": "aanl.arccos2",
+      "name": "arccos2",
+      "qualifiedName": "aa.arccos2",
+      "header": "(aa.)arccos2",
+      "summary": "Second-order ADAA acos(). The domain of this function is [-1.0; 1.0]; its theoretical range is [\u03c0; 0.0]. Note that this function is not accurate for low-amplitude or low-frequency input signals. In that case, the first-order ADAA arccos() can be used.",
+      "usage": "_ : aa.arccos2 : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.arccos2 : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\narccos2_test = aa.arccos2(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 859,
+        "lineEnd": 879
+      }
+    },
+    {
+      "id": "aanl.acosh1",
+      "name": "acosh1",
+      "qualifiedName": "aa.acosh1",
+      "header": "(aa.)acosh1",
+      "summary": "First-order ADAA acosh(). The domain of this function is \u211d >= 1.0; its theoretical range is \u211d >= 0.0.",
+      "usage": "_ : aa.acosh1 : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.acosh1 : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\nacosh1_test = aa.acosh1(1.0 + abs(os.osc(110)));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 897,
+        "lineEnd": 913
+      }
+    },
+    {
+      "id": "aanl.acosh2",
+      "name": "acosh2",
+      "qualifiedName": "aa.acosh2",
+      "header": "(aa.)acosh2",
+      "summary": "Second-order ADAA acosh(). The domain of this function is \u211d >= 1.0; its theoretical range is \u211d >= 0.0. Note that this function is not accurate for low-frequency input signals. In that case, the first-order ADAA acosh() can be used.",
+      "usage": "_ : aa.acosh2 : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.acosh2 : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\nacosh2_test = aa.acosh2(1.0 + abs(os.osc(110)));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 926,
+        "lineEnd": 945
+      }
+    },
+    {
+      "id": "aanl.sine",
+      "name": "sine",
+      "qualifiedName": "aa.sine",
+      "header": "(aa.)sine",
+      "summary": "First-order ADAA sin(). The domain of this function is \u211d; its theoretical range is \u211d.",
+      "usage": "_ : aa.sine : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.sine : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\nsine_test = aa.sine(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 961,
+        "lineEnd": 977
+      }
+    },
+    {
+      "id": "aanl.sine2",
+      "name": "sine2",
+      "qualifiedName": "aa.sine2",
+      "header": "(aa.)sine2",
+      "summary": "Second-order ADAA sin(). The domain of this function is \u211d; its theoretical range is \u211d.",
+      "usage": "_ : aa.sine2 : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.sine2 : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\nsine2_test = aa.sine2(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 990,
+        "lineEnd": 1006
+      }
+    },
+    {
+      "id": "aanl.arcsin",
+      "name": "arcsin",
+      "qualifiedName": "aa.arcsin",
+      "header": "(aa.)arcsin",
+      "summary": "First-order ADAA asin(). The domain of this function is [-1.0, 1.0]; its theoretical range is [-\u03c0/2.0; \u03c0/2.0].",
+      "usage": "_ : aa.arcsin : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.arcsin : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\narcsin_test = aa.arcsin(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 1020,
+        "lineEnd": 1037
+      }
+    },
+    {
+      "id": "aanl.arcsin2",
+      "name": "arcsin2",
+      "qualifiedName": "aa.arcsin2",
+      "header": "(aa.)arcsin2",
+      "summary": "Second-order ADAA asin(). The domain of this function is [-1.0, 1.0]; its theoretical range is [-\u03c0/2.0; \u03c0/2.0]. Note that this function is not accurate for low-frequency input signals. In that case, the first-order ADAA asin() can be used.",
+      "usage": "_ : aa.arcsin2 : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.arcsin2 : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\narcsin2_test = aa.arcsin2(os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 1053,
+        "lineEnd": 1073
+      }
+    },
+    {
+      "id": "aanl.tangent",
+      "name": "tangent",
+      "qualifiedName": "aa.tangent",
+      "header": "(aa.)tangent",
+      "summary": "First-order ADAA tan(). The domain of this function is [-\u03c0/2.0; \u03c0/2.0]; its theoretical range is \u211d.",
+      "usage": "_ : aa.tangent : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.tangent : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nma = library(\"maths.lib\");\nos = library(\"oscillators.lib\");\ntangent_test = aa.tangent(0.25 * ma.PI * os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 1091,
+        "lineEnd": 1108
+      }
+    },
+    {
+      "id": "aanl.atanh1",
+      "name": "atanh1",
+      "qualifiedName": "aa.atanh1",
+      "header": "(aa.)atanh1",
+      "summary": "First-order ADAA atanh(). The domain of this function is [-1.0; 1.0]; its theoretical range is \u211d.",
+      "usage": "_ : aa.atanh1 : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.atanh1 : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\natanh1_test = aa.atanh1(0.8 * os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 1121,
+        "lineEnd": 1137
+      }
+    },
+    {
+      "id": "aanl.atanh2",
+      "name": "atanh2",
+      "qualifiedName": "aa.atanh2",
+      "header": "(aa.)atanh2",
+      "summary": "Second-order ADAA atanh(). The domain of this function is [-1.0; 1.0]; its theoretical range is \u211d.",
+      "usage": "_ : aa.atanh2 : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : aa.atanh2 : _"
+      },
+      "testCode": "aa = library(\"aanl.lib\");\nos = library(\"oscillators.lib\");\natanh2_test = aa.atanh2(0.8 * os.osc(110));",
+      "references": [],
+      "tags": [
+        "aanl"
+      ],
+      "source": {
+        "file": "aanl.lib",
+        "path": "aanl.lib",
+        "lineStart": 1150,
+        "lineEnd": 1166
+      }
+    }
+  ]
+}

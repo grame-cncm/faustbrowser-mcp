@@ -1,0 +1,713 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "envelopes.lib",
+    "path": "envelopes.lib",
+    "aliasHints": [
+      "en"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "envelopes.ar",
+      "name": "ar",
+      "qualifiedName": "en.ar",
+      "header": "(en.)ar",
+      "summary": "AR (Attack, Release) envelope generator (useful to create percussion envelopes). `ar` is a standard Faust function.",
+      "usage": "ar(at,rt,t) : _",
+      "params": [
+        {
+          "name": "at",
+          "description": "attack (sec)"
+        },
+        {
+          "name": "rt",
+          "description": "release (sec)"
+        },
+        {
+          "name": "t",
+          "description": "trigger signal (attack is triggered when `t>0`, release is triggered when the envelope value reaches 1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "ar(at,rt,t) : _"
+      },
+      "testCode": "en = library(\"envelopes.lib\");\nno = library(\"noises.lib\");\nar_test = no.noise * en.ar(0.02, 0.3, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "envelopes"
+      ],
+      "source": {
+        "file": "envelopes.lib",
+        "path": "envelopes.lib",
+        "lineStart": 71,
+        "lineEnd": 94
+      }
+    },
+    {
+      "id": "envelopes.asr",
+      "name": "asr",
+      "qualifiedName": "en.asr",
+      "header": "(en.)asr",
+      "summary": "ASR (Attack, Sustain, Release) envelope generator. `asr` is a standard Faust function.",
+      "usage": "asr(at,sl,rt,t) : _",
+      "params": [
+        {
+          "name": "at",
+          "description": "attack (sec)"
+        },
+        {
+          "name": "sl",
+          "description": "sustain level (between 0..1)"
+        },
+        {
+          "name": "rt",
+          "description": "release (sec)"
+        },
+        {
+          "name": "t",
+          "description": "trigger signal (attack is triggered when `t>0`, release is triggered when `t=0`)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "asr(at,sl,rt,t) : _"
+      },
+      "testCode": "en = library(\"envelopes.lib\");\nno = library(\"noises.lib\");\nasr_test = no.noise * en.asr(0.05, 0.7, 0.4, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "envelopes"
+      ],
+      "source": {
+        "file": "envelopes.lib",
+        "path": "envelopes.lib",
+        "lineStart": 128,
+        "lineEnd": 152
+      }
+    },
+    {
+      "id": "envelopes.adsr",
+      "name": "adsr",
+      "qualifiedName": "en.adsr",
+      "header": "(en.)adsr",
+      "summary": "ADSR (Attack, Decay, Sustain, Release) envelope generator. `adsr` is a standard Faust function.",
+      "usage": "adsr(at,dt,sl,rt,t) : _",
+      "params": [
+        {
+          "name": "at",
+          "description": "attack time (sec)"
+        },
+        {
+          "name": "dt",
+          "description": "decay time (sec)"
+        },
+        {
+          "name": "sl",
+          "description": "sustain level (between 0..1)"
+        },
+        {
+          "name": "rt",
+          "description": "release time (sec)"
+        },
+        {
+          "name": "t",
+          "description": "trigger signal (attack is triggered when `t>0`, release is triggered when `t=0`)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "adsr(at,dt,sl,rt,t) : _"
+      },
+      "testCode": "en = library(\"envelopes.lib\");\nno = library(\"noises.lib\");\nadsr_test = no.noise * en.adsr(0.05, 0.1, 0.6, 0.3, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "envelopes"
+      ],
+      "source": {
+        "file": "envelopes.lib",
+        "path": "envelopes.lib",
+        "lineStart": 183,
+        "lineEnd": 208
+      }
+    },
+    {
+      "id": "envelopes.adsrf_bias",
+      "name": "adsrf_bias",
+      "qualifiedName": "en.adsrf_bias",
+      "header": "(en.)adsrf_bias",
+      "summary": "ADSR (Attack, Decay, Sustain, Release, Final) envelope generator with control over bias on each segment, and toggle for legato.",
+      "usage": "adsrf_bias(at,dt,sl,rt,final,b_att,b_dec,b_rel,legato,t) : _",
+      "params": [
+        {
+          "name": "at",
+          "description": "attack time (sec)"
+        },
+        {
+          "name": "dt",
+          "description": "decay time (sec)"
+        },
+        {
+          "name": "sl",
+          "description": "sustain level (between 0..1)"
+        },
+        {
+          "name": "rt",
+          "description": "release time (sec)"
+        },
+        {
+          "name": "final",
+          "description": "final level (between 0..1) but less than or equal to `sl`"
+        },
+        {
+          "name": "b_att",
+          "description": "bias during attack (between 0..1) where 0.5 is no bias."
+        },
+        {
+          "name": "b_dec",
+          "description": "bias during decay (between 0..1) where 0.5 is no bias."
+        },
+        {
+          "name": "b_rel",
+          "description": "bias during release (between 0..1) where 0.5 is no bias."
+        },
+        {
+          "name": "legato",
+          "description": "toggle for legato. If disabled, envelopes \"re-trigger\" from zero."
+        },
+        {
+          "name": "t",
+          "description": "trigger signal (attack is triggered when `t>0`, release is triggered when `t=0`)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "adsrf_bias(at,dt,sl,rt,final,b_att,b_dec,b_rel,legato,t) : _"
+      },
+      "testCode": "en = library(\"envelopes.lib\");\nno = library(\"noises.lib\");\nadsrf_bias_test = no.noise * en.adsrf_bias(\n  0.05, 0.1, 0.6, 0.4, 0.2,\n  0.4, 0.6, 0.5,\n  checkbox(\"legato\"), button(\"gate\")\n);",
+      "references": [],
+      "tags": [
+        "envelopes"
+      ],
+      "source": {
+        "file": "envelopes.lib",
+        "path": "envelopes.lib",
+        "lineStart": 378,
+        "lineEnd": 412
+      }
+    },
+    {
+      "id": "envelopes.adsr_bias",
+      "name": "adsr_bias",
+      "qualifiedName": "en.adsr_bias",
+      "header": "(en.)adsr_bias",
+      "summary": "ADSR (Attack, Decay, Sustain, Release) envelope generator with control over bias on each segment, and toggle for legato.",
+      "usage": "adsr_bias(at,dt,sl,rt,b_att,b_dec,b_rel,legato,t) : _",
+      "params": [
+        {
+          "name": "at",
+          "description": "attack time (sec)"
+        },
+        {
+          "name": "dt",
+          "description": "decay time (sec)"
+        },
+        {
+          "name": "sl",
+          "description": "sustain level (between 0..1)"
+        },
+        {
+          "name": "rt",
+          "description": "release time (sec)"
+        },
+        {
+          "name": "b_att",
+          "description": "bias during attack (between 0..1) where 0.5 is no bias."
+        },
+        {
+          "name": "b_dec",
+          "description": "bias during decay (between 0..1) where 0.5 is no bias."
+        },
+        {
+          "name": "b_rel",
+          "description": "bias during release (between 0..1) where 0.5 is no bias."
+        },
+        {
+          "name": "legato",
+          "description": "toggle for legato. If disabled, envelopes \"re-trigger\" from zero."
+        },
+        {
+          "name": "t",
+          "description": "trigger signal (attack is triggered when `t>0`, release is triggered when `t=0`)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "adsr_bias(at,dt,sl,rt,b_att,b_dec,b_rel,legato,t) : _"
+      },
+      "testCode": "en = library(\"envelopes.lib\");\nno = library(\"noises.lib\");\nadsr_bias_test = no.noise * en.adsr_bias(\n  0.05, 0.1, 0.6, 0.4,\n  0.4, 0.6, 0.5,\n  checkbox(\"legato\"), button(\"gate\")\n);",
+      "references": [],
+      "tags": [
+        "envelopes"
+      ],
+      "source": {
+        "file": "envelopes.lib",
+        "path": "envelopes.lib",
+        "lineStart": 418,
+        "lineEnd": 451
+      }
+    },
+    {
+      "id": "envelopes.ahdsrf_bias",
+      "name": "ahdsrf_bias",
+      "qualifiedName": "en.ahdsrf_bias",
+      "header": "(en.)ahdsrf_bias",
+      "summary": "AHDSR (Attack, Hold, Decay, Sustain, Release, Final) envelope generator with control over bias on each segment, and toggle for legato.",
+      "usage": "ahdsrf_bias(at,ht,dt,sl,rt,final,b_att,b_dec,b_rel,legato,t) : _",
+      "params": [
+        {
+          "name": "at",
+          "description": "attack time (sec)"
+        },
+        {
+          "name": "ht",
+          "description": "hold time (sec)"
+        },
+        {
+          "name": "dt",
+          "description": "decay time (sec)"
+        },
+        {
+          "name": "sl",
+          "description": "sustain level (between 0..1)"
+        },
+        {
+          "name": "rt",
+          "description": "release time (sec)"
+        },
+        {
+          "name": "final",
+          "description": "final level (between 0..1) but less than or equal to `sl`"
+        },
+        {
+          "name": "b_att",
+          "description": "bias during attack (between 0..1) where 0.5 is no bias."
+        },
+        {
+          "name": "b_dec",
+          "description": "bias during decay (between 0..1) where 0.5 is no bias."
+        },
+        {
+          "name": "b_rel",
+          "description": "bias during release (between 0..1) where 0.5 is no bias."
+        },
+        {
+          "name": "legato",
+          "description": "toggle for legato. If disabled, envelopes \"re-trigger\" from zero."
+        },
+        {
+          "name": "t",
+          "description": "trigger signal (attack is triggered when `t>0`, release is triggered when `t=0`)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "ahdsrf_bias(at,ht,dt,sl,rt,final,b_att,b_dec,b_rel,legato,t) : _"
+      },
+      "testCode": "en = library(\"envelopes.lib\");\nno = library(\"noises.lib\");\nahdsrf_bias_test = no.noise * en.ahdsrf_bias(\n  0.05, 0.05, 0.1, 0.6, 0.4, 0.2,\n  0.4, 0.6, 0.5,\n  checkbox(\"legato\"), button(\"gate\")\n);",
+      "references": [],
+      "tags": [
+        "envelopes"
+      ],
+      "source": {
+        "file": "envelopes.lib",
+        "path": "envelopes.lib",
+        "lineStart": 457,
+        "lineEnd": 492
+      }
+    },
+    {
+      "id": "envelopes.ahdsr_bias",
+      "name": "ahdsr_bias",
+      "qualifiedName": "en.ahdsr_bias",
+      "header": "(en.)ahdsr_bias",
+      "summary": "AHDSR (Attack, Hold, Decay, Sustain, Release) envelope generator with control over bias on each segment, and toggle for legato.",
+      "usage": "ahdsr_bias(at,ht,dt,sl,rt,final,b_att,b_dec,b_rel,legato,t) : _",
+      "params": [
+        {
+          "name": "at",
+          "description": "attack time (sec)"
+        },
+        {
+          "name": "ht",
+          "description": "hold time (sec)"
+        },
+        {
+          "name": "dt",
+          "description": "decay time (sec)"
+        },
+        {
+          "name": "sl",
+          "description": "sustain level (between 0..1)"
+        },
+        {
+          "name": "rt",
+          "description": "release time (sec)"
+        },
+        {
+          "name": "final",
+          "description": "final level (between 0..1) but less than or equal to `sl`"
+        },
+        {
+          "name": "b_att",
+          "description": "bias during attack (between 0..1) where 0.5 is no bias."
+        },
+        {
+          "name": "b_dec",
+          "description": "bias during decay (between 0..1) where 0.5 is no bias."
+        },
+        {
+          "name": "b_rel",
+          "description": "bias during release (between 0..1) where 0.5 is no bias."
+        },
+        {
+          "name": "legato",
+          "description": "toggle for legato. If disabled, envelopes \"re-trigger\" from zero."
+        },
+        {
+          "name": "t",
+          "description": "trigger signal (attack is triggered when `t>0`, release is triggered when `t=0`)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "ahdsr_bias(at,ht,dt,sl,rt,final,b_att,b_dec,b_rel,legato,t) : _"
+      },
+      "testCode": "en = library(\"envelopes.lib\");\nno = library(\"noises.lib\");\nahdsr_bias_test = no.noise * en.ahdsr_bias(\n  0.05, 0.05, 0.1, 0.6, 0.4,\n  0.4, 0.6, 0.5,\n  checkbox(\"legato\"), button(\"gate\")\n);",
+      "references": [],
+      "tags": [
+        "envelopes"
+      ],
+      "source": {
+        "file": "envelopes.lib",
+        "path": "envelopes.lib",
+        "lineStart": 498,
+        "lineEnd": 533
+      }
+    },
+    {
+      "id": "envelopes.smoothEnvelope",
+      "name": "smoothEnvelope",
+      "qualifiedName": "en.smoothEnvelope",
+      "header": "(en.)smoothEnvelope",
+      "summary": "An envelope with an exponential attack and release. `smoothEnvelope` is a standard Faust function.",
+      "usage": "smoothEnvelope(ar,t) : _",
+      "params": [
+        {
+          "name": "ar",
+          "description": "attack and release duration (sec)"
+        },
+        {
+          "name": "t",
+          "description": "trigger signal (attack is triggered when `t>0`, release is triggered when `t=0`)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "smoothEnvelope(ar,t) : _"
+      },
+      "testCode": "en = library(\"envelopes.lib\");\nno = library(\"noises.lib\");\nsmoothEnvelope_test = no.noise * en.smoothEnvelope(0.2, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "envelopes"
+      ],
+      "source": {
+        "file": "envelopes.lib",
+        "path": "envelopes.lib",
+        "lineStart": 542,
+        "lineEnd": 564
+      }
+    },
+    {
+      "id": "envelopes.arfe",
+      "name": "arfe",
+      "qualifiedName": "en.arfe",
+      "header": "(en.)arfe",
+      "summary": "ARFE (Attack and Release-to-Final-value Exponentially) envelope generator. Approximately equal to `smoothEnvelope(Attack/6.91)` when Attack == Release.",
+      "usage": "arfe(at,rt,fl,t) : _",
+      "params": [
+        {
+          "name": "at",
+          "description": "attack (sec)"
+        },
+        {
+          "name": "rt",
+          "description": "release (sec)"
+        },
+        {
+          "name": "fl",
+          "description": "final level to approach upon release (such as 0)"
+        },
+        {
+          "name": "t",
+          "description": "trigger signal (attack is triggered when `t>0`, release is triggered when `t=0`)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "arfe(at,rt,fl,t) : _"
+      },
+      "testCode": "en = library(\"envelopes.lib\");\nno = library(\"noises.lib\");\narfe_test = no.noise * en.arfe(0.2, 0.4, 0, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "envelopes"
+      ],
+      "source": {
+        "file": "envelopes.lib",
+        "path": "envelopes.lib",
+        "lineStart": 580,
+        "lineEnd": 604
+      }
+    },
+    {
+      "id": "envelopes.are",
+      "name": "are",
+      "qualifiedName": "en.are",
+      "header": "(en.)are",
+      "summary": "ARE (Attack, Release) envelope generator with Exponential segments. Approximately equal to `smoothEnvelope(Attack/6.91)` when Attack == Release.",
+      "usage": "are(at,rt,t) : _",
+      "params": [
+        {
+          "name": "at",
+          "description": "attack (sec)"
+        },
+        {
+          "name": "rt",
+          "description": "release (sec)"
+        },
+        {
+          "name": "t",
+          "description": "trigger signal (attack is triggered when `t>0`, release is triggered when `t=0`)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "are(at,rt,t) : _"
+      },
+      "testCode": "en = library(\"envelopes.lib\");\nno = library(\"noises.lib\");\nare_test = no.noise * en.are(0.2, 0.4, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "envelopes"
+      ],
+      "source": {
+        "file": "envelopes.lib",
+        "path": "envelopes.lib",
+        "lineStart": 611,
+        "lineEnd": 634
+      }
+    },
+    {
+      "id": "envelopes.asre",
+      "name": "asre",
+      "qualifiedName": "en.asre",
+      "header": "(en.)asre",
+      "summary": "ASRE (Attack, Sustain, Release) envelope generator with Exponential segments.",
+      "usage": "asre(at,sl,rt,t) : _",
+      "params": [
+        {
+          "name": "at",
+          "description": "attack (sec)"
+        },
+        {
+          "name": "sl",
+          "description": "sustain level (between 0..1)"
+        },
+        {
+          "name": "rt",
+          "description": "release (sec)"
+        },
+        {
+          "name": "t",
+          "description": "trigger signal (attack is triggered when `t>0`, release is triggered when `t=0`)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "asre(at,sl,rt,t) : _"
+      },
+      "testCode": "en = library(\"envelopes.lib\");\nno = library(\"noises.lib\");\nasre_test = no.noise * en.asre(0.2, 0.6, 0.4, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "envelopes"
+      ],
+      "source": {
+        "file": "envelopes.lib",
+        "path": "envelopes.lib",
+        "lineStart": 641,
+        "lineEnd": 664
+      }
+    },
+    {
+      "id": "envelopes.adsre",
+      "name": "adsre",
+      "qualifiedName": "en.adsre",
+      "header": "(en.)adsre",
+      "summary": "ADSRE (Attack, Decay, Sustain, Release) envelope generator with Exponential segments.",
+      "usage": "adsre(at,dt,sl,rt,t) : _",
+      "params": [
+        {
+          "name": "at",
+          "description": "attack (sec)"
+        },
+        {
+          "name": "dt",
+          "description": "decay (sec)"
+        },
+        {
+          "name": "sl",
+          "description": "sustain level (between 0..1)"
+        },
+        {
+          "name": "rt",
+          "description": "release (sec)"
+        },
+        {
+          "name": "t",
+          "description": "trigger signal (attack is triggered when `t>0`, release is triggered when `t=0`)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "adsre(at,dt,sl,rt,t) : _"
+      },
+      "testCode": "en = library(\"envelopes.lib\");\nno = library(\"noises.lib\");\nadsre_test = no.noise * en.adsre(0.2, 0.1, 0.6, 0.4, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "envelopes"
+      ],
+      "source": {
+        "file": "envelopes.lib",
+        "path": "envelopes.lib",
+        "lineStart": 671,
+        "lineEnd": 696
+      }
+    },
+    {
+      "id": "envelopes.ahdsre",
+      "name": "ahdsre",
+      "qualifiedName": "en.ahdsre",
+      "header": "(en.)ahdsre",
+      "summary": "AHDSRE (Attack, Hold, Decay, Sustain, Release) envelope generator with Exponential segments.",
+      "usage": "ahdsre(at,ht,dt,sl,rt,t) : _",
+      "params": [
+        {
+          "name": "at",
+          "description": "attack (sec)"
+        },
+        {
+          "name": "ht",
+          "description": "hold (sec)"
+        },
+        {
+          "name": "dt",
+          "description": "decay (sec)"
+        },
+        {
+          "name": "sl",
+          "description": "sustain level (between 0..1)"
+        },
+        {
+          "name": "rt",
+          "description": "release (sec)"
+        },
+        {
+          "name": "t",
+          "description": "trigger signal (attack is triggered when `t>0`, release is triggered when `t=0`)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "ahdsre(at,ht,dt,sl,rt,t) : _"
+      },
+      "testCode": "en = library(\"envelopes.lib\");\nno = library(\"noises.lib\");\nahdsre_test = no.noise * en.ahdsre(0.2, 0.05, 0.1, 0.6, 0.4, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "envelopes"
+      ],
+      "source": {
+        "file": "envelopes.lib",
+        "path": "envelopes.lib",
+        "lineStart": 715,
+        "lineEnd": 741
+      }
+    },
+    {
+      "id": "envelopes.dx7envelope",
+      "name": "dx7envelope",
+      "qualifiedName": "en.dx7envelope",
+      "header": "(en.)dx7envelope",
+      "summary": "DX7 operator envelope generator with 4 independent rates and levels. It is essentially a 4 points BPF.",
+      "usage": "dx7_envelope(R1,R2,R3,R4,L1,L2,L3,L4,t) : _",
+      "params": [
+        {
+          "name": "RN",
+          "description": "rates in seconds"
+        },
+        {
+          "name": "LN",
+          "description": "levels (0-1)"
+        },
+        {
+          "name": "t",
+          "description": "trigger signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "dx7_envelope(R1,R2,R3,R4,L1,L2,L3,L4,t) : _"
+      },
+      "testCode": "en = library(\"envelopes.lib\");\nos = library(\"oscillators.lib\");\ndx7envelope_test = en.dx7envelope(\n  0.05, 0.1, 0.1, 0.2,\n  1, 0.8, 0.6, 0,\n  button(\"gate\")\n) * os.osc(440);",
+      "references": [],
+      "tags": [
+        "envelopes"
+      ],
+      "source": {
+        "file": "envelopes.lib",
+        "path": "envelopes.lib",
+        "lineStart": 763,
+        "lineEnd": 789
+      }
+    }
+  ]
+}

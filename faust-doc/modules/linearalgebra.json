@@ -1,0 +1,259 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "linearalgebra.lib",
+    "path": "linearalgebra.lib",
+    "aliasHints": [
+      "la"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "linearalgebra.determinant",
+      "name": "determinant",
+      "qualifiedName": "la.determinant",
+      "header": "(la.)determinant",
+      "summary": "Calculates the determinant of a bus that represents an `NxN` matrix.",
+      "usage": "si.bus(N*N) : determinant(N) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "the size of each axis of the matrix."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N*N) : determinant(N) : _"
+      },
+      "testCode": "la = library(\"linearalgebra.lib\");\ndeterminant_test = (1, 2, 3, 4) : la.determinant(2);",
+      "references": [],
+      "tags": [
+        "linearalgebra"
+      ],
+      "source": {
+        "file": "linearalgebra.lib",
+        "path": "linearalgebra.lib",
+        "lineStart": 89,
+        "lineEnd": 107
+      }
+    },
+    {
+      "id": "linearalgebra.minor",
+      "name": "minor",
+      "qualifiedName": "la.minor",
+      "header": "(la.)minor",
+      "summary": "An utility for finding the matrix minor when inverting a matrix. It returns the determinant of the submatrix formed by deleting the row at index `ROW` and column at index `COL`. The following implementation doesn't work but looks simple.",
+      "usage": "si.bus(N*N) : minor(N, ROW, COL) : _",
+      "params": [
+        {
+          "name": "N",
+          "description": "the size of each axis of the matrix."
+        },
+        {
+          "name": "ROW",
+          "description": "the selected position on 0th dimension of the matrix (`0 <= ROW < N`)"
+        },
+        {
+          "name": "COL",
+          "description": "the selected position on the 1st dimension of the matrix (`0 <= COL < N`)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N*N) : minor(N, ROW, COL) : _"
+      },
+      "testCode": "la = library(\"linearalgebra.lib\");\nminor_test = (1, 2, 3, 0, 4, 5, 7, 8, 9) : la.minor(3, 1, 1);",
+      "references": [
+        "<https://en.wikipedia.org/wiki/Minor_(linear_algebra)#First_minor>",
+        "----------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "linearalgebra"
+      ],
+      "source": {
+        "file": "linearalgebra.lib",
+        "path": "linearalgebra.lib",
+        "lineStart": 118,
+        "lineEnd": 147
+      }
+    },
+    {
+      "id": "linearalgebra.inverse",
+      "name": "inverse",
+      "qualifiedName": "la.inverse",
+      "header": "(la.)inverse",
+      "summary": "Inverts a matrix. The incoming bus represents an `NxN` matrix. Note, this is an unsafe operation since not all matrices are invertible.",
+      "usage": "si.bus(N*N) : inverse(N) : si.bus(N*N)",
+      "params": [
+        {
+          "name": "N",
+          "description": "the size of each axis of the matrix."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N*N) : inverse(N) : si.bus(N*N)"
+      },
+      "testCode": "la = library(\"linearalgebra.lib\");\ninverse_test = (4, 7, 2, 6) : la.inverse(2);",
+      "references": [],
+      "tags": [
+        "linearalgebra"
+      ],
+      "source": {
+        "file": "linearalgebra.lib",
+        "path": "linearalgebra.lib",
+        "lineStart": 157,
+        "lineEnd": 175
+      }
+    },
+    {
+      "id": "linearalgebra.transpose2",
+      "name": "transpose2",
+      "qualifiedName": "la.transpose2",
+      "header": "(la.)transpose2",
+      "summary": "Transposes an `NxM` matrix stored in row-major order, resulting in an `MxN` matrix stored in row-major order.",
+      "usage": "si.bus(N*M) : transpose2(N, M) : si.bus(M*N)",
+      "params": [
+        {
+          "name": "N",
+          "description": "the number of rows in the input matrix"
+        },
+        {
+          "name": "M",
+          "description": "the number of columns in the input matrix"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N*M) : transpose2(N, M) : si.bus(M*N)"
+      },
+      "testCode": "la = library(\"linearalgebra.lib\");\ntranspose2_test = (1, 2, 3, 4, 5, 6) : la.transpose2(2, 3);",
+      "references": [],
+      "tags": [
+        "linearalgebra"
+      ],
+      "source": {
+        "file": "linearalgebra.lib",
+        "path": "linearalgebra.lib",
+        "lineStart": 198,
+        "lineEnd": 217
+      }
+    },
+    {
+      "id": "linearalgebra.matMul",
+      "name": "matMul",
+      "qualifiedName": "la.matMul",
+      "header": "(la.)matMul",
+      "summary": "Multiply a `JxK` matrix (mat1) and an `LxM` matrix (mat2) to produce a `JxM` matrix. Note that `K==L`. Both matrices should use row-major order. In terms of numpy, this function is `mat1 @ mat2`.",
+      "usage": "matMul(J, K, L, M, si.bus(J*K), si.bus(L*M)) : si.bus(J*M)",
+      "params": [
+        {
+          "name": "J",
+          "description": "the number of rows in `mat1`"
+        },
+        {
+          "name": "K",
+          "description": "the number of columns in `mat1`"
+        },
+        {
+          "name": "L",
+          "description": "the number of rows in `mat2`"
+        },
+        {
+          "name": "M",
+          "description": "the number of columns in `mat2`"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "matMul(J, K, L, M, si.bus(J*K), si.bus(L*M)) : si.bus(J*M)"
+      },
+      "testCode": "la = library(\"linearalgebra.lib\");\nmatMul_test = (1, 2, 3, 4), (5, 6, 7, 8) : la.matMul(2, 2, 2, 2);",
+      "references": [],
+      "tags": [
+        "linearalgebra"
+      ],
+      "source": {
+        "file": "linearalgebra.lib",
+        "path": "linearalgebra.lib",
+        "lineStart": 223,
+        "lineEnd": 246
+      }
+    },
+    {
+      "id": "linearalgebra.identity",
+      "name": "identity",
+      "qualifiedName": "la.identity",
+      "header": "(la.)identity",
+      "summary": "Creates an `NxN` identity matrix.",
+      "usage": "identity(N) : si.bus(N*N)",
+      "params": [
+        {
+          "name": "N",
+          "description": "The size of each axis of the identity matrix."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "identity(N) : si.bus(N*N)"
+      },
+      "testCode": "la = library(\"linearalgebra.lib\");\nidentity_test = la.identity(3);",
+      "references": [],
+      "tags": [
+        "linearalgebra"
+      ],
+      "source": {
+        "file": "linearalgebra.lib",
+        "path": "linearalgebra.lib",
+        "lineStart": 254,
+        "lineEnd": 271
+      }
+    },
+    {
+      "id": "linearalgebra.diag",
+      "name": "diag",
+      "qualifiedName": "la.diag",
+      "header": "(la.)diag",
+      "summary": "Creates a diagonal matrix of size `NxN` with specified values along the diagonal.",
+      "usage": "si.bus(N) : diag(N) : si.bus(N*N)",
+      "params": [
+        {
+          "name": "N",
+          "description": "The size of each axis of the matrix."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "si.bus(N) : diag(N) : si.bus(N*N)"
+      },
+      "testCode": "la = library(\"linearalgebra.lib\");\ndiag_test = (1, 2, 3) : la.diag(3);",
+      "references": [],
+      "tags": [
+        "linearalgebra"
+      ],
+      "source": {
+        "file": "linearalgebra.lib",
+        "path": "linearalgebra.lib",
+        "lineStart": 277,
+        "lineEnd": 295
+      }
+    }
+  ]
+}

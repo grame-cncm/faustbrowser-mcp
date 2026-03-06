@@ -1,0 +1,5454 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "physmodels.lib",
+    "path": "physmodels.lib",
+    "aliasHints": [
+      "pm"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "physmodels.speedOfSound",
+      "name": "speedOfSound",
+      "qualifiedName": "pm.speedOfSound",
+      "header": "(pm.)speedOfSound",
+      "summary": "Speed of sound in meters per second (340m/s).",
+      "usage": "speedOfSound : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "speedOfSound : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 68,
+        "lineEnd": 70
+      }
+    },
+    {
+      "id": "physmodels.maxLength",
+      "name": "maxLength",
+      "qualifiedName": "pm.maxLength",
+      "header": "(pm.)maxLength",
+      "summary": "The default maximum length (3) in meters of strings and tubes used in this library. This variable should be overriden to allow longer strings or tubes.",
+      "usage": "maxLength : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "maxLength : _"
+      },
+      "testCode": null,
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 73,
+        "lineEnd": 76
+      }
+    },
+    {
+      "id": "physmodels.f2l",
+      "name": "f2l",
+      "qualifiedName": "pm.f2l",
+      "header": "(pm.)f2l",
+      "summary": "Frequency to length in meters.",
+      "usage": "f2l(freq) : distanceInMeters",
+      "params": [
+        {
+          "name": "freq",
+          "description": "the frequency"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "f2l(freq) : distanceInMeters"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nf2l_test = pm.f2l(440);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 83,
+        "lineEnd": 101
+      }
+    },
+    {
+      "id": "physmodels.l2f",
+      "name": "l2f",
+      "qualifiedName": "pm.l2f",
+      "header": "(pm.)l2f",
+      "summary": "Length in meters to frequency.",
+      "usage": "l2f(length) : freq",
+      "params": [
+        {
+          "name": "length",
+          "description": "length/distance in meters"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "l2f(length) : freq"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nl2f_test = pm.l2f(0.75);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 104,
+        "lineEnd": 122
+      }
+    },
+    {
+      "id": "physmodels.l2s",
+      "name": "l2s",
+      "qualifiedName": "pm.l2s",
+      "header": "(pm.)l2s",
+      "summary": "Length in meters to number of samples.",
+      "usage": "l2s(l) : numberOfSamples",
+      "params": [
+        {
+          "name": "l",
+          "description": "length in meters"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "l2s(l) : numberOfSamples"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nl2s_test = pm.l2s(1.2);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 125,
+        "lineEnd": 143
+      }
+    },
+    {
+      "id": "physmodels.basicBlock",
+      "name": "basicBlock",
+      "qualifiedName": "pm.basicBlock",
+      "header": "(pm.)basicBlock",
+      "summary": "Empty bidirectional block to be used with [`chain`](#chain): 3 signals ins and 3 signals out.",
+      "usage": "chain(basicBlock : basicBlock : etc.)",
+      "params": [
+        {
+          "name": "basicBlock",
+          "description": "any bidirectional block with 3 inputs and 3 outputs"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(basicBlock : basicBlock : etc.)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nbasicBlock_test = 0,0,0 : pm.basicBlock;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 156,
+        "lineEnd": 175
+      }
+    },
+    {
+      "id": "physmodels.chain",
+      "name": "chain",
+      "qualifiedName": "pm.chain",
+      "header": "(pm.)chain",
+      "summary": "Creates a chain of bidirectional blocks. Blocks must have 3 inputs and outputs. The first input/output carry left going waves, the second input/output carry right going waves, and the third input/output is used to carry any potential output signal to the end of the algorithm. The implied one sample delay created by the `~` operator is generalized to the left and right going waves. Thus, `n` blocks in `chain()` will add an `n` samples delay to both left and right going waves.",
+      "usage": "leftGoingWaves,rightGoingWaves,mixedOutput : chain( A : B ) : leftGoingWaves,rightGoingWaves,mixedOutput with { A = _,_,_; B = _,_,_; };",
+      "params": [
+        {
+          "name": "A",
+          "description": "first bidirectional block in the chain"
+        },
+        {
+          "name": "B",
+          "description": "next bidirectional block in the chain"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 7,
+        "raw": "leftGoingWaves,rightGoingWaves,mixedOutput : chain( A : B ) : leftGoingWaves,rightGoingWaves,mixedOutput with { A = _,_,_; B = _,_,_; };"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nchain_test = 0,0,0 : pm.chain(pm.in(0.1) : pm.basicBlock);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 178,
+        "lineEnd": 207
+      }
+    },
+    {
+      "id": "physmodels.inLeftWave",
+      "name": "inLeftWave",
+      "qualifiedName": "pm.inLeftWave",
+      "header": "(pm.)inLeftWave",
+      "summary": "Adds a signal to left going waves anywhere in a [`chain`](#chain) of blocks.",
+      "usage": "model(x) = chain(A : inLeftWave(x) : B)",
+      "params": [
+        {
+          "name": "A",
+          "description": "preceding bidirectional block"
+        },
+        {
+          "name": "x",
+          "description": "signal added to the left-going wave"
+        },
+        {
+          "name": "B",
+          "description": "following bidirectional block"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "model(x) = chain(A : inLeftWave(x) : B)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\ninLeftWave_test = 0,0,0 : pm.inLeftWave(0.25);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 211,
+        "lineEnd": 231
+      }
+    },
+    {
+      "id": "physmodels.inRightWave",
+      "name": "inRightWave",
+      "qualifiedName": "pm.inRightWave",
+      "header": "(pm.)inRightWave",
+      "summary": "Adds a signal to right going waves anywhere in a [`chain`](#chain) of blocks.",
+      "usage": "model(x) = chain(A : inRightWave(x) : B)",
+      "params": [
+        {
+          "name": "A",
+          "description": "preceding bidirectional block"
+        },
+        {
+          "name": "x",
+          "description": "signal added to the right-going wave"
+        },
+        {
+          "name": "B",
+          "description": "following bidirectional block"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "model(x) = chain(A : inRightWave(x) : B)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\ninRightWave_test = 0,0,0 : pm.inRightWave(0.25);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 234,
+        "lineEnd": 254
+      }
+    },
+    {
+      "id": "physmodels.in",
+      "name": "in",
+      "qualifiedName": "pm.in",
+      "header": "(pm.)in",
+      "summary": "Adds a signal to left and right going waves anywhere in a [`chain`](#chain) of blocks.",
+      "usage": "model(x) = chain(A : in(x) : B)",
+      "params": [
+        {
+          "name": "A",
+          "description": "preceding bidirectional block"
+        },
+        {
+          "name": "x",
+          "description": "signal added to both left- and right-going waves"
+        },
+        {
+          "name": "B",
+          "description": "following bidirectional block"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "model(x) = chain(A : in(x) : B)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nin_test = 0,0,0 : pm.in(0.25);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 257,
+        "lineEnd": 278
+      }
+    },
+    {
+      "id": "physmodels.outLeftWave",
+      "name": "outLeftWave",
+      "qualifiedName": "pm.outLeftWave",
+      "header": "(pm.)outLeftWave",
+      "summary": "Sends the signal of left going waves to the output channel of the [`chain`](#chain).",
+      "usage": "chain(A : outLeftWave : B)",
+      "params": [
+        {
+          "name": "A",
+          "description": "preceding bidirectional block"
+        },
+        {
+          "name": "B",
+          "description": "following bidirectional block"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(A : outLeftWave : B)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\noutLeftWave_test = pm.outLeftWave(0.1, 0.2, 0.3);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 281,
+        "lineEnd": 300
+      }
+    },
+    {
+      "id": "physmodels.outRightWave",
+      "name": "outRightWave",
+      "qualifiedName": "pm.outRightWave",
+      "header": "(pm.)outRightWave",
+      "summary": "Sends the signal of right going waves to the output channel of the [`chain`](#chain).",
+      "usage": "chain(A : outRightWave : B)",
+      "params": [
+        {
+          "name": "A",
+          "description": "preceding bidirectional block"
+        },
+        {
+          "name": "B",
+          "description": "following bidirectional block"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(A : outRightWave : B)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\noutRightWave_test = pm.outRightWave(0.1, 0.2, 0.3);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 303,
+        "lineEnd": 322
+      }
+    },
+    {
+      "id": "physmodels.out",
+      "name": "out",
+      "qualifiedName": "pm.out",
+      "header": "(pm.)out",
+      "summary": "Sends the signal of right and left going waves to the output channel of the [`chain`](#chain).",
+      "usage": "chain(A : out : B)",
+      "params": [
+        {
+          "name": "A",
+          "description": "preceding bidirectional block"
+        },
+        {
+          "name": "B",
+          "description": "following bidirectional block"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(A : out : B)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nout_test = pm.out(0.1, 0.2, 0.3);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 325,
+        "lineEnd": 345
+      }
+    },
+    {
+      "id": "physmodels.terminations",
+      "name": "terminations",
+      "qualifiedName": "pm.terminations",
+      "header": "(pm.)terminations",
+      "summary": "Creates terminations on both sides of a [`chain`](#chain) without closing the inputs and outputs of the bidirectional signals chain. As for [`chain`](#chain), this function adds a 1 sample delay to the bidirectional signal, both ways. Of course, this function can be nested within a [`chain`](#chain).",
+      "usage": "terminations(a,b,c) with { a = *(-1); // left termination b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) c = *(-1); // right termination };",
+      "params": [
+        {
+          "name": "a",
+          "description": "left termination filter"
+        },
+        {
+          "name": "b",
+          "description": "bidirectional chain to terminate"
+        },
+        {
+          "name": "c",
+          "description": "right termination filter"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 4,
+        "raw": "terminations(a,b,c) with { a = *(-1); // left termination b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) c = *(-1); // right termination };"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nterminations_test = 0,0,0 : pm.terminations(*(-1), pm.basicBlock, *(-1));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 348,
+        "lineEnd": 377
+      }
+    },
+    {
+      "id": "physmodels.lTermination",
+      "name": "lTermination",
+      "qualifiedName": "pm.lTermination",
+      "header": "(pm.)lTermination",
+      "summary": "Creates a termination on the left side of a [`chain`](#chain) without closing the inputs and outputs of the bidirectional signals chain. This function adds a 1 sample delay near the termination and can be nested within another [`chain`](#chain).",
+      "usage": "lTerminations(a,b) with { a = *(-1); // left termination b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) };",
+      "params": [
+        {
+          "name": "a",
+          "description": "left termination filter"
+        },
+        {
+          "name": "b",
+          "description": "bidirectional chain to terminate"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 4,
+        "raw": "lTerminations(a,b) with { a = *(-1); // left termination b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) };"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nlTermination_test = 0,0,0 : pm.lTermination(*(-1), pm.basicBlock);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 380,
+        "lineEnd": 406
+      }
+    },
+    {
+      "id": "physmodels.rTermination",
+      "name": "rTermination",
+      "qualifiedName": "pm.rTermination",
+      "header": "(pm.)rTermination",
+      "summary": "Creates a termination on the right side of a [`chain`](#chain) without closing the inputs and outputs of the bidirectional signals chain. This function adds a 1 sample delay near the termination and can be nested within another [`chain`](#chain).",
+      "usage": "rTerminations(b,c) with { b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) c = *(-1); // right termination };",
+      "params": [
+        {
+          "name": "b",
+          "description": "bidirectional chain to terminate"
+        },
+        {
+          "name": "c",
+          "description": "right termination filter"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 4,
+        "raw": "rTerminations(b,c) with { b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) c = *(-1); // right termination };"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nrTermination_test = 0,0,0 : pm.rTermination(pm.basicBlock, *(-1));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 409,
+        "lineEnd": 435
+      }
+    },
+    {
+      "id": "physmodels.closeIns",
+      "name": "closeIns",
+      "qualifiedName": "pm.closeIns",
+      "header": "(pm.)closeIns",
+      "summary": "Closes the inputs of a bidirectional chain in all directions.",
+      "usage": "closeIns : _,_,_ Typical use: `closeIns : chain(...) : _,_,_`",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 3,
+        "raw": "closeIns : _,_,_ Typical use: `closeIns : chain(...) : _,_,_`"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\ncloseIns_test = pm.closeIns;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 438,
+        "lineEnd": 453
+      }
+    },
+    {
+      "id": "physmodels.closeOuts",
+      "name": "closeOuts",
+      "qualifiedName": "pm.closeOuts",
+      "header": "(pm.)closeOuts",
+      "summary": "Closes the outputs of a bidirectional chain in all directions except for the main signal output (3d output).",
+      "usage": "_,_,_ : chain(...) : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 1,
+        "raw": "_,_,_ : chain(...) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\ncloseOuts_test = 0,0,0 : pm.closeOuts;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 456,
+        "lineEnd": 471
+      }
+    },
+    {
+      "id": "physmodels.endChain",
+      "name": "endChain",
+      "qualifiedName": "pm.endChain",
+      "header": "(pm.)endChain",
+      "summary": "Closes the inputs and outputs of a bidirectional chain in all directions except for the main signal output (3d output).",
+      "usage": "endChain(chain(...)) : _",
+      "params": [
+        {
+          "name": "b",
+          "description": "bidirectional chain to close on all non-audio ports"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "endChain(chain(...)) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nendChain_test = 0,0,0 : pm.endChain(pm.basicBlock);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 474,
+        "lineEnd": 493
+      }
+    },
+    {
+      "id": "physmodels.waveguideN",
+      "name": "waveguideN",
+      "qualifiedName": "pm.waveguideN",
+      "header": "(pm.)waveguideN",
+      "summary": "A series of waveguide functions based on various types of delays (see [`fdelay[n]`](#fdelayn)).",
+      "usage": "chain(A : waveguideUd(nMax,n) : B)",
+      "params": [
+        {
+          "name": "nMax",
+          "description": "the maximum length of the delays in the waveguide"
+        },
+        {
+          "name": "n",
+          "description": "the length of the delay lines in samples."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(A : waveguideUd(nMax,n) : B)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nwaveguideUd_test = 0,0,0 : pm.waveguideUd(512, 32);\nwaveguideFd_test = 0,0,0 : pm.waveguideFd(512, 32);\nwaveguideFd2_test = 0,0,0 : pm.waveguideFd2(512, 32);\nwaveguideFd4_test = 0,0,0 : pm.waveguideFd4(512, 32);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 502,
+        "lineEnd": 532
+      }
+    },
+    {
+      "id": "physmodels.waveguide",
+      "name": "waveguide",
+      "qualifiedName": "pm.waveguide",
+      "header": "(pm.)waveguide",
+      "summary": "Standard `pm.lib` waveguide (based on [`waveguideFd4`](#waveguiden)).",
+      "usage": "chain(A : waveguide(nMax,n) : B)",
+      "params": [
+        {
+          "name": "nMax",
+          "description": "the maximum length of the delays in the waveguide"
+        },
+        {
+          "name": "n",
+          "description": "the length of the delay lines in samples."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(A : waveguide(nMax,n) : B)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nwaveguide_test = 0,0,0 : pm.waveguide(512, 32);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 539,
+        "lineEnd": 558
+      }
+    },
+    {
+      "id": "physmodels.bridgeFilter",
+      "name": "bridgeFilter",
+      "qualifiedName": "pm.bridgeFilter",
+      "header": "(pm.)bridgeFilter",
+      "summary": "Generic two zeros bridge FIR filter (as implemented in the [STK](https://ccrma.stanford.edu/software/stk/)) that can be used to implement the reflectance violin, guitar, etc. bridges.",
+      "usage": "_ : bridgeFilter(brightness,absorption) : _",
+      "params": [
+        {
+          "name": "brightness",
+          "description": "controls the damping of high frequencies (0-1)"
+        },
+        {
+          "name": "absorption",
+          "description": "controls the absorption of the brige and thus the t60 of the string connected to it (0-1) (1 = 20 seconds)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : bridgeFilter(brightness,absorption) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nbridgeFilter_test = os.osc(110) : pm.bridgeFilter(0.6, 0.4);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 562,
+        "lineEnd": 586
+      }
+    },
+    {
+      "id": "physmodels.modeFilter",
+      "name": "modeFilter",
+      "qualifiedName": "pm.modeFilter",
+      "header": "(pm.)modeFilter",
+      "summary": "Resonant bandpass filter that can be used to implement a single resonance (mode).",
+      "usage": "_ : modeFilter(freq,t60,gain) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "mode frequency"
+        },
+        {
+          "name": "t60",
+          "description": "mode resonance duration (in seconds)"
+        },
+        {
+          "name": "gain",
+          "description": "mode gain (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : modeFilter(freq,t60,gain) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nmodeFilter_test = os.osc(110) : pm.modeFilter(440, 1.5, 0.8);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 597,
+        "lineEnd": 619
+      }
+    },
+    {
+      "id": "physmodels.stringSegment",
+      "name": "stringSegment",
+      "qualifiedName": "pm.stringSegment",
+      "header": "(pm.)stringSegment",
+      "summary": "A string segment without terminations (just a simple waveguide).",
+      "usage": "chain(A : stringSegment(maxLength,length) : B)",
+      "params": [
+        {
+          "name": "maxLength",
+          "description": "the maximum length of the string in meters (should be static)"
+        },
+        {
+          "name": "length",
+          "description": "the length of the string in meters"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(A : stringSegment(maxLength,length) : B)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nstringSegment_test = 0,0,0 : pm.stringSegment(1.0, 0.5);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 637,
+        "lineEnd": 656
+      }
+    },
+    {
+      "id": "physmodels.openString",
+      "name": "openString",
+      "qualifiedName": "pm.openString",
+      "header": "(pm.)openString",
+      "summary": "A bidirectional block implementing a basic \"generic\" string with a selectable excitation position. Lowpass filters are built-in and allow to simulate the effect of dispersion on the sound and thus to change the \"stiffness\" of the string.",
+      "usage": "chain(... : openString(length,stiffness,pluckPosition,excitation) : ...)",
+      "params": [
+        {
+          "name": "length",
+          "description": "the length of the string in meters"
+        },
+        {
+          "name": "stiffness",
+          "description": "the stiffness of the string (0-1) (1 for max stiffness)"
+        },
+        {
+          "name": "pluckPosition",
+          "description": "excitation position (0-1) (1 is bottom)"
+        },
+        {
+          "name": "excitation",
+          "description": "the excitation signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(... : openString(length,stiffness,pluckPosition,excitation) : ...)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nopenString_test = 0,0,0 : pm.openString(0.8, 0.5, 0.2, pm.impulseExcitation(button(\"gate\")));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 664,
+        "lineEnd": 688
+      }
+    },
+    {
+      "id": "physmodels.nylonString",
+      "name": "nylonString",
+      "qualifiedName": "pm.nylonString",
+      "header": "(pm.)nylonString",
+      "summary": "A bidirectional block implementing a basic nylon string with selectable excitation position. This element is based on [`openString`](#openstring) and has a fix stiffness corresponding to that of a nylon string.",
+      "usage": "chain(... : nylonString(length,pluckPosition,excitation) : ...)",
+      "params": [
+        {
+          "name": "length",
+          "description": "the length of the string in meters"
+        },
+        {
+          "name": "pluckPosition",
+          "description": "excitation position (0-1) (1 is bottom)"
+        },
+        {
+          "name": "excitation",
+          "description": "the excitation signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(... : nylonString(length,pluckPosition,excitation) : ...)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nnylonString_test = 0,0,0 : pm.nylonString(0.8, 0.3, pm.impulseExcitation(button(\"gate\")));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 698,
+        "lineEnd": 720
+      }
+    },
+    {
+      "id": "physmodels.steelString",
+      "name": "steelString",
+      "qualifiedName": "pm.steelString",
+      "header": "(pm.)steelString",
+      "summary": "A bidirectional block implementing a basic steel string with selectable excitation position. This element is based on [`openString`](#openstring) and has a fix stiffness corresponding to that of a steel string.",
+      "usage": "chain(... : steelString(length,pluckPosition,excitation) : ...)",
+      "params": [
+        {
+          "name": "length",
+          "description": "the length of the string in meters"
+        },
+        {
+          "name": "pluckPosition",
+          "description": "excitation position (0-1) (1 is bottom)"
+        },
+        {
+          "name": "excitation",
+          "description": "the excitation signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(... : steelString(length,pluckPosition,excitation) : ...)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nsteelString_test = 0,0,0 : pm.steelString(0.8, 0.3, pm.impulseExcitation(button(\"gate\")));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 728,
+        "lineEnd": 750
+      }
+    },
+    {
+      "id": "physmodels.openStringPick",
+      "name": "openStringPick",
+      "qualifiedName": "pm.openStringPick",
+      "header": "(pm.)openStringPick",
+      "summary": "A bidirectional block implementing a \"generic\" string with selectable excitation position. It also has a built-in pickup whose position is the same as the excitation position. Thus, moving the excitation position will also move the pickup.",
+      "usage": "chain(... : openStringPick(length,stiffness,pluckPosition,excitation) : ...)",
+      "params": [
+        {
+          "name": "length",
+          "description": "the length of the string in meters"
+        },
+        {
+          "name": "stiffness",
+          "description": "the stiffness of the string (0-1) (1 for max stiffness)"
+        },
+        {
+          "name": "pluckPosition",
+          "description": "excitation position (0-1) (1 is bottom)"
+        },
+        {
+          "name": "excitation",
+          "description": "the excitation signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(... : openStringPick(length,stiffness,pluckPosition,excitation) : ...)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nopenStringPick_test = 0,0,0 : pm.openStringPick(0.8, 0.4, 0.3, pm.impulseExcitation(button(\"gate\")));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 760,
+        "lineEnd": 784
+      }
+    },
+    {
+      "id": "physmodels.openStringPickUp",
+      "name": "openStringPickUp",
+      "qualifiedName": "pm.openStringPickUp",
+      "header": "(pm.)openStringPickUp",
+      "summary": "A bidirectional block implementing a \"generic\" string with selectable excitation position and stiffness. It also has a built-in pickup whose position can be independenly selected. The only constraint is that the pickup has to be placed after the excitation position.",
+      "usage": "chain(... : openStringPickUp(length,stiffness,pluckPosition,excitation) : ...)",
+      "params": [
+        {
+          "name": "length",
+          "description": "the length of the string in meters"
+        },
+        {
+          "name": "stiffness",
+          "description": "the stiffness of the string (0-1) (1 for max stiffness)"
+        },
+        {
+          "name": "pluckPosition",
+          "description": "pluck position between the top of the string and the pickup (0-1) (1 for same as pickup position)"
+        },
+        {
+          "name": "pickupPosition",
+          "description": "position of the pickup on the string (0-1) (1 is bottom)"
+        },
+        {
+          "name": "excitation",
+          "description": "the excitation signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(... : openStringPickUp(length,stiffness,pluckPosition,excitation) : ...)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nopenStringPickUp_test = 0,0,0 : pm.openStringPickUp(0.8, 0.4, 0.6, 0.7, pm.impulseExcitation(button(\"gate\")));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 796,
+        "lineEnd": 822
+      }
+    },
+    {
+      "id": "physmodels.openStringPickDown",
+      "name": "openStringPickDown",
+      "qualifiedName": "pm.openStringPickDown",
+      "header": "(pm.)openStringPickDown",
+      "summary": "A bidirectional block implementing a \"generic\" string with selectable excitation position and stiffness. It also has a built-in pickup whose position can be independenly selected. The only constraint is that the pickup has to be placed before the excitation position.",
+      "usage": "chain(... : openStringPickDown(length,stiffness,pluckPosition,excitation) : ...)",
+      "params": [
+        {
+          "name": "length",
+          "description": "the length of the string in meters"
+        },
+        {
+          "name": "stiffness",
+          "description": "the stiffness of the string (0-1) (1 for max stiffness)"
+        },
+        {
+          "name": "pluckPosition",
+          "description": "pluck position on the string (0-1) (1 is bottom)"
+        },
+        {
+          "name": "pickupPosition",
+          "description": "position of the pickup between the top of the string and the excitation position (0-1) (1 is excitation position)"
+        },
+        {
+          "name": "excitation",
+          "description": "the excitation signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(... : openStringPickDown(length,stiffness,pluckPosition,excitation) : ...)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nopenStringPickDown_test = 0,0,0 : pm.openStringPickDown(0.8, 0.4, 0.6, 0.5, pm.impulseExcitation(button(\"gate\")));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 837,
+        "lineEnd": 863
+      }
+    },
+    {
+      "id": "physmodels.ksReflexionFilter",
+      "name": "ksReflexionFilter",
+      "qualifiedName": "pm.ksReflexionFilter",
+      "header": "(pm.)ksReflexionFilter",
+      "summary": "The \"typical\" one-zero Karplus-strong feedforward reflexion filter. This filter will be typically used in a termination (see below).",
+      "usage": "_ : ksReflexionFilter : _ Typical use: `terminations(_,chain(...),ksReflexionFilter)`",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 3,
+        "raw": "_ : ksReflexionFilter : _ Typical use: `terminations(_,chain(...),ksReflexionFilter)`"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nksReflexionFilter_test = os.osc(220) : pm.ksReflexionFilter;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 885,
+        "lineEnd": 902
+      }
+    },
+    {
+      "id": "physmodels.rStringRigidTermination",
+      "name": "rStringRigidTermination",
+      "qualifiedName": "pm.rStringRigidTermination",
+      "header": "(pm.)rStringRigidTermination",
+      "summary": "Bidirectional block implementing a right rigid string termination (no damping, just phase inversion).",
+      "usage": "_,_,_ : rStringRigidTermination Typical use: `chain(rStringRigidTermination : stringSegment : ...)`",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 1,
+        "raw": "_,_,_ : rStringRigidTermination Typical use: `chain(rStringRigidTermination : stringSegment : ...)`"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nrStringRigidTermination_test = 0,0,0 : pm.rStringRigidTermination;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 906,
+        "lineEnd": 922
+      }
+    },
+    {
+      "id": "physmodels.lStringRigidTermination",
+      "name": "lStringRigidTermination",
+      "qualifiedName": "pm.lStringRigidTermination",
+      "header": "(pm.)lStringRigidTermination",
+      "summary": "Bidirectional block implementing a left rigid string termination (no damping, just phase inversion).",
+      "usage": "_,_,_ : lStringRigidTermination Typical use: `chain(... : stringSegment : lStringRigidTermination)`",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 1,
+        "raw": "_,_,_ : lStringRigidTermination Typical use: `chain(... : stringSegment : lStringRigidTermination)`"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nlStringRigidTermination_test = 0,0,0 : pm.lStringRigidTermination;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 926,
+        "lineEnd": 942
+      }
+    },
+    {
+      "id": "physmodels.elecGuitarBridge",
+      "name": "elecGuitarBridge",
+      "qualifiedName": "pm.elecGuitarBridge",
+      "header": "(pm.)elecGuitarBridge",
+      "summary": "Bidirectional block implementing a simple electric guitar bridge. This block is based on [`bridgeFilter`](#bridgeFilter). The bridge doesn't implement transmittance since it is not meant to be connected to a body (unlike acoustic guitar). It also partially sets the resonance duration of the string with the nuts used on the other side.",
+      "usage": "_,_,_ : elecGuitarBridge Typical use: `chain(... : stringSegment : elecGuitarBridge)`",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 1,
+        "raw": "_,_,_ : elecGuitarBridge Typical use: `chain(... : stringSegment : elecGuitarBridge)`"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nelecGuitarBridge_test = 0,0,0 : pm.elecGuitarBridge;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 946,
+        "lineEnd": 965
+      }
+    },
+    {
+      "id": "physmodels.elecGuitarNuts",
+      "name": "elecGuitarNuts",
+      "qualifiedName": "pm.elecGuitarNuts",
+      "header": "(pm.)elecGuitarNuts",
+      "summary": "Bidirectional block implementing a simple electric guitar nuts. This block is based on [`bridgeFilter`](#bridgeFilter) and does essentially the same thing as [`elecGuitarBridge`](#elecguitarbridge), but on the other side of the chain. It also partially sets the resonance duration of the string with the bridge used on the other side.",
+      "usage": "_,_,_ : elecGuitarNuts Typical use: `chain(elecGuitarNuts : stringSegment : ...)`",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 1,
+        "raw": "_,_,_ : elecGuitarNuts Typical use: `chain(elecGuitarNuts : stringSegment : ...)`"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nelecGuitarNuts_test = 0,0,0 : pm.elecGuitarNuts;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 969,
+        "lineEnd": 988
+      }
+    },
+    {
+      "id": "physmodels.guitarBridge",
+      "name": "guitarBridge",
+      "qualifiedName": "pm.guitarBridge",
+      "header": "(pm.)guitarBridge",
+      "summary": "Bidirectional block implementing a simple acoustic guitar bridge. This bridge damps more hight frequencies than [`elecGuitarBridge`](#elecguitarbridge) and implements a transmittance filter. It also partially sets the resonance duration of the string with the nuts used on the other side.",
+      "usage": "_,_,_ : guitarBridge Typical use: `chain(... : stringSegment : guitarBridge)`",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 1,
+        "raw": "_,_,_ : guitarBridge Typical use: `chain(... : stringSegment : guitarBridge)`"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nguitarBridge_test = 0,0,0 : pm.guitarBridge;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 992,
+        "lineEnd": 1011
+      }
+    },
+    {
+      "id": "physmodels.guitarNuts",
+      "name": "guitarNuts",
+      "qualifiedName": "pm.guitarNuts",
+      "header": "(pm.)guitarNuts",
+      "summary": "Bidirectional block implementing a simple acoustic guitar nuts. This nuts damps more hight frequencies than [`elecGuitarNuts`](#elecguitarnuts) and implements a transmittance filter. It also partially sets the resonance duration of the string with the bridge used on the other side.",
+      "usage": "chain(guitarNuts : stringSegment : ...)",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(guitarNuts : stringSegment : ...)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nguitarNuts_test = 0,0,0 : pm.guitarNuts;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1019,
+        "lineEnd": 1037
+      }
+    },
+    {
+      "id": "physmodels.idealString",
+      "name": "idealString",
+      "qualifiedName": "pm.idealString",
+      "header": "(pm.)idealString",
+      "summary": "An \"ideal\" string with rigid terminations and where the plucking position and the pick-up position are the same. Since terminations are rigid, this string will ring forever.",
+      "usage": "_ : idealString(length,pluckPosition,excitation) : _",
+      "params": [
+        {
+          "name": "length",
+          "description": "the length of the string in meters"
+        },
+        {
+          "name": "pluckPosition",
+          "description": "the plucking position (0.001-0.999)"
+        },
+        {
+          "name": "excitation",
+          "description": "the excitation signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : idealString(length,pluckPosition,excitation) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nidealString_test = 0,0,0 : pm.idealString(0.9, 0.2, pm.impulseExcitation(button(\"gate\")));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1041,
+        "lineEnd": 1063
+      }
+    },
+    {
+      "id": "physmodels.ks",
+      "name": "ks",
+      "qualifiedName": "pm.ks",
+      "header": "(pm.)ks",
+      "summary": "A Karplus-Strong string (in that case, the string is implemented as a one dimension waveguide).",
+      "usage": "ks(length,damping,excitation) : _",
+      "params": [
+        {
+          "name": "length",
+          "description": "the length of the string in meters"
+        },
+        {
+          "name": "damping",
+          "description": "string damping (0-1)"
+        },
+        {
+          "name": "excitation",
+          "description": "excitation signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "ks(length,damping,excitation) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nks_test = pm.ks(0.9, 0.3, pm.impulseExcitation(button(\"gate\")));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1077,
+        "lineEnd": 1098
+      }
+    },
+    {
+      "id": "physmodels.ks_ui_MIDI",
+      "name": "ks_ui_MIDI",
+      "qualifiedName": "pm.ks_ui_MIDI",
+      "header": "(pm.)ks_ui_MIDI",
+      "summary": "Ready-to-use, MIDI-enabled Karplus-Strong string with buil-in UI.",
+      "usage": "ks_ui_MIDI : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "ks_ui_MIDI : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nks_ui_MIDI_test = pm.ks_ui_MIDI;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1111,
+        "lineEnd": 1125
+      }
+    },
+    {
+      "id": "physmodels.elecGuitarModel",
+      "name": "elecGuitarModel",
+      "qualifiedName": "pm.elecGuitarModel",
+      "header": "(pm.)elecGuitarModel",
+      "summary": "A simple electric guitar model (without audio effects, of course) with selectable pluck position. This model implements a single string. Additional strings should be created by making a polyphonic application out of this function. Pitch is changed by changing the length of the string and not through a finger model.",
+      "usage": "elecGuitarModel(length,pluckPosition,mute,excitation) : _",
+      "params": [
+        {
+          "name": "length",
+          "description": "the length of the string in meters"
+        },
+        {
+          "name": "pluckPosition",
+          "description": "pluck position (0-1) (1 is on the bridge)"
+        },
+        {
+          "name": "mute",
+          "description": "mute coefficient (1 for no mute and 0 for instant mute)"
+        },
+        {
+          "name": "excitation",
+          "description": "excitation signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "elecGuitarModel(length,pluckPosition,mute,excitation) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nelecGuitarModel_test = pm.elecGuitarModel(0.9, 0.3, 0.8, pm.impulseExcitation(button(\"gate\")));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1143,
+        "lineEnd": 1168
+      }
+    },
+    {
+      "id": "physmodels.elecGuitar",
+      "name": "elecGuitar",
+      "qualifiedName": "pm.elecGuitar",
+      "header": "(pm.)elecGuitar",
+      "summary": "A simple electric guitar model with steel strings (based on [`elecGuitarModel`](#elecguitarmodel)) implementing an excitation model. This model implements a single string. Additional strings should be created by making a polyphonic application out of this function.",
+      "usage": "elecGuitar(length,pluckPosition,mute,gain,trigger) : _",
+      "params": [
+        {
+          "name": "length",
+          "description": "the length of the string in meters"
+        },
+        {
+          "name": "pluckPosition",
+          "description": "pluck position (0-1) (1 is on the bridge)"
+        },
+        {
+          "name": "mute",
+          "description": "mute coefficient (1 for no mute and 0 for instant mute)"
+        },
+        {
+          "name": "gain",
+          "description": "gain of the pluck (0-1)"
+        },
+        {
+          "name": "trigger",
+          "description": "trigger signal (1 for on, 0 for off)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "elecGuitar(length,pluckPosition,mute,gain,trigger) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nelecGuitar_test = pm.elecGuitar(0.9, 0.3, 0.8, 0.6, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1183,
+        "lineEnd": 1209
+      }
+    },
+    {
+      "id": "physmodels.elecGuitar_ui_MIDI",
+      "name": "elecGuitar_ui_MIDI",
+      "qualifiedName": "pm.elecGuitar_ui_MIDI",
+      "header": "(pm.)elecGuitar_ui_MIDI",
+      "summary": "Ready-to-use MIDI-enabled electric guitar physical model with built-in UI.",
+      "usage": "elecGuitar_ui_MIDI : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "elecGuitar_ui_MIDI : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nelecGuitar_ui_MIDI_test = pm.elecGuitar_ui_MIDI;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1215,
+        "lineEnd": 1229
+      }
+    },
+    {
+      "id": "physmodels.guitarBody",
+      "name": "guitarBody",
+      "qualifiedName": "pm.guitarBody",
+      "header": "(pm.)guitarBody",
+      "summary": "WARNING: not implemented yet! Bidirectional block implementing a simple acoustic guitar body.",
+      "usage": "chain(... : guitarBody)",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "chain(... : guitarBody)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nguitarBody_test = 0,0,0 : pm.guitarBody;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1247,
+        "lineEnd": 1263
+      }
+    },
+    {
+      "id": "physmodels.guitarModel",
+      "name": "guitarModel",
+      "qualifiedName": "pm.guitarModel",
+      "header": "(pm.)guitarModel",
+      "summary": "A simple acoustic guitar model with steel strings and selectable excitation position. This model implements a single string. Additional strings should be created by making a polyphonic application out of this function. Pitch is changed by changing the length of the string and not through a finger model. WARNING: this function doesn't currently implement a body (just strings and bridge).",
+      "usage": "guitarModel(length,pluckPosition,excitation) : _",
+      "params": [
+        {
+          "name": "length",
+          "description": "the length of the string in meters"
+        },
+        {
+          "name": "pluckPosition",
+          "description": "pluck position (0-1) (1 is on the bridge)"
+        },
+        {
+          "name": "excitation",
+          "description": "excitation signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "guitarModel(length,pluckPosition,excitation) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nguitarModel_test = pm.guitarModel(0.9, 0.25, pm.impulseExcitation(button(\"gate\")));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1271,
+        "lineEnd": 1296
+      }
+    },
+    {
+      "id": "physmodels.guitar",
+      "name": "guitar",
+      "qualifiedName": "pm.guitar",
+      "header": "(pm.)guitar",
+      "summary": "A simple acoustic guitar model with steel strings (based on [`guitarModel`](#guitarmodel)) implementing an excitation model. This model implements a single string. Additional strings should be created by making a polyphonic application out of this function.",
+      "usage": "guitar(length,pluckPosition,gain,trigger) : _",
+      "params": [
+        {
+          "name": "length",
+          "description": "the length of the string in meters"
+        },
+        {
+          "name": "pluckPosition",
+          "description": "pluck position (0-1) (1 is on the bridge)"
+        },
+        {
+          "name": "gain",
+          "description": "gain of the excitation"
+        },
+        {
+          "name": "trigger",
+          "description": "trigger signal (1 for on, 0 for off)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "guitar(length,pluckPosition,gain,trigger) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nguitar_test = pm.guitar(0.9, 0.25, 0.8, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1307,
+        "lineEnd": 1331
+      }
+    },
+    {
+      "id": "physmodels.guitar_ui_MIDI",
+      "name": "guitar_ui_MIDI",
+      "qualifiedName": "pm.guitar_ui_MIDI",
+      "header": "(pm.)guitar_ui_MIDI",
+      "summary": "Ready-to-use MIDI-enabled steel strings acoustic guitar physical model with built-in UI.",
+      "usage": "guitar_ui_MIDI : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "guitar_ui_MIDI : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nguitar_ui_MIDI_test = pm.guitar_ui_MIDI;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1336,
+        "lineEnd": 1351
+      }
+    },
+    {
+      "id": "physmodels.nylonGuitarModel",
+      "name": "nylonGuitarModel",
+      "qualifiedName": "pm.nylonGuitarModel",
+      "header": "(pm.)nylonGuitarModel",
+      "summary": "A simple acoustic guitar model with nylon strings and selectable excitation position. This model implements a single string. Additional strings should be created by making a polyphonic application out of this function. Pitch is changed by changing the length of the string and not through a finger model. WARNING: this function doesn't currently implement a body (just strings and bridge).",
+      "usage": "nylonGuitarModel(length,pluckPosition,excitation) : _",
+      "params": [
+        {
+          "name": "length",
+          "description": "the length of the string in meters"
+        },
+        {
+          "name": "pluckPosition",
+          "description": "pluck position (0-1) (1 is on the bridge)"
+        },
+        {
+          "name": "excitation",
+          "description": "excitation signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "nylonGuitarModel(length,pluckPosition,excitation) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nnylonGuitarModel_test = pm.nylonGuitarModel(0.9, 0.25, pm.impulseExcitation(button(\"gate\")));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1370,
+        "lineEnd": 1395
+      }
+    },
+    {
+      "id": "physmodels.nylonGuitar",
+      "name": "nylonGuitar",
+      "qualifiedName": "pm.nylonGuitar",
+      "header": "(pm.)nylonGuitar",
+      "summary": "A simple acoustic guitar model with nylon strings (based on [`nylonGuitarModel`](#nylonguitarmodel)) implementing an excitation model. This model implements a single string. Additional strings should be created by making a polyphonic application out of this function.",
+      "usage": "nylonGuitar(length,pluckPosition,gain,trigger) : _",
+      "params": [
+        {
+          "name": "length",
+          "description": "the length of the string in meters"
+        },
+        {
+          "name": "pluckPosition",
+          "description": "pluck position (0-1) (1 is on the bridge)"
+        },
+        {
+          "name": "gain",
+          "description": "gain of the excitation (0-1)"
+        },
+        {
+          "name": "trigger",
+          "description": "trigger signal (1 for on, 0 for off)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "nylonGuitar(length,pluckPosition,gain,trigger) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nnylonGuitar_test = pm.nylonGuitar(0.9, 0.25, 0.8, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1406,
+        "lineEnd": 1430
+      }
+    },
+    {
+      "id": "physmodels.nylonGuitar_ui_MIDI",
+      "name": "nylonGuitar_ui_MIDI",
+      "qualifiedName": "pm.nylonGuitar_ui_MIDI",
+      "header": "(pm.)nylonGuitar_ui_MIDI",
+      "summary": "Ready-to-use MIDI-enabled nylon strings acoustic guitar physical model with built-in UI.",
+      "usage": "nylonGuitar_ui_MIDI : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "nylonGuitar_ui_MIDI : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nnylonGuitar_ui_MIDI_test = pm.nylonGuitar_ui_MIDI;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1435,
+        "lineEnd": 1450
+      }
+    },
+    {
+      "id": "physmodels.modeInterpRes",
+      "name": "modeInterpRes",
+      "qualifiedName": "pm.modeInterpRes",
+      "header": "(pm.)modeInterpRes",
+      "summary": "Modular string instrument resonator based on IR measurements made on 3D printed models. The 2D space allowing for the control of the shape and the scale of the model is enabled by interpolating between modes parameters. More information about this technique/project can be found here: <https://ccrma.stanford.edu/~rmichon/3dPrintingModeling/>.",
+      "usage": "_ : modeInterpRes(nModes,x,y) : _",
+      "params": [
+        {
+          "name": "nModes",
+          "description": "number of modeled modes (40 max)"
+        },
+        {
+          "name": "x",
+          "description": "shape of the resonator (0: square, 1: square with rounded corners, 2: round)"
+        },
+        {
+          "name": "y",
+          "description": "scale of the resonator (0: small, 1: medium, 2: large)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : modeInterpRes(nModes,x,y) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nmodeInterpRes_test = os.osc(110) : pm.modeInterpRes(20, 1.0, 1.5);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1469,
+        "lineEnd": 1494
+      }
+    },
+    {
+      "id": "physmodels.modularInterpBody",
+      "name": "modularInterpBody",
+      "qualifiedName": "pm.modularInterpBody",
+      "header": "(pm.)modularInterpBody",
+      "summary": "Bidirectional block implementing a modular string instrument resonator (see [`modeInterpRes`](#pm.modeinterpres)).",
+      "usage": "chain(... : modularInterpBody(nModes,shape,scale) : ...)",
+      "params": [
+        {
+          "name": "nModes",
+          "description": "number of modeled modes (40 max)"
+        },
+        {
+          "name": "shape",
+          "description": "shape of the resonator (0: square, 1: square with rounded corners, 2: round)"
+        },
+        {
+          "name": "scale",
+          "description": "scale of the resonator (0: small, 1: medium, 2: large)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(... : modularInterpBody(nModes,shape,scale) : ...)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nmodularInterpBody_test = 0,0,0 : pm.modularInterpBody(20, 1.0, 1.5);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1567,
+        "lineEnd": 1588
+      }
+    },
+    {
+      "id": "physmodels.modularInterpStringModel",
+      "name": "modularInterpStringModel",
+      "qualifiedName": "pm.modularInterpStringModel",
+      "header": "(pm.)modularInterpStringModel",
+      "summary": "String instrument model with a modular body (see [`modeInterpRes`](#pm.modeinterpres) and <https://ccrma.stanford.edu/~rmichon/3dPrintingModeling/>).",
+      "usage": "modularInterpStringModel(length,pluckPosition,shape,scale,bodyExcitation,stringExcitation) : _",
+      "params": [
+        {
+          "name": "stringLength",
+          "description": "the length of the string in meters"
+        },
+        {
+          "name": "pluckPosition",
+          "description": "pluck position (0-1) (1 is on the bridge)"
+        },
+        {
+          "name": "shape",
+          "description": "shape of the resonator (0: square, 1: square with rounded corners, 2: round)"
+        },
+        {
+          "name": "scale",
+          "description": "scale of the resonator (0: small, 1: medium, 2: large)"
+        },
+        {
+          "name": "bodyExcitation",
+          "description": "excitation signal for the body"
+        },
+        {
+          "name": "stringExcitation",
+          "description": "excitation signal for the string"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "modularInterpStringModel(length,pluckPosition,shape,scale,bodyExcitation,stringExcitation) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nmodularInterpStringModel_test = pm.modularInterpStringModel(0.9, 0.3, 1.0, 1.5, pm.impulseExcitation(button(\"body\")), pm.impulseExcitation(button(\"string\")));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1592,
+        "lineEnd": 1617
+      }
+    },
+    {
+      "id": "physmodels.modularInterpInstr",
+      "name": "modularInterpInstr",
+      "qualifiedName": "pm.modularInterpInstr",
+      "header": "(pm.)modularInterpInstr",
+      "summary": "String instrument with a modular body (see [`modeInterpRes`](#pm.modeinterpres) and <https://ccrma.stanford.edu/~rmichon/3dPrintingModeling/>).",
+      "usage": "modularInterpInstr(stringLength,pluckPosition,shape,scale,gain,tapBody,triggerString) : _",
+      "params": [
+        {
+          "name": "stringLength",
+          "description": "the length of the string in meters"
+        },
+        {
+          "name": "pluckPosition",
+          "description": "pluck position (0-1) (1 is on the bridge)"
+        },
+        {
+          "name": "shape",
+          "description": "shape of the resonator (0: square, 1: square with rounded corners, 2: round)"
+        },
+        {
+          "name": "scale",
+          "description": "scale of the resonator (0: small, 1: medium, 2: large)"
+        },
+        {
+          "name": "gain",
+          "description": "of the string excitation"
+        },
+        {
+          "name": "tapBody",
+          "description": "send an impulse in the body of the instrument where the string is connected (1 for on, 0 for off)"
+        },
+        {
+          "name": "triggerString",
+          "description": "trigger signal for the string (1 for on, 0 for off)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "modularInterpInstr(stringLength,pluckPosition,shape,scale,gain,tapBody,triggerString) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nmodularInterpInstr_test = pm.modularInterpInstr(0.9, 0.3, 1.0, 1.5, 0.8, button(\"body\"), button(\"string\"));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1629,
+        "lineEnd": 1655
+      }
+    },
+    {
+      "id": "physmodels.modularInterpInstr_ui_MIDI",
+      "name": "modularInterpInstr_ui_MIDI",
+      "qualifiedName": "pm.modularInterpInstr_ui_MIDI",
+      "header": "(pm.)modularInterpInstr_ui_MIDI",
+      "summary": "Ready-to-use MIDI-enabled string instrument with a modular body (see [`modeInterpRes`](#pm.modeinterpres) and <https://ccrma.stanford.edu/~rmichon/3dPrintingModeling/>) with built-in UI.",
+      "usage": "modularInterpInstr_ui_MIDI : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "modularInterpInstr_ui_MIDI : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nmodularInterpInstr_ui_MIDI_test = pm.modularInterpInstr_ui_MIDI;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1661,
+        "lineEnd": 1678
+      }
+    },
+    {
+      "id": "physmodels.bowTable",
+      "name": "bowTable",
+      "qualifiedName": "pm.bowTable",
+      "header": "(pm.)bowTable",
+      "summary": "Extremely basic bow table that can be used to implement a wide range of bow types for many different bowed string instruments (violin, cello, etc.).",
+      "usage": "excitation : bowTable(offset,slope) : _",
+      "params": [
+        {
+          "name": "excitation",
+          "description": "an excitation signal"
+        },
+        {
+          "name": "offset",
+          "description": "table offset"
+        },
+        {
+          "name": "slope",
+          "description": "table slope"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "excitation : bowTable(offset,slope) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nbowTable_test = pm.bowTable(0.4, 0.1);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1705,
+        "lineEnd": 1726
+      }
+    },
+    {
+      "id": "physmodels.violinBowTable",
+      "name": "violinBowTable",
+      "qualifiedName": "pm.violinBowTable",
+      "header": "(pm.)violinBowTable",
+      "summary": "Violin bow table based on [`bowTable`](#bowtable).",
+      "usage": "bowVelocity : violinBowTable(bowPressure) : _",
+      "params": [
+        {
+          "name": "bowVelocity",
+          "description": "velocity of the bow/excitation signal (0-1)"
+        },
+        {
+          "name": "bowPressure",
+          "description": "bow pressure on the string (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "bowVelocity : violinBowTable(bowPressure) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nviolinBowTable_test = pm.violinBowTable(0.4, 0.1);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1733,
+        "lineEnd": 1752
+      }
+    },
+    {
+      "id": "physmodels.bowInteraction",
+      "name": "bowInteraction",
+      "qualifiedName": "pm.bowInteraction",
+      "header": "(pm.)bowInteraction",
+      "summary": "Bidirectional block implementing the interaction of a bow in a [`chain`](#chain).",
+      "usage": "chain(... : stringSegment : bowInteraction(bowTable) : stringSegment : ...)",
+      "params": [
+        {
+          "name": "bowTable",
+          "description": "the bow table"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(... : stringSegment : bowInteraction(bowTable) : stringSegment : ...)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nbowInteraction_test = pm.bowInteraction((0.4, 0.05));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1759,
+        "lineEnd": 1778
+      }
+    },
+    {
+      "id": "physmodels.violinBow",
+      "name": "violinBow",
+      "qualifiedName": "pm.violinBow",
+      "header": "(pm.)violinBow",
+      "summary": "Bidirectional block implementing a violin bow and its interaction with a string.",
+      "usage": "chain(... : stringSegment : violinBow(bowPressure,bowVelocity) : stringSegment : ...)",
+      "params": [
+        {
+          "name": "bowVelocity",
+          "description": "velocity of the bow / excitation signal (0-1)"
+        },
+        {
+          "name": "bowPressure",
+          "description": "bow pressure on the string (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(... : stringSegment : violinBow(bowPressure,bowVelocity) : stringSegment : ...)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nviolinBow_test = pm.violinBow(0.4, 0.05);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1782,
+        "lineEnd": 1802
+      }
+    },
+    {
+      "id": "physmodels.violinBowedString",
+      "name": "violinBowedString",
+      "qualifiedName": "pm.violinBowedString",
+      "header": "(pm.)violinBowedString",
+      "summary": "Violin bowed string bidirectional block with controllable bow position. Terminations are not implemented in this model.",
+      "usage": "chain(nuts : violinBowedString(stringLength,bowPressure,bowVelocity,bowPosition) : bridge)",
+      "params": [
+        {
+          "name": "stringLength",
+          "description": "the length of the string in meters"
+        },
+        {
+          "name": "bowVelocity",
+          "description": "velocity of the bow / excitation signal (0-1)"
+        },
+        {
+          "name": "bowPressure",
+          "description": "bow pressure on the string (0-1)"
+        },
+        {
+          "name": "bowPosition",
+          "description": "the position of the bow on the string (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(nuts : violinBowedString(stringLength,bowPressure,bowVelocity,bowPosition) : bridge)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nviolinBowedString_test = 0,0,0 : pm.violinBowedString(0.82, 0.35, pm.violinBow(0.4, 0.05), 0.15);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1809,
+        "lineEnd": 1831
+      }
+    },
+    {
+      "id": "physmodels.violinNuts",
+      "name": "violinNuts",
+      "qualifiedName": "pm.violinNuts",
+      "header": "(pm.)violinNuts",
+      "summary": "Bidirectional block implementing simple violin nuts. This function is based on [`bridgeFilter`](#bridgefilter).",
+      "usage": "_,_,_ : violinNuts Typical use: `chain(violinNuts : stringSegment : ...)`",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 1,
+        "raw": "_,_,_ : violinNuts Typical use: `chain(violinNuts : stringSegment : ...)`"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nviolinNuts_test = 0,0,0 : pm.violinNuts;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1845,
+        "lineEnd": 1861
+      }
+    },
+    {
+      "id": "physmodels.violinBridge",
+      "name": "violinBridge",
+      "qualifiedName": "pm.violinBridge",
+      "header": "(pm.)violinBridge",
+      "summary": "Bidirectional block implementing a simple violin bridge. This function is based on [`bridgeFilter`](#bridgefilter).",
+      "usage": "chain(... : stringSegment : violinBridge",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(... : stringSegment : violinBridge"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nviolinBridge_test = 0,0,0 : pm.violinBridge;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1865,
+        "lineEnd": 1882
+      }
+    },
+    {
+      "id": "physmodels.violinBody",
+      "name": "violinBody",
+      "qualifiedName": "pm.violinBody",
+      "header": "(pm.)violinBody",
+      "summary": "Bidirectional block implementing a simple violin body (just a simple resonant lowpass filter).",
+      "usage": "chain(... : stringSegment : violinBridge : violinBody)",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(... : stringSegment : violinBridge : violinBody)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nviolinBody_test = 0,0,0 : pm.violinBody;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1890,
+        "lineEnd": 1907
+      }
+    },
+    {
+      "id": "physmodels.violinModel",
+      "name": "violinModel",
+      "qualifiedName": "pm.violinModel",
+      "header": "(pm.)violinModel",
+      "summary": "Ready-to-use simple violin physical model. This model implements a single string. Additional strings should be created by making a polyphonic application out of this function. Pitch is changed by changing the length of the string (and not through a finger model).",
+      "usage": "violinModel(stringLength,bowPressure,bowVelocity,bowPosition) : _",
+      "params": [
+        {
+          "name": "stringLength",
+          "description": "the length of the string in meters"
+        },
+        {
+          "name": "bowPressure",
+          "description": "bow pressure on the string (0-1)"
+        },
+        {
+          "name": "bowVelocity",
+          "description": "velocity of the bow / excitation signal (0-1)"
+        },
+        {
+          "name": "bowPosition",
+          "description": "the position of the bow on the string (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "violinModel(stringLength,bowPressure,bowVelocity,bowPosition) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nviolinModel_test = pm.violinModel(0.82, 0.4, 0.05, 0.15);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1915,
+        "lineEnd": 1939
+      }
+    },
+    {
+      "id": "physmodels.violin_ui",
+      "name": "violin_ui",
+      "qualifiedName": "pm.violin_ui",
+      "header": "(pm.)violin_ui",
+      "summary": "Ready-to-use violin physical model with built-in UI.",
+      "usage": "violinModel_ui : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "violinModel_ui : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nviolin_ui_test = pm.violin_ui;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1955,
+        "lineEnd": 1969
+      }
+    },
+    {
+      "id": "physmodels.violin_ui_MIDI",
+      "name": "violin_ui_MIDI",
+      "qualifiedName": "pm.violin_ui_MIDI",
+      "header": "(pm.)violin_ui_MIDI",
+      "summary": "Ready-to-use MIDI-enabled violin physical model with built-in UI.",
+      "usage": "violin_ui_MIDI : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "violin_ui_MIDI : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nviolin_ui_MIDI_test = pm.violin_ui_MIDI;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 1980,
+        "lineEnd": 1994
+      }
+    },
+    {
+      "id": "physmodels.openTube",
+      "name": "openTube",
+      "qualifiedName": "pm.openTube",
+      "header": "(pm.)openTube",
+      "summary": "A tube segment without terminations (same as [`stringSegment`](#stringsegment)).",
+      "usage": "chain(A : openTube(maxLength,length) : B)",
+      "params": [
+        {
+          "name": "maxLength",
+          "description": "the maximum length of the tube in meters (should be static)"
+        },
+        {
+          "name": "length",
+          "description": "the length of the tube in meters"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(A : openTube(maxLength,length) : B)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nopenTube_test = pm.endChain(pm.openTube(pm.maxLength, 0.9));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2033,
+        "lineEnd": 2052
+      }
+    },
+    {
+      "id": "physmodels.reedTable",
+      "name": "reedTable",
+      "qualifiedName": "pm.reedTable",
+      "header": "(pm.)reedTable",
+      "summary": "Extremely basic reed table that can be used to implement a wide range of single reed types for many different instruments (saxophone, clarinet, etc.).",
+      "usage": "excitation : reedTable(offeset,slope) : _",
+      "params": [
+        {
+          "name": "excitation",
+          "description": "an excitation signal"
+        },
+        {
+          "name": "offset",
+          "description": "table offset"
+        },
+        {
+          "name": "slope",
+          "description": "table slope"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "excitation : reedTable(offeset,slope) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nreedTable_test = os.osc(220) : pm.reedTable(0.4, 0.2);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2056,
+        "lineEnd": 2078
+      }
+    },
+    {
+      "id": "physmodels.fluteJetTable",
+      "name": "fluteJetTable",
+      "qualifiedName": "pm.fluteJetTable",
+      "header": "(pm.)fluteJetTable",
+      "summary": "Extremely basic flute jet table.",
+      "usage": "excitation : fluteJetTable : _",
+      "params": [
+        {
+          "name": "excitation",
+          "description": "an excitation signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "excitation : fluteJetTable : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nfluteJetTable_test = os.osc(220) : pm.fluteJetTable;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2085,
+        "lineEnd": 2104
+      }
+    },
+    {
+      "id": "physmodels.brassLipsTable",
+      "name": "brassLipsTable",
+      "qualifiedName": "pm.brassLipsTable",
+      "header": "(pm.)brassLipsTable",
+      "summary": "Simple brass lips/mouthpiece table. Since this implementation is very basic and that the lips and tube of the instrument are coupled to each other, the length of that tube must be provided here.",
+      "usage": "excitation : brassLipsTable(tubeLength,lipsTension) : _",
+      "params": [
+        {
+          "name": "excitation",
+          "description": "an excitation signal (can be DC)"
+        },
+        {
+          "name": "tubeLength",
+          "description": "length in meters of the tube connected to the mouthpiece"
+        },
+        {
+          "name": "lipsTension",
+          "description": "tension of the lips (0-1) (default: 0.5)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "excitation : brassLipsTable(tubeLength,lipsTension) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nbrassLipsTable_test = os.osc(220) : pm.brassLipsTable(0.3, 0.2);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2111,
+        "lineEnd": 2134
+      }
+    },
+    {
+      "id": "physmodels.clarinetReed",
+      "name": "clarinetReed",
+      "qualifiedName": "pm.clarinetReed",
+      "header": "(pm.)clarinetReed",
+      "summary": "Clarinet reed based on [`reedTable`](#reedtable) with controllable stiffness.",
+      "usage": "excitation : clarinetReed(stiffness) : _",
+      "params": [
+        {
+          "name": "excitation",
+          "description": "an excitation signal"
+        },
+        {
+          "name": "stiffness",
+          "description": "reed stiffness (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "excitation : clarinetReed(stiffness) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nclarinetReed_test = os.osc(440) : pm.clarinetReed(0.6);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2145,
+        "lineEnd": 2166
+      }
+    },
+    {
+      "id": "physmodels.clarinetMouthPiece",
+      "name": "clarinetMouthPiece",
+      "qualifiedName": "pm.clarinetMouthPiece",
+      "header": "(pm.)clarinetMouthPiece",
+      "summary": "Bidirectional block implementing a clarinet mouthpiece as well as the various interactions happening with traveling waves. This element is ready to be plugged to a tube...",
+      "usage": "chain(clarinetMouthPiece(reedStiffness,pressure) : tube : etc.)",
+      "params": [
+        {
+          "name": "pressure",
+          "description": "the pressure of the air flow (DC) created by the virtual performer (0-1). This can also be any kind of signal that will directly injected in the mouthpiece (e.g., breath noise, etc.)."
+        },
+        {
+          "name": "reedStiffness",
+          "description": "reed stiffness (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "chain(clarinetMouthPiece(reedStiffness,pressure) : tube : etc.)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nclarinetMouthPiece_test = pm.endChain(pm.clarinetMouthPiece(0.6, 0.4));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2173,
+        "lineEnd": 2196
+      }
+    },
+    {
+      "id": "physmodels.brassLips",
+      "name": "brassLips",
+      "qualifiedName": "pm.brassLips",
+      "header": "(pm.)brassLips",
+      "summary": "Bidirectional block implementing a brass mouthpiece as well as the various interactions happening with traveling waves. This element is ready to be plugged to a tube...",
+      "usage": "chain(brassLips(tubeLength,lipsTension,pressure) : tube : etc.)",
+      "params": [
+        {
+          "name": "tubeLength",
+          "description": "length in meters of the tube connected to the mouthpiece"
+        },
+        {
+          "name": "lipsTension",
+          "description": "tension of the lips (0-1) (default: 0.5)"
+        },
+        {
+          "name": "pressure",
+          "description": "the pressure of the air flow (DC) created by the virtual performer (0-1). This can also be any kind of signal that will directly injected in the mouthpiece (e.g., breath noise, etc.)."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 1,
+        "raw": "chain(brassLips(tubeLength,lipsTension,pressure) : tube : etc.)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nbrassLips_test = pm.endChain(pm.brassLips(0.3, 0.2, 0.1));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2203,
+        "lineEnd": 2227
+      }
+    },
+    {
+      "id": "physmodels.fluteEmbouchure",
+      "name": "fluteEmbouchure",
+      "qualifiedName": "pm.fluteEmbouchure",
+      "header": "(pm.)fluteEmbouchure",
+      "summary": "Bidirectional block implementing a flute embouchure as well as the various interactions happening with traveling waves. This element is ready to be plugged between tubes segments...",
+      "usage": "chain(... : tube : fluteEmbouchure(pressure) : tube : etc.)",
+      "params": [
+        {
+          "name": "pressure",
+          "description": "the pressure of the air flow (DC) created by the virtual performer (0-1). This can also be any kind of signal that will directly injected in the mouthpiece (e.g., breath noise, etc.)."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(... : tube : fluteEmbouchure(pressure) : tube : etc.)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nfluteEmbouchure_test = pm.endChain(pm.fluteEmbouchure(0.5));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2237,
+        "lineEnd": 2260
+      }
+    },
+    {
+      "id": "physmodels.wBell",
+      "name": "wBell",
+      "qualifiedName": "pm.wBell",
+      "header": "(pm.)wBell",
+      "summary": "Generic wind instrument bell bidirectional block that should be placed at the end of a [`chain`](#chain).",
+      "usage": "chain(... : wBell(opening))",
+      "params": [
+        {
+          "name": "opening",
+          "description": "the \"opening\" of bell (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "chain(... : wBell(opening))"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nwBell_test = pm.endChain(pm.wBell(0.4));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2265,
+        "lineEnd": 2284
+      }
+    },
+    {
+      "id": "physmodels.fluteHead",
+      "name": "fluteHead",
+      "qualifiedName": "pm.fluteHead",
+      "header": "(pm.)fluteHead",
+      "summary": "Simple flute head implementing waves reflexion.",
+      "usage": "_,_,_ : fluteHead Typical use: `chain(fluteHead : tube : ...)`",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 3,
+        "outSignals": 1,
+        "raw": "_,_,_ : fluteHead Typical use: `chain(fluteHead : tube : ...)`"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nfluteHead_test = pm.endChain(pm.fluteHead);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2288,
+        "lineEnd": 2303
+      }
+    },
+    {
+      "id": "physmodels.fluteFoot",
+      "name": "fluteFoot",
+      "qualifiedName": "pm.fluteFoot",
+      "header": "(pm.)fluteFoot",
+      "summary": "Simple flute foot implementing waves reflexion and dispersion.",
+      "usage": "chain(... : tube : fluteFoot)",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(... : tube : fluteFoot)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nfluteFoot_test = pm.endChain(pm.fluteFoot);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2310,
+        "lineEnd": 2324
+      }
+    },
+    {
+      "id": "physmodels.clarinetModel",
+      "name": "clarinetModel",
+      "qualifiedName": "pm.clarinetModel",
+      "header": "(pm.)clarinetModel",
+      "summary": "A simple clarinet physical model without tone holes (pitch is changed by changing the length of the tube of the instrument).",
+      "usage": "clarinetModel(tubeLength,pressure,reedStiffness,bellOpening) : _",
+      "params": [
+        {
+          "name": "tubeLength",
+          "description": "the length of the tube in meters"
+        },
+        {
+          "name": "pressure",
+          "description": "the pressure of the air flow created by the virtual performer (0-1). This can also be any kind of signal that will directly injected in the mouthpiece (e.g., breath noise, etc.)."
+        },
+        {
+          "name": "reedStiffness",
+          "description": "reed stiffness (0-1)"
+        },
+        {
+          "name": "bellOpening",
+          "description": "the opening of bell (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "clarinetModel(tubeLength,pressure,reedStiffness,bellOpening) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nclarinetModel_test = pm.clarinetModel(0.9, 0.4, 0.3, 0.2);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2332,
+        "lineEnd": 2356
+      }
+    },
+    {
+      "id": "physmodels.clarinetModel_ui",
+      "name": "clarinetModel_ui",
+      "qualifiedName": "pm.clarinetModel_ui",
+      "header": "(pm.)clarinetModel_ui",
+      "summary": "Same as [`clarinetModel`](#clarinetModel) but with a built-in UI. This function doesn't implement a virtual \"blower\", thus `pressure` remains an argument here.",
+      "usage": "clarinetModel_ui(pressure) : _",
+      "params": [
+        {
+          "name": "pressure",
+          "description": "the pressure of the air flow created by the virtual performer (0-1). This can also be any kind of signal that will be directly injected in the mouthpiece (e.g., breath noise, etc.)."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "clarinetModel_ui(pressure) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nclarinetModel_ui_test = pm.clarinetModel_ui(0.4);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2371,
+        "lineEnd": 2392
+      }
+    },
+    {
+      "id": "physmodels.clarinet_ui",
+      "name": "clarinet_ui",
+      "qualifiedName": "pm.clarinet_ui",
+      "header": "(pm.)clarinet_ui",
+      "summary": "Ready-to-use clarinet physical model with built-in UI based on [`clarinetModel`](#clarinetmodel).",
+      "usage": "clarinet_ui : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "clarinet_ui : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nclarinet_ui_test = pm.clarinet_ui;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2402,
+        "lineEnd": 2417
+      }
+    },
+    {
+      "id": "physmodels.clarinet_ui_MIDI",
+      "name": "clarinet_ui_MIDI",
+      "qualifiedName": "pm.clarinet_ui_MIDI",
+      "header": "(pm.)clarinet_ui_MIDI",
+      "summary": "Ready-to-use MIDI compliant clarinet physical model with built-in UI.",
+      "usage": "clarinet_ui_MIDI : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "clarinet_ui_MIDI : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nclarinet_ui_MIDI_test = pm.clarinet_ui_MIDI;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2421,
+        "lineEnd": 2435
+      }
+    },
+    {
+      "id": "physmodels.brassModel",
+      "name": "brassModel",
+      "qualifiedName": "pm.brassModel",
+      "header": "(pm.)brassModel",
+      "summary": "A simple generic brass instrument physical model without pistons (pitch is changed by changing the length of the tube of the instrument). This model is kind of hard to control and might not sound very good if bad parameters are given to it...",
+      "usage": "brassModel(tubeLength,lipsTension,mute,pressure) : _",
+      "params": [
+        {
+          "name": "tubeLength",
+          "description": "the length of the tube in meters"
+        },
+        {
+          "name": "lipsTension",
+          "description": "tension of the lips (0-1) (default: 0.5)"
+        },
+        {
+          "name": "mute",
+          "description": "mute opening at the end of the instrument (0-1) (default: 0.5)"
+        },
+        {
+          "name": "pressure",
+          "description": "the pressure of the air flow created by the virtual performer (0-1). This can also be any kind of signal that will directly injected in the mouthpiece (e.g., breath noise, etc.)."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "brassModel(tubeLength,lipsTension,mute,pressure) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nbrassModel_test = pm.brassModel(0.9, 0.4, 0.2, 0.6);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2471,
+        "lineEnd": 2497
+      }
+    },
+    {
+      "id": "physmodels.brassModel_ui",
+      "name": "brassModel_ui",
+      "qualifiedName": "pm.brassModel_ui",
+      "header": "(pm.)brassModel_ui",
+      "summary": "Same as [`brassModel`](#brassModel) but with a built-in UI. This function doesn't implement a virtual \"blower\", thus `pressure` remains an argument here.",
+      "usage": "brassModel_ui(pressure) : _",
+      "params": [
+        {
+          "name": "pressure",
+          "description": "the pressure of the air flow created by the virtual performer (0-1). This can also be any kind of signal that will be directly injected in the mouthpiece (e.g., breath noise, etc.)."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "brassModel_ui(pressure) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nbrassModel_ui_test = pm.brassModel_ui(0.4);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2507,
+        "lineEnd": 2528
+      }
+    },
+    {
+      "id": "physmodels.brass_ui",
+      "name": "brass_ui",
+      "qualifiedName": "pm.brass_ui",
+      "header": "(pm.)brass_ui",
+      "summary": "Ready-to-use brass instrument physical model with built-in UI based on [`brassModel`](#brassmodel).",
+      "usage": "brass_ui : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "brass_ui : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nbrass_ui_test = pm.brass_ui;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2537,
+        "lineEnd": 2552
+      }
+    },
+    {
+      "id": "physmodels.brass_ui_MIDI",
+      "name": "brass_ui_MIDI",
+      "qualifiedName": "pm.brass_ui_MIDI",
+      "header": "(pm.)brass_ui_MIDI",
+      "summary": "Ready-to-use MIDI-controllable brass instrument physical model with built-in UI.",
+      "usage": "brass_ui_MIDI : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "brass_ui_MIDI : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nbrass_ui_MIDI_test = pm.brass_ui_MIDI;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2556,
+        "lineEnd": 2570
+      }
+    },
+    {
+      "id": "physmodels.fluteModel",
+      "name": "fluteModel",
+      "qualifiedName": "pm.fluteModel",
+      "header": "(pm.)fluteModel",
+      "summary": "A simple generic flute instrument physical model without tone holes (pitch is changed by changing the length of the tube of the instrument).",
+      "usage": "fluteModel(tubeLength,mouthPosition,pressure) : _",
+      "params": [
+        {
+          "name": "tubeLength",
+          "description": "the length of the tube in meters"
+        },
+        {
+          "name": "mouthPosition",
+          "description": "position of the mouth on the embouchure (0-1) (default: 0.5)"
+        },
+        {
+          "name": "pressure",
+          "description": "the pressure of the air flow created by the virtual performer (0-1). This can also be any kind of signal that will directly injected in the mouthpiece (e.g., breath noise, etc.)."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "fluteModel(tubeLength,mouthPosition,pressure) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nfluteModel_test = pm.fluteModel(0.9, 0.4, 0.6);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2604,
+        "lineEnd": 2628
+      }
+    },
+    {
+      "id": "physmodels.fluteModel_ui",
+      "name": "fluteModel_ui",
+      "qualifiedName": "pm.fluteModel_ui",
+      "header": "(pm.)fluteModel_ui",
+      "summary": "Same as [`fluteModel`](#fluteModel) but with a built-in UI. This function doesn't implement a virtual \"blower\", thus `pressure` remains an argument here.",
+      "usage": "fluteModel_ui(pressure) : _",
+      "params": [
+        {
+          "name": "pressure",
+          "description": "the pressure of the air flow created by the virtual performer (0-1). This can also be any kind of signal that will be directly injected in the mouthpiece (e.g., breath noise, etc.)."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "fluteModel_ui(pressure) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nfluteModel_ui_test = pm.fluteModel_ui(0.4);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2641,
+        "lineEnd": 2662
+      }
+    },
+    {
+      "id": "physmodels.flute_ui",
+      "name": "flute_ui",
+      "qualifiedName": "pm.flute_ui",
+      "header": "(pm.)flute_ui",
+      "summary": "Ready-to-use flute physical model with built-in UI based on [`fluteModel`](#flutemodel).",
+      "usage": "flute_ui : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "flute_ui : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nflute_ui_test = pm.flute_ui;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2672,
+        "lineEnd": 2687
+      }
+    },
+    {
+      "id": "physmodels.flute_ui_MIDI",
+      "name": "flute_ui_MIDI",
+      "qualifiedName": "pm.flute_ui_MIDI",
+      "header": "(pm.)flute_ui_MIDI",
+      "summary": "Ready-to-use MIDI-controllable flute physical model with built-in UI.",
+      "usage": "flute_ui_MIDI : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "flute_ui_MIDI : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nflute_ui_MIDI_test = pm.flute_ui_MIDI;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2691,
+        "lineEnd": 2705
+      }
+    },
+    {
+      "id": "physmodels.impulseExcitation",
+      "name": "impulseExcitation",
+      "qualifiedName": "pm.impulseExcitation",
+      "header": "(pm.)impulseExcitation",
+      "summary": "Creates an impulse excitation of one sample.",
+      "usage": "gate = button('gate'); impulseExcitation(gate) : chain;",
+      "params": [
+        {
+          "name": "gate",
+          "description": "a gate button"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "gate = button('gate'); impulseExcitation(gate) : chain;"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nimpulseExcitation_test = pm.impulseExcitation(button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2742,
+        "lineEnd": 2761
+      }
+    },
+    {
+      "id": "physmodels.strikeModel",
+      "name": "strikeModel",
+      "qualifiedName": "pm.strikeModel",
+      "header": "(pm.)strikeModel",
+      "summary": "Creates a filtered noise excitation.",
+      "usage": "gate = button('gate'); strikeModel(LPcutoff,HPcutoff,sharpness,gain,gate) : chain;",
+      "params": [
+        {
+          "name": "HPcutoff",
+          "description": "highpass cutoff frequency"
+        },
+        {
+          "name": "LPcutoff",
+          "description": "lowpass cutoff frequency"
+        },
+        {
+          "name": "sharpness",
+          "description": "sharpness of the attack and release (0-1)"
+        },
+        {
+          "name": "gain",
+          "description": "gain of the excitation"
+        },
+        {
+          "name": "gate",
+          "description": "a gate button/trigger signal (0/1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "gate = button('gate'); strikeModel(LPcutoff,HPcutoff,sharpness,gain,gate) : chain;"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nstrikeModel_test = pm.strikeModel(200, 4000, 0.5, 0.8, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2765,
+        "lineEnd": 2788
+      }
+    },
+    {
+      "id": "physmodels.strike",
+      "name": "strike",
+      "qualifiedName": "pm.strike",
+      "header": "(pm.)strike",
+      "summary": "Strikes generator with controllable excitation position.",
+      "usage": "gate = button('gate'); strike(exPos,sharpness,gain,gate) : chain;",
+      "params": [
+        {
+          "name": "exPos",
+          "description": "excitation position wiht 0: for max low freqs and 1: for max high freqs. So, on membrane for example, 0 would be the middle and 1 the edge"
+        },
+        {
+          "name": "sharpness",
+          "description": "sharpness of the attack and release (0-1)"
+        },
+        {
+          "name": "gain",
+          "description": "gain of the excitation"
+        },
+        {
+          "name": "gate",
+          "description": "a gate button/trigger signal (0/1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "gate = button('gate'); strike(exPos,sharpness,gain,gate) : chain;"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nstrike_test = pm.strike(0.4, 0.5, 0.8, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2798,
+        "lineEnd": 2821
+      }
+    },
+    {
+      "id": "physmodels.pluckString",
+      "name": "pluckString",
+      "qualifiedName": "pm.pluckString",
+      "header": "(pm.)pluckString",
+      "summary": "Creates a plucking excitation signal.",
+      "usage": "trigger = button('gate'); pluckString(stringLength,cutoff,maxFreq,sharpness,trigger)",
+      "params": [
+        {
+          "name": "stringLength",
+          "description": "length of the string to pluck"
+        },
+        {
+          "name": "cutoff",
+          "description": "cutoff ratio (1 for default)"
+        },
+        {
+          "name": "maxFreq",
+          "description": "max frequency ratio (1 for default)"
+        },
+        {
+          "name": "sharpness",
+          "description": "sharpness of the attack and release (1 for default)"
+        },
+        {
+          "name": "gain",
+          "description": "gain of the excitation (0-1)"
+        },
+        {
+          "name": "trigger",
+          "description": "trigger signal (1 for on, 0 for off)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 5,
+        "raw": "trigger = button('gate'); pluckString(stringLength,cutoff,maxFreq,sharpness,trigger)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\npluckString_test = pm.pluckString(0.9, 1, 1, 1, 0.6, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2829,
+        "lineEnd": 2853
+      }
+    },
+    {
+      "id": "physmodels.blower",
+      "name": "blower",
+      "qualifiedName": "pm.blower",
+      "header": "(pm.)blower",
+      "summary": "A virtual blower creating a DC signal with some breath noise in it.",
+      "usage": "blower(pressure,breathGain,breathCutoff,vibratoFreq,vibratoGain) : _",
+      "params": [
+        {
+          "name": "pressure",
+          "description": "pressure (0-1)"
+        },
+        {
+          "name": "breathGain",
+          "description": "breath noise gain (0-1) (recommended: 0.005)"
+        },
+        {
+          "name": "breathCutoff",
+          "description": "breath cutoff frequency (Hz) (recommended: 2000)"
+        },
+        {
+          "name": "vibratoFreq",
+          "description": "vibrato frequency in Hz (recommended: 5)"
+        },
+        {
+          "name": "vibratoGain",
+          "description": "vibrato depth (0-1) (recommended: 0.2)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "blower(pressure,breathGain,breathCutoff,vibratoFreq,vibratoGain) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nblower_test = pm.blower(0.5, 0.05, 2000, 5, 0.2);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2865,
+        "lineEnd": 2887
+      }
+    },
+    {
+      "id": "physmodels.blower_ui",
+      "name": "blower_ui",
+      "qualifiedName": "pm.blower_ui",
+      "header": "(pm.)blower_ui",
+      "summary": "Same as [`blower`](#blower) but with a built-in UI.",
+      "usage": "blower : somethingToBeBlown",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "blower : somethingToBeBlown"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nblower_ui_test = pm.blower_ui;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2895,
+        "lineEnd": 2909
+      }
+    },
+    {
+      "id": "physmodels.djembeModel",
+      "name": "djembeModel",
+      "qualifiedName": "pm.djembeModel",
+      "header": "(pm.)djembeModel",
+      "summary": "Dirt-simple djembe modal physical model. Mode parameters are empirically calculated and don't correspond to any measurements or 3D model. They kind of sound good though :).",
+      "usage": "excitation : djembeModel(freq)",
+      "params": [
+        {
+          "name": "excitation",
+          "description": "excitation signal"
+        },
+        {
+          "name": "freq",
+          "description": "fundamental frequency of the bar"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "excitation : djembeModel(freq)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\ndjembeModel_test = os.impulse : pm.djembeModel(110);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2924,
+        "lineEnd": 2946
+      }
+    },
+    {
+      "id": "physmodels.djembe",
+      "name": "djembe",
+      "qualifiedName": "pm.djembe",
+      "header": "(pm.)djembe",
+      "summary": "Dirt-simple djembe modal physical model. Mode parameters are empirically calculated and don't correspond to any measurements or 3D model. They kind of sound good though :). This model also implements a virtual \"exciter\".",
+      "usage": "djembe(freq,strikePosition,strikeSharpness,gain,trigger)",
+      "params": [
+        {
+          "name": "freq",
+          "description": "fundamental frequency of the model"
+        },
+        {
+          "name": "strikePosition",
+          "description": "strike position (0 for the middle of the membrane and 1 for the edge)"
+        },
+        {
+          "name": "strikeSharpness",
+          "description": "sharpness of the strike (0-1, default: 0.5)"
+        },
+        {
+          "name": "gain",
+          "description": "gain of the strike"
+        },
+        {
+          "name": "trigger",
+          "description": "trigger signal (0: off, 1: on)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 5,
+        "raw": "djembe(freq,strikePosition,strikeSharpness,gain,trigger)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\ndjembe_test = pm.djembe(110, 0.3, 0.5, 0.8, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2957,
+        "lineEnd": 2984
+      }
+    },
+    {
+      "id": "physmodels.djembe_ui_MIDI",
+      "name": "djembe_ui_MIDI",
+      "qualifiedName": "pm.djembe_ui_MIDI",
+      "header": "(pm.)djembe_ui_MIDI",
+      "summary": "Simple MIDI controllable djembe physical model with built-in UI.",
+      "usage": "djembe_ui_MIDI : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "djembe_ui_MIDI : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\ndjembe_ui_MIDI_test = pm.djembe_ui_MIDI;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 2988,
+        "lineEnd": 3002
+      }
+    },
+    {
+      "id": "physmodels.marimbaBarModel",
+      "name": "marimbaBarModel",
+      "qualifiedName": "pm.marimbaBarModel",
+      "header": "(pm.)marimbaBarModel",
+      "summary": "Generic marimba tone bar modal model. This model was generated using `mesh2faust` from a 3D CAD model of a marimba tone bar (`libraries/modalmodels/marimbaBar`). The corresponding CAD model is that of a C2 tone bar (original fundamental frequency: ~65Hz). While `marimbaBarModel` allows to translate the harmonic content of the generated sound by providing a frequency (`freq`), mode transposition has limits and the model will sound less and less like a marimba tone bar as it diverges from C2. To make an accurate model of a marimba, we'd want to have an independent model for each bar... This model contains 5 excitation positions going linearly from the center bottom to the center top of the bar. Obviously, a model with more excitation position could be regenerated using `mesh2faust`.",
+      "usage": "excitation : marimbaBarModel(freq,exPos,t60,t60DecayRatio,t60DecaySlope)",
+      "params": [
+        {
+          "name": "excitation",
+          "description": "excitation signal"
+        },
+        {
+          "name": "freq",
+          "description": "fundamental frequency of the bar"
+        },
+        {
+          "name": "exPos",
+          "description": "excitation position (0-4)"
+        },
+        {
+          "name": "t60",
+          "description": "T60 in seconds (recommended value: 0.1)"
+        },
+        {
+          "name": "t60DecayRatio",
+          "description": "T60 decay ratio (recommended value: 1)"
+        },
+        {
+          "name": "t60DecaySlope",
+          "description": "T60 decay slope (recommended value: 5)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 5,
+        "raw": "excitation : marimbaBarModel(freq,exPos,t60,t60DecayRatio,t60DecaySlope)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nmarimbaBarModel_test = os.impulse : pm.marimbaBarModel(220, 2, 0.1, 1, 5);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3017,
+        "lineEnd": 3055
+      }
+    },
+    {
+      "id": "physmodels.marimbaResTube",
+      "name": "marimbaResTube",
+      "qualifiedName": "pm.marimbaResTube",
+      "header": "(pm.)marimbaResTube",
+      "summary": "Simple marimba resonance tube.",
+      "usage": "marimbaResTube(tubeLength,excitation)",
+      "params": [
+        {
+          "name": "tubeLength",
+          "description": "the length of the tube in meters"
+        },
+        {
+          "name": "excitation",
+          "description": "the excitation signal (audio in)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "marimbaResTube(tubeLength,excitation)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nmarimbaResTube_test = os.impulse : pm.marimbaResTube(0.5);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3067,
+        "lineEnd": 3087
+      }
+    },
+    {
+      "id": "physmodels.marimbaModel",
+      "name": "marimbaModel",
+      "qualifiedName": "pm.marimbaModel",
+      "header": "(pm.)marimbaModel",
+      "summary": "Simple marimba physical model implementing a single tone bar connected to tube. This model is scalable and can be adapted to any size of bar/tube (see [`marimbaBarModel`](#marimbabarmodel) to know more about the limitations of this type of system).",
+      "usage": "excitation : marimbaModel(freq,exPos) : _",
+      "params": [
+        {
+          "name": "excitation",
+          "description": "the excitation signal"
+        },
+        {
+          "name": "freq",
+          "description": "the frequency of the bar/tube couple"
+        },
+        {
+          "name": "exPos",
+          "description": "excitation position (0-4)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "excitation : marimbaModel(freq,exPos) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nmarimbaModel_test = os.impulse : pm.marimbaModel(220, 2);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3105,
+        "lineEnd": 3129
+      }
+    },
+    {
+      "id": "physmodels.marimba",
+      "name": "marimba",
+      "qualifiedName": "pm.marimba",
+      "header": "(pm.)marimba",
+      "summary": "Simple marimba physical model implementing a single tone bar connected to tube. This model is scalable and can be adapted to any size of bar/tube (see [`marimbaBarModel`](#marimbabarmodel) to know more about the limitations of this type of system). This function also implements a virtual exciter to drive the model.",
+      "usage": "marimba(freq,strikePosition,strikeCutoff,strikeSharpness,gain,trigger) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "the frequency of the bar/tube couple"
+        },
+        {
+          "name": "strikePosition",
+          "description": "strike position (0-4)"
+        },
+        {
+          "name": "strikeCutoff",
+          "description": "cutoff frequency of the strike generator (recommended: ~7000 Hz)"
+        },
+        {
+          "name": "strikeSharpness",
+          "description": "sharpness of the strike (recommended: ~0.25)"
+        },
+        {
+          "name": "gain",
+          "description": "gain of the strike (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "marimba(freq,strikePosition,strikeCutoff,strikeSharpness,gain,trigger) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nmarimba_test = pm.marimba(220, 0.4, 1, 0.5, 0.8, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3140,
+        "lineEnd": 3168
+      }
+    },
+    {
+      "id": "physmodels.marimba_ui_MIDI",
+      "name": "marimba_ui_MIDI",
+      "qualifiedName": "pm.marimba_ui_MIDI",
+      "header": "(pm.)marimba_ui_MIDI",
+      "summary": "Simple MIDI controllable marimba physical model with built-in UI implementing a single tone bar connected to tube. This model is scalable and can be adapted to any size of bar/tube (see [`marimbaBarModel`](#marimbabarmodel) to know more about the limitations of this type of system).",
+      "usage": "marimba_ui_MIDI : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "marimba_ui_MIDI : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nmarimba_ui_MIDI_test = pm.marimba_ui_MIDI;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3174,
+        "lineEnd": 3192
+      }
+    },
+    {
+      "id": "physmodels.churchBellModel",
+      "name": "churchBellModel",
+      "qualifiedName": "pm.churchBellModel",
+      "header": "(pm.)churchBellModel",
+      "summary": "Generic church bell modal model generated by `mesh2faust` from `libraries/modalmodels/churchBell`. Modeled after T. Rossing and R. Perrin, Vibrations of Bells, Applied Acoustics 2, 1987. Model height is 301 mm. This model contains 7 excitation positions going linearly from the bottom to the top of the bell. Obviously, a model with more excitation position could be regenerated using `mesh2faust`.",
+      "usage": "excitation : churchBellModel(nModes,exPos,t60,t60DecayRatio,t60DecaySlope)",
+      "params": [
+        {
+          "name": "excitation",
+          "description": "the excitation signal"
+        },
+        {
+          "name": "nModes",
+          "description": "number of synthesized modes (max: 50)"
+        },
+        {
+          "name": "exPos",
+          "description": "excitation position (0-6)"
+        },
+        {
+          "name": "t60",
+          "description": "T60 in seconds (recommended value: 0.1)"
+        },
+        {
+          "name": "t60DecayRatio",
+          "description": "T60 decay ratio (recommended value: 1)"
+        },
+        {
+          "name": "t60DecaySlope",
+          "description": "T60 decay slope (recommended value: 5)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 5,
+        "raw": "excitation : churchBellModel(nModes,exPos,t60,t60DecayRatio,t60DecaySlope)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nchurchBellModel_test = os.impulse : pm.churchBellModel(50, 0, 30, 1, 2.5);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3210,
+        "lineEnd": 3244
+      }
+    },
+    {
+      "id": "physmodels.churchBell",
+      "name": "churchBell",
+      "qualifiedName": "pm.churchBell",
+      "header": "(pm.)churchBell",
+      "summary": "Generic church bell modal model. Modeled after T. Rossing and R. Perrin, Vibrations of Bells, Applied Acoustics 2, 1987. Model height is 301 mm. This model contains 7 excitation positions going linearly from the bottom to the top of the bell. Obviously, a model with more excitation position could be regenerated using `mesh2faust`. This function also implements a virtual exciter to drive the model.",
+      "usage": "churchBell(strikePosition,strikeCutoff,strikeSharpness,gain,trigger) : _",
+      "params": [
+        {
+          "name": "strikePosition",
+          "description": "strike position (0-6)"
+        },
+        {
+          "name": "strikeCutoff",
+          "description": "cutoff frequency of the strike generator (recommended: ~7000 Hz)"
+        },
+        {
+          "name": "strikeSharpness",
+          "description": "sharpness of the strike (recommended: ~0.25)"
+        },
+        {
+          "name": "gain",
+          "description": "gain of the strike (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "churchBell(strikePosition,strikeCutoff,strikeSharpness,gain,trigger) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nchurchBell_test = pm.churchBell(0.4, 2000, 0.5, 0.8, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3254,
+        "lineEnd": 3287
+      }
+    },
+    {
+      "id": "physmodels.churchBell_ui",
+      "name": "churchBell_ui",
+      "qualifiedName": "pm.churchBell_ui",
+      "header": "(pm.)churchBell_ui",
+      "summary": "Church bell physical model based on [`churchBell`](#pmchurchbell) with built-in UI.",
+      "usage": "churchBell_ui : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "churchBell_ui : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nchurchBell_ui_test = pm.churchBell_ui;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3293,
+        "lineEnd": 3308
+      }
+    },
+    {
+      "id": "physmodels.englishBellModel",
+      "name": "englishBellModel",
+      "qualifiedName": "pm.englishBellModel",
+      "header": "(pm.)englishBellModel",
+      "summary": "English church bell modal model generated by `mesh2faust` from `libraries/modalmodels/englishBell`. Modeled after D.Bartocha and Baron, Influence of Tin Bronze Melting and Pouring Parameters on Its Properties and Bell' Tone, Archives of Foundry Engineering, 2016. Model height is 1 m. This model contains 7 excitation positions going linearly from the bottom to the top of the bell. Obviously, a model with more excitation position could be regenerated using `mesh2faust`.",
+      "usage": "excitation : englishBellModel(nModes,exPos,t60,t60DecayRatio,t60DecaySlope)",
+      "params": [
+        {
+          "name": "excitation",
+          "description": "the excitation signal"
+        },
+        {
+          "name": "nModes",
+          "description": "number of synthesized modes (max: 50)"
+        },
+        {
+          "name": "exPos",
+          "description": "excitation position (0-6)"
+        },
+        {
+          "name": "t60",
+          "description": "T60 in seconds (recommended value: 0.1)"
+        },
+        {
+          "name": "t60DecayRatio",
+          "description": "T60 decay ratio (recommended value: 1)"
+        },
+        {
+          "name": "t60DecaySlope",
+          "description": "T60 decay slope (recommended value: 5)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 5,
+        "raw": "excitation : englishBellModel(nModes,exPos,t60,t60DecayRatio,t60DecaySlope)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nenglishBellModel_test = os.impulse : pm.englishBellModel(50, 0, 30, 1, 3);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3323,
+        "lineEnd": 3358
+      }
+    },
+    {
+      "id": "physmodels.englishBell",
+      "name": "englishBell",
+      "qualifiedName": "pm.englishBell",
+      "header": "(pm.)englishBell",
+      "summary": "English church bell modal model. Modeled after D.Bartocha and Baron, Influence of Tin Bronze Melting and Pouring Parameters on Its Properties and Bell' Tone, Archives of Foundry Engineering, 2016. Model height is 1 m. This model contains 7 excitation positions going linearly from the bottom to the top of the bell. Obviously, a model with more excitation position could be regenerated using `mesh2faust`. This function also implements a virtual exciter to drive the model.",
+      "usage": "englishBell(strikePosition,strikeCutoff,strikeSharpness,gain,trigger) : _",
+      "params": [
+        {
+          "name": "strikePosition",
+          "description": "strike position (0-6)"
+        },
+        {
+          "name": "strikeCutoff",
+          "description": "cutoff frequency of the strike generator (recommended: ~7000 Hz)"
+        },
+        {
+          "name": "strikeSharpness",
+          "description": "sharpness of the strike (recommended: ~0.25)"
+        },
+        {
+          "name": "gain",
+          "description": "gain of the strike (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "englishBell(strikePosition,strikeCutoff,strikeSharpness,gain,trigger) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nenglishBell_test = pm.englishBell(0.4, 2000, 0.5, 0.8, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3368,
+        "lineEnd": 3402
+      }
+    },
+    {
+      "id": "physmodels.englishBell_ui",
+      "name": "englishBell_ui",
+      "qualifiedName": "pm.englishBell_ui",
+      "header": "(pm.)englishBell_ui",
+      "summary": "English church bell physical model based on [`englishBell`](#pmenglishbell) with built-in UI.",
+      "usage": "englishBell_ui : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "englishBell_ui : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nenglishBell_ui_test = pm.englishBell_ui;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3408,
+        "lineEnd": 3423
+      }
+    },
+    {
+      "id": "physmodels.frenchBellModel",
+      "name": "frenchBellModel",
+      "qualifiedName": "pm.frenchBellModel",
+      "header": "(pm.)frenchBellModel",
+      "summary": "French church bell modal model generated by `mesh2faust` from `libraries/modalmodels/frenchBell`. Modeled after D.Bartocha and Baron, Influence of Tin Bronze Melting and Pouring Parameters on Its Properties and Bell' Tone, Archives of Foundry Engineering, 2016. Model height is 1 m. This model contains 7 excitation positions going linearly from the bottom to the top of the bell. Obviously, a model with more excitation position could be regenerated using `mesh2faust`.",
+      "usage": "excitation : frenchBellModel(nModes,exPos,t60,t60DecayRatio,t60DecaySlope)",
+      "params": [
+        {
+          "name": "excitation",
+          "description": "the excitation signal"
+        },
+        {
+          "name": "nModes",
+          "description": "number of synthesized modes (max: 50)"
+        },
+        {
+          "name": "exPos",
+          "description": "excitation position (0-6)"
+        },
+        {
+          "name": "t60",
+          "description": "T60 in seconds (recommended value: 0.1)"
+        },
+        {
+          "name": "t60DecayRatio",
+          "description": "T60 decay ratio (recommended value: 1)"
+        },
+        {
+          "name": "t60DecaySlope",
+          "description": "T60 decay slope (recommended value: 5)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 5,
+        "raw": "excitation : frenchBellModel(nModes,exPos,t60,t60DecayRatio,t60DecaySlope)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nfrenchBellModel_test = os.impulse : pm.frenchBellModel(50, 0, 30, 1, 3);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3435,
+        "lineEnd": 3470
+      }
+    },
+    {
+      "id": "physmodels.frenchBell",
+      "name": "frenchBell",
+      "qualifiedName": "pm.frenchBell",
+      "header": "(pm.)frenchBell",
+      "summary": "French church bell modal model. Modeled after D.Bartocha and Baron, Influence of Tin Bronze Melting and Pouring Parameters on Its Properties and Bell' Tone, Archives of Foundry Engineering, 2016. Model height is 1 m. This model contains 7 excitation positions going linearly from the bottom to the top of the bell. Obviously, a model with more excitation position could be regenerated using `mesh2faust`. This function also implements a virtual exciter to drive the model.",
+      "usage": "frenchBell(strikePosition,strikeCutoff,strikeSharpness,gain,trigger) : _",
+      "params": [
+        {
+          "name": "strikePosition",
+          "description": "strike position (0-6)"
+        },
+        {
+          "name": "strikeCutoff",
+          "description": "cutoff frequency of the strike generator (recommended: ~7000 Hz)"
+        },
+        {
+          "name": "strikeSharpness",
+          "description": "sharpness of the strike (recommended: ~0.25)"
+        },
+        {
+          "name": "gain",
+          "description": "gain of the strike (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "frenchBell(strikePosition,strikeCutoff,strikeSharpness,gain,trigger) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nfrenchBell_test = pm.frenchBell(0.4, 2000, 0.5, 0.8, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3480,
+        "lineEnd": 3514
+      }
+    },
+    {
+      "id": "physmodels.frenchBell_ui",
+      "name": "frenchBell_ui",
+      "qualifiedName": "pm.frenchBell_ui",
+      "header": "(pm.)frenchBell_ui",
+      "summary": "French church bell physical model based on [`frenchBell`](#pmfrenchbell) with built-in UI.",
+      "usage": "frenchBell_ui : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "frenchBell_ui : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nfrenchBell_ui_test = pm.frenchBell_ui;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3520,
+        "lineEnd": 3535
+      }
+    },
+    {
+      "id": "physmodels.germanBellModel",
+      "name": "germanBellModel",
+      "qualifiedName": "pm.germanBellModel",
+      "header": "(pm.)germanBellModel",
+      "summary": "German church bell modal model generated by `mesh2faust` from `libraries/modalmodels/germanBell`. Modeled after D.Bartocha and Baron, Influence of Tin Bronze Melting and Pouring Parameters on Its Properties and Bell' Tone, Archives of Foundry Engineering, 2016. Model height is 1 m. This model contains 7 excitation positions going linearly from the bottom to the top of the bell. Obviously, a model with more excitation position could be regenerated using `mesh2faust`.",
+      "usage": "excitation : germanBellModel(nModes,exPos,t60,t60DecayRatio,t60DecaySlope)",
+      "params": [
+        {
+          "name": "excitation",
+          "description": "the excitation signal"
+        },
+        {
+          "name": "nModes",
+          "description": "number of synthesized modes (max: 50)"
+        },
+        {
+          "name": "exPos",
+          "description": "excitation position (0-6)"
+        },
+        {
+          "name": "t60",
+          "description": "T60 in seconds (recommended value: 0.1)"
+        },
+        {
+          "name": "t60DecayRatio",
+          "description": "T60 decay ratio (recommended value: 1)"
+        },
+        {
+          "name": "t60DecaySlope",
+          "description": "T60 decay slope (recommended value: 5)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 5,
+        "raw": "excitation : germanBellModel(nModes,exPos,t60,t60DecayRatio,t60DecaySlope)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\ngermanBellModel_test = os.impulse : pm.germanBellModel(50, 0, 30, 1, 2.5);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3547,
+        "lineEnd": 3582
+      }
+    },
+    {
+      "id": "physmodels.germanBell",
+      "name": "germanBell",
+      "qualifiedName": "pm.germanBell",
+      "header": "(pm.)germanBell",
+      "summary": "German church bell modal model. Modeled after D.Bartocha and Baron, Influence of Tin Bronze Melting and Pouring Parameters on Its Properties and Bell' Tone, Archives of Foundry Engineering, 2016. Model height is 1 m. This model contains 7 excitation positions going linearly from the bottom to the top of the bell. Obviously, a model with more excitation position could be regenerated using `mesh2faust`. This function also implements a virtual exciter to drive the model.",
+      "usage": "germanBell(strikePosition,strikeCutoff,strikeSharpness,gain,trigger) : _",
+      "params": [
+        {
+          "name": "strikePosition",
+          "description": "strike position (0-6)"
+        },
+        {
+          "name": "strikeCutoff",
+          "description": "cutoff frequency of the strike generator (recommended: ~7000 Hz)"
+        },
+        {
+          "name": "strikeSharpness",
+          "description": "sharpness of the strike (recommended: ~0.25)"
+        },
+        {
+          "name": "gain",
+          "description": "gain of the strike (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "germanBell(strikePosition,strikeCutoff,strikeSharpness,gain,trigger) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\ngermanBell_test = pm.germanBell(0.4, 2000, 0.5, 0.8, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3592,
+        "lineEnd": 3626
+      }
+    },
+    {
+      "id": "physmodels.germanBell_ui",
+      "name": "germanBell_ui",
+      "qualifiedName": "pm.germanBell_ui",
+      "header": "(pm.)germanBell_ui",
+      "summary": "German church bell physical model based on [`germanBell`](#pmgermanbell) with built-in UI.",
+      "usage": "germanBell_ui : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "germanBell_ui : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\ngermanBell_ui_test = pm.germanBell_ui;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3632,
+        "lineEnd": 3647
+      }
+    },
+    {
+      "id": "physmodels.russianBellModel",
+      "name": "russianBellModel",
+      "qualifiedName": "pm.russianBellModel",
+      "header": "(pm.)russianBellModel",
+      "summary": "Russian church bell modal model generated by `mesh2faust` from `libraries/modalmodels/russianBell`. Modeled after D.Bartocha and Baron, Influence of Tin Bronze Melting and Pouring Parameters on Its Properties and Bell' Tone, Archives of Foundry Engineering, 2016. Model height is 2 m. This model contains 7 excitation positions going linearly from the bottom to the top of the bell. Obviously, a model with more excitation position could be regenerated using `mesh2faust`.",
+      "usage": "excitation : russianBellModel(nModes,exPos,t60,t60DecayRatio,t60DecaySlope)",
+      "params": [
+        {
+          "name": "excitation",
+          "description": "the excitation signal"
+        },
+        {
+          "name": "nModes",
+          "description": "number of synthesized modes (max: 50)"
+        },
+        {
+          "name": "exPos",
+          "description": "excitation position (0-6)"
+        },
+        {
+          "name": "t60",
+          "description": "T60 in seconds (recommended value: 0.1)"
+        },
+        {
+          "name": "t60DecayRatio",
+          "description": "T60 decay ratio (recommended value: 1)"
+        },
+        {
+          "name": "t60DecaySlope",
+          "description": "T60 decay slope (recommended value: 5)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 5,
+        "raw": "excitation : russianBellModel(nModes,exPos,t60,t60DecayRatio,t60DecaySlope)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nrussianBellModel_test = os.impulse : pm.russianBellModel(50, 0, 30, 1, 3);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3659,
+        "lineEnd": 3694
+      }
+    },
+    {
+      "id": "physmodels.russianBell",
+      "name": "russianBell",
+      "qualifiedName": "pm.russianBell",
+      "header": "(pm.)russianBell",
+      "summary": "Russian church bell modal model. Modeled after D.Bartocha and Baron, Influence of Tin Bronze Melting and Pouring Parameters on Its Properties and Bell' Tone, Archives of Foundry Engineering, 2016. Model height is 2 m. This model contains 7 excitation positions going linearly from the bottom to the top of the bell. Obviously, a model with more excitation position could be regenerated using `mesh2faust`. This function also implements a virtual exciter to drive the model.",
+      "usage": "russianBell(strikePosition,strikeCutoff,strikeSharpness,gain,trigger) : _",
+      "params": [
+        {
+          "name": "strikePosition",
+          "description": "strike position (0-6)"
+        },
+        {
+          "name": "strikeCutoff",
+          "description": "cutoff frequency of the strike generator (recommended: ~7000 Hz)"
+        },
+        {
+          "name": "strikeSharpness",
+          "description": "sharpness of the strike (recommended: ~0.25)"
+        },
+        {
+          "name": "gain",
+          "description": "gain of the strike (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "russianBell(strikePosition,strikeCutoff,strikeSharpness,gain,trigger) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nrussianBell_test = pm.russianBell(0.4, 2000, 0.5, 0.8, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3704,
+        "lineEnd": 3738
+      }
+    },
+    {
+      "id": "physmodels.russianBell_ui",
+      "name": "russianBell_ui",
+      "qualifiedName": "pm.russianBell_ui",
+      "header": "(pm.)russianBell_ui",
+      "summary": "Russian church bell physical model based on [`russianBell`](#pmrussianbell) with built-in UI.",
+      "usage": "russianBell_ui : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "russianBell_ui : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nrussianBell_ui_test = pm.russianBell_ui;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3744,
+        "lineEnd": 3759
+      }
+    },
+    {
+      "id": "physmodels.standardBellModel",
+      "name": "standardBellModel",
+      "qualifiedName": "pm.standardBellModel",
+      "header": "(pm.)standardBellModel",
+      "summary": "Standard church bell modal model generated by `mesh2faust` from `libraries/modalmodels/standardBell`. Modeled after T. Rossing and R. Perrin, Vibrations of Bells, Applied Acoustics 2, 1987. Model height is 1.8 m. This model contains 7 excitation positions going linearly from the bottom to the top of the bell. Obviously, a model with more excitation position could be regenerated using `mesh2faust`.",
+      "usage": "excitation : standardBellModel(nModes,exPos,t60,t60DecayRatio,t60DecaySlope)",
+      "params": [
+        {
+          "name": "excitation",
+          "description": "the excitation signal"
+        },
+        {
+          "name": "nModes",
+          "description": "number of synthesized modes (max: 50)"
+        },
+        {
+          "name": "exPos",
+          "description": "excitation position (0-6)"
+        },
+        {
+          "name": "t60",
+          "description": "T60 in seconds (recommended value: 0.1)"
+        },
+        {
+          "name": "t60DecayRatio",
+          "description": "T60 decay ratio (recommended value: 1)"
+        },
+        {
+          "name": "t60DecaySlope",
+          "description": "T60 decay slope (recommended value: 5)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 5,
+        "raw": "excitation : standardBellModel(nModes,exPos,t60,t60DecayRatio,t60DecaySlope)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nstandardBellModel_test = os.impulse : pm.standardBellModel(50, 0, 30, 1, 2.5);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3770,
+        "lineEnd": 3804
+      }
+    },
+    {
+      "id": "physmodels.standardBell",
+      "name": "standardBell",
+      "qualifiedName": "pm.standardBell",
+      "header": "(pm.)standardBell",
+      "summary": "Standard church bell modal model. Modeled after T. Rossing and R. Perrin, Vibrations of Bells, Applied Acoustics 2, 1987. Model height is 1.8 m. This model contains 7 excitation positions going linearly from the bottom to the top of the bell. Obviously, a model with more excitation position could be regenerated using `mesh2faust`. This function also implements a virtual exciter to drive the model.",
+      "usage": "standardBell(strikePosition,strikeCutoff,strikeSharpness,gain,trigger) : _",
+      "params": [
+        {
+          "name": "strikePosition",
+          "description": "strike position (0-6)"
+        },
+        {
+          "name": "strikeCutoff",
+          "description": "cutoff frequency of the strike generator (recommended: ~7000 Hz)"
+        },
+        {
+          "name": "strikeSharpness",
+          "description": "sharpness of the strike (recommended: ~0.25)"
+        },
+        {
+          "name": "gain",
+          "description": "gain of the strike (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "standardBell(strikePosition,strikeCutoff,strikeSharpness,gain,trigger) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nstandardBell_test = pm.standardBell(0.4, 2000, 0.5, 0.8, button(\"gate\"));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3814,
+        "lineEnd": 3847
+      }
+    },
+    {
+      "id": "physmodels.standardBell_ui",
+      "name": "standardBell_ui",
+      "qualifiedName": "pm.standardBell_ui",
+      "header": "(pm.)standardBell_ui",
+      "summary": "Standard church bell physical model based on [`standardBell`](#pmstandardbell) with built-in UI.",
+      "usage": "standardBell_ui : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "standardBell_ui : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nstandardBell_ui_test = pm.standardBell_ui;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3853,
+        "lineEnd": 3868
+      }
+    },
+    {
+      "id": "physmodels.formantValues",
+      "name": "formantValues",
+      "qualifiedName": "pm.formantValues",
+      "header": "(pm.)formantValues",
+      "summary": "Formant data values in an environment. The formant data used here come from the CSOUND manual <http://www.csounds.com/manual/html/>.",
+      "usage": "ba.take(j+1,formantValues.f(i)) : _ ba.take(j+1,formantValues.g(i)) : _ ba.take(j+1,formantValues.bw(i)) : _",
+      "params": [
+        {
+          "name": "i",
+          "description": "formant number"
+        },
+        {
+          "name": "j",
+          "description": "(voiceType*nFormants)+vowel"
+        },
+        {
+          "name": "voiceType",
+          "description": "the voice type (0: alto, 1: bass, 2: countertenor, 3: soprano, 4: tenor)"
+        },
+        {
+          "name": "vowel",
+          "description": "the vowel (0: a, 1: e, 2: i, 3: o, 4: u)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 2,
+        "outSignals": 1,
+        "raw": "ba.take(j+1,formantValues.f(i)) : _ ba.take(j+1,formantValues.g(i)) : _ ba.take(j+1,formantValues.bw(i)) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nformantValues_test = pm.formantValues.f(0);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3884,
+        "lineEnd": 3911
+      }
+    },
+    {
+      "id": "physmodels.voiceGender",
+      "name": "voiceGender",
+      "qualifiedName": "pm.voiceGender",
+      "header": "(pm.)voiceGender",
+      "summary": "Calculate the gender for the provided `voiceType` value. (0: male, 1: female)",
+      "usage": "voiceGender(voiceType) : _",
+      "params": [
+        {
+          "name": "voiceType",
+          "description": "the voice type (0: alto, 1: bass, 2: countertenor, 3: soprano, 4: tenor)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "voiceGender(voiceType) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nvoiceGender_test = pm.voiceGender(0.5);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3969,
+        "lineEnd": 3987
+      }
+    },
+    {
+      "id": "physmodels.skirtWidthMultiplier",
+      "name": "skirtWidthMultiplier",
+      "qualifiedName": "pm.skirtWidthMultiplier",
+      "header": "(pm.)skirtWidthMultiplier",
+      "summary": "Calculates value to multiply bandwidth to obtain `skirtwidth` for a FOF filter.",
+      "usage": "skirtWidthMultiplier(vowel,freq,gender) : _",
+      "params": [
+        {
+          "name": "vowel",
+          "description": "the vowel (0: a, 1: e, 2: i, 3: o, 4: u)"
+        },
+        {
+          "name": "freq",
+          "description": "the fundamental frequency of the excitation signal"
+        },
+        {
+          "name": "gender",
+          "description": "gender of the voice used in the fof filter (0: male, 1: female)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "skirtWidthMultiplier(vowel,freq,gender) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nskirtWidthMultiplier_test = pm.skirtWidthMultiplier(0, 220, 0);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 3993,
+        "lineEnd": 4014
+      }
+    },
+    {
+      "id": "physmodels.autobendFreq",
+      "name": "autobendFreq",
+      "qualifiedName": "pm.autobendFreq",
+      "header": "(pm.)autobendFreq",
+      "summary": "Autobends the center frequencies of formants 1 and 2 based on the fundamental frequency of the excitation signal and leaves all other formant frequencies unchanged. Ported from `chant-lib`.",
+      "usage": "_ : autobendFreq(n,freq,voiceType) : _",
+      "params": [
+        {
+          "name": "n",
+          "description": "formant index"
+        },
+        {
+          "name": "freq",
+          "description": "the fundamental frequency of the excitation signal"
+        },
+        {
+          "name": "voiceType",
+          "description": "the voice type (0: alto, 1: bass, 2: countertenor, 3: soprano, 4: tenor)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : autobendFreq(n,freq,voiceType) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nautobendFreq_test = 440 : pm.autobendFreq(0, 220, 0);",
+      "references": [
+        "<https://ccrma.stanford.edu/~rmichon/chantLib/>.",
+        "---------------------------------------------"
+      ],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4030,
+        "lineEnd": 4058
+      }
+    },
+    {
+      "id": "physmodels.vocalEffort",
+      "name": "vocalEffort",
+      "qualifiedName": "pm.vocalEffort",
+      "header": "(pm.)vocalEffort",
+      "summary": "Changes the gains of the formants based on the fundamental frequency of the excitation signal. Higher formants are reinforced for higher fundamental frequencies. Ported from `chant-lib`.",
+      "usage": "_ : vocalEffort(freq,gender) : _",
+      "params": [
+        {
+          "name": "freq",
+          "description": "the fundamental frequency of the excitation signal"
+        },
+        {
+          "name": "gender",
+          "description": "the gender of the voice type (0: male, 1: female)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : vocalEffort(freq,gender) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nvocalEffort_test = 1 : pm.vocalEffort(440, 0);",
+      "references": [
+        "<https://ccrma.stanford.edu/~rmichon/chantLib/>.",
+        "---------------------------------------------"
+      ],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4072,
+        "lineEnd": 4099
+      }
+    },
+    {
+      "id": "physmodels.fof",
+      "name": "fof",
+      "qualifiedName": "pm.fof",
+      "header": "(pm.)fof",
+      "summary": "Function to generate a single Formant-Wave-Function.",
+      "usage": "_ : fof(fc,bw,a,g) : _",
+      "params": [
+        {
+          "name": "fc",
+          "description": "formant center frequency,"
+        },
+        {
+          "name": "bw",
+          "description": "formant bandwidth (Hz),"
+        },
+        {
+          "name": "sw",
+          "description": "formant skirtwidth (Hz)"
+        },
+        {
+          "name": "g",
+          "description": "linear scale factor (g=1 gives 0dB amplitude response at fc)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : fof(fc,bw,a,g) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nfof_test = pm.fof(0.3, 440, 880, 0.5);",
+      "references": [
+        "<https://ccrma.stanford.edu/~mjolsen/pdfs/smc2016_MOlsenFOF.pdf>.",
+        "---------------------------------------------------------"
+      ],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4105,
+        "lineEnd": 4131
+      }
+    },
+    {
+      "id": "physmodels.fofSH",
+      "name": "fofSH",
+      "qualifiedName": "pm.fofSH",
+      "header": "(pm.)fofSH",
+      "summary": "FOF with sample and hold used on `bw` and a parameter used in the filter-cycling FOF function `fofCycle`.",
+      "usage": "_ : fofSH(fc,bw,a,g) : _",
+      "params": [
+        {
+          "name": "fc",
+          "description": "formant center frequency"
+        },
+        {
+          "name": "bw",
+          "description": "formant bandwidth (Hz)"
+        },
+        {
+          "name": "a",
+          "description": "formant skirtwidth (Hz)"
+        },
+        {
+          "name": "g",
+          "description": "linear scale factor"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : fofSH(fc,bw,a,g) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nfofSH_test = pm.fofSH(0.3, 440, 880, 0.5);",
+      "references": [
+        "<https://ccrma.stanford.edu/~mjolsen/pdfs/smc2016_MOlsenFOF.pdf>.",
+        "---------------------------------------------------------"
+      ],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4149,
+        "lineEnd": 4175
+      }
+    },
+    {
+      "id": "physmodels.fofCycle",
+      "name": "fofCycle",
+      "qualifiedName": "pm.fofCycle",
+      "header": "(pm.)fofCycle",
+      "summary": "FOF implementation where time-varying filter parameter noise is mitigated by using a cycle of `n` sample and hold FOF filters.",
+      "usage": "_ : fofCycle(fc,bw,a,g,n) : _",
+      "params": [
+        {
+          "name": "fc",
+          "description": "center frequency of the filter in Hz"
+        },
+        {
+          "name": "bw",
+          "description": "bandwidth of the filter in Hz"
+        },
+        {
+          "name": "a",
+          "description": "attack bandwidth / skirt width in Hz"
+        },
+        {
+          "name": "g",
+          "description": "linear gain multiplier"
+        },
+        {
+          "name": "n",
+          "description": "the number of FOF filters to cycle through"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : fofCycle(fc,bw,a,g,n) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nfofCycle_test = pm.fofCycle(0.3, 440, 880, 0.5, 0.2);",
+      "references": [
+        "<https://ccrma.stanford.edu/~mjolsen/pdfs/smc2016_MOlsenFOF.pdf>.",
+        "---------------------------------------------------------"
+      ],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4181,
+        "lineEnd": 4208
+      }
+    },
+    {
+      "id": "physmodels.fofSmooth",
+      "name": "fofSmooth",
+      "qualifiedName": "pm.fofSmooth",
+      "header": "(pm.)fofSmooth",
+      "summary": "FOF implementation where time-varying filter parameter noise is mitigated by lowpass filtering the filter parameters `bw` and `a` with [smooth](#smooth).",
+      "usage": "_ : fofSmooth(fc,bw,sw,g,tau) : _",
+      "params": [
+        {
+          "name": "fc",
+          "description": "center frequency of the filter in Hz"
+        },
+        {
+          "name": "bw",
+          "description": "bandwidth of the filter in Hz"
+        },
+        {
+          "name": "sw",
+          "description": "skirt width in Hz"
+        },
+        {
+          "name": "g",
+          "description": "linear gain multiplier"
+        },
+        {
+          "name": "tau",
+          "description": "the desired smoothing time constant in seconds"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : fofSmooth(fc,bw,sw,g,tau) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nfofSmooth_test = pm.fofSmooth(0.3, 440, 880, 0.5, 0.2);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4214,
+        "lineEnd": 4238
+      }
+    },
+    {
+      "id": "physmodels.formantFilterFofCycle",
+      "name": "formantFilterFofCycle",
+      "qualifiedName": "pm.formantFilterFofCycle",
+      "header": "(pm.)formantFilterFofCycle",
+      "summary": "Formant filter based on a single FOF filter. Formant parameters are linearly interpolated allowing to go smoothly from one vowel to another. A cycle of `n` fof filters with sample-and-hold is used so that the fof filter parameters can be varied in realtime. This technique is more robust but more computationally expensive than [`formantFilterFofSmooth`](#formantFilterFofSmooth). Voice type can be selected but must correspond to the frequency range of the provided source to be realistic.",
+      "usage": "_ : formantFilterFofCycle(voiceType,vowel,nFormants,i,freq) : _",
+      "params": [
+        {
+          "name": "voiceType",
+          "description": "the voice type (0: alto, 1: bass, 2: countertenor, 3: soprano, 4: tenor)"
+        },
+        {
+          "name": "vowel",
+          "description": "the vowel (0: a, 1: e, 2: i, 3: o, 4: u)"
+        },
+        {
+          "name": "nFormants",
+          "description": "number of formant regions in frequency domain, typically 5"
+        },
+        {
+          "name": "i",
+          "description": "formant number (i.e. 0 - 4) used to index formant data value arrays"
+        },
+        {
+          "name": "freq",
+          "description": "fundamental frequency of excitation signal. Used to calculate rise time of envelope"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : formantFilterFofCycle(voiceType,vowel,nFormants,i,freq) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nformantFilterFofCycle_test = os.osc(110) : pm.formantFilterFofCycle(0, 0, 5, 0, 200);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4248,
+        "lineEnd": 4280
+      }
+    },
+    {
+      "id": "physmodels.formantFilterFofSmooth",
+      "name": "formantFilterFofSmooth",
+      "qualifiedName": "pm.formantFilterFofSmooth",
+      "header": "(pm.)formantFilterFofSmooth",
+      "summary": "Formant filter based on a single FOF filter. Formant parameters are linearly interpolated allowing to go smoothly from one vowel to another. FOF filter parameters are lowpass filtered to mitigate possible noise from varying them in realtime. Voice type can be selected but must correspond to the frequency range of the provided source to be realistic.",
+      "usage": "_ : formantFilterFofSmooth(voiceType,vowel,nFormants,i,freq) : _",
+      "params": [
+        {
+          "name": "voiceType",
+          "description": "the voice type (0: alto, 1: bass, 2: countertenor, 3: soprano, 4: tenor)"
+        },
+        {
+          "name": "vowel",
+          "description": "the vowel (0: a, 1: e, 2: i, 3: o, 4: u)"
+        },
+        {
+          "name": "nFormants",
+          "description": "number of formant regions in frequency domain, typically 5"
+        },
+        {
+          "name": "i",
+          "description": "formant number (i.e. 1 - 5) used to index formant data value arrays"
+        },
+        {
+          "name": "freq",
+          "description": "fundamental frequency of excitation signal. Used to calculate rise time of envelope"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : formantFilterFofSmooth(voiceType,vowel,nFormants,i,freq) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nformantFilterFofSmooth_test = os.osc(110) : pm.formantFilterFofSmooth(0, 0, 5, 0, 200);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4299,
+        "lineEnd": 4329
+      }
+    },
+    {
+      "id": "physmodels.formantFilterBP",
+      "name": "formantFilterBP",
+      "qualifiedName": "pm.formantFilterBP",
+      "header": "(pm.)formantFilterBP",
+      "summary": "Formant filter based on a single resonant bandpass filter. Formant parameters are linearly interpolated allowing to go smoothly from one vowel to another. Voice type can be selected but must correspond to the frequency range of the provided source to be realistic.",
+      "usage": "_ : formantFilterBP(voiceType,vowel,nFormants,i,freq) : _",
+      "params": [
+        {
+          "name": "voiceType",
+          "description": "the voice type (0: alto, 1: bass, 2: countertenor, 3: soprano, 4: tenor)"
+        },
+        {
+          "name": "vowel",
+          "description": "the vowel (0: a, 1: e, 2: i, 3: o, 4: u)"
+        },
+        {
+          "name": "nFormants",
+          "description": "number of formant regions in frequency domain, typically 5"
+        },
+        {
+          "name": "i",
+          "description": "formant index used to index formant data value arrays"
+        },
+        {
+          "name": "freq",
+          "description": "fundamental frequency of excitation signal."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : formantFilterBP(voiceType,vowel,nFormants,i,freq) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nformantFilterBP_test = os.osc(110) : pm.formantFilterBP(0, 0, 5, 0, 200);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4348,
+        "lineEnd": 4374
+      }
+    },
+    {
+      "id": "physmodels.formantFilterbank",
+      "name": "formantFilterbank",
+      "qualifiedName": "pm.formantFilterbank",
+      "header": "(pm.)formantFilterbank",
+      "summary": "Formant filterbank which can use different types of filterbank functions and different excitation signals. Formant parameters are linearly interpolated allowing to go smoothly from one vowel to another. Voice type can be selected but must correspond to the frequency range of the provided source to be realistic.",
+      "usage": "_ : formantFilterbank(voiceType,vowel,formantGen,freq) : _",
+      "params": [
+        {
+          "name": "voiceType",
+          "description": "the voice type (0: alto, 1: bass, 2: countertenor, 3: soprano, 4: tenor)"
+        },
+        {
+          "name": "vowel",
+          "description": "the vowel (0: a, 1: e, 2: i, 3: o, 4: u)"
+        },
+        {
+          "name": "formantGen",
+          "description": "the specific formant filterbank function (i.e. FormantFilterbankBP, FormantFilterbankFof,...)"
+        },
+        {
+          "name": "freq",
+          "description": "fundamental frequency of excitation signal. Needed for FOF version to calculate rise time of envelope"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : formantFilterbank(voiceType,vowel,formantGen,freq) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nformantFilterbank_test = os.osc(110) : pm.formantFilterbank(0, 0, pm.formantFilterBP, 200);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4389,
+        "lineEnd": 4417
+      }
+    },
+    {
+      "id": "physmodels.formantFilterbankFofCycle",
+      "name": "formantFilterbankFofCycle",
+      "qualifiedName": "pm.formantFilterbankFofCycle",
+      "header": "(pm.)formantFilterbankFofCycle",
+      "summary": "Formant filterbank based on a bank of fof filters. Formant parameters are linearly interpolated allowing to go smoothly from one vowel to another. Voice type can be selected but must correspond to the frequency range of the provided source to be realistic.",
+      "usage": "_ : formantFilterbankFofCycle(voiceType,vowel,freq) : _",
+      "params": [
+        {
+          "name": "voiceType",
+          "description": "the voice type (0: alto, 1: bass, 2: countertenor, 3: soprano, 4: tenor)"
+        },
+        {
+          "name": "vowel",
+          "description": "the vowel (0: a, 1: e, 2: i, 3: o, 4: u)"
+        },
+        {
+          "name": "freq",
+          "description": "the fundamental frequency of the excitation signal. Needed to calculate the skirtwidth of the FOF envelopes and for the autobendFreq and vocalEffort functions"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : formantFilterbankFofCycle(voiceType,vowel,freq) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nformantFilterbankFofCycle_test = os.osc(110) : pm.formantFilterbankFofCycle(0, 0, 200);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4427,
+        "lineEnd": 4452
+      }
+    },
+    {
+      "id": "physmodels.formantFilterbankFofSmooth",
+      "name": "formantFilterbankFofSmooth",
+      "qualifiedName": "pm.formantFilterbankFofSmooth",
+      "header": "(pm.)formantFilterbankFofSmooth",
+      "summary": "Formant filterbank based on a bank of fof filters. Formant parameters are linearly interpolated allowing to go smoothly from one vowel to another. Voice type can be selected but must correspond to the frequency range of the provided source to be realistic.",
+      "usage": "_ : formantFilterbankFofSmooth(voiceType,vowel,freq) : _",
+      "params": [
+        {
+          "name": "voiceType",
+          "description": "the voice type (0: alto, 1: bass, 2: countertenor, 3: soprano, 4: tenor)"
+        },
+        {
+          "name": "vowel",
+          "description": "the vowel (0: a, 1: e, 2: i, 3: o, 4: u)"
+        },
+        {
+          "name": "freq",
+          "description": "the fundamental frequency of the excitation signal. Needed to calculate the skirtwidth of the FOF envelopes and for the autobendFreq and vocalEffort functions"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : formantFilterbankFofSmooth(voiceType,vowel,freq) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nformantFilterbankFofSmooth_test = os.osc(110) : pm.formantFilterbankFofSmooth(0, 0, 200);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4459,
+        "lineEnd": 4485
+      }
+    },
+    {
+      "id": "physmodels.formantFilterbankBP",
+      "name": "formantFilterbankBP",
+      "qualifiedName": "pm.formantFilterbankBP",
+      "header": "(pm.)formantFilterbankBP",
+      "summary": "Formant filterbank based on a bank of resonant bandpass filters. Formant parameters are linearly interpolated allowing to go smoothly from one vowel to another. Voice type can be selected but must correspond to the frequency range of the provided source to be realistic.",
+      "usage": "_ : formantFilterbankBP(voiceType,vowel,freq) : _",
+      "params": [
+        {
+          "name": "voiceType",
+          "description": "the voice type (0: alto, 1: bass, 2: countertenor, 3: soprano, 4: tenor)"
+        },
+        {
+          "name": "vowel",
+          "description": "the vowel (0: a, 1: e, 2: i, 3: o, 4: u)"
+        },
+        {
+          "name": "freq",
+          "description": "the fundamental frequency of the excitation signal. Needed for the autobendFreq and vocalEffort functions."
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : formantFilterbankBP(voiceType,vowel,freq) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nformantFilterbankBP_test = os.osc(110) : pm.formantFilterbankBP(0, 0, 200);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4492,
+        "lineEnd": 4516
+      }
+    },
+    {
+      "id": "physmodels.SFFormantModel",
+      "name": "SFFormantModel",
+      "qualifiedName": "pm.SFFormantModel",
+      "header": "(pm.)SFFormantModel",
+      "summary": "Simple formant/vocal synthesizer based on a source/filter model. The `source` and `filterbank` must be specified by the user. `filterbank` must take the same input parameters as [`formantFilterbank`](#formantFilterbank) (`BP`/`FofCycle` /`FofSmooth`). Formant parameters are linearly interpolated allowing to go smoothly from one vowel to another. Voice type can be selected but must correspond to the frequency range of the synthesized voice to be realistic.",
+      "usage": "SFFormantModel(voiceType,vowel,exType,freq,gain,source,filterbank,isFof) : _",
+      "params": [
+        {
+          "name": "voiceType",
+          "description": "the voice type (0: alto, 1: bass, 2: countertenor, 3: soprano, 4: tenor)"
+        },
+        {
+          "name": "vowel",
+          "description": "the vowel (0: a, 1: e, 2: i, 3: o, 4: u)"
+        },
+        {
+          "name": "exType",
+          "description": "voice vs. fricative sound ratio (0-1 where 1 is 100% fricative)"
+        },
+        {
+          "name": "freq",
+          "description": "the fundamental frequency of the source signal"
+        },
+        {
+          "name": "gain",
+          "description": "linear gain multiplier to multiply the source by"
+        },
+        {
+          "name": "source",
+          "description": "excitation signal generator used by the model"
+        },
+        {
+          "name": "filterbank",
+          "description": "formant filterbank function, typically one of `formantFilterbankBP`, `formantFilterbankFofCycle`, or `formantFilterbankFofSmooth`"
+        },
+        {
+          "name": "isFof",
+          "description": "whether model is FOF based (0: no, 1: yes)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "SFFormantModel(voiceType,vowel,exType,freq,gain,source,filterbank,isFof) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nSFFormantModel_test = pm.SFFormantModel(0, 0, 0.2, 220, 0.7, os.lf_imptrain(220), pm.formantFilterbankFofCycle, 1);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4521,
+        "lineEnd": 4554
+      }
+    },
+    {
+      "id": "physmodels.SFFormantModelFofCycle",
+      "name": "SFFormantModelFofCycle",
+      "qualifiedName": "pm.SFFormantModelFofCycle",
+      "header": "(pm.)SFFormantModelFofCycle",
+      "summary": "Simple formant/vocal synthesizer based on a source/filter model. The source is just a periodic impulse and the \"filter\" is a bank of FOF filters. Formant parameters are linearly interpolated allowing to go smoothly from one vowel to another. Voice type can be selected but must correspond to the frequency range of the synthesized voice to be realistic. This model does not work with noise in the source signal, so `exType` has been removed and the model does not depend on `SFFormantModel`.",
+      "usage": "SFFormantModelFofCycle(voiceType,vowel,freq,gain) : _",
+      "params": [
+        {
+          "name": "voiceType",
+          "description": "the voice type (0: alto, 1: bass, 2: countertenor, 3: soprano, 4: tenor)"
+        },
+        {
+          "name": "vowel",
+          "description": "the vowel (0: a, 1: e, 2: i, 3: o, 4: u)"
+        },
+        {
+          "name": "freq",
+          "description": "the fundamental frequency of the source signal"
+        },
+        {
+          "name": "gain",
+          "description": "linear gain multiplier to multiply the source by"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "SFFormantModelFofCycle(voiceType,vowel,freq,gain) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nSFFormantModelFofCycle_test = pm.SFFormantModelFofCycle(0, 0, 220, 0.7);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4567,
+        "lineEnd": 4594
+      }
+    },
+    {
+      "id": "physmodels.SFFormantModelFofSmooth",
+      "name": "SFFormantModelFofSmooth",
+      "qualifiedName": "pm.SFFormantModelFofSmooth",
+      "header": "(pm.)SFFormantModelFofSmooth",
+      "summary": "Simple formant/vocal synthesizer based on a source/filter model. The source is just a periodic impulse and the \"filter\" is a bank of FOF filters. Formant parameters are linearly interpolated allowing to go smoothly from one vowel to another. Voice type can be selected but must correspond to the frequency range of the synthesized voice to be realistic.",
+      "usage": "SFFormantModelFofSmooth(voiceType,vowel,freq,gain) : _",
+      "params": [
+        {
+          "name": "voiceType",
+          "description": "the voice type (0: alto, 1: bass, 2: countertenor, 3: soprano, 4: tenor)"
+        },
+        {
+          "name": "vowel",
+          "description": "the vowel (0: a, 1: e, 2: i, 3: o, 4: u)"
+        },
+        {
+          "name": "freq",
+          "description": "the fundamental frequency of the source signal"
+        },
+        {
+          "name": "gain",
+          "description": "linear gain multiplier to multiply the source by"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "SFFormantModelFofSmooth(voiceType,vowel,freq,gain) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nSFFormantModelFofSmooth_test = pm.SFFormantModelFofSmooth(0, 0, 220, 0.7);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4602,
+        "lineEnd": 4627
+      }
+    },
+    {
+      "id": "physmodels.SFFormantModelBP",
+      "name": "SFFormantModelBP",
+      "qualifiedName": "pm.SFFormantModelBP",
+      "header": "(pm.)SFFormantModelBP",
+      "summary": "Simple formant/vocal synthesizer based on a source/filter model. The source is just a sawtooth wave and the \"filter\" is a bank of resonant bandpass filters. Formant parameters are linearly interpolated allowing to go smoothly from one vowel to another. Voice type can be selected but must correspond to the frequency range of the synthesized voice to be realistic. The formant data used here come from the CSOUND manual <http://www.csounds.com/manual/html/>.",
+      "usage": "SFFormantModelBP(voiceType,vowel,exType,freq,gain) : _",
+      "params": [
+        {
+          "name": "voiceType",
+          "description": "the voice type (0: alto, 1: bass, 2: countertenor, 3: soprano, 4: tenor)"
+        },
+        {
+          "name": "vowel",
+          "description": "the vowel (0: a, 1: e, 2: i, 3: o, 4: u)"
+        },
+        {
+          "name": "exType",
+          "description": "voice vs. fricative sound ratio (0-1 where 1 is 100% fricative)"
+        },
+        {
+          "name": "freq",
+          "description": "the fundamental frequency of the source signal"
+        },
+        {
+          "name": "gain",
+          "description": "linear gain multiplier to multiply the source by"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "SFFormantModelBP(voiceType,vowel,exType,freq,gain) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nSFFormantModelBP_test = pm.SFFormantModelBP(0, 0, 0.2, 220, 0.7);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4635,
+        "lineEnd": 4664
+      }
+    },
+    {
+      "id": "physmodels.SFFormantModelFofCycle_ui",
+      "name": "SFFormantModelFofCycle_ui",
+      "qualifiedName": "pm.SFFormantModelFofCycle_ui",
+      "header": "(pm.)SFFormantModelFofCycle_ui",
+      "summary": "Ready-to-use source-filter vocal synthesizer with built-in user interface.",
+      "usage": "SFFormantModelFofCycle_ui : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "SFFormantModelFofCycle_ui : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nSFFormantModelFofCycle_ui_test = pm.SFFormantModelFofCycle_ui;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4670,
+        "lineEnd": 4684
+      }
+    },
+    {
+      "id": "physmodels.SFFormantModelFofSmooth_ui",
+      "name": "SFFormantModelFofSmooth_ui",
+      "qualifiedName": "pm.SFFormantModelFofSmooth_ui",
+      "header": "(pm.)SFFormantModelFofSmooth_ui",
+      "summary": "Ready-to-use source-filter vocal synthesizer with built-in user interface.",
+      "usage": "SFFormantModelFofSmooth_ui : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "SFFormantModelFofSmooth_ui : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nSFFormantModelFofSmooth_ui_test = pm.SFFormantModelFofSmooth_ui;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4700,
+        "lineEnd": 4714
+      }
+    },
+    {
+      "id": "physmodels.SFFormantModelBP_ui",
+      "name": "SFFormantModelBP_ui",
+      "qualifiedName": "pm.SFFormantModelBP_ui",
+      "header": "(pm.)SFFormantModelBP_ui",
+      "summary": "Ready-to-use source-filter vocal synthesizer with built-in user interface.",
+      "usage": "SFFormantModelBP_ui : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "SFFormantModelBP_ui : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nSFFormantModelBP_ui_test = pm.SFFormantModelBP_ui;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4730,
+        "lineEnd": 4744
+      }
+    },
+    {
+      "id": "physmodels.SFFormantModelFofCycle_ui_MIDI",
+      "name": "SFFormantModelFofCycle_ui_MIDI",
+      "qualifiedName": "pm.SFFormantModelFofCycle_ui_MIDI",
+      "header": "(pm.)SFFormantModelFofCycle_ui_MIDI",
+      "summary": "Ready-to-use MIDI-controllable source-filter vocal synthesizer.",
+      "usage": "SFFormantModelFofCycle_ui_MIDI : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "SFFormantModelFofCycle_ui_MIDI : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nSFFormantModelFofCycle_ui_MIDI_test = pm.SFFormantModelFofCycle_ui_MIDI;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4758,
+        "lineEnd": 4772
+      }
+    },
+    {
+      "id": "physmodels.SFFormantModelFofSmooth_ui_MIDI",
+      "name": "SFFormantModelFofSmooth_ui_MIDI",
+      "qualifiedName": "pm.SFFormantModelFofSmooth_ui_MIDI",
+      "header": "(pm.)SFFormantModelFofSmooth_ui_MIDI",
+      "summary": "Ready-to-use MIDI-controllable source-filter vocal synthesizer.",
+      "usage": "SFFormantModelFofSmooth_ui_MIDI : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "SFFormantModelFofSmooth_ui_MIDI : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nSFFormantModelFofSmooth_ui_MIDI_test = pm.SFFormantModelFofSmooth_ui_MIDI;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4803,
+        "lineEnd": 4817
+      }
+    },
+    {
+      "id": "physmodels.SFFormantModelBP_ui_MIDI",
+      "name": "SFFormantModelBP_ui_MIDI",
+      "qualifiedName": "pm.SFFormantModelBP_ui_MIDI",
+      "header": "(pm.)SFFormantModelBP_ui_MIDI",
+      "summary": "Ready-to-use MIDI-controllable source-filter vocal synthesizer.",
+      "usage": "SFFormantModelBP_ui_MIDI : _",
+      "params": [],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "SFFormantModelBP_ui_MIDI : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nSFFormantModelBP_ui_MIDI_test = pm.SFFormantModelBP_ui_MIDI;",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4848,
+        "lineEnd": 4862
+      }
+    },
+    {
+      "id": "physmodels.allpassNL",
+      "name": "allpassNL",
+      "qualifiedName": "pm.allpassNL",
+      "header": "(pm.)allpassNL",
+      "summary": "Bidirectional block adding nonlinearities in both directions in a chain. Nonlinearities are created by modulating the coefficients of a passive allpass filter by the signal it is processing.",
+      "usage": "chain(... : allpassNL(nonlinearity) : ...)",
+      "params": [
+        {
+          "name": "nonlinearity",
+          "description": "amount of nonlinearity to be added (0-1)"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "chain(... : allpassNL(nonlinearity) : ...)"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nallpassNL_test = 0,0,0 : pm.allpassNL(0.4);",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4898,
+        "lineEnd": 4918
+      }
+    },
+    {
+      "id": "physmodels.modalModel",
+      "name": "modalModel",
+      "qualifiedName": "pm.modalModel",
+      "header": "(pm.)modalModel",
+      "summary": "Implement multiple resonance modes using resonant bandpass filters.",
+      "usage": "_ : modalModel(n, freqs, t60s, gains) : _",
+      "params": [
+        {
+          "name": "n",
+          "description": "number of given modes"
+        },
+        {
+          "name": "freqs",
+          "description": "list of filter center frequencies"
+        },
+        {
+          "name": "t60s",
+          "description": "list of mode resonance durations (in seconds)"
+        },
+        {
+          "name": "gains",
+          "description": "list of mode gains (0-1) For example, to generate a model with 2 modes (440 Hz and 660 Hz, a fifth) where the higher one decays faster and is attenuated:"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : modalModel(n, freqs, t60s, gains) : _"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nmodalModel_test = os.impulse : pm.modalModel(3, (440,660,880), (0.5,0.4,0.3), (0.8,0.6,0.4));",
+      "references": [],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4929,
+        "lineEnd": 4966
+      }
+    },
+    {
+      "id": "physmodels.rk_solve",
+      "name": "rk_solve",
+      "qualifiedName": "pm.rk_solve",
+      "header": "(pm.)rk_solve",
+      "summary": "Solves the system of ordinary differential equations of any order using the explicit Runge-Kutta methods.",
+      "usage": "rk_solve(ts,ks, ni,h, eq,iv) : si.bus(outputs(eq))",
+      "params": [
+        {
+          "name": "ts,ks",
+          "description": "the Butcher tableau (see below)"
+        },
+        {
+          "name": "ni",
+          "description": "number of iterations at each tick, compile time constant ni > 1 can improve accuracy but will degrade performance"
+        },
+        {
+          "name": "h",
+          "description": "time step, run time constant, e.g. 1/ma.SR"
+        },
+        {
+          "name": "eq",
+          "description": "list of derivative functions"
+        },
+        {
+          "name": "iv",
+          "description": "list of initial values `rk_solve()` with the \"standard\" 1-4 tableaux and ni = 1:"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 1,
+        "raw": "rk_solve(ts,ks, ni,h, eq,iv) : si.bus(outputs(eq))"
+      },
+      "testCode": "pm = library(\"physmodels.lib\");\nma = library(\"maths.lib\");\nrk_solve_test = pm.rk_solve((0), (1), 1, 1.0/ma.SR, eq, (1)) with { eq(t,x) = -x; };",
+      "references": [
+        "<https://wikipedia.org/wiki/Runge%E2%80%93Kutta_methods>",
+        "------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "physmodels"
+      ],
+      "source": {
+        "file": "physmodels.lib",
+        "path": "physmodels.lib",
+        "lineStart": 4974,
+        "lineEnd": 5066
+      }
+    }
+  ]
+}

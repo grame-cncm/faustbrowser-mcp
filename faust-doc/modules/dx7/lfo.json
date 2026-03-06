@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "lfo.lib",
+    "path": "dx7/lfo.lib",
+    "aliasHints": [
+      "lfo"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "lfo.lfo",
+      "name": "lfo",
+      "qualifiedName": "dx.lfo",
+      "header": "(dx.)lfo",
+      "summary": "The DX7 LFO module according to Dexed. The two outputs are the LFO value and LFO delay. Both are between 0 and 1.0. See `Dx7Note::compute` in Dexed.",
+      "usage": "lfo(lfoWave, lfoDelay, lfoSync, lfoSpeed, gate) : _, _",
+      "params": [
+        {
+          "name": "lfoWave",
+          "description": "LFO wave mode (0-5) (triangle, saw down, saw up, square, sine, sample&hold)"
+        },
+        {
+          "name": "lfoDelay",
+          "description": "LFO delay (0-99)"
+        },
+        {
+          "name": "lfoSync",
+          "description": "(0-1) (0=no retrigger; 1=retrigger)"
+        },
+        {
+          "name": "lfoSpeed",
+          "description": "LFO speed (0-99)"
+        },
+        {
+          "name": "gate",
+          "description": "trigger signal"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": null,
+        "outSignals": 2,
+        "raw": "lfo(lfoWave, lfoDelay, lfoSync, lfoSpeed, gate) : _, _"
+      },
+      "testCode": "lfo = library(\"lfo.lib\");\nlfo_test = lfo.lfo(1, 50, checkbox(\"Sync\"),35, button(\"gate\"));",
+      "references": [
+        "<https://github.com/asb2m10/dexed/blob/master/Source/msfa/lfo.cc>",
+        "-----------------------------------------------------------------------------"
+      ],
+      "tags": [
+        "lfo"
+      ],
+      "source": {
+        "file": "lfo.lib",
+        "path": "dx7/lfo.lib",
+        "lineStart": 38,
+        "lineEnd": 66
+      }
+    }
+  ]
+}

@@ -1,0 +1,355 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "rootLib": "stdfaust.lib",
+  "rootLibPath": "stdfaust.lib",
+  "module": {
+    "file": "webaudio.lib",
+    "path": "webaudio.lib",
+    "aliasHints": [
+      "wa"
+    ]
+  },
+  "symbols": [
+    {
+      "id": "webaudio.lowpass2",
+      "name": "lowpass2",
+      "qualifiedName": "wa.lowpass2",
+      "header": "(wa.)lowpass2",
+      "summary": "Standard second-order resonant lowpass filter with 12dB/octave rolloff. Frequencies below the cutoff pass through, frequencies above it are attenuated.",
+      "usage": "_ : lowpass2(f0, Q, dtune) : _",
+      "params": [
+        {
+          "name": "f0",
+          "description": "cutoff frequency in Hz"
+        },
+        {
+          "name": "Q",
+          "description": "the quality factor"
+        },
+        {
+          "name": "dtune",
+          "description": "detuning of the frequency in cents"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : lowpass2(f0, Q, dtune) : _"
+      },
+      "testCode": "wa = library(\"webaudio.lib\");\nos = library(\"oscillators.lib\");\nlowpass2_test = os.osc(440) : wa.lowpass2(1000, 0.707, 0);",
+      "references": [
+        "<https://searchfox.org/mozilla-central/source/dom/media/webaudio/blink/Biquad.cpp#98>",
+        "--------------------------------------"
+      ],
+      "tags": [
+        "webaudio"
+      ],
+      "source": {
+        "file": "webaudio.lib",
+        "path": "webaudio.lib",
+        "lineStart": 216,
+        "lineEnd": 242
+      }
+    },
+    {
+      "id": "webaudio.highpass2",
+      "name": "highpass2",
+      "qualifiedName": "wa.highpass2",
+      "header": "(wa.)highpass2",
+      "summary": "Standard second-order resonant highpass filter with 12dB/octave rolloff. Frequencies below the cutoff are attenuated, frequencies above it pass through.",
+      "usage": "_ : highpass2(f0, Q, dtune) : _",
+      "params": [
+        {
+          "name": "f0",
+          "description": "cutoff frequency in Hz"
+        },
+        {
+          "name": "Q",
+          "description": "the quality factor"
+        },
+        {
+          "name": "dtune",
+          "description": "detuning of the frequency in cents"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : highpass2(f0, Q, dtune) : _"
+      },
+      "testCode": "wa = library(\"webaudio.lib\");\nos = library(\"oscillators.lib\");\nhighpass2_test = os.osc(440) : wa.highpass2(1000, 0.707, 0);",
+      "references": [
+        "<https://searchfox.org/mozilla-central/source/dom/media/webaudio/blink/Biquad.cpp#127>",
+        "--------------------------------------"
+      ],
+      "tags": [
+        "webaudio"
+      ],
+      "source": {
+        "file": "webaudio.lib",
+        "path": "webaudio.lib",
+        "lineStart": 246,
+        "lineEnd": 272
+      }
+    },
+    {
+      "id": "webaudio.bandpass2",
+      "name": "bandpass2",
+      "qualifiedName": "wa.bandpass2",
+      "header": "(wa.)bandpass2",
+      "summary": "Standard second-order bandpass filter. Frequencies outside the given range of frequencies are attenuated, the frequencies inside it pass through.",
+      "usage": "_ : bandpass2(f0, Q, dtune) : _",
+      "params": [
+        {
+          "name": "f0",
+          "description": "cutoff frequency in Hz"
+        },
+        {
+          "name": "Q",
+          "description": "the quality factor"
+        },
+        {
+          "name": "dtune",
+          "description": "detuning of the frequency in cents"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : bandpass2(f0, Q, dtune) : _"
+      },
+      "testCode": "wa = library(\"webaudio.lib\");\nos = library(\"oscillators.lib\");\nbandpass2_test = os.osc(440) : wa.bandpass2(1000, 1, 0);",
+      "references": [
+        "<https://searchfox.org/mozilla-central/source/dom/media/webaudio/blink/Biquad.cpp#334>",
+        "--------------------------------------"
+      ],
+      "tags": [
+        "webaudio"
+      ],
+      "source": {
+        "file": "webaudio.lib",
+        "path": "webaudio.lib",
+        "lineStart": 276,
+        "lineEnd": 302
+      }
+    },
+    {
+      "id": "webaudio.notch2",
+      "name": "notch2",
+      "qualifiedName": "wa.notch2",
+      "header": "(wa.)notch2",
+      "summary": "Standard notch filter, also called a band-stop or band-rejection filter. It is the opposite of a bandpass filter: frequencies outside the give range of frequencies pass through, frequencies inside it are attenuated.",
+      "usage": "_ : notch2(f0, Q, dtune) : _",
+      "params": [
+        {
+          "name": "f0",
+          "description": "cutoff frequency in Hz"
+        },
+        {
+          "name": "Q",
+          "description": "the quality factor"
+        },
+        {
+          "name": "dtune",
+          "description": "detuning of the frequency in cents"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : notch2(f0, Q, dtune) : _"
+      },
+      "testCode": "wa = library(\"webaudio.lib\");\nos = library(\"oscillators.lib\");\nnotch2_test = os.osc(440) : wa.notch2(1000, 1, 0);",
+      "references": [
+        "<https://searchfox.org/mozilla-central/source/dom/media/webaudio/blink/Biquad.cpp#301>",
+        "--------------------------------------"
+      ],
+      "tags": [
+        "webaudio"
+      ],
+      "source": {
+        "file": "webaudio.lib",
+        "path": "webaudio.lib",
+        "lineStart": 306,
+        "lineEnd": 333
+      }
+    },
+    {
+      "id": "webaudio.allpass2",
+      "name": "allpass2",
+      "qualifiedName": "wa.allpass2",
+      "header": "(wa.)allpass2",
+      "summary": "Standard second-order allpass filter. It lets all frequencies through, but changes the phase-relationship between the various frequencies.",
+      "usage": "_ : allpass2(f0, Q, dtune) : _",
+      "params": [
+        {
+          "name": "f0",
+          "description": "cutoff frequency in Hz"
+        },
+        {
+          "name": "Q",
+          "description": "the quality factor"
+        },
+        {
+          "name": "dtune",
+          "description": "detuning of the frequency in cents"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : allpass2(f0, Q, dtune) : _"
+      },
+      "testCode": "wa = library(\"webaudio.lib\");\nos = library(\"oscillators.lib\");\nallpass2_test = os.osc(440) : wa.allpass2(1000, 1, 0);",
+      "references": [
+        "<https://searchfox.org/mozilla-central/source/dom/media/webaudio/blink/Biquad.cpp#268>",
+        "--------------------------------------"
+      ],
+      "tags": [
+        "webaudio"
+      ],
+      "source": {
+        "file": "webaudio.lib",
+        "path": "webaudio.lib",
+        "lineStart": 337,
+        "lineEnd": 363
+      }
+    },
+    {
+      "id": "webaudio.peaking2",
+      "name": "peaking2",
+      "qualifiedName": "wa.peaking2",
+      "header": "(wa.)peaking2",
+      "summary": "Frequencies inside the range get a boost or an attenuation, frequencies outside it are unchanged.",
+      "usage": "_ : peaking2(f0, gain, Q, dtune) : _",
+      "params": [
+        {
+          "name": "f0",
+          "description": "cutoff frequency in Hz"
+        },
+        {
+          "name": "gain",
+          "description": "the gain in dB"
+        },
+        {
+          "name": "Q",
+          "description": "the quality factor"
+        },
+        {
+          "name": "dtune",
+          "description": "detuning of the frequency in cents"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 1,
+        "outSignals": 1,
+        "raw": "_ : peaking2(f0, gain, Q, dtune) : _"
+      },
+      "testCode": "wa = library(\"webaudio.lib\");\nos = library(\"oscillators.lib\");\npeaking2_test = os.osc(440) : wa.peaking2(1000, 3, 1, 0);",
+      "references": [
+        "<https://searchfox.org/mozilla-central/source/dom/media/webaudio/blink/Biquad.cpp#233>",
+        "--------------------------------------"
+      ],
+      "tags": [
+        "webaudio"
+      ],
+      "source": {
+        "file": "webaudio.lib",
+        "path": "webaudio.lib",
+        "lineStart": 367,
+        "lineEnd": 393
+      }
+    },
+    {
+      "id": "webaudio.lowshelf2",
+      "name": "lowshelf2",
+      "qualifiedName": "wa.lowshelf2",
+      "header": "(wa.)lowshelf2",
+      "summary": "Standard second-order lowshelf filter. Frequencies lower than the frequency get a boost, or an attenuation, frequencies over it are unchanged.",
+      "usage": "_,_,_,_ : lowshelf2(_,_,_,_) : _",
+      "params": [
+        {
+          "name": "f0",
+          "description": "cutoff frequency in Hz"
+        },
+        {
+          "name": "gain",
+          "description": "the gain in dB"
+        },
+        {
+          "name": "dtune",
+          "description": "detuning of the frequency in cents"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 4,
+        "outSignals": 1,
+        "raw": "_,_,_,_ : lowshelf2(_,_,_,_) : _"
+      },
+      "testCode": "wa = library(\"webaudio.lib\");\nos = library(\"oscillators.lib\");\nlowshelf2_test = os.osc(440) : wa.lowshelf2(500, 6, 0);",
+      "references": [
+        "<https://searchfox.org/mozilla-central/source/dom/media/webaudio/blink/Biquad.cpp#169>",
+        "--------------------------------------"
+      ],
+      "tags": [
+        "webaudio"
+      ],
+      "source": {
+        "file": "webaudio.lib",
+        "path": "webaudio.lib",
+        "lineStart": 397,
+        "lineEnd": 421
+      }
+    },
+    {
+      "id": "webaudio.highshelf2",
+      "name": "highshelf2",
+      "qualifiedName": "wa.highshelf2",
+      "header": "(wa.)highshelf2",
+      "summary": "Standard second-order highshelf filter. Frequencies higher than the frequency get a boost or an attenuation, frequencies lower than it are unchanged.",
+      "usage": "_,_,_,_ : highshelf2(_,_,_,_) : _",
+      "params": [
+        {
+          "name": "f0",
+          "description": "cutoff frequency in Hz"
+        },
+        {
+          "name": "gain",
+          "description": "the gain in dB"
+        },
+        {
+          "name": "dtune",
+          "description": "detuning of the frequency in cents"
+        }
+      ],
+      "notes": [],
+      "io": {
+        "inSignals": 4,
+        "outSignals": 1,
+        "raw": "_,_,_,_ : highshelf2(_,_,_,_) : _"
+      },
+      "testCode": "wa = library(\"webaudio.lib\");\nos = library(\"oscillators.lib\");\nhighshelf2_test = os.osc(440) : wa.highshelf2(2000, -6, 0);",
+      "references": [
+        "<https://searchfox.org/mozilla-central/source/dom/media/webaudio/blink/Biquad.cpp#201>",
+        "--------------------------------------"
+      ],
+      "tags": [
+        "webaudio"
+      ],
+      "source": {
+        "file": "webaudio.lib",
+        "path": "webaudio.lib",
+        "lineStart": 425,
+        "lineEnd": 449
+      }
+    }
+  ]
+}
