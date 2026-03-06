@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "generatedAt": "2026-03-06T19:54:28.921784+00:00",
   "rootLib": "stdfaust.lib",
   "rootLibPath": "stdfaust.lib",
   "module": {
@@ -489,7 +489,7 @@
       "qualifiedName": "pm.lTermination",
       "header": "(pm.)lTermination",
       "summary": "Creates a termination on the left side of a [`chain`](#chain) without closing the inputs and outputs of the bidirectional signals chain. This function adds a 1 sample delay near the termination and can be nested within another [`chain`](#chain).",
-      "usage": "lTerminations(a,b) with { a = *(-1); // left termination b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) };",
+      "usage": "lTermination(a,b) with { a = *(-1); // left termination b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) };",
       "params": [
         {
           "name": "a",
@@ -504,7 +504,7 @@
       "io": {
         "inSignals": 2,
         "outSignals": 4,
-        "raw": "lTerminations(a,b) with { a = *(-1); // left termination b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) };"
+        "raw": "lTermination(a,b) with { a = *(-1); // left termination b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) };"
       },
       "testCode": "pm = library(\"physmodels.lib\");\nlTermination_test = 0,0,0 : pm.lTermination(*(-1), pm.basicBlock);",
       "references": [],
@@ -524,7 +524,7 @@
       "qualifiedName": "pm.rTermination",
       "header": "(pm.)rTermination",
       "summary": "Creates a termination on the right side of a [`chain`](#chain) without closing the inputs and outputs of the bidirectional signals chain. This function adds a 1 sample delay near the termination and can be nested within another [`chain`](#chain).",
-      "usage": "rTerminations(b,c) with { b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) c = *(-1); // right termination };",
+      "usage": "rTermination(b,c) with { b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) c = *(-1); // right termination };",
       "params": [
         {
           "name": "b",
@@ -539,7 +539,7 @@
       "io": {
         "inSignals": 2,
         "outSignals": 4,
-        "raw": "rTerminations(b,c) with { b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) c = *(-1); // right termination };"
+        "raw": "rTermination(b,c) with { b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) c = *(-1); // right termination };"
       },
       "testCode": "pm = library(\"physmodels.lib\");\nrTermination_test = 0,0,0 : pm.rTermination(pm.basicBlock, *(-1));",
       "references": [],
@@ -985,7 +985,7 @@
       "qualifiedName": "pm.openStringPickUp",
       "header": "(pm.)openStringPickUp",
       "summary": "A bidirectional block implementing a \"generic\" string with selectable excitation position and stiffness. It also has a built-in pickup whose position can be independenly selected. The only constraint is that the pickup has to be placed after the excitation position.",
-      "usage": "chain(... : openStringPickUp(length,stiffness,pluckPosition,excitation) : ...)",
+      "usage": "chain(... : openStringPickUp(length,stiffness,pluckPosition,pickupPosition,excitation) : ...)",
       "params": [
         {
           "name": "length",
@@ -1012,7 +1012,7 @@
       "io": {
         "inSignals": 1,
         "outSignals": 1,
-        "raw": "chain(... : openStringPickUp(length,stiffness,pluckPosition,excitation) : ...)"
+        "raw": "chain(... : openStringPickUp(length,stiffness,pluckPosition,pickupPosition,excitation) : ...)"
       },
       "testCode": "pm = library(\"physmodels.lib\");\nopenStringPickUp_test = 0,0,0 : pm.openStringPickUp(0.8, 0.4, 0.6, 0.7, pm.impulseExcitation(button(\"gate\")));",
       "references": [],
@@ -1032,7 +1032,7 @@
       "qualifiedName": "pm.openStringPickDown",
       "header": "(pm.)openStringPickDown",
       "summary": "A bidirectional block implementing a \"generic\" string with selectable excitation position and stiffness. It also has a built-in pickup whose position can be independenly selected. The only constraint is that the pickup has to be placed before the excitation position.",
-      "usage": "chain(... : openStringPickDown(length,stiffness,pluckPosition,excitation) : ...)",
+      "usage": "chain(... : openStringPickDown(length,stiffness,pluckPosition,pickupPosition,excitation) : ...)",
       "params": [
         {
           "name": "length",
@@ -1059,7 +1059,7 @@
       "io": {
         "inSignals": 1,
         "outSignals": 1,
-        "raw": "chain(... : openStringPickDown(length,stiffness,pluckPosition,excitation) : ...)"
+        "raw": "chain(... : openStringPickDown(length,stiffness,pluckPosition,pickupPosition,excitation) : ...)"
       },
       "testCode": "pm = library(\"physmodels.lib\");\nopenStringPickDown_test = 0,0,0 : pm.openStringPickDown(0.8, 0.4, 0.6, 0.5, pm.impulseExcitation(button(\"gate\")));",
       "references": [],
@@ -2324,7 +2324,7 @@
       "qualifiedName": "pm.reedTable",
       "header": "(pm.)reedTable",
       "summary": "Extremely basic reed table that can be used to implement a wide range of single reed types for many different instruments (saxophone, clarinet, etc.).",
-      "usage": "excitation : reedTable(offeset,slope) : _",
+      "usage": "excitation : reedTable(offset,slope) : _",
       "params": [
         {
           "name": "excitation",
@@ -2343,7 +2343,7 @@
       "io": {
         "inSignals": 1,
         "outSignals": 1,
-        "raw": "excitation : reedTable(offeset,slope) : _"
+        "raw": "excitation : reedTable(offset,slope) : _"
       },
       "testCode": "pm = library(\"physmodels.lib\");\nos = library(\"oscillators.lib\");\nreedTable_test = os.osc(220) : pm.reedTable(0.4, 0.2);",
       "references": [],
@@ -3151,7 +3151,7 @@
       "qualifiedName": "pm.pluckString",
       "header": "(pm.)pluckString",
       "summary": "Creates a plucking excitation signal.",
-      "usage": "trigger = button('gate'); pluckString(stringLength,cutoff,maxFreq,sharpness,trigger)",
+      "usage": "trigger = button('gate'); pluckString(stringLength,cutoff,maxFreq,sharpness,gain,trigger)",
       "params": [
         {
           "name": "stringLength",
@@ -3181,8 +3181,8 @@
       "notes": [],
       "io": {
         "inSignals": null,
-        "outSignals": 5,
-        "raw": "trigger = button('gate'); pluckString(stringLength,cutoff,maxFreq,sharpness,trigger)"
+        "outSignals": 6,
+        "raw": "trigger = button('gate'); pluckString(stringLength,cutoff,maxFreq,sharpness,gain,trigger)"
       },
       "testCode": "pm = library(\"physmodels.lib\");\npluckString_test = pm.pluckString(0.9, 1, 1, 1, 0.6, button(\"gate\"));",
       "references": [],
@@ -3529,6 +3529,10 @@
         {
           "name": "gain",
           "description": "gain of the strike (0-1)"
+        },
+        {
+          "name": "trigger",
+          "description": "signal (0: off, 1: on)"
         }
       ],
       "notes": [],
@@ -3649,6 +3653,10 @@
         {
           "name": "gain",
           "description": "gain of the strike (0-1)"
+        },
+        {
+          "name": "trigger",
+          "description": "signal (0: off, 1: on)"
         }
       ],
       "notes": [],
@@ -3769,6 +3777,10 @@
         {
           "name": "gain",
           "description": "gain of the strike (0-1)"
+        },
+        {
+          "name": "trigger",
+          "description": "signal (0: off, 1: on)"
         }
       ],
       "notes": [],
@@ -3889,6 +3901,10 @@
         {
           "name": "gain",
           "description": "gain of the strike (0-1)"
+        },
+        {
+          "name": "trigger",
+          "description": "signal (0: off, 1: on)"
         }
       ],
       "notes": [],
@@ -4009,6 +4025,10 @@
         {
           "name": "gain",
           "description": "gain of the strike (0-1)"
+        },
+        {
+          "name": "trigger",
+          "description": "signal (0: off, 1: on)"
         }
       ],
       "notes": [],
@@ -4129,6 +4149,10 @@
         {
           "name": "gain",
           "description": "gain of the strike (0-1)"
+        },
+        {
+          "name": "trigger",
+          "description": "signal (0: off, 1: on)"
         }
       ],
       "notes": [],
@@ -4494,7 +4518,7 @@
       "qualifiedName": "pm.fof",
       "header": "(pm.)fof",
       "summary": "Function to generate a single Formant-Wave-Function.",
-      "usage": "_ : fof(fc,bw,a,g) : _",
+      "usage": "_ : fof(fc,bw,sw,g) : _",
       "params": [
         {
           "name": "fc",
@@ -4517,7 +4541,7 @@
       "io": {
         "inSignals": 1,
         "outSignals": 1,
-        "raw": "_ : fof(fc,bw,a,g) : _"
+        "raw": "_ : fof(fc,bw,sw,g) : _"
       },
       "testCode": "pm = library(\"physmodels.lib\");\nfof_test = pm.fof(0.3, 440, 880, 0.5);",
       "references": [

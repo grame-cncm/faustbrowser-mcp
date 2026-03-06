@@ -1,7 +1,7 @@
 {
   "version": 1,
   "layout": "split-v1",
-  "generatedAt": "2026-03-06T16:56:33.017455+00:00",
+  "generatedAt": "2026-03-06T19:54:28.921784+00:00",
   "rootLib": "stdfaust.lib",
   "rootLibPath": "stdfaust.lib",
   "libraries": [
@@ -17188,11 +17188,11 @@
       "name": "lTermination",
       "qualifiedName": "pm.lTermination",
       "summary": "Creates a termination on the left side of a [`chain`](#chain) without closing the inputs and outputs of the bidirectional signals chain. This function adds a 1 sample delay near the termination and can be nested within another [`chain`](#chain).",
-      "usage": "lTerminations(a,b) with { a = *(-1); // left termination b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) };",
+      "usage": "lTermination(a,b) with { a = *(-1); // left termination b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) };",
       "io": {
         "inSignals": 2,
         "outSignals": 4,
-        "raw": "lTerminations(a,b) with { a = *(-1); // left termination b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) };"
+        "raw": "lTermination(a,b) with { a = *(-1); // left termination b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) };"
       },
       "tags": [
         "physmodels"
@@ -17212,11 +17212,11 @@
       "name": "rTermination",
       "qualifiedName": "pm.rTermination",
       "summary": "Creates a termination on the right side of a [`chain`](#chain) without closing the inputs and outputs of the bidirectional signals chain. This function adds a 1 sample delay near the termination and can be nested within another [`chain`](#chain).",
-      "usage": "rTerminations(b,c) with { b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) c = *(-1); // right termination };",
+      "usage": "rTermination(b,c) with { b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) c = *(-1); // right termination };",
       "io": {
         "inSignals": 2,
         "outSignals": 4,
-        "raw": "rTerminations(b,c) with { b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) c = *(-1); // right termination };"
+        "raw": "rTermination(b,c) with { b = chain(D : E : F); // bidirectional chain of blocks (D, E, F, etc.) c = *(-1); // right termination };"
       },
       "tags": [
         "physmodels"
@@ -17524,11 +17524,11 @@
       "name": "openStringPickUp",
       "qualifiedName": "pm.openStringPickUp",
       "summary": "A bidirectional block implementing a \"generic\" string with selectable excitation position and stiffness. It also has a built-in pickup whose position can be independenly selected. The only constraint is that the pickup has to be placed after the excitation position.",
-      "usage": "chain(... : openStringPickUp(length,stiffness,pluckPosition,excitation) : ...)",
+      "usage": "chain(... : openStringPickUp(length,stiffness,pluckPosition,pickupPosition,excitation) : ...)",
       "io": {
         "inSignals": 1,
         "outSignals": 1,
-        "raw": "chain(... : openStringPickUp(length,stiffness,pluckPosition,excitation) : ...)"
+        "raw": "chain(... : openStringPickUp(length,stiffness,pluckPosition,pickupPosition,excitation) : ...)"
       },
       "tags": [
         "physmodels"
@@ -17548,11 +17548,11 @@
       "name": "openStringPickDown",
       "qualifiedName": "pm.openStringPickDown",
       "summary": "A bidirectional block implementing a \"generic\" string with selectable excitation position and stiffness. It also has a built-in pickup whose position can be independenly selected. The only constraint is that the pickup has to be placed before the excitation position.",
-      "usage": "chain(... : openStringPickDown(length,stiffness,pluckPosition,excitation) : ...)",
+      "usage": "chain(... : openStringPickDown(length,stiffness,pluckPosition,pickupPosition,excitation) : ...)",
       "io": {
         "inSignals": 1,
         "outSignals": 1,
-        "raw": "chain(... : openStringPickDown(length,stiffness,pluckPosition,excitation) : ...)"
+        "raw": "chain(... : openStringPickDown(length,stiffness,pluckPosition,pickupPosition,excitation) : ...)"
       },
       "tags": [
         "physmodels"
@@ -18460,11 +18460,11 @@
       "name": "reedTable",
       "qualifiedName": "pm.reedTable",
       "summary": "Extremely basic reed table that can be used to implement a wide range of single reed types for many different instruments (saxophone, clarinet, etc.).",
-      "usage": "excitation : reedTable(offeset,slope) : _",
+      "usage": "excitation : reedTable(offset,slope) : _",
       "io": {
         "inSignals": 1,
         "outSignals": 1,
-        "raw": "excitation : reedTable(offeset,slope) : _"
+        "raw": "excitation : reedTable(offset,slope) : _"
       },
       "tags": [
         "physmodels"
@@ -19060,11 +19060,11 @@
       "name": "pluckString",
       "qualifiedName": "pm.pluckString",
       "summary": "Creates a plucking excitation signal.",
-      "usage": "trigger = button('gate'); pluckString(stringLength,cutoff,maxFreq,sharpness,trigger)",
+      "usage": "trigger = button('gate'); pluckString(stringLength,cutoff,maxFreq,sharpness,gain,trigger)",
       "io": {
         "inSignals": null,
-        "outSignals": 5,
-        "raw": "trigger = button('gate'); pluckString(stringLength,cutoff,maxFreq,sharpness,trigger)"
+        "outSignals": 6,
+        "raw": "trigger = button('gate'); pluckString(stringLength,cutoff,maxFreq,sharpness,gain,trigger)"
       },
       "tags": [
         "physmodels"
@@ -19876,11 +19876,11 @@
       "name": "fof",
       "qualifiedName": "pm.fof",
       "summary": "Function to generate a single Formant-Wave-Function.",
-      "usage": "_ : fof(fc,bw,a,g) : _",
+      "usage": "_ : fof(fc,bw,sw,g) : _",
       "io": {
         "inSignals": 1,
         "outSignals": 1,
-        "raw": "_ : fof(fc,bw,a,g) : _"
+        "raw": "_ : fof(fc,bw,sw,g) : _"
       },
       "tags": [
         "physmodels"
