@@ -223,7 +223,8 @@ Example configuration:
         "BROWSER_UI_HOST": "127.0.0.1",
         "BROWSER_UI_PORT": "8010",
         "BROWSER_UI_ROOT": "/path/to/faustbrowser-mcp",
-        "BROWSER_UI_INDEX": "ui/rt-browser-ui.html"
+        "BROWSER_UI_INDEX": "ui/rt-browser-ui.html",
+        "FAUST_DOC_INDEX": "/path/to/faustbrowser-mcp/faust-doc",
       }
     }
   }
