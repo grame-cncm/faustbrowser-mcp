@@ -78,7 +78,8 @@ BROWSER_UI_PORT = int(os.environ.get("BROWSER_UI_PORT", "8010"))
 BROWSER_UI_ROOT = os.environ.get("BROWSER_UI_ROOT", os.path.abspath("."))
 BROWSER_UI_INDEX = os.environ.get("BROWSER_UI_INDEX", "ui/rt-browser-ui.html")
 FAUST_DOC_INDEX = os.environ.get("FAUST_DOC_INDEX")
-FAUST_DOC_INDEX_CANDIDATE: Path | None = Path(FAUST_DOC_INDEX).resolve() if FAUST_DOC_INDEX else None
+DEFAULT_FAUST_DOC_INDEX = (Path(__file__).resolve().parent / "faust-doc" / "index.json").resolve()
+FAUST_DOC_INDEX_CANDIDATE: Path | None = Path(FAUST_DOC_INDEX).resolve() if FAUST_DOC_INDEX else DEFAULT_FAUST_DOC_INDEX
 FAUST_DOC_STORE: FaustDocStore | None = None
 
 mcp = FastMCP(
